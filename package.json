@@ -12,7 +12,8 @@
     "dev": "webpack -d --watch",
     "build": "webpack -p",
     "test": "mocha --bail --reporter nyan spec/*",
-    "start": "node src/server/server.js"
+    "start": "node src/server/server.js",
+    "server-test": "mocha --bail --reporter nyan spec/server/serverspec.js"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
