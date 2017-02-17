@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 const teacherController = require('./../../../db/teacher/teacherController.js');
 
+=======
+>>>>>>> (dev) Created basic server and express-session
 const checkSession = function(req, res) {
   const isLoggedIn = req.session ? !!req.session.user : false;
   if (!isLoggedIn) {
@@ -11,6 +14,7 @@ const checkSession = function(req, res) {
   }
 };
 
+<<<<<<< HEAD
 const createSession = function(req, res, user) {
   return req.session.regenerate(function() {
   	req.session.user = user;
@@ -33,4 +37,8 @@ const userLogin = function(req, res) {
 module.exports = {
   'checkSession': checkSession,
   'userLogin' : userLogin
+=======
+module.exports = {
+  'checkSession': checkSession
+>>>>>>> (dev) Created basic server and express-session
 };
