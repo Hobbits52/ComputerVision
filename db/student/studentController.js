@@ -7,7 +7,7 @@ exports.studentSignup = (studentInput, cb) => {
   let username = studentInput.username;
   let password = studentInput.password;
 
-  db.Students.findOrCreate({where: {username: username},
+  Students.findOrCreate({where: {username: username},
     defaults: {password: password}})
   .spread((student, created) => {
     if (created === false) {
@@ -25,7 +25,7 @@ exports.userLogin = (studentInput, cb) => {
   let username = studentInput.username;
   let password = studentInput.password;
 
-  db.Customers.findOne({where: {username: username}})
+  Students.findOne({where: {username: username}})
   .then((student) => {
     bcrypt.compare(password, student.password, (err, res) => {
     if (res !== true) {
