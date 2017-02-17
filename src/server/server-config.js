@@ -8,6 +8,8 @@ const app = express();
 app.use(session({
   secret: 'shhh, it\'s a secret',
   cookie: { maxAge: 60000},
+  resave: false,
+  saveUninitialized: true 
 }));
 
 app.get('/auth/signedIn', auth.checkSession);

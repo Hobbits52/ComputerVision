@@ -11,7 +11,8 @@
     "serverDevTestAuth": "nodemon server/server.js",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
-    "test": "mocha --bail --reporter nyan test/ServerSpec.js"
+    "test": "mocha --bail --reporter nyan test/ServerSpec.js",
+    "server-test": "mocha --bail --reporter nyan spec/server/serverspec.js"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
