@@ -7,8 +7,8 @@
   "author": "Anthony Pecchillo | Cynthia Bathgate | Benze Gong | Kevin Gin",
   "license": "MIT",
   "scripts": {
-    "serverDev": "SKIP_AUTH='skip' nodemon server/devIndex.js",
-    "serverDevTestAuth": "nodemon server/devIndex.js",
+    "serverDev": "SKIP_AUTH='skip' nodemon server/server.js",
+    "serverDevTestAuth": "nodemon server/server.js",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
     "test": "mocha --bail --reporter nyan test/ServerSpec.js"
