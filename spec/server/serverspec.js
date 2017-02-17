@@ -43,7 +43,6 @@ describe('Loading express', () => {
       .get('/foo/bar')
       .expect(404, done);
   });
-
 });
 
 xdescribe('fetching image from Cloudinary', () =>{
