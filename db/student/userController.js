@@ -1,4 +1,4 @@
-var db = require('../index.js');
+var student = require('./userModel').Students;
 var bcrypt = require('bcrypt-nodejs');
 
 exports.studentSignup = function(studentInput, cb) {
