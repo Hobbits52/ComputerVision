@@ -3,6 +3,13 @@ const port = process.env.PORT || 8080;
 
 const server = app.listen(port);
 
+
+console.log('Server now listening on port ' + port);
+
+module.exports = server;
+
+
+
 console.log('Server now listening on port ' + port);
 
 module.exports = server;
