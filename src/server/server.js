@@ -7,4 +7,3 @@ const server = app.listen(port);
 console.log('Server now listening on port ' + port);
 
 module.exports = server;
-
