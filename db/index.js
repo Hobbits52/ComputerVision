@@ -1,4 +1,4 @@
-import { Sequelize } from 'sequelize';
-const db = new Sequelize('computervision', 'root', '');
+const Sequelize = require('sequelize');
+const db = new Sequelize('computervision', 'root', 'password');
 
 exports.db = db;
