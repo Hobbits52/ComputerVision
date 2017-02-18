@@ -1,0 +1,1 @@
+web: node src/client/app/index.jsx
