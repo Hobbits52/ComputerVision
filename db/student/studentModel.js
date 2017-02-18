@@ -1,6 +1,4 @@
-// import db from ‘./../index.js’;
 const db = require('./../index.js').db;
-// import { bcrypt } from 'bcrypt-nodejs';
 const bcrypt = require('bcrypt-nodejs');
 const Sequelize = require('sequelize');
 
