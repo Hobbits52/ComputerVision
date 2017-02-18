@@ -5,7 +5,7 @@ const Sequelize = require('sequelize');
 const Students = db.define('Students', {
   username: Sequelize.STRING,
   password: Sequelize.STRING
-});
+}, {timestamps: false});
 
 Students.beforeCreate((student, options, cb) => {
   return bcrypt.hash(student.password, null, null, (err, hashedPw) => {
