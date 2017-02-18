@@ -1,6 +1,7 @@
-import Students from './studentModel.js'
-import { bcrypt } from 'bcrypt-nodejs';
-
+// import Students from './studentModel.js'
+const Students = require('./studentModel.js');
+// import { bcrypt } from 'bcrypt-nodejs';
+const bcrypt = require('bcrypt-nodejs');
 //TODO: Refactor with promises on server side
 
 exports.studentSignup = (studentInput, cb) => {
