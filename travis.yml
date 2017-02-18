@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - 'node' # Could have specified one or several specific version numbers.  This uses the latest stable version.
+
+deploy:
+  provider: heroku
+  app: computer-vision
+  api_key:
+    secure: 
