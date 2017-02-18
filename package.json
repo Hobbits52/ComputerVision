@@ -11,8 +11,7 @@
     "serverDevTestAuth": "nodemon server/server.js",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
-    "test": "mocha --bail --reporter nyan test/ServerSpec.js",
-    "server-test": "mocha --bail --reporter nyan spec/server/serverspec.js",
+    "test": "mocha --bail --reporter nyan spec/server/serverspec.js",
     "start": "node server/server.js"
   },
   "devDependencies": {
