@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Installed via npm
 const webpack = require('webpack'); // To access built-in plugins
+const cssLoader = require('css-loader');
 const path = require('path');
 
 // Webpack is a module bundler for modern JavaScript applications.
@@ -50,22 +51,20 @@ const config = {
     // 
     // 2) Transform that file so that it can be added to your dependency 
     //    graph (and eventually your bundle). (use property)
-  module: {
-    loaders: [
-        {
-          test: /\.jsx*$/,
-          loaders: [ 'babel' ],
-          exclude: /node_modules/
-        },
-        {
-          test: /\.css$/,
-          loaders: ['style', 'css'] 
-        }                           
-      ],
-    rules: [
-      {test: /\.(js|jsx)$/, use: 'babel-loader'}
+  module : {
+    loaders : [
+      {
+        test : /\.jsx?/,
+        loader : 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader']
+      }
     ]
   },
+
   // We define a rules property for a single module with two required 
   // properties: TEST and USE. This tells webpack's compiler:
 
