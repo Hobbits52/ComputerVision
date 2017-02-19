@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const expect = require('chai').expect;
 const Students = require('./../student/studentModel.js').Students;
 
-describe('Database', () => {
+describe('Database Unit Testing', () => {
   let dbConnection;
 
   beforeEach((done) => {
@@ -43,9 +43,15 @@ describe('Database', () => {
     });
   });
 
-  // it('Should have a password that is hashed', () => {
-
-  // })
+  it('Should have a password that is hashed', () => {
+    var hashBegin = '$2a$10';
+    Students.build({
+      username: 'soccerfan',
+      password: 'thisIsSupposedTobeHashed'
+    }).save().then((savedStudent) => {
+      expect(savedStudent.password).to.not.equal('thisIsSupposedTobeHashed');
+      expect(savedStudent.password.slice(0,6)).to.equal(hashBegin);
+    });
+  });
 });
-
 
