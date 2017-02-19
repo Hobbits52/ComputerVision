@@ -1,0 +1,22 @@
+html, body, #app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.construction {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-top: -200px;
+   margin-left: -150px;
+   width: 300px;
+   height: 400px;
+   line-height: 400px;
+   text-align: center;
+   background-color: green;
+}
+
+p {
+  margin: auto;
+}
