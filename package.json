@@ -2,17 +2,17 @@
   "name": "ComputerVision",
   "version": "1.0.0",
   "description": "Utilization of Computer Vision to Read Paper Form Data",
-  "main": "index.js",
+  "main": "src/client/app/index.js",
   "repository": "https://github.com/Hobbits52/ComputerVision.git",
   "author": "Anthony Pecchillo | Cynthia Bathgate | Benze Gong | Kevin Gin",
   "license": "MIT",
   "scripts": {
-    "serverDev": "SKIP_AUTH='skip' nodemon server/server.js",
-    "serverDevTestAuth": "nodemon server/server.js",
+    "serverDev": "SKIP_AUTH='skip' nodemon src/server/server.js",
+    "serverDevTestAuth": "nodemon src/server/server.js",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
     "test": "mocha --bail --reporter nyan spec/*",
-    "start": "node server/server.js"
+    "start": "node src/server/server.js"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
