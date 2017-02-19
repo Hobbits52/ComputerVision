@@ -1,6 +1,10 @@
 language: node_js
 node_js:
-- node
+  - node
+services:
+  - mysql
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS computervision;'
 deploy:
   provider: heroku
   app: computer-vision
