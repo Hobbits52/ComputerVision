@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const mysql = require('mysql');
 const expect = require('chai').expect;
-const Teachers = require('./../../db/teacher/teacherModel.js').Students;
+const Teachers = require('./../../db/teacher/teacherModel.js').Teachers;
 
 describe('Database Unit Testing', () => {
   let dbConnection;
