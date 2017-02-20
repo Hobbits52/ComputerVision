@@ -3,6 +3,6 @@ bower_components/
 *.log
 
 build/
-public/
+public/	
 dist/
-api_config/
+src/server/api_config/
