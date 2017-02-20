@@ -3,7 +3,13 @@ bower_components/
 *.log
 
 build/
+<<<<<<< HEAD
 public/	
 dist/
 src/server/api_config/
 
+=======
+public/
+dist/
+api_config/
+>>>>>>> implemented image fetch function to Cloudinary
