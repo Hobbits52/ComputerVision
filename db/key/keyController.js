@@ -1,21 +1,21 @@
-const Keys = require('./keyModel.js');
+const answerKeys = require('./keyModel.js').answerKeys;
 
 //MVP: 1 key. No input from server controller except callback
 exports.getAnswers = (cb) => {
   //MVP+ : key will be based on keyInput.id
-  var keyId = 1;
-  Keys.findOne({where: {id: keyId}})
-  .then((key) => {
-    cb(null, key.answers);
+  var answerKeyId = 1;
+  Keys.findOne({where: {id: answerKeyId}})
+  .then((targetKey) => {
+    cb(null, targetKey.answers);
   }).catch((err) => {
     cb(err);
   })
 };
 
-exports.addKey = (key, cb) => {
-  var URL = key.URL;
+exports.addKey = (keyInput, cb) => {
+  var URL = keyInput.URL;
   //either convert array to string here, or it's already a string
-  var answers = key.answers;
+  var answers = keyInput.answers;
   Keys.create({
     answers: answers,
     URL: URL

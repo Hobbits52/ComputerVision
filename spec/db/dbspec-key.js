@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const mysql = require('mysql');
 const expect = require('chai').expect;
-const Keys = require('./../../db/key/keyModel.js').Keys;
+const answerKeys = require('./../../db/key/keyModel.js').answerKeys;
 
 describe('Database Unit Testing - Keys', () => {
   let dbConnection;
@@ -22,9 +22,9 @@ describe('Database Unit Testing - Keys', () => {
     let db = new Sequelize('computervision', 'root', '');
 
     //define schema based on imported keyModel schema
-    db.define('Keys', Keys.schema, Keys.options).sync().then(() => {
+    db.define('answerKeys', answerKeys.schema, answerKeys.options).sync().then(() => {
       //clear contents after each test
-      let tablename = 'Keys';
+      let tablename = 'answerKeys';
       dbConnection.query('truncate ' + tablename, done);
     });
   });
@@ -40,7 +40,7 @@ describe('Database Unit Testing - Keys', () => {
       2:['D']
     };
     sampleAnswers = JSON.stringify(sampleAnswers);
-    Keys.build({
+    answerKeys.build({
       answers: sampleAnswers,
       URL: 'http://www.example.com/sample.jpg'
     }).save().then((savedKey) => {
@@ -56,7 +56,7 @@ describe('Database Unit Testing - Keys', () => {
       2:['D']
     };
     sampleAnswers = JSON.stringify(sampleAnswers);
-    Keys.build({
+    answerKeys.build({
       answers: sampleAnswers,
       URL: 'http://www.example.com/sample.jpg'
     }).save().then((savedKey) => {

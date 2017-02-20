@@ -5,11 +5,11 @@ const Sequelize = require('sequelize');
 //MVP+: Multiple teachers. Need foreign key with teacher_id
 //MVP++: Foreign key for course 
 //MVP+++: Add names english names to the keys and english names to the templates (instead of just using key ID to display on front-end)
-const Keys = db.define('Keys', {
+const answerKeys = db.define('answerKeys', {
   answers: Sequelize.TEXT,
   URL: Sequelize.TEXT
 }, {timestamps: false});
 
-Keys.sync();
+answerKeys.sync();
 
-exports.Keys = Keys;
+exports.answerKeys = answerKeys;
