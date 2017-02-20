@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const expect = require('chai').expect;
 const Teachers = require('./../../db/teacher/teacherModel.js').Teachers;
 
-describe('Database Unit Testing', () => {
+describe('Database Unit Testing - Teachers', () => {
   let dbConnection;
 
   beforeEach((done) => {
@@ -21,7 +21,7 @@ describe('Database Unit Testing', () => {
     //new Sequelize in new connection
     let db = new Sequelize('computervision', 'root', '');
 
-    //define schema based on imported studentModel schema
+    //define schema based on imported teacherModel schema
     db.define('Teachers', Teachers.schema, Teachers.options).sync().then(() => {
       //clear contents after each test
       let tablename = 'Teachers';

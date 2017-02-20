@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const expect = require('chai').expect;
 const Students = require('./../../db/student/studentModel.js').Students;
 
-describe('Database Unit Testing', () => {
+describe('Database Unit Testing - Students', () => {
   let dbConnection;
 
   beforeEach((done) => {
