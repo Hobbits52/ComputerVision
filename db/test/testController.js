@@ -2,7 +2,6 @@ const Tests = require('./testModel.js').Tests;
 const Students = require('./../student/studentModel.js').Students;
 const answerKeys = require('./../key/keyModel.js').answerKeys;
 
-//MVP: 1 key
 const compareArrays = (array1, array2) => {
   if (array1.length !== array2.length) {
     return false;
@@ -19,7 +18,7 @@ const calculateResult = (studentAnswers, keyAnswers, cb) => {
       amountPossible++;
     }
   }
-  
+
   let amountCorrect = 0;
   for (let key in studentAnswers) {
     if (keyAnswers[key].length > 0 && compareArrays(studentAnswers[key], keyAnswers[key])) {
@@ -34,21 +33,36 @@ const calculateResult = (studentAnswers, keyAnswers, cb) => {
 
 exports.getStudentAnswers = (test, cb) => {
   //TODO: coordinate input file with server
+  Tests.findOne(where: {id: test.id})
+  .then((fetchedTest) => {
+    let testObj = {
+      studentAnswers: fetchedTest.studentAnswers,
+      result: fetchedTest.result
+    };
+    cb(null, testObj);
+  }).catch((err) => {
+    cb(err);
+  });
 };
 
 exports.addTest = (test, cb) => {
-  answerKeys.findOne(where: {id: test.answerKeysId})
+  //MVP: only one answer key
+  //MVP: refactor for multiple answer keys
+  answerKeys.findOne(where: {id: 1})
   .then((answerKey) => {
     let keyAnswers = JSON.parse(answerKey.answers);
-    Tests.findOne(where: {id: test.id})
-    .then((testResult) => {
-      let studentResponses = JSON.parse(testResult.studentAnswers);
-      let amountCorrect = 0;
-      calculateResult(studentResponses, keyAnswers, (percentage) => {
-        cb(null, percentage);
+    let studentResponses = JSON.parse(test.answers);
+    calculateResult(studentResponses, keyAnswers, (percentage) => {
+      Tests.create({
+        studentAnswers: test.answers,
+        URL: test.URL,
+        result: percentage
+      })
+      .then((savedTest) => {
+        cb(null, savedTest);
+      }).catch((err) => {
+        cb(err);
       });
-    }).catch((err) => {
-      cb(err);
     });
   }).catch((err) => {
     cb(err);
