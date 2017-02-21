@@ -52,12 +52,13 @@ exports.addTest = (test, cb) => {
   answerKeys.findOne({where: {id: 1}})
   .then((answerKey) => {
     let keyAnswers = JSON.parse(answerKey.answers);
-    let studentResponses = JSON.parse(test.answers);g
+    let studentResponses = JSON.parse(test.answers);
     calculateResult(studentResponses, keyAnswers, (percentage) => {
       Tests.create({
         studentAnswers: test.answers,
         URL: test.URL,
-        result: percentage
+        result: percentage,
+        StudentsId: test.studentId
       })
       .then((savedTest) => {
         cb(null, savedTest);

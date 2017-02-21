@@ -22,12 +22,14 @@ describe('Database Unit Testing - Students', () => {
     let db = new Sequelize('computervision', 'root', '');
 
     //define schema based on imported studentModel schema
-    db.define('Students', Students.schema, Students.options).sync().then(() => {
-      //clear contents after each test
-      let tablename = 'Students';
-      dbConnection.query('truncate ' + tablename, done);
+    db.define('Students', Students.schema, Students.options).sync()
+      .then(() => {
+        //avoid truncate because of foreign keys
+        dbConnection.query('delete from Students');
+        dbConnection.query('ALTER TABLE Students AUTO_INCREMENT = 0', done);
+      })
     });
-  });
+
 
   //end connection after each test
   afterEach(() => {
@@ -35,6 +37,7 @@ describe('Database Unit Testing - Students', () => {
   })
 
   it('Should have a username', () => {
+    console.log('=====================');
     Students.build({
       username: 'farmerjosephine',
       password: 'ilikeproduce'
