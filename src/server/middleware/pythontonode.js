@@ -13,8 +13,7 @@ py.stdout.on('end', function() {
 });
 
 //////TESTING DATA
-let imgName = 'test3resized';
-let type = 'test';
+
 ///////////////////////
 
 Image.fetchImage(imgName, type, function(err, imgUrl) {
