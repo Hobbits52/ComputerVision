@@ -31,9 +31,10 @@ const calculateResult = (studentAnswers, keyAnswers, cb) => {
   cb(percentage);
 };
 
-exports.getStudentAnswers = (test, cb) => {
-  //TODO: coordinate input file with server
-  Tests.findOne(where: {id: test.id})
+exports.getStudentAnswers = (student, cb) => {
+  //TODO: coordinate input object with server
+  //MVP: only one answer key
+  Tests.findOne({where: {StudentsId: student.id}})
   .then((fetchedTest) => {
     let testObj = {
       studentAnswers: fetchedTest.studentAnswers,
@@ -48,10 +49,10 @@ exports.getStudentAnswers = (test, cb) => {
 exports.addTest = (test, cb) => {
   //MVP: only one answer key
   //MVP: refactor for multiple answer keys
-  answerKeys.findOne(where: {id: 1})
+  answerKeys.findOne({where: {id: 1}})
   .then((answerKey) => {
     let keyAnswers = JSON.parse(answerKey.answers);
-    let studentResponses = JSON.parse(test.answers);
+    let studentResponses = JSON.parse(test.answers);g
     calculateResult(studentResponses, keyAnswers, (percentage) => {
       Tests.create({
         studentAnswers: test.answers,
