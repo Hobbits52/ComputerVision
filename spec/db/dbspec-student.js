@@ -26,6 +26,7 @@ describe('Database Unit Testing - Students', () => {
       .then(() => {
         //avoid truncate because of foreign keys
         dbConnection.query('delete from Students');
+        //reset autoincrement for students table
         dbConnection.query('ALTER TABLE Students AUTO_INCREMENT = 0', done);
       })
     });
