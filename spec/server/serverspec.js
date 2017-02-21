@@ -46,7 +46,7 @@ describe('Loading express', () => {
 
 });
 
-describe('fetching image from Cloudinary', () =>{
+xdescribe('fetching image from Cloudinary', () =>{
   let cloud = require('./../../src/server/middleware/cloud.js');
   let url;
   it('Fetches an image when given an image name', (done) => {

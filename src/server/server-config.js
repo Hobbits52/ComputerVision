@@ -12,8 +12,9 @@ app.use(session({
   saveUninitialized: true 
 }));
 
-
 app.get('/auth/signedIn', auth.checkSession);
+app.post('/auth/login', auth.userLogin);
+app.post('auth/signup', auth.userSignup);
 app.use(express.static(path.join(__dirname + '/../client/')));
 
 module.exports = app;
