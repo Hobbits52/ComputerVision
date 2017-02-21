@@ -13,8 +13,8 @@ app.use(session({
 }));
 
 app.get('/auth/signedIn', auth.checkSession);
-//app.post('/auth/login', auth.userLogin);
-//app.post('/auth/signup', auth.userSignup);
+app.post('/auth/login', auth.userLogin);
+// app.post('/auth/signup', auth.userSignup);
 
 app.use(express.static(path.join(__dirname + '/../client/')));
 
