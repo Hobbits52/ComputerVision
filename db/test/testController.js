@@ -1,1 +1,2 @@
-const answerKeys = require('./testModel.js').tests;
+const answerKeys = require('./testModel.js').Tests;
+
