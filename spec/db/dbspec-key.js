@@ -25,7 +25,10 @@ describe('Database Unit Testing - Keys', () => {
     db.define('answerKeys', answerKeys.schema, answerKeys.options).sync().then(() => {
       //clear contents after each test
       let tablename = 'answerKeys';
-      dbConnection.query('truncate ' + tablename, done);
+      //avoid truncate because of foreign keys.
+      //NOTE: the ids will keep auto incrementing
+      dbConnection.query('delete from ' + tablename);
+      dbConnection.query('ALTER TABLE answerKeys AUTO_INCREMENT = 0', done);
     });
   });
 

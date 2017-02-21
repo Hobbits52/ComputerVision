@@ -16,7 +16,7 @@ exports.addKey = (keyInput, cb) => {
   let URL = keyInput.URL;
   //is this a JSON.stringified object?
   let answers = keyInput.answers;
-  Keys.create({
+  answerKeys.create({
     answers: answers,
     URL: URL
   })

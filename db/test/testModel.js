@@ -9,7 +9,7 @@ const Students = require('./../student/studentModel').Students;
 //MVP+++: Foreign key for sub-course (sub-group)
 const Tests = db.define('Tests', {
   studentAnswers: Sequelize.TEXT,
-  URL: URL: Sequelize.TEXT,
+  URL: Sequelize.TEXT,
   result: Sequelize.DECIMAL(10,2)
 },{timestamps: false});
 
