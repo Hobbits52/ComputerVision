@@ -44,7 +44,7 @@ describe('Database Unit Testing - Teachers', () => {
   });
 
   it('Should have a password that is hashed', () => {
-    var hashBegin = '$2a$10';
+    let hashBegin = '$2a$10';
     Teachers.build({
       username: 'mathteacher',
       password: 'thisIsSupposedTobeHashed'
