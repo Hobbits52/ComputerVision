@@ -1,3 +1,5 @@
+const teacherController = require('./../../../db/teacher/teacherController.js');
+
 const checkSession = function(req, res) {
   const isLoggedIn = req.session ? !!req.session.user : false;
   if (!isLoggedIn) {
@@ -9,6 +11,26 @@ const checkSession = function(req, res) {
   }
 };
 
+const createSession = function(req, res, user) {
+  return req.session.regenerate(function() {
+  	req.session.user = user;
+  })
+}
+
+const userLogin = function(req, res) {
+  teacherController.teacherLogin(req.body, function(err, user) {
+    if (err) {
+      res.status(401).send(err);
+      res.end();
+  	} else {
+  	  createSession(req, res, user);
+  	  res.status(200).send(user);
+  	  res.end();
+  	}
+  });
+};
+
 module.exports = {
-  'checkSession': checkSession
+  'checkSession': checkSession,
+  'userLogin' : userLogin
 };
