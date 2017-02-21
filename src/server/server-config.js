@@ -12,6 +12,7 @@ app.use(session({
   saveUninitialized: true 
 }));
 
+
 app.get('/auth/signedIn', auth.checkSession);
 app.use(express.static(path.join(__dirname + '/../client/')));
 
