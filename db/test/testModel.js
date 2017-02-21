@@ -1,6 +1,7 @@
 const db = require('./../index.js').db;
 const Sequelize = require('sequelize');
 const answerKeys = require('./../key/keyModel').answerKeys;
+const Students = require('./../student/studentModel').Students;
 
 //MVP: 1 teacher
 //MVP+: Multiple teachers. Need foreign key with teacher_id
@@ -8,12 +9,17 @@ const answerKeys = require('./../key/keyModel').answerKeys;
 //MVP+++: Foreign key for sub-course (sub-group)
 const Tests = db.define('Tests', {
   studentAnswers: Sequelize.TEXT,
-  URL: URL: Sequelize.TEXT
+  URL: URL: Sequelize.TEXT,
+  result: Sequelize.DECIMAL(18,9)
 },{timestamps: false});
 
-
-answerKeys.hasMany(Tests); //add foreign key, or auto? //check when do tests
+//foreign key answerKey
+answerKeys.hasMany(Tests); //TODO: check to see if foreign key auto added
 Tests.belongsTo(answerKeys);
+
+//foreign key Student who took the test
+Students.hasMany(Tests);
+Tests.belongsTo(Students);
 
 Tests.sync();
 

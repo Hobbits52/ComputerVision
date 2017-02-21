@@ -35,7 +35,7 @@ describe('Database Unit Testing - Keys', () => {
   })
 
   it('Should store answers in JSON stringified form', () => {
-    var sampleAnswers = {
+    let sampleAnswers = {
       1:['A','B'], 
       2:['D']
     };
@@ -44,14 +44,14 @@ describe('Database Unit Testing - Keys', () => {
       answers: sampleAnswers,
       URL: 'http://www.example.com/sample.jpg'
     }).save().then((savedKey) => {
-      var savedAnswers = JSON.parse(savedKey.answers);
+      let savedAnswers = JSON.parse(savedKey.answers);
       expect(savedAnswers[1][0]).to.equal('A');
     });
   });
 
   it('Should have a URL', () => {
-    var beginUrl = 'http://'
-    var sampleAnswers = {
+    let beginUrl = 'http://'
+    let sampleAnswers = {
       1:['A','B'], 
       2:['D']
     };
