@@ -11,6 +11,10 @@ exports.fetchImage = function(imgName, type, cb) {
   }
 
   Cloud.getImageUrl(imgname, function(err, result) {
-    console.log(result);
+    if (err) {
+      cb(err);
+    } else {
+      cb(null, result.url);
+    }
   })
-}
+};
