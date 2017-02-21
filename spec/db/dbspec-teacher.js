@@ -24,6 +24,7 @@ describe('Database Unit Testing - Teachers', () => {
     //define schema based on imported teacherModel schema
     db.define('Teachers', Teachers.schema, Teachers.options).sync().then(() => {
       //clear contents after each test
+      //change to delete with relational data
       let tablename = 'Teachers';
       dbConnection.query('truncate ' + tablename, done);
     });
