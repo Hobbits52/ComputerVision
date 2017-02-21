@@ -6,11 +6,33 @@ const answerKeys = require('./../key/keyModel.js').answerKeys;
 
 //MVP: 1 key
 
-exports.getStudentAnswers = function(test, cb) {
+const compareArrays = (array1, array2) => {
+  if (array1.length !== array2.length) {
+    return false;
+  }
+  return array1.reduce((acc, val, index) => {
+    return acc && val === array2[index];
+  }, true);
+};
+
+const calculateResult = (studentAnswers, keyAnswers, cb) => {
+  let amountPossible = 0;
+  for (let key in keyAnswers) {
+    if (keyAnswers[key].length > 0) {
+      amountPossible++;
+    }
+  }
+  let amountCorrect = 0;
+  for (let key in studentAnswers) {
+    if ()
+  }
+};
+
+exports.getStudentAnswers = (test, cb) => {
   //TODO: coordinate input file with server
 };
 
-exports.addTest = function(test, cb) {
+exports.addTest = (test, cb) => {
   answerKeys.findOne(where: {id: test.answerKeysId})
   .then((answerKey) => {
     let keyAnswers = JSON.parse(answerKey.answers);
@@ -28,8 +50,3 @@ exports.addTest = function(test, cb) {
     cb(err);
   });
 };
-
-const calculateResult = function(studentAnswers, keyAnswers, cb) {
-
-};
-
