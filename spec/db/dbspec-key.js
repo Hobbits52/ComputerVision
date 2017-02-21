@@ -21,13 +21,11 @@ describe('Database Unit Testing - Keys', () => {
     //new Sequelize in new connection
     let db = new Sequelize('computervision', 'root', '');
 
-    //define schema based on imported keyModel schema
+    //define schema based on imported answerKeys schema
     db.define('answerKeys', answerKeys.schema, answerKeys.options).sync().then(() => {
-      //clear contents after each test
-      let tablename = 'answerKeys';
-      //avoid truncate because of foreign keys.
-      //NOTE: the ids will keep auto incrementing
-      dbConnection.query('delete from ' + tablename);
+      //delete instead of truncate because of foreign key relations
+      dbConnection.query('delete from answerKeys');
+      //reset autoincrement for answerKeys table
       dbConnection.query('ALTER TABLE answerKeys AUTO_INCREMENT = 0', done);
     });
   });

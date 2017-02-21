@@ -24,14 +24,18 @@ describe('Database Unit Testing - Keys', () => {
     //new Sequelize in new connection
     let db = new Sequelize('computervision', 'root', '');
 
-    //define schema based on imported keyModel schema
+    //define schema based on imported answerKeys schema & tests schema
     db.define('answerKeys', answerKeys.schema, answerKeys.options).sync();
     db.define('Tests', Tests.schema, Tests.options).sync().then(() => {
-      //how to truncate two tables with foreign key contraints?
-      tablename = 'Tests';
+
+      //delete instead of truncate because of foreign key relations
       dbConnection.query('delete from answerKeys');
+      //reset autoincrement for answerKeys table
       dbConnection.query('ALTER TABLE answerKeys AUTO_INCREMENT = 0');
-      dbConnection.query('delete from ' + tablename);
+
+      //delete instead of truncate because of foreign key relations
+      dbConnection.query('delete from Tests');
+      //reset autoincrement for Tests table
       dbConnection.query('ALTER TABLE Tests AUTO_INCREMENT = 0', done);
     });
   });
@@ -131,4 +135,7 @@ describe('Database Unit Testing - Keys', () => {
       }
     });
   });
+
+  // it('Should get students')
+
 });
