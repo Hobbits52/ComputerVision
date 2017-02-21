@@ -8,9 +8,3 @@ console.log('Server now listening on port ' + port);
 
 module.exports = server;
 
-
-
-console.log('Server now listening on port ' + port);
-
-module.exports = server;
-
