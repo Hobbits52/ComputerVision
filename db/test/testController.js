@@ -2,10 +2,7 @@ const Tests = require('./testModel.js').Tests;
 const Students = require('./../student/studentModel.js').Students;
 const answerKeys = require('./../key/keyModel.js').answerKeys;
 
-//promise import?
-
 //MVP: 1 key
-
 const compareArrays = (array1, array2) => {
   if (array1.length !== array2.length) {
     return false;
@@ -22,10 +19,17 @@ const calculateResult = (studentAnswers, keyAnswers, cb) => {
       amountPossible++;
     }
   }
+  
   let amountCorrect = 0;
   for (let key in studentAnswers) {
-    if ()
+    if (keyAnswers[key].length > 0 && compareArrays(studentAnswers[key], keyAnswers[key])) {
+      amountCorrect++;
+    }
   }
+
+  //round to two decimal places
+  let percentage = Math.round((amountCorrect/amountPossible) * 100) / 100
+  cb(percentage);
 };
 
 exports.getStudentAnswers = (test, cb) => {
