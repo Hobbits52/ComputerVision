@@ -14,7 +14,7 @@ exports.getAnswers = (cb) => {
 
 exports.addKey = (keyInput, cb) => {
   let URL = keyInput.URL;
-  //either convert array to string here, or it's already a string
+  //is this a JSON.stringified object?
   let answers = keyInput.answers;
   Keys.create({
     answers: answers,
