@@ -10,7 +10,7 @@ const Students = require('./../student/studentModel').Students;
 const Tests = db.define('Tests', {
   studentAnswers: Sequelize.TEXT,
   URL: URL: Sequelize.TEXT,
-  result: Sequelize.DECIMAL(18,9)
+  result: Sequelize.DECIMAL(10,2)
 },{timestamps: false});
 
 //foreign key answerKey
