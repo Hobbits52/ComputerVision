@@ -5,8 +5,9 @@ import argparse
 import imutils
 import cv2 as cv
 import urllib
+import json
 
-print ' <==========  Running scanner.py =========>'
+# print ' <==========  Running scanner.py =========>'
 
 def url_to_image(url):
 	# download the image, convert it to a NumPy array, and then read
@@ -164,43 +165,50 @@ for i in range(1,29):
 
 
 # print/return answers. Note: We are allowing multiple bubbles to be selected per question.
-print answers
+# print answers
+
+answerJSON = json.dumps(answers)
+print answerJSON
+# import json
+# >>> json.dumps([1,2,3,{'4': 5, '6': 7}], separators=(',',':'))
+# '[1,2,3,{"4":5,"6":7}]
+
 
 # DevNote: These are placeholder tests until we hook up our node and python. Should print TRUE for each with image3
-print answers[1][0] == 'a'
-print answers[2][0] == 'c'
-print answers[3][0] == 'b'
-print answers[4][0] == 'd'
-print answers[5][0] == 'e'
-print answers[6][0] == 'c'
-print len(answers[1]) == 1
-print len(answers[2]) == 1
-print len(answers[3]) == 1
-print len(answers[4]) == 1
-print len(answers[5]) == 1
-print len(answers[6]) == 1
-print len(answers[7]) == 0
-print len(answers[8]) == 0
-print len(answers[9]) == 0
-print len(answers[10]) == 0
-print len(answers[11]) == 0
-print len(answers[12]) == 0
-print len(answers[13]) == 0
-print len(answers[14]) == 0
-print len(answers[15]) == 0
-print len(answers[16]) == 0
-print len(answers[17]) == 0
-print len(answers[18]) == 0
-print len(answers[19]) == 0
-print len(answers[20]) == 0
-print len(answers[21]) == 0
-print len(answers[22]) == 0
-print len(answers[23]) == 0
-print len(answers[24]) == 0
-print len(answers[25]) == 0
-print len(answers[26]) == 0
-print len(answers[27]) == 0
-print len(answers[28]) == 0
+# print answers[1][0] == 'a'
+# print answers[2][0] == 'c'
+# print answers[3][0] == 'b'
+# print answers[4][0] == 'd'
+# print answers[5][0] == 'e'
+# print answers[6][0] == 'c'
+# print len(answers[1]) == 1
+# print len(answers[2]) == 1
+# print len(answers[3]) == 1
+# print len(answers[4]) == 1
+# print len(answers[5]) == 1
+# print len(answers[6]) == 1
+# print len(answers[7]) == 0
+# print len(answers[8]) == 0
+# print len(answers[9]) == 0
+# print len(answers[10]) == 0
+# print len(answers[11]) == 0
+# print len(answers[12]) == 0
+# print len(answers[13]) == 0
+# print len(answers[14]) == 0
+# print len(answers[15]) == 0
+# print len(answers[16]) == 0
+# print len(answers[17]) == 0
+# print len(answers[18]) == 0
+# print len(answers[19]) == 0
+# print len(answers[20]) == 0
+# print len(answers[21]) == 0
+# print len(answers[22]) == 0
+# print len(answers[23]) == 0
+# print len(answers[24]) == 0
+# print len(answers[25]) == 0
+# print len(answers[26]) == 0
+# print len(answers[27]) == 0
+# print len(answers[28]) == 0
 
 
 # GUI stuff ***** Leaving in for development/debugging
