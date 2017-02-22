@@ -5,7 +5,6 @@ const answerKeys = require('./../../db/key/keyModel.js').answerKeys;
 const Tests = require('./../../db/test/testModel.js').Tests;
 const TestController = require('./../../db/test/testController');
 const KeyController = require('./../../db/key/keyController');
-//note, eventually add require for utility functions
 
 describe('Database Unit Testing - Keys', () => {
   let dbConnection;
