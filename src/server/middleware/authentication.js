@@ -15,9 +15,10 @@ const createSession = function(req, res, user) {
   return req.session.regenerate(function() {
       req.session.user = user;
   })
-}
+};
 
 const userLogin = function(req, res) {
+  console.log(req.body);
   teacherController.teacherLogin(req.body, function(err, user) {
     if (err) {
       res.status(401).send(err);
@@ -30,7 +31,21 @@ const userLogin = function(req, res) {
   });
 };
 
+const userSignup = function(req, res) {
+  teacherConroller.teacherSignup(req.body, function(err, user) {
+    if (err) {
+      res.status(400).send(err);
+      res.end();
+    } else {
+      createSession(req, res, user);
+      res.status(200).send(user);
+      res.end();
+    }
+  });
+};
+
 module.exports = {
   'checkSession': checkSession,
-  'userLogin' : userLogin
+  'userLogin' : userLogin,
+  'userSignup' : userSignup
 };
