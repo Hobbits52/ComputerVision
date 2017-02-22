@@ -34,7 +34,7 @@ const calculateResult = (studentAnswers, keyAnswers, cb) => {
 exports.getStudentAnswers = (student, cb) => {
   //TODO: coordinate input object with server
   //MVP: only one answer key
-  Tests.findOne({where: {StudentsId: student.id}})
+  Tests.findOne({where: {StudentId: student.id}})
   .then((fetchedTest) => {
     let testObj = {
       studentAnswers: fetchedTest.studentAnswers,
@@ -58,7 +58,8 @@ exports.addTest = (test, cb) => {
         studentAnswers: test.answers,
         URL: test.URL,
         result: percentage,
-        StudentsId: test.studentId
+        StudentId: test.studentId,
+        answerKeyId: answerKey.id
       })
       .then((savedTest) => {
         cb(null, savedTest);
