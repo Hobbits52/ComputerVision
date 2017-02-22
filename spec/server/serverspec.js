@@ -1,6 +1,7 @@
 const expect = require('chai').expect;
 const request = require('supertest');
-
+const Teachers = require('./../../db/teacher/teacherModel.js').Teachers;
+const Sequelize = require('sequelize');
 // ----------------------------------------------------------------------
 // 'really-need' replaces Node's require with a more powerful version. In 
 // addition to a path, it accepts an options object; one of the available
@@ -38,14 +39,47 @@ describe('Loading express', () => {
   });
 
   it('404 errors everything else', (done) => {
-    console.log('Test 404');
     request(server)
       .get('/foo/bar')
       .expect(404, done);
   });
 });
 
-xdescribe('fetching image from Cloudinary', () =>{
+describe('Authentication', () =>{
+  let server;
+  
+  beforeEach( () => {
+    delete require.cache[require.resolve('./../../src/server/server.js')];
+    server = require('./../../src/server/server.js');
+  });
+
+  afterEach( () => {
+    server.close();
+    console.log('Server now closed.');
+  });
+
+  it('Signs user up', (done) => {
+    var test = {'username': 'teacher1', 'password': 'password'};
+    request(server)
+      .post('/auth/signup')
+      .send(test)
+      .expect(200, done);
+  });
+
+  it('Logs in a user', (done) => {
+    var test = {'username': 'teacher1', 'password': 'password'};
+    request(server)
+    .post('/auth/login')
+    .send(test)
+    .expect(200)
+    .end(function() {
+      Teachers.destroy({where: {username: 'teacher1'}});
+      done();
+    });
+  })
+});
+
+xdescribe('Fetching image from Cloudinary', () =>{
   let cloud = require('./../../src/server/middleware/cloud.js');
   let url;
   it('Fetches an image when given an image name', (done) => {
