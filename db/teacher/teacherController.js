@@ -1,4 +1,4 @@
-const Teachers = require('./teacherModel.js');
+const Teachers = require('./teacherModel.js').Teachers;
 const bcrypt = require('bcrypt-nodejs');
 //TODO: Refactor with promises on server side
 
@@ -6,7 +6,7 @@ exports.teacherSignup = (teacherInput, cb) => {
   let username = teacherInput.username;
   let password = teacherInput.password;
 
-  Students.findOrCreate({where: {username: username},
+  Teachers.findOrCreate({where: {username: username},
     defaults: {password: password}})
   .spread((teacher, created) => {
     if (created === false) {

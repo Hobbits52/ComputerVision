@@ -18,7 +18,6 @@ const createSession = function(req, res, user) {
 };
 
 const userLogin = function(req, res) {
-  console.log(req.body);
   teacherController.teacherLogin(req.body, function(err, user) {
     if (err) {
       res.status(401).send(err);
@@ -32,7 +31,7 @@ const userLogin = function(req, res) {
 };
 
 const userSignup = function(req, res) {
-  teacherConroller.teacherSignup(req.body, function(err, user) {
+  teacherController.teacherSignup(req.body, function(err, user) {
     if (err) {
       res.status(400).send(err);
       res.end();
