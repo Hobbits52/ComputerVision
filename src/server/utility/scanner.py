@@ -4,16 +4,25 @@ import numpy as np
 import argparse
 import imutils
 import cv2 as cv
+import urllib
 
 print ' <==========  Running scanner.py =========>'
 
-# filepath = 'test1resized.jpg'
-# filepath = 'test2resized.jpg'
-filepath = 'test3resized.jpg'
-# filepath = 'test4resized.jpg'
+def url_to_image(url):
+	# download the image, convert it to a NumPy array, and then read
+	# it into OpenCV format
+	resp = urllib.urlopen(url)
+	image = np.asarray(bytearray(resp.read()), dtype="uint8")
+	# Dev Question: Could we optimize next line by reading in grayscale?
+	image = cv.imdecode(image, cv.IMREAD_COLOR)
+	# return the image
+	return image
 
-# get image
-image = cv.imread(filepath)
+test1resizedURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487791060/test1resized_v0swpw.jpg'
+test3resizedURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487791152/test3resized_xsgeaq.jpg'
+url = test3resizedURL
+
+image = url_to_image(url);
 
 # convert to grayscale
 gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
@@ -93,8 +102,8 @@ for c in contours:
 			bubbles.append(c)
 
 # DevNote: should handle error gracefully if there aren't 140 bubbles found.
-print "this many bubbles =>"
-print len(bubbles)
+# print "this many bubbles =>"
+# print len(bubbles)
 
 # split into left and right bubbles
 bubbles = imutilsContours.sort_contours(bubbles,
@@ -151,7 +160,7 @@ for i in range(1,29):
 		# DevNote: we might need to adjust cutoff point when we change image size that we accept.
 		if total >= 220:
 			answers[i].append(circlesToLetters[j])
-			print total
+			# print total
 
 
 # print/return answers. Note: We are allowing multiple bubbles to be selected per question.
