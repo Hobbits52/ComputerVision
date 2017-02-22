@@ -5,6 +5,7 @@ const answerKeys = require('./../../db/key/keyModel.js').answerKeys;
 const Tests = require('./../../db/test/testModel.js').Tests;
 const TestController = require('./../../db/test/testController');
 const KeyController = require('./../../db/key/keyController');
+//note, eventually add require for utility functions
 
 describe('Database Unit Testing - Keys', () => {
   let dbConnection;
@@ -112,12 +113,16 @@ describe('Database Unit Testing - Keys', () => {
     answers: JSON.stringify(sampleStudentAnswers),
     URL: 'http://www.example.com/sample1.jpg',
     studentId: 23
-  }
+  };
 
   let keyInput = {
     answers: JSON.stringify(sampleKeyAnswers),
     URL: 'http://www.example.com/sample2.jpg'
-  }
+  };
+
+  let studentInput = {
+    id: 23
+  };
 
   it('Should add a test and calculate results', () => {
     KeyController.addKey(keyInput, (err, savedKey) => {
@@ -128,14 +133,10 @@ describe('Database Unit Testing - Keys', () => {
           if (err) {
             console.log(err);
           } else {
-            console.log('===========PERCENTAGE============', savedTest.percentage);
-            expect(savedTest.percentage).to.equal(0.8);
+            expect(savedTest.result).to.equal(0.8);
           }
         });
       }
     });
   });
-
-  // it('Should get students')
-
 });
