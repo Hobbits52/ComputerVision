@@ -16,5 +16,5 @@ exports.fetchImage = function(imgName, type, cb) {
     } else {
       cb(null, result.url);
     }
-  })
+  });
 };

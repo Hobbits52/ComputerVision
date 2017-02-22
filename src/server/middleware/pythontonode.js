@@ -13,7 +13,8 @@ py.stdout.on('end', function() {
 });
 
 //////TESTING DATA
-
+var imgName = 'papillon';
+var type = 'test';
 ///////////////////////
 
 Image.fetchImage(imgName, type, function(err, imgUrl) {
