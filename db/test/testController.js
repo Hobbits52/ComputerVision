@@ -21,8 +21,9 @@ exports.getStudentAnswers = (student, cb) => {
 exports.addTest = (test, cb) => {
   //MVP: only one answer key
   //MVP: refactor for multiple answer keys
-  answerKeys.findOne({where: {id: 1}})
+  answerKeys.findOne({where: {id: 8}})
   .then((answerKey) => {
+    console.log('AAAAAA', answerKey.answers);
     let keyAnswers = JSON.parse(answerKey.answers);
     let studentResponses = JSON.parse(test.answers);
     helpers.calculateResult(studentResponses, keyAnswers, (percentage) => {
