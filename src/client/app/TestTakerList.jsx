@@ -16,17 +16,17 @@ const TestTakerList = function({ testTitle, testTakers, handleTestTakerClick }) 
                                   handleTestTakerClick={handleTestTakerClick}
                                   key={index}
           >
-          </TestTakerListEntry></li>  // Do I need this semicolon here????
+          </TestTakerListEntry></li>
         )}
       </ul>
     </div>  
   );
 }
 
-// TestTakerListEntry.propTypes = {
-//   testTitle: PropTypes.string.isRequired,
-//   testTakers: PropTypes.array.isRequired,
-//   handleTestTakerClick: PropTypes.function.isRequired,
-// }
+TestTakerListEntry.propTypes = {
+  testTitle: React.PropTypes.string.isRequired,
+  testTakers: React.PropTypes.array.isRequired,
+  handleTestTakerClick: React.PropTypes.func.isRequired
+};
 
 export default TestTakerList;
