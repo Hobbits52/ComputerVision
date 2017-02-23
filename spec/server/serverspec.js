@@ -17,7 +17,7 @@ const spawn = require('child_process').spawn;
 // (but commented out) as an educational resource, but it will not be
 // utilized moving forward.
 
-describe('Loading express', () => {
+xdescribe('Loading express', () => {
   
   let server;
   
@@ -46,7 +46,7 @@ describe('Loading express', () => {
   });
 });
 
-describe('Authentication', () =>{
+xdescribe('Authentication', () =>{
   let server;
   
   beforeEach( () => {
@@ -114,13 +114,13 @@ xdescribe('Fetching image from Cloudinary', () =>{
   });
 });
 
-xdescribe('Scanner', () =>{
+describe('Scanner', () =>{
 
   it('Correctly Grades Test Hosted On Cloudinary', (done) => {
 
     // run Python as child process
     const py = spawn('python', ['./src/server/utility/scanner.py']);
-    var testUrl = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487791060/test1resized_v0swpw.jpg'
+    var testUrl = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487791152/test3resized_xsgeaq.jpg';
    
     let dataString = '';
 
