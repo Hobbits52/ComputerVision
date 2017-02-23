@@ -1,0 +1,40 @@
+html, body, #app, [data-reactroot] {
+  height: 100%;
+}
+
+.navbar { 
+  margin-bottom: 0;
+}
+
+.logo {
+  height: 100%;
+}
+
+.below-nav-top, .row {
+  height: 100%;
+}
+
+.left-12 {
+  border-radius: 100%;
+  width: 80%;
+}
+
+.navSide {
+  height: 100%;
+  padding-top: 3%;
+  background-color: purple;
+}
+
+ul.navSide {
+  padding: 0 10%;
+  text-align: center;
+  list-style-type: none;
+}
+
+.teacherViewContainer {
+  padding-top: 0%;
+}
+
+.testTitle {
+  background-color: skyblue;
+}
