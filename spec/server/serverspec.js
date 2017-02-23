@@ -120,7 +120,7 @@ describe('Scanner', () =>{
 
     // run Python as child process
     const py = spawn('python', ['./src/server/utility/scanner.py']);
-    var testUrl = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487791152/test3resized_xsgeaq.jpg';
+    var testURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487791152/test3resized_xsgeaq.jpg';
    
     let dataString = '';
 
@@ -129,7 +129,9 @@ describe('Scanner', () =>{
     });
 
     py.stdout.on('end', function() {
-      var answers = JSON.parse(dataString)
+      var data = JSON.parse(dataString);
+      var answers = data.answers;
+      expect(data.URL).to.equal(testURL)
       expect(answers[1][0]).to.equal('a')
       expect(answers[2][0]).to.equal('c')
       expect(answers[3][0]).to.equal('b')
@@ -167,7 +169,7 @@ describe('Scanner', () =>{
       done();
     });
 
-    py.stdin.write(JSON.stringify(testUrl));
+    py.stdin.write(JSON.stringify(testURL));
     py.stdin.end();    
   });
 });

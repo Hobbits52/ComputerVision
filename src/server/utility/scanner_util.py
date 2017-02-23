@@ -166,11 +166,15 @@ def scan_image(url):
 	# print/return answers. Note: We are allowing multiple bubbles to be selected per question.
 	# print answers
 
+	testdata = {}
+	testdata['URL'] = url
+	testdata['answers'] = answers
+	data = json.dumps(testdata)
+	return data
 
 
+	
 
-	answerJSON = json.dumps(answers)
-	return answerJSON
 	# DevNote: These are placeholder tests to run when developing Should print TRUE for each with image3
 	# print answers[1][0] == 'a'
 	# print answers[2][0] == 'c'
@@ -208,7 +212,8 @@ def scan_image(url):
 	# print len(answers[28]) == 0
 
 
-	# GUI stuff ***** Leaving in for development/debugging
+	# GUI stuff 
+	# ***** Leave in for development/debugging  *****
 
 	# cv.drawContours(answerSheet, circle2, -1, (0,255,0), 3)
 	# cv.imshow('image',image)
@@ -226,4 +231,10 @@ def scan_image(url):
 	# if k == 27:         
 	#     cv.destroyAllWindows()
 
+# testURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487821845/answerkey/testkey.jpg'
+# data = scan_image(testURL)
+# print data
+# for i in answers:
+# 	print answers[i]
+# print scan_image('http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487821845/answerkey/testkey.jpg')
 
