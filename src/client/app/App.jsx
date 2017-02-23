@@ -1,10 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {Link, browserHistory} from 'react-router';
-import Nav from './Nav/Nav.jsx'
+import NavTop from './Nav/NavTop.jsx'
 import NavSide from './Nav/NavSide.jsx'
 import TeacherViewContainer from './TeacherViewContainer.jsx'
-import HomeView from './HomeView.jsx'
 import Login from './Login.jsx';
 import css from '../css/nav.css';
 
@@ -45,7 +44,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Nav />
+        <NavTop />
         <div className="container-fluid below-nav-top">
           <div className="row">
             <NavSide className="navSide"/>
