@@ -4,17 +4,24 @@ import axios from 'axios';
 import css from '../css/auth.css';
 
 const TestTakerListEntry = function({ testTitle, testTaker, handleTestTakerClick }) {
+  // console.log(params);
   return (
     <div className="testTakerListEntry">
-      <Link to="#" >{testTaker.name + ' ' + testTaker.choices.split('%').join(' ')}</Link>
+      <Link to={'/testresults/' + testTaker.name}
+            activeClassName=""
+      >
+        {testTaker.name}
+      </Link>
     </div>  
   );
 }
 
-// TestTakerListEntry.propTypes = {
-//   testTitle: PropTypes.string.isRequired,
-//   testTaker: PropTypes.object.isRequired,
-//   handleTestTakerClick: PropTypes.function.isRequired,
-// }
+TestTakerListEntry.propTypes = {
+  testTitle: React.PropTypes.string.isRequired,
+  testTaker: React.PropTypes.object.isRequired,
+  handleTestTakerClick: React.PropTypes.func.isRequired,
+}
 
 export default TestTakerListEntry;
+
+// testTaker.choices.split('%').join(' ')
