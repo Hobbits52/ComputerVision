@@ -6,3 +6,6 @@ build/
 public/	
 dist/
 src/server/api_config/
+
+# compiled python
+*.pyc
