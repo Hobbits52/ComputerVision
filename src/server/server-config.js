@@ -17,12 +17,12 @@ app.use(session({
 app.use(bodyParser.json());
 
 app.get('/auth/signedIn', auth.checkSession);
-app.post('/auth/logout', auth.userLogout);
+//app.post('/auth/logout', auth.userLogout);
 app.post('/auth/login', auth.userLogin, teacherdata.getTeacherData);
 app.post('/auth/signup', auth.userSignup, teacherdata.getTeacherData);
-app.post('/teacher/addClass', auth.checkSession, );
-app.post('/teacher/addAnswerKey', auth.checkSession, );
-app.post('/teacher/addTest', auth.checkSession, );
+app.post('/teacher/addClass', auth.checkSession, teacherdata.addClass);
+app.post('/teacher/addAnswerKey', auth.checkSession, teacherdata.addAnswerKey);
+//app.post('/teacher/addTest', auth.checkSession, );
 
 app.use(express.static(path.join(__dirname + '/../client/')));
 

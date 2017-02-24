@@ -41,9 +41,7 @@ exports.teacherLogin = (teacherInput, cb) => {
   });
 };
 
-exports.teacherSearch = (teacherInput, cb) => {
-  let username = teacherInput.username;
-
+exports.teacherSearch = (username, cb) => {
   Teachers.findOne({where: {username: username}})
   .then((teacher) => {
     cb(null, teacher);

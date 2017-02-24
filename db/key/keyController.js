@@ -27,7 +27,7 @@ exports.addKey = (keyInput, cb) => {
   let answers = keyInput.answers;
   let ClassesId = keyInput.classId;
   let TeachersId = keyInput.teacherId;
-
+  console.log(answer);
   answerKeys.create({
     answers: answers,
     URL: URL,

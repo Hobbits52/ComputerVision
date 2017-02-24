@@ -45,13 +45,13 @@ const userSignup = function(req, res, next) {
   });
 };
 
-const userLogout = function(req, res) {
-  req.session
-};
+// const userLogout = function(req, res) {
+//   req.session
+// };
 
 module.exports = {
   'checkSession': checkSession,
   'userLogin' : userLogin,
-  'userSignup' : userSignup,
-  'userLogout' : userLogout
+  'userSignup' : userSignup/*,
+  'userLogout' : userLogout*/
 };
