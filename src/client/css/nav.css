@@ -258,6 +258,11 @@ a {
   float: right;
 }
 
+.testTitle {
+  background-color: #719540;
+  padding: 5px 20px;
+}
+
 .userinfo {
   color: #434343;
 }
