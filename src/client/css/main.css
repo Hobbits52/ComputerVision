@@ -17,3 +17,53 @@ h3 {
 p {
   font-weight: normal;
 }
+
+.teacherViewContainer {
+  padding-top: 0%;
+}
+
+.testTitle {
+  background-color: #719540;
+  /*padding: 5px 20px;*/
+}
+
+.titleText {
+  padding: 3px 0 0 10px;
+}
+
+.postIts {
+  display: flex;
+  justify-content: space-between;
+  margin: -50px 15px -40px 15px;
+  position: relative;
+}
+
+.background-image {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.postImage {
+  position: relative;
+}
+
+.postImage h5 {
+  color: #666F67;
+  position: absolute;
+  top: 35%;
+  left: 0;
+  text-align: center;
+  padding: 0 50px;
+  width: 100%;
+  z-index: 9;
+}
+
+/**FakeData**/
+.graphFake {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
