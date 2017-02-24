@@ -92,15 +92,27 @@
 /******SIDEBAR******/
 /*******************/
 
-/*Main container*/
+/*Main container div*/
 .col-sm-2 {
   background-color: #C9D593;
   color: #434343;
   font-weight: bold;
-  height: 100%;
+  min-height: 200%;
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 3%;
+}
+
+/*Profile Pic*/
+.left-12 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.userinfo {
+  color: #434343;
 }
 
 .listItem, .name {
@@ -118,37 +130,18 @@
   text-align: center;
 }
 
-.listItem:hover {
-  background-color: #DBE3B6;
-}
-
-.teacherViewContainer {
-  padding-top: 0%;
-}
-
-.testTitle {
-  background-color: #719540;
-  padding: 5px 20px;
-}
-
-.userinfo {
-  color: #434343;
-}
-
-.left-12 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-
 a {
   color: #434343;
 }
 
+/*Eliminates default link behavior*/
 .listItem a:hover {
   color: #434343;
   text-decoration: none;
+}
+
+.listItem:hover {
+  background-color: #DBE3B6;
 }
 
 .menuIcons {
@@ -168,16 +161,7 @@ a {
   float: right;
 }
 
-.postIts {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 15px;
-}
 
-.postImage {
-  width: 35%;
-  height: 35%;
-}
 
 
 

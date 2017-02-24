@@ -41,13 +41,25 @@ class HomeView extends React.Component {
       <div className="col-sm-10 mainContent">
         <h3>To-Do List</h3>
           <div className="postIts">
-            <img className="postImage" src={'../public/post-it.png'}/>
-            <img className="postImage" src={'../public/post-it.png'}/>
-            <img className="postImage" src={'../public/post-it.png'}/>
+            <div className="postImage">
+              <img className="background-image" src={'../public/post-it.png'}/>
+              <h5> - help joe with midterm prep</h5>
+            </div>
+            <div className="postImage">
+              <img className="background-image" src={'../public/post-it.png'}/>
+              <h5> - parent teacher conference for sally</h5>
+            </div>
+            <div className="postImage">
+              <img className="background-image" src={'../public/post-it.png'}/>
+              <h5> - make midterm key</h5>
+            </div>
           </div>
         <h3>Most Recent Test Results</h3>
         <div className="testTitle">
-          <h4>Test Title</h4>
+          <div className="titleText">
+            <h4>Test Title</h4>
+          </div>
+          <img className="graphFake"src="../public/graph-sample.jpg"></img>
         </div>
       </div>
     );
@@ -66,4 +78,4 @@ export default HomeView;
         //   handleSearchSubmit: this.handleSearchSubmit,
         //   handleSidebarClick: this.handleSidebarClick
         // })}
-        // 
+        //
