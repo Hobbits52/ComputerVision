@@ -1,12 +1,12 @@
 
-.col-sm-2 {
-  padding-right: 0px;
-  padding-left: 0px;
-}
+/******************************/
+/*********NAV BAR TOP***********/
+/******************************/
 
 .navbar { 
   background-color: #719540;
   margin-bottom: 0;
+  padding: 10px 0;
 }
 
 /*giving the brand name a higher specifity rating to override default*/
@@ -17,6 +17,7 @@
 
 .navbar-default .navbar-nav>li>a {
   color: white;
+  padding-right: 50px;
 }
 
 .navbar-brand {
@@ -24,8 +25,17 @@
   font-weight: bold;
 }
 
-.logo, .search {
+.search {
   height: 100%;
+}
+
+.navbar-left .img {
+  padding-bottom: 3px;
+}
+
+.logo {
+  height: 200%;
+  padding-left: 5px;
 }
 
 .below-nav-top, .row {
@@ -33,13 +43,65 @@
   height: 100%;
 }
 
-.navSide {
+/******************************/
+/*********SEARCH BAR***********/
+/******************************/
+
+.form-group input[type="text"] {
+  background-color: #5C7934;
+  border-radius: 4px 0 0 4px;
+  border-width: 0;
+  color: white;
+  height: 30px;
+  padding-right: 50px;
+  width: 200px;
+}
+
+.btn-default {
+  background-color: #5C7934;
+  border-radius: 0 4px 4px 0;
+  border-width: 0;
+  height: 30px;
+  margin-left: -50px;
+  padding: 5px 5px;
+  text-align: right;
+  width: 100px;
+}
+
+.btn-default:hover {
+  background-color: #5C7934;
+}
+
+/*************************************/
+/*********PLACEHOLDER COLOR***********/
+/*************************************/
+
+.form-control::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: white;
+}
+.form-control :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:    white;
+  opacity:  1;
+}
+.form-control::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:    red;
+  opacity:  1;
+}
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color:    red;
+}
+
+/*******************/
+/******SIDEBAR******/
+/*******************/
+
+/*Main container*/
+.col-sm-2 {
+  padding-right: 0px;
+  padding-left: 0px;
   height: 100%;
   padding-top: 3%;
   background-color: #C9D593;
-}
-
-div.navSide {
   color: #434343;
   font-weight: bold;
 }
@@ -51,7 +113,7 @@ div.navSide {
 }
 
 .name {
-  font-weight: bold;
+  font-size: 18px;
 }
 
 .listItem:hover {
@@ -74,28 +136,9 @@ div.navSide {
   width: 75px;
 }
 
-/*********SEARCH BAR***********/
 
-.form-group input[type="text"] {
-    background-color: #5C7934;
-    border-width: 0;
-    color: white;
-    border-radius: 4px 0 0 4px;
-    width: 200px;
-    height: 30px;
-    padding-right: 50px;
-}
 
-.btn-default {
-    background-color: #5C7934;
-    border-radius: 0 4px 4px 0;
-    border-width: 0;
-    height: 30px;
-    margin-left: -50px;
-    padding: 5px 5px;
-    text-align: right;
-    width: 100px;
-}
+
 
 
 
