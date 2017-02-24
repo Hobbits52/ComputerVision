@@ -4,6 +4,13 @@
 /******************************/
 
 .navbar {
+
+.col-sm-2 {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.navbar {
   background-color: #719540;
   margin-bottom: 0;
   padding: 10px 0;
@@ -54,6 +61,24 @@
   width: 200px;
 }
 
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-brand {
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+}
+
+.logo, .search {
+  height: 100%;
+}
+
+.below-nav-top, .row {
+  color: white;
+  height: 100%;
+}
+
 .btn-default {
   background-color: #5C7934;
   border-radius: 0 4px 4px 0;
@@ -101,6 +126,7 @@
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 3%;
+<<<<<<< HEAD
 }
 
 /*Profile Pic*/
@@ -128,6 +154,26 @@
   font-size: 18px;
   margin-bottom: 10px;
   text-align: center;
+  background-color: #C9D593;
+}
+
+div.navSide {
+  color: #434343;
+  font-weight: bold;
+}
+
+.listItem, .name {
+  color: #434343;
+  padding: 7px 0;
+  text-align: center;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.listItem:hover {
+  background-color: #DBE3B6;
 }
 
 a {
@@ -161,11 +207,36 @@ a {
   float: right;
 }
 
+.userinfo {
+  color: #434343;
+}
 
+.left-12 {
+  width: 75px;
+}
 
+/*********SEARCH BAR***********/
 
+.form-group input[type="text"] {
+    background-color: #5C7934;
+    border-width: 0;
+    color: white;
+    border-radius: 4px 0 0 4px;
+    width: 200px;
+    height: 30px;
+    padding-right: 50px;
+}
 
-
+.btn-default {
+    background-color: #5C7934;
+    border-radius: 0 4px 4px 0;
+    border-width: 0;
+    height: 30px;
+    margin-left: -50px;
+    padding: 5px 5px;
+    text-align: right;
+    width: 100px;
+}
 
 
 
