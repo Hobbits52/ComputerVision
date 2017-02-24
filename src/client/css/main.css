@@ -1,0 +1,15 @@
+html, body, #app, [data-reactroot] {
+  background-color: #85af4b;
+  color: white;
+  font-family: 'Oxygen', sans-serif;
+  height: 100%;
+}
+
+/******MAIN DASHBOARD CONTAINER******/
+.col-sm-10 {
+  padding: 0 40px;
+}
+
+h3 {
+  margin: 40px 0 20px 0;
+}

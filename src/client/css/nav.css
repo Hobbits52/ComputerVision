@@ -1,34 +1,61 @@
-html, body, #app, [data-reactroot] {
-  height: 100%;
+
+.col-sm-2 {
+  padding-right: 0px;
+  padding-left: 0px;
 }
 
 .navbar { 
+  background-color: #719540;
   margin-bottom: 0;
 }
 
-.logo {
+/*giving the brand name a higher specifity rating to override default*/
+.navbar .container-fluid .navbar-header .navbar-brand {
+  color: white;
+  font-size: 30px;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-brand {
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+}
+
+.logo, .search {
   height: 100%;
 }
 
 .below-nav-top, .row {
+  color: white;
   height: 100%;
-}
-
-.left-12 {
-  border-radius: 100%;
-  width: 80%;
 }
 
 .navSide {
   height: 100%;
   padding-top: 3%;
-  background-color: purple;
+  background-color: #C9D593;
 }
 
-ul.navSide {
-  padding: 0 10%;
+div.navSide {
+  color: #434343;
+  font-weight: bold;
+}
+
+.listItem, .name {
+  color: #434343;
+  padding: 7px 0;
   text-align: center;
-  list-style-type: none;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.listItem:hover {
+  background-color: #DBE3B6;
 }
 
 .teacherViewContainer {
@@ -38,3 +65,39 @@ ul.navSide {
 .testTitle {
   background-color: skyblue;
 }
+
+.userinfo {
+  color: #434343;
+}
+
+.left-12 {
+  width: 75px;
+}
+
+/*********SEARCH BAR***********/
+
+.form-group input[type="text"] {
+    background-color: #5C7934;
+    border-width: 0;
+    color: white;
+    border-radius: 4px 0 0 4px;
+    width: 200px;
+    height: 30px;
+    padding-right: 50px;
+}
+
+.btn-default {
+    background-color: #5C7934;
+    border-radius: 0 4px 4px 0;
+    border-width: 0;
+    height: 30px;
+    margin-left: -50px;
+    padding: 5px 5px;
+    text-align: right;
+    width: 100px;
+}
+
+
+
+
+
