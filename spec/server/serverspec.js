@@ -120,7 +120,7 @@ describe('Scanner', () =>{
 
     // run Python as child process
     const py = spawn('python', ['./src/server/utility/scanner.py']);
-    var testURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487791152/test3resized_xsgeaq.jpg';
+    var testURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892182/p6ybu5bjev1nnfkpebcc.jpg';
    
     let dataString = '';
 
@@ -132,46 +132,130 @@ describe('Scanner', () =>{
       var data = JSON.parse(dataString);
       var answers = data.answers;
       expect(data.URL).to.equal(testURL)
+      expect(data.status).to.equal(200)
       expect(answers[1][0]).to.equal('a')
       expect(answers[2][0]).to.equal('c')
       expect(answers[3][0]).to.equal('b')
       expect(answers[4][0]).to.equal('d')
-      expect(answers[5][0]).to.equal('e')
+      expect(answers[5][0]).to.equal('d')
       expect(answers[6][0]).to.equal('c')
-      expect(answers[1].length).to.equal(1)
-      expect(answers[2].length).to.equal(1)
-      expect(answers[3].length).to.equal(1)
-      expect(answers[4].length).to.equal(1)
-      expect(answers[5].length).to.equal(1)
-      expect(answers[6].length).to.equal(1)
-      expect(answers[7].length).to.equal(0)
-      expect(answers[8].length).to.equal(0)
-      expect(answers[9].length).to.equal(0)
-      expect(answers[10].length).to.equal(0)
-      expect(answers[11].length).to.equal(0)
-      expect(answers[12].length).to.equal(0)
-      expect(answers[13].length).to.equal(0)
-      expect(answers[14].length).to.equal(0)
-      expect(answers[15].length).to.equal(0)
-      expect(answers[16].length).to.equal(0)
-      expect(answers[17].length).to.equal(0)
-      expect(answers[18].length).to.equal(0)
-      expect(answers[19].length).to.equal(0)
-      expect(answers[20].length).to.equal(0)
-      expect(answers[21].length).to.equal(0)
-      expect(answers[22].length).to.equal(0)
-      expect(answers[23].length).to.equal(0)
-      expect(answers[24].length).to.equal(0)
-      expect(answers[25].length).to.equal(0)
-      expect(answers[26].length).to.equal(0)
-      expect(answers[27].length).to.equal(0)
-      expect(answers[28].length).to.equal(0)
+      expect(answers[7][0]).to.equal('d')
+      expect(answers[8][0]).to.equal('b')
+      expect(answers[9][0]).to.equal('c')
+      expect(answers[10][0]).to.equal('c')
+      expect(answers[11][0]).to.equal('c')
+      expect(answers[12][0]).to.equal('d')
+      expect(answers[13][0]).to.equal('d')
+      expect(answers[14][0]).to.equal('c')
+      expect(answers[14][1]).to.equal('e')
+      expect(answers[15][0]).to.equal('a')
+      expect(answers[15][1]).to.equal('b')
+      expect(answers[16][0]).to.equal('a')
+      expect(answers[17][0]).to.equal('c')
+      expect(answers[17][1]).to.equal('d')
+      expect(answers[18][0]).to.equal('d')
+      expect(answers[19][0]).to.equal('e')
+      expect(answers[20][0]).to.equal('c')
+      expect(answers[21][0]).to.equal('a')
+      expect(answers[22][0]).to.equal('c')
+      expect(answers[23][0]).to.equal('c')
+      expect(answers[24][0]).to.equal('b')
+      expect(answers[25][0]).to.equal('d')
+      expect(answers[26][0]).to.equal('d')
+      expect(answers[27][0]).to.equal('c')
+      expect(answers[28][0]).to.equal('e')
+      var doubles = {
+        14: true,
+        15: true,
+        17: true
+      }
+      for (var i = 1; i <= 28; i ++) {
+        if (doubles[i]) {
+          expect(answers[i].length).to.equal(2)
+        } else {
+          expect(answers[i].length).to.equal(1)
+        }
+      }
       done();
     });
 
     py.stdin.write(JSON.stringify(testURL));
     py.stdin.end();    
   });
+
+  it('Gracefully handles error from pitch black image', (done) => {
+
+    // run Python as child process
+    const py = spawn('python', ['./src/server/utility/scanner.py']);
+    var testURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487893886/oi5gzyf9sxfho6d76kza.jpg';
+  
+    let dataString = '';
+
+    py.stdout.on('data', function(data) {
+      dataString += data.toString();
+    });
+
+    py.stdout.on('end', function() {
+      var data = JSON.parse(dataString);
+      var answers = data.answers;
+      expect(data.URL).to.equal(testURL)
+      expect(data.status).to.equal(400)
+      done();
+    });
+
+    py.stdin.write(JSON.stringify(testURL));
+    py.stdin.end();    
+  });
+
+  it('Gracefully handles error from image that doesnt include paper', (done) => {
+
+    // run Python as child process
+    const py = spawn('python', ['./src/server/utility/scanner.py']);
+    var testURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487890828/b88ppddfapchcielmif8.jpg';
+  
+    let dataString = '';
+
+    py.stdout.on('data', function(data) {
+      dataString += data.toString();
+    });
+
+    py.stdout.on('end', function() {
+      var data = JSON.parse(dataString);
+      var answers = data.answers;
+      expect(data.URL).to.equal(testURL)
+      expect(data.status).to.equal(400)
+      done();
+    });
+
+    py.stdin.write(JSON.stringify(testURL));
+    py.stdin.end();    
+  });
+
+  it('Gracefully handles error from blurry image when cant find bubbles', (done) => {
+
+    // run Python as child process
+    const py = spawn('python', ['./src/server/utility/scanner.py']);
+    var testURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892449/a5qapleh05dob9bsisl3.jpg';
+  
+    let dataString = '';
+
+    py.stdout.on('data', function(data) {
+      dataString += data.toString();
+    });
+
+    py.stdout.on('end', function() {
+      var data = JSON.parse(dataString);
+      var answers = data.answers;
+      expect(data.URL).to.equal(testURL)
+      expect(data.status).to.equal(400)
+      done();
+    });
+
+    py.stdin.write(JSON.stringify(testURL));
+    py.stdin.end();    
+  });
+
+
 });
 
 
