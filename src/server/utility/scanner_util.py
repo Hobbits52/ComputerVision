@@ -18,7 +18,7 @@ def url_to_image(url):
 	# return the image
 	return image
 
-
+# DEV To Do: should modularize the scan_image code.
 def scan_image(url):
 	# print ' <==========  Running scanner.py =========>'
 
@@ -32,16 +32,16 @@ def scan_image(url):
 	edged = cv.Canny(gray, 75, 200)
 
 	# find contours. (Note: this alters original, so use copy of edged image)
+	# the retrieval mode (cv.RETR_EXTERNAL) will not find nested contours.
 	contours = cv.findContours(edged.copy(), cv.RETR_EXTERNAL,
 		cv.CHAIN_APPROX_SIMPLE)
 	contours = contours[1]
-	documentContours = None
-	 
 
 	# find the largest contour (which should be the paper)
 	contours = sorted(contours, key=cv.contourArea, reverse=True)
 
 	# loop over the sorted contours
+	documentContours = None
 	for c in contours:
 		# approximate the contour
 		perimeter = cv.arcLength(c, True)
@@ -64,9 +64,12 @@ def scan_image(url):
 		data = json.dumps(data)
 		return data
 
-	# Error handling when contour size is off from largest four-pointed contour
+	# Error handling when largest four-cornered contour isn't approximate size of what paper should be
 	# This will catch most shots of random stuff (e.g., shots not including paper)
+	# Or perhaps most commonly, when there is a 'textured' background behind the image (see second example below)
+	# DEV NOTE: To Do: try alternate approaches to catpure textured background.
 	# catches: 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487890828/b88ppddfapchcielmif8.jpg'
+	# catches: 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487912476/mqktwohow3gbycofb1xq.jpg'
 	if perimeter < 2300 or perimeter > 3200:
 		data = {}
 		data['URL'] = url
@@ -90,7 +93,10 @@ def scan_image(url):
 	# find contours again, to find the bubbles in top half of paper
 	contours = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL,
 		cv.CHAIN_APPROX_SIMPLE)
-	contours = contours[0] if imutils.is_cv2() else contours[1]
+	contours = contours[1]
+
+
+
 
 	#sort contours by area
 	contours = sorted(contours, key=cv.contourArea, reverse=True)
@@ -106,12 +112,18 @@ def scan_image(url):
 	# cv.drawContours(testImage, textBoxContour, -1, (0,255,0), 3)
 
 
-	# now crop out the textBox at the bottom, to leave only the answers up top
-	# DEV NOTE, would need to get bottom later to read USER_ID
-	# leaving in answerSheet for dev/debugging. Should be removed before deploy.
+	# now separate the answerSheet (top) from the idSheet (bottom)
+	# DEVNOTE: we only need the "thresh" versions, below. Leaving in 'answerSheet' and
+	# 'idSheet' for development purposes, but should be removed before deploy
 	answerSheet = testImage[0:y]
 	answerSheetThresh = thresh[0:y]
 
+	# we only need the right half of the ID sheet ==> which is why (w/2)
+	# Also squeezing out edges with +-3, so we can find ID bubbles later
+	# Without squeezing out, the RETR_EXTERNAL doesn't work, since bubbles will be child nodes
+	# (and RETR_EXTERNAL seems to be the only retrieval method that doesn't duplicate bubbles)
+	idSheet = testImage[y:y+h, x+(w/2)+3:x+w-3] 
+	idSheetThresh = thresh[y:y+h, x+(w/2)+3:x+w-3]  # will use idSheet later
 	
 	# now get contours again -- searching for bubbles this time
 	contours = cv.findContours(answerSheetThresh.copy(), cv.RETR_EXTERNAL,
@@ -131,11 +143,12 @@ def scan_image(url):
 		# else:
 		# 	notBubbles.append(c)
 
+
 	# Error handling when not 140 bubbles found
 	# Possible Cause: image out of focus, or angle overly distorted.
 	# Client should tell user to check focus to make sure image not blurry
 	# e.g., http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892449/a5qapleh05dob9bsisl3.jpg
-	# To Do: find bubbles in link above. Perhaps bounding Rect not the best technique. Maybe try convex Hull or minimum closing circle?
+	# To Do: find bubbles in link above. Perhaps bounding Rect not the best technique. Maybe try convex Hull or minimum closing circle? Also play with Contour Retrieval Method and Approximation.
 	if len(bubbles) != 140:
 		data = {}
 		data['URL'] = url
@@ -161,11 +174,11 @@ def scan_image(url):
 	# get questions
 	questions = {}
 
+	# DEV: uncomment below for GUI stuff while developing
 	# cv.drawContours(answerSheet, notBubbles, -1, (0,255,0), 3)
 	# cv.drawContours(answerSheet, bubbles, -1, (0,255,0), 3)
 	# cv.imshow('answerSheet',answerSheet)
 	# cv.imshow('answerSheetThresh',answerSheetThresh)
-
 
 
 	for i in range(14):
@@ -202,43 +215,88 @@ def scan_image(url):
 			cv.drawContours(mask, [questions[i][j]], -1, 255, -1)
 			mask = cv.bitwise_and(thresh, thresh, mask=mask)
 			total = cv.countNonZero(mask)
-			# 220 seems to be a good cutoff point. The non-bubbled range from 90-150. Bubbled in tends to be over 300.
-			# DevNote: we might need to adjust cutoff point when we change image size that we accept.
-			if total >= 220:
+			# 280 seems to be a good cutoff point. DEV: Check with other pens, lighting, etc.
+			if total >= 280:
 				answers[i].append(circlesToLetters[j])
-				# print total
 
 
-	# print/return answers. Note: We are allowing multiple bubbles to be selected per question.
-	# print answers
-
+	# Assemble testData
+	# Note: We are allowing multiple bubbles to be selected per question.
+	# Doing this here so if we can't read student ID, we can still return answers without ID.
 	testdata = {}
 	testdata['URL'] = url
 	testdata['answers'] = answers
-	testdata['status'] = 200
+
+	# now get id info
+
+	# find contours, (changing retrieval method since bubbles will be nested)
+	contours = cv.findContours(idSheetThresh.copy(), cv.RETR_EXTERNAL,
+		cv.CHAIN_APPROX_SIMPLE)
+	contours = contours[1]
+
+	idBubbles = []
+
+	# the id bubbles will be just those contours with appropriate height and width
+	for c in contours:
+		x,y,w,h = cv.boundingRect(c)
+		# most bubbles have a width/height around 17-19 pixels. Upper bound increases if student goes outside bubble
+		if 15 <= w <= 22:
+			if 15 <= h <= 22:
+				idBubbles.append(c)
+
+
+	# if there aren't 32 idBubbles, return partial results
+	if len(idBubbles) != 32:
+		testdata['status'] = 206
+		testdata['message'] = 'could not read 32 id bubbles. check photo quality'
+		data = json.dumps(data)
+		return data
+
+	# else read bubbles
+
+	# sort left to right to find rows
+	idBubbles = imutilsContours.sort_contours(idBubbles,
+		method="left-to-right")[0]
+
+	idBubbleRows = {}
+	row = 1
+	for index in range(0,29,4):
+		unsorted = []
+		for i in range(0,4):
+			unsorted.append(idBubbles[index+i])
+		idBubbleRows[row] = imutilsContours.sort_contours(unsorted,
+			method="top-to-bottom")[0]
+		row += 1
+
+	idString = ''
+	idStringStart = False
+	# iterate through rows
+	for i in range(1,9):
+		row = idBubbleRows[i]
+		for j in range(0,4):
+			# put a mask over the entire image, except for the bubble. Then count how many pixels are filled in.
+			mask = np.zeros(idSheetThresh.shape, dtype="uint8")
+			cv.drawContours(mask, [idBubbleRows[i][j]], -1, 255, -1)
+			mask = cv.bitwise_and(idSheetThresh, idSheetThresh, mask=mask)
+			total = cv.countNonZero(mask)
+			# 160 seems to be a good cutoff
+			if total >= 160:
+				idString += str(j)
+				idStringStart = True
+
+
+
+	# DEV TO DO:
+	# Error Handling... user error with idString sequence...
+
+	testdata['id'] = idString
+
+
+
+	# data = json.dumps(data)
+
 	data = json.dumps(testdata)
-	
-
-	# cv.imshow('image',image)
-	# cv.imshow('gray', gray)
-	# cv.imshow('edged', edged)
-	# cv.imshow('testImage', testImage)
-	# cv.imshow('thresh', thresh)
-	# cv.imshow('answerSheet', answerSheet)
-	# cv.imshow('answerSheetThresh', answerSheetThresh)
-	# cv.imshow('mask', mask)
-
-
-	# # Escape will quit
-	# k = cv.waitKey(0)
-	# if k == 27:         
-	#     cv.destroyAllWindows()
-
-
 	return data
-
-
-
 
 
 	# GUI stuff 
@@ -260,10 +318,17 @@ def scan_image(url):
 	# if k == 27:         
 	#     cv.destroyAllWindows()
 
+# ***** Leave in for development/debugging  *****
+
 # testURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892449/a5qapleh05dob9bsisl3.jpg'
+# print scan_image(testURL)
+
 # photoOfNothing = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487890828/b88ppddfapchcielmif8.jpg'
 # blackScreen = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487893886/oi5gzyf9sxfho6d76kza.jpg'
+# # url = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487912476/mqktwohow3gbycofb1xq.jpg'
+
 # tableBottom = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892182/p6ybu5bjev1nnfkpebcc.jpg'
+# print scan_image(tableBottom)
 
 # # data = scan_image(testURL)
 # jsonDATA = scan_image(tableBottom)
