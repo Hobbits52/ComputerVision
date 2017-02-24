@@ -270,6 +270,7 @@ def scan_image(url):
 
 	idString = ''
 	idStringStart = False
+	idStringValid = True
 	# iterate through rows
 	for i in range(1,9):
 		row = idBubbleRows[i]
@@ -286,15 +287,15 @@ def scan_image(url):
 
 
 
-	# DEV TO DO:
-	# Error Handling... user error with idString sequence...
 
-	testdata['id'] = idString
+	# DEV TO DO: Error Handling on idString
 
 
 
-	# data = json.dumps(data)
 
+	# successful scan
+	testdata['id'] = int(idString,4)  #convert idString to base4 integer
+	testdata['status'] = 200
 	data = json.dumps(testdata)
 	return data
 
@@ -327,8 +328,8 @@ def scan_image(url):
 # blackScreen = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487893886/oi5gzyf9sxfho6d76kza.jpg'
 # # url = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487912476/mqktwohow3gbycofb1xq.jpg'
 
-# tableBottom = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892182/p6ybu5bjev1nnfkpebcc.jpg'
-# print scan_image(tableBottom)
+tableBottom = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892182/p6ybu5bjev1nnfkpebcc.jpg'
+print scan_image(tableBottom)
 
 # # data = scan_image(testURL)
 # jsonDATA = scan_image(tableBottom)
