@@ -22,6 +22,7 @@ def url_to_image(url):
 def scan_image(url):
 	# print ' <==========  Running scanner.py =========>'
 
+	# get image from url
 	image = url_to_image(url)
 
 	# convert to grayscale
@@ -33,11 +34,9 @@ def scan_image(url):
 	# find contours. (Note: this alters original, so use copy of edged image)
 	contours = cv.findContours(edged.copy(), cv.RETR_EXTERNAL,
 		cv.CHAIN_APPROX_SIMPLE)
-	contours = contours[0] if imutils.is_cv2() else contours[1]
+	contours = contours[1]
 	documentContours = None
 	 
-
-	# Dev Note: should handle error gracefully if no contours are found
 
 	# find the largest contour (which should be the paper)
 	contours = sorted(contours, key=cv.contourArea, reverse=True)
@@ -48,13 +47,37 @@ def scan_image(url):
 		perimeter = cv.arcLength(c, True)
 		approx = cv.approxPolyDP(c, 0.02 * perimeter, True)
 
-		# make sure contour has four points
+		# approx will be first contour with four points
 		if len(approx) == 4:
 			documentContours = approx
 			break
 
-	# DevNote: uncomment below to show contours on original image
-	# cv.drawContours(image, contours, -1, (0,255,0), 3)
+	# Error handling if no four-point contours are found
+	# This will catch, e.g., a blank black screen.
+	# catches: 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487893886/oi5gzyf9sxfho6d76kza.jpg'
+	# Also would catch tiny paper. Client should tell User to make sure paper in overlay box.
+	if documentContours is None:
+		data = {}
+		data['URL'] = url
+		data['status'] = 400
+		data['message'] = 'contours not found'
+		data = json.dumps(data)
+		return data
+
+	# Error handling when contour size is off from largest four-pointed contour
+	# This will catch most shots of random stuff (e.g., shots not including paper)
+	# catches: 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487890828/b88ppddfapchcielmif8.jpg'
+	if perimeter < 2300 or perimeter > 3200:
+		data = {}
+		data['URL'] = url
+		data['status'] = 400
+		data['message'] = 'paper not found'
+		data = json.dumps(data)
+		return data
+
+
+	# DEV NOTE: could do additional error handling here E.g., if photo angle was off. Check approx features.
+
 
 	# straighten grayscale image. Note: also straightening original to keep for development/debugging
 	testImage = four_point_transform(image, documentContours.reshape(4, 2))
@@ -69,8 +92,6 @@ def scan_image(url):
 		cv.CHAIN_APPROX_SIMPLE)
 	contours = contours[0] if imutils.is_cv2() else contours[1]
 
-	# Dev Note: Should handle errors gracefully of no contours found
-
 	#sort contours by area
 	contours = sorted(contours, key=cv.contourArea, reverse=True)
 	# the text box at bottom of document will be the largest contour remaining
@@ -79,31 +100,49 @@ def scan_image(url):
 	# now we need to know the height of the textBox. One good way to do this
 	# is to read the height off the rectangle that bounds the textBox contour
 	x,y,w,h = cv.boundingRect(textBoxContour)
-	cv.rectangle(testImage,(x,y),(x+w,y+h),(0,255,0),2)
+
+	# DEV: uncomment below for GUI stuff while developing
+	# cv.rectangle(testImage,(x,y),(x+w,y+h),(0,255,0),2)
+	# cv.drawContours(testImage, textBoxContour, -1, (0,255,0), 3)
+
 
 	# now crop out the textBox at the bottom, to leave only the answers up top
 	# DEV NOTE, would need to get bottom later to read USER_ID
+	# leaving in answerSheet for dev/debugging. Should be removed before deploy.
 	answerSheet = testImage[0:y]
 	answerSheetThresh = thresh[0:y]
 
+	
 	# now get contours again -- searching for bubbles this time
 	contours = cv.findContours(answerSheetThresh.copy(), cv.RETR_EXTERNAL,
 		cv.CHAIN_APPROX_SIMPLE)
-	contours = contours[0] if imutils.is_cv2() else contours[1]
+	contours = contours[1]
 
 	bubbles = []
+	notBubbles = []
 
 	# the bubbles will be just those contours with appropriate height and width
 	for c in contours:
 		x,y,w,h = cv.boundingRect(c)
-		# the width and height should each be between 18 and 25. DevNote: adjust if we change incoming image
-		if 18 <= w <= 25:
-			if 18 <= h <= 25:
+		# most bubbles have a width/height around 25-26 pixels. Upper bound increases if student goes outside bubble
+		if 23 <= w <= 30:
+			if 23 <= h <= 30:
 				bubbles.append(c)
+		# else:
+		# 	notBubbles.append(c)
 
-	# DevNote: should handle error gracefully if there aren't 140 bubbles found.
-	# print "this many bubbles =>"
-	# print len(bubbles)
+	# Error handling when not 140 bubbles found
+	# Possible Cause: image out of focus, or angle overly distorted.
+	# Client should tell user to check focus to make sure image not blurry
+	# e.g., http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892449/a5qapleh05dob9bsisl3.jpg
+	# To Do: find bubbles in link above. Perhaps bounding Rect not the best technique. Maybe try convex Hull or minimum closing circle?
+	if len(bubbles) != 140:
+		data = {}
+		data['URL'] = url
+		data['status'] = 400
+		data['message'] = 'could not find all bubbles -- check image quality'
+		data = json.dumps(data)
+		return data
 
 	# split into left and right bubbles
 	bubbles = imutilsContours.sort_contours(bubbles,
@@ -121,6 +160,13 @@ def scan_image(url):
 
 	# get questions
 	questions = {}
+
+	# cv.drawContours(answerSheet, notBubbles, -1, (0,255,0), 3)
+	# cv.drawContours(answerSheet, bubbles, -1, (0,255,0), 3)
+	# cv.imshow('answerSheet',answerSheet)
+	# cv.imshow('answerSheetThresh',answerSheetThresh)
+
+
 
 	for i in range(14):
 		answerChoices = bubblesLeft[i*5:i*5+5]
@@ -169,47 +215,30 @@ def scan_image(url):
 	testdata = {}
 	testdata['URL'] = url
 	testdata['answers'] = answers
+	testdata['status'] = 200
 	data = json.dumps(testdata)
+	
+
+	# cv.imshow('image',image)
+	# cv.imshow('gray', gray)
+	# cv.imshow('edged', edged)
+	# cv.imshow('testImage', testImage)
+	# cv.imshow('thresh', thresh)
+	# cv.imshow('answerSheet', answerSheet)
+	# cv.imshow('answerSheetThresh', answerSheetThresh)
+	# cv.imshow('mask', mask)
+
+
+	# # Escape will quit
+	# k = cv.waitKey(0)
+	# if k == 27:         
+	#     cv.destroyAllWindows()
+
+
 	return data
 
 
-	
 
-	# DevNote: These are placeholder tests to run when developing Should print TRUE for each with image3
-	# print answers[1][0] == 'a'
-	# print answers[2][0] == 'c'
-	# print answers[3][0] == 'b'
-	# print answers[4][0] == 'd'
-	# print answers[5][0] == 'e'
-	# print answers[6][0] == 'c'
-	# print len(answers[1]) == 1
-	# print len(answers[2]) == 1
-	# print len(answers[3]) == 1
-	# print len(answers[4]) == 1
-	# print len(answers[5]) == 1
-	# print len(answers[6]) == 1
-	# print len(answers[7]) == 0
-	# print len(answers[8]) == 0
-	# print len(answers[9]) == 0
-	# print len(answers[10]) == 0
-	# print len(answers[11]) == 0
-	# print len(answers[12]) == 0
-	# print len(answers[13]) == 0
-	# print len(answers[14]) == 0
-	# print len(answers[15]) == 0
-	# print len(answers[16]) == 0
-	# print len(answers[17]) == 0
-	# print len(answers[18]) == 0
-	# print len(answers[19]) == 0
-	# print len(answers[20]) == 0
-	# print len(answers[21]) == 0
-	# print len(answers[22]) == 0
-	# print len(answers[23]) == 0
-	# print len(answers[24]) == 0
-	# print len(answers[25]) == 0
-	# print len(answers[26]) == 0
-	# print len(answers[27]) == 0
-	# print len(answers[28]) == 0
 
 
 	# GUI stuff 
@@ -231,10 +260,24 @@ def scan_image(url):
 	# if k == 27:         
 	#     cv.destroyAllWindows()
 
-# testURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487821845/answerkey/testkey.jpg'
-# data = scan_image(testURL)
+# testURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892449/a5qapleh05dob9bsisl3.jpg'
+# photoOfNothing = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487890828/b88ppddfapchcielmif8.jpg'
+# blackScreen = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487893886/oi5gzyf9sxfho6d76kza.jpg'
+# tableBottom = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892182/p6ybu5bjev1nnfkpebcc.jpg'
+
+# # data = scan_image(testURL)
+# jsonDATA = scan_image(tableBottom)
+# print jsonDATA
+# data = json.loads(jsonDATA)
 # print data
+# print data['URL']
+# answerJSON = data['answers']
+# print answerJSON
+# print answerJSON['1']
+# answers = json.loads(answerJSON)
+# answers = data['answers']
+# # print answers
 # for i in answers:
-# 	print answers[i]
+# 	print i, answers[i]
 # print scan_image('http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487821845/answerkey/testkey.jpg')
 
