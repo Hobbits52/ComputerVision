@@ -1,9 +1,9 @@
-/**/
+
 /******************************/
 /*********NAV BAR TOP***********/
 /******************************/
 
-.navbar { 
+.navbar {
   background-color: #719540;
   margin-bottom: 0;
   padding: 10px 0;
@@ -127,7 +127,8 @@
 }
 
 .testTitle {
-  background-color: skyblue;
+  background-color: #719540;
+  padding: 5px 20px;
 }
 
 .userinfo {
