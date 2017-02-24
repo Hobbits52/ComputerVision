@@ -1,5 +1,6 @@
 const Test = require('./../../../db/test/testController.js');
 const AnswerKey = require('./../../../db/key/keyController.js');
+const Scanner = require('./pythontonode.js').Scanner;
 
 const getTeacherData = function(req, res) {
   var data = {};
@@ -24,10 +25,20 @@ const getTeacherData = function(req, res) {
 };
 
 const addAnswerKey = function(req, res) {
-  
-}
+  let keyUpload = req.body;
+  Scanner(keyUpload, 'key', function(err, answerKey) {
+  	if(err) {
+  		req.status(500);
+  		res.end();
+  	} else {
+  		req.status(200).send(answerKey);
+  		req.end();
+  	}
+  });
+};
 
 
 module.exports = {
-  'getTeacherData': getTeacherData
+  'getTeacherData': getTeacherData,
+  'addAnswerKey' : addAnswerKey
 }
