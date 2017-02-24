@@ -56,7 +56,7 @@ class NavTop extends React.Component {
               <img className="logo" src={'../../public/pencil.png'} alt="Brand" />
             </Link>
             <Link to="/" className="navbar-brand navbar-left">
-              <span>{"Teacher\'s Pet"}</span>
+              <span>{"teacher\'s pet"}</span>
             </Link>
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -64,7 +64,9 @@ class NavTop extends React.Component {
               <div className="form-group">
                 <input type="text" className="form-control" placeholder="Search students" />
               </div>
-              <button type="submit" className="btn btn-default">Submit</button>
+              <button type="submit" className="btn btn-default">
+                <img className="search" src={'../../../public/search.png'} alt="Search" />
+              </button>
             </form>
             <ul className="nav navbar-nav navbar-right">
               <li><Link to="#">Logout</Link></li>
