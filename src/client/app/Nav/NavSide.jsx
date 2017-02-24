@@ -36,6 +36,10 @@ const NavSide = props => (
         <img className="menuIcons" alt="Statistics" src={'../../../public/pie.png'}/>
         <Link to="statistics">Statistics</Link>
         <img className="hiddenArrow" alt="Home" src={'../../../public/arrow.png'}/>
+        <img className="left-12"
+             alt="User Picture"
+             src={'../../../public/apple.png'}
+             width="150"/>
       </div>
       <div className="name">S.L. Jackson, PhD</div>
       <div className="listItem"><Link to="/">Home</Link></div>
