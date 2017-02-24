@@ -114,7 +114,7 @@ xdescribe('Fetching image from Cloudinary', () =>{
   });
 });
 
-describe('Scanner', () =>{
+xdescribe('Scanner', () =>{
 
   it('Correctly Grades Test Hosted On Cloudinary', (done) => {
 
