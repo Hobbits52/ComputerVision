@@ -35,6 +35,7 @@ class HomeView extends React.Component {
     // What happens when the teacher clicks an individual student's exam from the list?
   }
 
+  //
   render() {
     return (
       <div className="col-sm-10 mainContent">
