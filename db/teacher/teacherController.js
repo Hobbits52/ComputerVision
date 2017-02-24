@@ -40,3 +40,14 @@ exports.teacherLogin = (teacherInput, cb) => {
     cb(err);
   });
 };
+
+exports.teacherSearch = (teacherInput, cb) => {
+  let username = teacherInput.username;
+
+  Teachers.findOne({where: {username: username}})
+  .then((teacher) => {
+    cb(null, teacher);
+  }).catch((err) => {
+    cb(err);
+  });
+}

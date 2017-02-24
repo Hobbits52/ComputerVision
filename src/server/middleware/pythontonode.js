@@ -9,39 +9,41 @@ var imgName = 'studenttest';
 var type = 'test';
 ///////////////////////
 
-let dataString = '';
+const Scanner = function(url, type) {
+	let dataString = '';
 
-py.stdout.on('data', function(data) {
-  dataString += data.toString();
-});
+	py.stdout.on('data', function(data) {
+	  dataString += data.toString();
+	});
 
-py.stdout.on('end', function() {
-  let data = JSON.parse(dataString);
-  data.answers = JSON.stringify(data.answers);
-  if (type === 'key') {
-  	Answerkey.addKey(data, function(err, data) {
-  	  if (err) {
-  	  	console.log(err);
-  	  } else {
-  	  	console.log(data);
-  	  }
-  	});
-  } else {
-  	Test.addTest(data, function(err, data) {
-  	  if (err) {
-  	  	console.log(err);
-  	  } else {
-  	  	console.log(data);
-  	  }
-  	});
-  }
-});
+	py.stdout.on('end', function() {
+	  let data = JSON.parse(dataString);
+	  data.answers = JSON.stringify(data.answers);
+	  if (type === 'key') {
+	  	Answerkey.addKey(data, function(err, data) {
+	  	  if (err) {
+	  	  	console.log(err);
+	  	  } else {
+	  	  	console.log(data);
+	  	  }
+	  	});
+	  } else {
+	  	Test.addTest(data, function(err, data) {
+	  	  if (err) {
+	  	  	console.log(err);
+	  	  } else {
+	  	  	console.log(data);
+	  	  }
+	  	});
+	  }
+	});
 
-Image.fetchImage(imgName, type, function(err, imgUrl) {
-  if (err) {
-  	console.log(err);
-  } else {
-  	py.stdin.write(JSON.stringify(imgUrl));
-  }
-  py.stdin.end();
-});
+	Image.fetchImage(imgName, type, function(err, imgUrl) {
+	  if (err) {
+	  	console.log(err);
+	  } else {
+	  	py.stdin.write(JSON.stringify(imgUrl));
+	  }
+	  py.stdin.end();
+	});
+}

@@ -4,21 +4,35 @@ const answerKeys = require('./keyModel.js').answerKeys;
 exports.getAnswers = (cb) => {
   //MVP+ : key will be based on keyInput.id
   let answerKeyId = 1;
-  Keys.findOne({where: {id: answerKeyId}})
+  answerKeys.findOne({where: {id: answerKeyId}})
   .then((targetKey) => {
     cb(null, targetKey.answers);
   }).catch((err) => {
     cb(err);
-  })
+  });
+};
+
+exports.getAllAnswerKeys = (cb) => {
+  answerKeys.findAll()
+  .then((fetchedKeys) => {
+    cb(null, fetchedKeys);
+  }).catch((err) =>{
+    cb(err);
+  });
 };
 
 exports.addKey = (keyInput, cb) => {
   let URL = keyInput.URL;
   //is this a JSON.stringified object?
   let answers = keyInput.answers;
+  let ClassesId = keyInput.classId;
+  let TeachersId = keyInput.teacherId;
+
   answerKeys.create({
     answers: answers,
-    URL: URL
+    URL: URL,
+    ClassesId: ClassesId,
+    TeachersId: TeachersId
   })
   .then((savedKey) => {
     cb(null, savedKey);

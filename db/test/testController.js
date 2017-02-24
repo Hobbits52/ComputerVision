@@ -18,12 +18,21 @@ exports.getStudentAnswers = (student, cb) => {
   });
 };
 
+exports.getAllStudentAnswers = (cb) => {
+  Tests.findAll()
+  .then((fetchedTests) => {
+    cb(null, fetchedTests);
+  }).catch((err) =>{
+    cb(err);
+  })
+};
+
 exports.addTest = (test, cb) => {
   //MVP: only one answer key
   //MVP: refactor for multiple answer keys
+  
   answerKeys.findOne({where: {id: 8}})
   .then((answerKey) => {
-    console.log('AAAAAA', answerKey.answers);
     let keyAnswers = JSON.parse(answerKey.answers);
     let studentResponses = JSON.parse(test.answers);
     helpers.calculateResult(studentResponses, keyAnswers, (percentage) => {
@@ -32,6 +41,7 @@ exports.addTest = (test, cb) => {
         URL: test.URL,
         result: percentage,
         StudentId: test.studentId,
+        TeacherId: test.teacherId,
         answerKeyId: answerKey.id
       })
       .then((savedTest) => {
