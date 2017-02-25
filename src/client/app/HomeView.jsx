@@ -42,15 +42,15 @@ class HomeView extends React.Component {
         <h3>To-Do List</h3>
           <div className="postIts">
             <div className="postImage">
-              <img className="background-image" src={'../public/post-it.png'}/>
+              <img className="background-image" src={'../assets/post-it.png'}/>
               <h5> - help joe with midterm prep</h5>
             </div>
             <div className="postImage">
-              <img className="background-image" src={'../public/post-it.png'}/>
+              <img className="background-image" src={'../assets/post-it.png'}/>
               <h5> - parent teacher conference for sally</h5>
             </div>
             <div className="postImage">
-              <img className="background-image" src={'../public/post-it.png'}/>
+              <img className="background-image" src={'../assets/post-it.png'}/>
               <h5> - make midterm key</h5>
             </div>
           </div>
@@ -59,7 +59,7 @@ class HomeView extends React.Component {
           <div className="titleText">
             <h4>Test Title</h4>
           </div>
-          <img className="graphFake"src="../public/graph-sample.jpg"></img>
+          <img className="graphFake"src="../assets/graph-sample.jpg"></img>
         </div>
       </div>
     );

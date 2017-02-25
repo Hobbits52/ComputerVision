@@ -13,29 +13,29 @@ const NavSide = props => (
       </div>
       <div className="name">S.L. Jackson, PhD</div>
       <div className="listItem">
-        <img className="menuIcons" alt="Home" src={'../../../public/white-home.png'}/>
+        <img className="menuIcons" alt="Home" src={'../../../assets/white-home.png'}/>
         <Link to="/">Home</Link>
-        <img className="hiddenArrow" alt="Home" src={'../../../public/arrow.png'}/>
+        <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
       </div>
       <div className="listItem">
-        <img className="menuIcons" alt="Students" src={'../../../public/user.png'}/>
+        <img className="menuIcons" alt="Students" src={'../../../assets/user.png'}/>
         <Link to="students">Students</Link>
-        <img className="hiddenArrow" alt="Home" src={'../../../public/arrow.png'}/>
+        <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
       </div>
       <div className="listItem">
-        <img className="menuIcons" alt="Classes" src={'../../../public/white-pencil.png'}/>
+        <img className="menuIcons" alt="Classes" src={'../../../assets/white-pencil.png'}/>
         <Link to="classes">Classes</Link>
-        <img className="hiddenArrow" alt="Home" src={'../../../public/arrow.png'}/>
+        <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
       </div>
       <div className="listItem">
-        <img className="menuIcons" alt="Keys" src={'../../../public/key.png'}/>
+        <img className="menuIcons" alt="Keys" src={'../../../assets/key.png'}/>
         <Link to="keys">Keys</Link>
-        <img className="hiddenArrow" alt="Home" src={'../../../public/arrow.png'}/>
+        <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
       </div>
       <div className="listItem">
-        <img className="menuIcons" alt="Statistics" src={'../../../public/pie.png'}/>
+        <img className="menuIcons" alt="Statistics" src={'../../../assets/pie.png'}/>
         <Link to="statistics">Statistics</Link>
-        <img className="hiddenArrow" alt="Home" src={'../../../public/arrow.png'}/>
+        <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
       </div>
     </div>
   </div>
