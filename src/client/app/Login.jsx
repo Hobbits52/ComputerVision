@@ -4,14 +4,16 @@ import axios from 'axios';
 import {login, logout} from './helpers/authHelpers.js';
 import css from '../css/auth.css';
 
+import NavTop from './Nav/NavTop.jsx'
+
 class Login extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
       username: '',
-      password: ''    
-    };  
+      password: ''
+    };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,21 +40,24 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="login">
-        <h1>Login</h1>
-        <form onSubmit={this.handleSubmit} method="post">
-          <label htmlFor="username">Username:</label>
-          <input id="username" name="username" type="text" value={this.state.username} onChange={this.handleInputChange} />
+      <div>
+        <NavTop />
+        <div className="login">
+          <h1>Login</h1>
+          <form onSubmit={this.handleSubmit} method="post">
+            <label htmlFor="username">Username:</label>
+            <input id="username" name="username" type="text" value={this.state.username} onChange={this.handleInputChange} />
+            <br/>
+            <label htmlFor="password">Password:</label>
+            <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleInputChange} />
+            <br/>
+            <input type="submit" value="Login" />
+          </form>
+          <Link to="/signup">Not registered?  Create an Account &rarr;</Link>
           <br/>
-          <label htmlFor="password">Password:</label>
-          <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleInputChange} />
-          <br/>
-          <input type="submit" value="Login" />
-        </form>
-        <Link to="/signup">Not registered?  Create an Account &rarr;</Link>
-        <br/>
-        <Link to="/testresults">Want to skip authentication Anthony?!  Click ME!</Link>
-      </div>  
+          <Link to="/testresults">Want to skip authentication Anthony?!  Click ME!</Link>
+        </div>
+      </div>
     );
   }
 }
