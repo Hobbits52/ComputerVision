@@ -2,9 +2,7 @@ node_modules/
 bower_components/
 *.log
 
-build/
-public/	
-dist/
+src/client/public/	
 src/server/api_config/
 
 # compiled python
