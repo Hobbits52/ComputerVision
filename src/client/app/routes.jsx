@@ -18,7 +18,7 @@ import TestTakerResults from './TestTakerResults.jsx';
 // Need to add a route for the above!
 
 export default (
-  <Route path="/" component={LandingPage}>
+  <Route path="/" component={App}>
     <IndexRoute component={TeacherViewContainer} />
       <IndexRoute component={HomeView} />
       <Route path="/" component={HomeView} />
