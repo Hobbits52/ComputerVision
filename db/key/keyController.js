@@ -24,7 +24,6 @@ exports.getAllAnswerKeys = (cb) => {
 exports.addKey = (keyInput, cb) => {
   let URL = keyInput.URL;
   //is this a JSON.stringified object?
-  console.log('in control', keyInput);
   let answers = keyInput.answers;
   let ClassesId = keyInput.classId;
   let TeachersId = keyInput.teacherId;

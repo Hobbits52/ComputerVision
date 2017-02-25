@@ -2,7 +2,6 @@ const Test = require('./../../../db/test/testController.js');
 const AnswerKey = require('./../../../db/key/keyController.js');
 const Classes = require('./../../../db/classes/classController.js');
 const Scanner = require('./pythontonode.js').Scanner;
-// const test = require('./test.js').test;
   
 const getTeacherData = function(req, res) {
   var data = {};
@@ -24,31 +23,22 @@ const getTeacherData = function(req, res) {
   	  });
   	}
   });
-  res.status(200).send(data);
 };
 
 const addAnswerKey = function(req, res) {
   let keyUpload = req.body;
   Scanner(keyUpload, 'key', function(err, answerKey) {
   	if(err) {
-      console.log('ERROR');
+      console.log('ERRORRRRR', err);
   		res.status(500);
+      res.send(err);
   		res.end();
   	} else {
-  		res.status(200).send(answerKey);
+  		res.status(200)
+      res.send(answerKey);
   		res.end();
   	}
   });
-
-  // test(keyUpload, 'key', function(err, answerKey) {
-  //  if(err) {
-  //    res.status(500);
-  //    res.end();
-  //  } else {
-  //    res.status(200).send(answerKey);
-  //    res.end();
-  //  }
-  // });
 };
 
 const addClass = function(req, res) {

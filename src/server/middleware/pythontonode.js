@@ -1,15 +1,26 @@
 const Image = require('./imageFetch.js');
-const spawn = require('child_process').spawn;
 const Test = require('./../../../db/test/testController.js');
 const Answerkey = require('./../../../db/key/keyController.js');
-const py = spawn('python', ['./../utility/scanner.py']);
+const spawn = require('child_process').spawn;
+const path = require('path');
 
 const Scanner = function(uploadFile, type, cb) {
-	console.log(py.channel);
+	const py = spawn('python', [path.join(__dirname + '/../utility/scanner.py')]);
 	let url = uploadFile.url;
 	let TeachersId = uploadFile.TeachersId;
 	let ClassesId = uploadFile.ClassesId;
 	let dataString = '';
+
+	py.stdin.write(JSON.stringify(url));
+	py.stdin.end();
+
+	py.stderr.on('data', function(data) {
+		console.log('stderr: ' + data);
+	})
+
+	py.on('close', function(code) {
+		console.log('Child process exited with code ' + code);
+	});
 
 	py.stdout.on('data', function(data) {
 	  dataString += data.toString();
@@ -36,17 +47,14 @@ const Scanner = function(uploadFile, type, cb) {
 		  	  if (err) {
 		  	  	cb(err);
 		  	  } else {
-		  	  	console.log(data);
+		  	  	cb(null, data);
 		  	  }
 		  	});
 		  }
-		  cb(null, data);
 		}
 	});
-
-	py.stdin.write(JSON.stringify(url));
-	py.stdin.end();
 };
+
 module.exports = {
 	'Scanner': Scanner
 }

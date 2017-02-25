@@ -21,7 +21,6 @@ def url_to_image(url):
 # DEV To Do: should modularize the scan_image code.
 def scan_image(url):
 	# print ' <==========  Running scanner.py =========>'
-
 	# get image from url
 	image = url_to_image(url)
 
@@ -328,8 +327,8 @@ def scan_image(url):
 # blackScreen = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487893886/oi5gzyf9sxfho6d76kza.jpg'
 # # url = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487912476/mqktwohow3gbycofb1xq.jpg'
 
-tableBottom = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892182/p6ybu5bjev1nnfkpebcc.jpg'
-print scan_image(tableBottom)
+#tableBottom = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892182/p6ybu5bjev1nnfkpebcc.jpg'
+#print scan_image(tableBottom)
 
 # # data = scan_image(testURL)
 # jsonDATA = scan_image(tableBottom)
