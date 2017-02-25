@@ -66,4 +66,52 @@ p {
   padding: 0;
 }
 
+/******LANDING PAGE******/
+.mainContent {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 100px;
+  margin-bottom: 30px;
+}
+
+.writingImage img {
+  width: 70%;
+  display: block;
+  margin: auto;
+}
+
+.center img {
+  width: 60%;
+  display: block;
+  margin: auto;
+}
+
+.center {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+input[type=button] {
+  border-radius: 30px;
+  color: #666666;
+  font-size: 30px;
+  margin: 30px 0;
+  padding: 10px 80px;
+  font-weight: bold;
+}
+
+.bonusContent {
+  display: flex;
+  justify-content: space-around;
+}
+
+.bonusContent h3 {
+  width: 60%;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+
 

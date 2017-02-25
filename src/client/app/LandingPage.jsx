@@ -18,22 +18,32 @@ class LandingPage extends React.Component {
         <NavTop />
         <div className="landingPage">
           <div className="mainContent">
-            <div>
+            <div className="writingImage">
               <img src={"./../public/teachers-choice.jpg"} alt="Number 1 Teachers Choice"/>
             </div>
-            <div>
+            <div className="center">
+              <img src={"./../public/pencil-horizontal.png"} alt="Good-bye Scantrons"/>
               <h1>Grade Less</h1>
               <h1>Teach More</h1>
-              <input type="submit" value="Login" />
+              <input className="getStarted" type="button" value="Get Started" />
             </div>
-            <div>
+            <div className="writingImage">
               <img src={"./../public/goodbye.jpg"} alt="Good-bye Scantrons"/>
             </div>
           </div>
-          <div>
-            <div></div>
-            <div></div>
-            <div></div>
+          <div className="bonusContent">
+            <div>
+              <h3>No more scantrons</h3>
+            </div>
+            <div>
+              <h3>Automated grading</h3>
+            </div>
+            <div>
+              <h3>Data visualization</h3>
+            </div>
+            <div>
+              <h3>Storage in the cloud</h3>
+            </div>
           </div>
         </div>
       </div>
