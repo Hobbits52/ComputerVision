@@ -25,13 +25,13 @@ exports.addKey = (keyInput, cb) => {
   let URL = keyInput.URL;
   //is this a JSON.stringified object?
   let answers = keyInput.answers;
-  let ClassesId = keyInput.classId;
-  let TeachersId = keyInput.teacherId;
+  let ClassId = keyInput.ClassId;
+  let TeacherId = keyInput.TeacherId;
     answerKeys.create({
     answers: answers,
     URL: URL,
-    ClassId: ClassesId,
-    TeacherId: TeachersId
+    ClassId: ClassId,
+    TeacherId: TeacherId
   })
   .then((savedKey) => {
     console.log(savedKey);

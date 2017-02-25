@@ -29,7 +29,6 @@ const addAnswerKey = function(req, res) {
   let keyUpload = req.body;
   Scanner(keyUpload, 'key', function(err, answerKey) {
   	if(err) {
-      console.log('ERRORRRRR', err);
   		res.status(500);
       res.send(err);
   		res.end();
@@ -43,7 +42,6 @@ const addAnswerKey = function(req, res) {
 
 const addClass = function(req, res) {
   let classInfo = req.body;
-  console.log(classInfo);
   Classes.addClass(classInfo, function(err, newClass) {
     if (err) {
       res.status(500).send(err);

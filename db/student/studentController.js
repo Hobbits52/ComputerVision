@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt-nodejs');
 exports.studentSignup = (studentInput, cb) => {
   let username = studentInput.username;
   let password = studentInput.password;
-
+  let TeacherId = studentInput.TeacherId;
   Students.findOrCreate({where: {username: username},
     defaults: {password: password}})
   .spread((student, created) => {
