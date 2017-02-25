@@ -3,6 +3,7 @@ const studentController = require('./../../../db/student/studentController.js');
 
 const checkSession = function(req, res, next) {
   const isLoggedIn = req.session ? !!req.session.user : false;
+  console.log('req.session.user: ', req.session.user);
   if (!isLoggedIn) {
       res.status(401);
       res.end();
@@ -29,6 +30,7 @@ const createSession = function(req, res, user) {
 const userLogin = function(req, res, next) {
   teacherController.teacherLogin(req.body, function(err, user) {
     if (err) {
+      console.log('Login Error: ', err);
       res.status(401).send(err);
       res.end();
   	} else {
