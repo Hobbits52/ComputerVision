@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import axios from 'axios';
 import css from '../css/main.css';
 import NavTop from './Nav/NavTop.jsx';
+import NavPublic from './Nav/NavPublic.jsx';
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -11,12 +12,11 @@ class LandingPage extends React.Component {
 
     };
   }
-  //testing status//
 
   render() {
     return (
       <div>
-        <NavTop />
+        <NavPublic />
         <div className="landingPage">
           <div className="mainAdvertising">
             <div className="writingImage">
@@ -39,15 +39,15 @@ class LandingPage extends React.Component {
             </div>
             <div className="bonusItem">
               <h3>Automated grading</h3>
-              <img src={"./../assets/iphone.png"} alt="Printer"/>
+              <img src={"./../assets/iphone.png"} alt="iPhone"/>
             </div>
             <div className="bonusItem">
               <h3>Data visuals</h3>
-              <img src={"./../assets/graph.png"} alt="Printer"/>
+              <img src={"./../assets/graph.png"} alt="Graph"/>
             </div>
             <div className="bonusItem">
               <h3>Storage in the cloud</h3>
-              <img src={"./../assets/cloud.png"} alt="Printer"/>
+              <img src={"./../assets/cloud.png"} alt="Cloud"/>
             </div>
           </div>
         </div>

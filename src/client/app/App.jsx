@@ -2,9 +2,10 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 import {checkSession} from './helpers/authHelpers.js';
-import NavTop from './Nav/NavTop.jsx';
-import NavSide from './Nav/NavSide.jsx';
-import TeacherViewContainer from './TeacherViewContainer.jsx';
+import NavTop from './Nav/NavTop.jsx'
+import NavTopPublic from './Nav/NavPublic.jsx'
+import NavSide from './Nav/NavSide.jsx'
+import TeacherViewContainer from './TeacherViewContainer.jsx'
 import Login from './Login.jsx';
 import css from '../css/nav.css';
 
@@ -32,6 +33,7 @@ class App extends React.Component {
 // Component Lifecycle Functions
 // --------------------------------------------------------------------
 
+<<<<<<< HEAD
   componentWillMount() {
     checkSession()
     .then((res) => {
@@ -43,6 +45,10 @@ class App extends React.Component {
     })
     // Catch the error and then do nothing with it.
     .catch(err => { console.log('err: ', err); })
+=======
+  componentDidMount() {
+
+>>>>>>> (feat) add public navbar to landing page
   }
 // --------------------------------------------------------------------
 
@@ -52,7 +58,7 @@ class App extends React.Component {
 // --------------------------------------------------------------------
 
   handleSomeEvent(someParameter) {
-    
+
   }
 // --------------------------------------------------------------------
 
