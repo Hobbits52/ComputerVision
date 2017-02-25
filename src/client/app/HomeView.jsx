@@ -3,6 +3,8 @@ import {Link} from 'react-router';
 import axios from 'axios';
 import css from '../css/main.css';
 
+import {getAllTeachersClasses} from './helpers/viewHelpers.js';
+
 
 class HomeView extends React.Component {
   constructor(props) {
@@ -19,6 +21,10 @@ class HomeView extends React.Component {
     // this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
     // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     // this.handleSidebarClick = this.handleSidebarClick.bind(this);
+  }
+
+  componentWillMount() {
+    // getAllTeachersClasses();
   }
 
   handleSearchInputChange(event) {
