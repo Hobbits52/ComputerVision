@@ -48,6 +48,13 @@ class NavTop extends React.Component {
   };
 
   render () {
+    // const isHomePage = this.props.location.pathname === '/login' || this.props.location.pathname === '/signup';
+    // if (isHomePage) {
+    //   let defineClassname = "navbar navbar-default navbar-static-top showLoginSignup";
+    // } else {
+    //   let defineClassname = "navbar navbar-default navbar-static-top showSearchBarLogout";
+    // }
+
     return(
       <nav className="navbar navbar-default navbar-static-top">
         <div className="container-fluid">
