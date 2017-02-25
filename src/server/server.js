@@ -1,6 +1,6 @@
 const app = require('./server-config.js');
 const port = process.env.PORT || 8080;
-const mysql = require('mysql');
+// const mysql = require('mysql');
 
 // const connectionInfo = process.env.DATABASE_URL || {
 //   host: 'localhost',
@@ -11,7 +11,7 @@ const mysql = require('mysql');
 
 // const connection = mysql.createConnection(connectionInfo);
 
-connection.connect();
+// connection.connect();
 
 const server = app.listen(port);
 
