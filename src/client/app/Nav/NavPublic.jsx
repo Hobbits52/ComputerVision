@@ -25,9 +25,9 @@ class NavPublic extends React.Component {
             </Link>
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul className="nav navbar-nav navbar-right">
+            <ul className="nav navbar-nav signUpArea navbar-right">
               <li><Link to="/login">Login</Link></li>
-              <li><Link to="/signup">Signup</Link></li>
+              <li className="signupButton"><Link to="/signup">Signup</Link></li>
             </ul>
           </div>
         </div>

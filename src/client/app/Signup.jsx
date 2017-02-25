@@ -4,7 +4,7 @@ import axios from 'axios';
 import {login, logout, signup} from './helpers/authHelpers.js';
 import css from '../css/auth.css';
 
-import NavTop from './Nav/NavTop.jsx';
+import NavPublic from './Nav/NavPublic.jsx';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class Signup extends React.Component {
   render() {
     return (
       <div>
-        <NavTop />
+        <NavPublic />
         <div className="signup">
           <div>
             <h1>Sign Up</h1>

@@ -40,6 +40,23 @@
   height: 100%;
 }
 
+.signupButton {
+  border: 2px solid white;
+  border-radius: 40px;
+  margin-right: 40px;
+  margin-top: 10px;
+}
+
+.signupButton:hover {
+  background-color: white;
+  color: #434343;
+}
+
+.navbar-default .signUpArea>.signupButton>a {
+  color: white;
+  padding: 5px 5px;
+}
+
 /******************************/
 /*********SEARCH BAR***********/
 /******************************/
