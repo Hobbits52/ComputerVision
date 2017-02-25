@@ -12,10 +12,11 @@ const answerKeys = db.define('answerKeys', {
   URL: Sequelize.TEXT
 }, {timestamps: false});
 
-Classes.hasMany(answerKeys);
 answerKeys.belongsTo(Classes);
-Teachers.hasMany(answerKeys);
+Classes.hasMany(answerKeys);
+
 answerKeys.belongsTo(Teachers);
+Teachers.hasMany(answerKeys);
 
 answerKeys.sync();
 

@@ -5,6 +5,7 @@ const Answerkey = require('./../../../db/key/keyController.js');
 const py = spawn('python', ['./../utility/scanner.py']);
 
 const Scanner = function(uploadFile, type, cb) {
+	console.log(py.channel);
 	let url = uploadFile.url;
 	let TeachersId = uploadFile.TeachersId;
 	let ClassesId = uploadFile.ClassesId;
@@ -15,7 +16,6 @@ const Scanner = function(uploadFile, type, cb) {
 	});
 
 	py.stdout.on('end', function() {
-		console.log('**********');
 	  let data = JSON.parse(dataString);
 	  if (data.status === 400) {
 	  	cb(data.message);
@@ -40,13 +40,13 @@ const Scanner = function(uploadFile, type, cb) {
 		  	  }
 		  	});
 		  }
+		  cb(null, data);
 		}
 	});
-	console.log(JSON.stringify(url));
+
 	py.stdin.write(JSON.stringify(url));
 	py.stdin.end();
 };
-
 module.exports = {
 	'Scanner': Scanner
 }

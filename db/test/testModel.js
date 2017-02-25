@@ -15,16 +15,16 @@ const Tests = db.define('Tests', {
 },{timestamps: false});
 
 //foreign key answerKey
-answerKeys.hasMany(Tests); //TODO: check to see if foreign key auto added
 Tests.belongsTo(answerKeys);
+answerKeys.hasMany(Tests); //TODO: check to see if foreign key auto added
 
 //foreign key Student who took the test
-Students.hasMany(Tests);
 Tests.belongsTo(Students);
+Students.hasMany(Tests);
 
 //foreign key class
-Classes.hasMany(Tests);
 Tests.belongsTo(Classes);
+Classes.hasMany(Tests);
 
 Tests.sync();
 

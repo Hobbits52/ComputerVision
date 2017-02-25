@@ -1,5 +1,5 @@
 const app = require('./server-config.js');
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8000;
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({

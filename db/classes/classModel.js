@@ -6,8 +6,9 @@ const Classes = db.define('Classes', {
   classname: Sequelize.STRING
   },{timestamps: false});
 
-Teachers.hasMany(Classes);
 Classes.belongsTo(Teachers);
+Teachers.hasMany(Classes);
 
 Classes.sync();
+
 exports.Classes = Classes;
