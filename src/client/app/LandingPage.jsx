@@ -11,7 +11,7 @@ class LandingPage extends React.Component {
 
     };
   }
-  //testing status
+  //testing status//
 
   render() {
     return (
