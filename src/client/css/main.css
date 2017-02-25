@@ -118,6 +118,7 @@ input[type=button]:hover {
   display: block;
   margin: auto;
   padding-bottom: 10px;
+  border-bottom: 1px solid white;
 }
 
 .bonusItem img {
@@ -125,6 +126,12 @@ input[type=button]:hover {
   display: block;
   margin: auto;
   flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.bonusItem img:hover {
+  width: 105px;
+  margin-top: 10px;
 }
 
 .pencil:hover {
