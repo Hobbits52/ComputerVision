@@ -4,14 +4,16 @@ import axios from 'axios';
 import {login, logout} from './helpers/authHelpers.js';
 import css from '../css/auth.css';
 
+import NavTop from './Nav/NavTop.jsx';
+
 class Signup extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      username: '',
-      password: ''    
-    };  
+      username: 'Full Name',
+      password: 'password'
+    };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -38,19 +40,24 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className="signup">
-        <h1>Sign Up</h1>
-        <form onSubmit={this.handleSubmit} method="post">
-          <label htmlFor="username">Username:</label>
-          <input id="username" name="username" type="text" value={this.state.username} onChange={this.handleInputChange} />
-          <br/>
-          <label htmlFor="password">Password:</label>
-          <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleInputChange} />
-          <br/>
-          <input type="submit" value="Sign Up" />
-        </form>
-        <Link to="/signup">Not registered?  Create an Account &rarr;</Link>
-      </div>  
+      <div>
+        <NavTop />
+        <div className="signup">
+          <div>
+            <h1>Sign Up</h1>
+            <form onSubmit={this.handleSubmit} method="post">
+
+              <input id="username" name="username" type="text" value={this.state.username} onChange={this.handleInputChange} />
+              <br/>
+
+              <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleInputChange} />
+              <br/>
+              <input type="submit" value="Sign Up" />
+            </form>
+            <Link className="alreadyText" to="/signup">Already registered?  Login &rarr;</Link>
+          </div>
+        </div>
+      </div>
     );
   }
 }

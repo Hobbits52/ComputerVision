@@ -2,18 +2,19 @@ h3 {
   font-weight: bold;
 }
 
-.login {
+.login, .signup {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.login div {
+.login div, .signup div {
   display: flex;
   align-self: center;
   flex-direction: column;
   font-size: 24px;
   text-align: center;
+  margin-top: 100px;
 }
 
 input {
@@ -38,4 +39,8 @@ input[type=text], input[type=password] {
   margin: 5px;
   padding: 10px 100px 10px 10px;
   text-align: left;
+}
+
+.alreadyText {
+  font-size: 14px;
 }
