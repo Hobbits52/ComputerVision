@@ -57,26 +57,28 @@ const userSignup = function(req, res, next) {
 //////////////////////////////////////////////////////////////////
 //STUDENT
 //////////////////////////////////////////////////////////////////
-const studentLogin = function(req, res, next) {
-  studentController.teacherLogin(req.body, function(err, user) {
+const studentLogin = function(req, res) {
+  studentController.studentLogin(req.body, function(err, user) {
     if (err) {
       res.status(401).send(err);
       res.end();
     } else {
       createSession(req, res, user);
-      next();
+      res.status(200);
+      res.end();
     }
   });
 };
 
-const studentSignup = function(req, res, next) {
-  studentController.teacherSignup(req.body, function(err, user) {
+const studentSignup = function(req, res) {
+  studentController.studentSignup(req.body, function(err, user) {
     if (err) {
       res.status(400).send(err);
       res.end();
     } else {
       createSession(req, res, user);
-      next();
+      res.status(200);
+      res.end();
     }
   });
 };
@@ -84,6 +86,7 @@ const studentSignup = function(req, res, next) {
 module.exports = {
   'checkSession': checkSession,
   'userLogin' : userLogin,
-  'userSignup' : userSignup/*,
-  'userLogout' : userLogout*/
+  'userSignup' : userSignup,
+  'studentLogin:' : studentLogin,
+  'studentSignup' : studentSignup
 };

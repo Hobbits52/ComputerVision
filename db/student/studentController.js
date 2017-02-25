@@ -1,4 +1,4 @@
-const Students = require('./studentModel.js');
+const Students = require('./studentModel.js').Students;
 const bcrypt = require('bcrypt-nodejs');
 //TODO: Refactor with promises on server side
 
@@ -7,7 +7,7 @@ exports.studentSignup = (studentInput, cb) => {
   let password = studentInput.password;
   let TeacherId = studentInput.TeacherId;
   Students.findOrCreate({where: {username: username},
-    defaults: {password: password}})
+    defaults: {password: password, TeacherId: TeacherId}})
   .spread((student, created) => {
     if (created === false) {
       let error = "Username already in use";
@@ -20,7 +20,7 @@ exports.studentSignup = (studentInput, cb) => {
   });
 };
 
-exports.userLogin = (studentInput, cb) => {
+exports.studentLogin = (studentInput, cb) => {
   let username = studentInput.username;
   let password = studentInput.password;
 
@@ -40,4 +40,3 @@ exports.userLogin = (studentInput, cb) => {
     cb(err);
   });
 };
-

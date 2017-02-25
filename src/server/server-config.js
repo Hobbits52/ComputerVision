@@ -16,6 +16,7 @@ app.use(session({
 
 app.use(bodyParser.json());
 
+//TEACHER
 app.get('/auth/signedIn', auth.checkSession);
 //app.post('/auth/logout', auth.userLogout);
 app.post('/auth/login', auth.userLogin, teacherdata.getTeacherData);
@@ -23,6 +24,11 @@ app.post('/auth/signup', auth.userSignup, teacherdata.getTeacherData);
 app.post('/teacher/addClass', teacherdata.addClass);
 app.post('/teacher/addAnswerKey', teacherdata.addAnswerKey);
 //app.post('/teacher/addTest', auth.checkSession, );
+
+
+//STUDENT
+app.post('/studentauth/signup', auth.studentSignup);
+//app.post('/studentauth/login', auth.studentLogin);
 
 app.use(express.static(path.join(__dirname + '/../client/')));
 
