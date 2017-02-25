@@ -4,7 +4,7 @@ import axios from 'axios';
 import {login, logout} from './helpers/authHelpers.js';
 import css from '../css/auth.css';
 
-import NavTop from './Nav/NavTop.jsx';
+import NavPublic from './Nav/NavPublic.jsx';
 
 class Login extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class Login extends React.Component {
     event.preventDefault();
     // Call userLogin from authentication.js
     // if !loggedIn, alert user improper info
-    // else, 
+    // else,
     console.log('handling submit!');
     const user = {
       username: this.state.username,
@@ -38,7 +38,7 @@ class Login extends React.Component {
 
     login(user)
     // here i am receiving a user with a user.username
-    // 
+    //
     // This is working...this is where you stopped
     .then((resp) => { console.log(resp.body);
                       this.props.handleLoginSubmit() })
@@ -51,16 +51,16 @@ class Login extends React.Component {
       <div className="login">
         <h1>Login</h1>
         <form onSubmit={this.handleSubmit} method="post">
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username"></label>
           <input id="username" name="username" type="text" value={this.state.username} onChange={this.handleInputChange} />
           <br/>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password"></label>
           <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleInputChange} />
           <br/>
           <input type="submit" value="Login" />
         </form>
-        <Link to="/signup">Not registered?  Create an Account &rarr;</Link>
-      </div>  
+        <Link className = "alreadyText" to="/signup">Not registered?  Create an Account &rarr;</Link>
+      </div>
     );
   }
 }
