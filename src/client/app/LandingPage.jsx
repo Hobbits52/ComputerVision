@@ -19,34 +19,34 @@ class LandingPage extends React.Component {
         <div className="landingPage">
           <div className="mainContent">
             <div className="writingImage">
-              <img src={"./../public/teachers-choice.jpg"} alt="Number 1 Teachers Choice"/>
+              <img src={"./../assets/teachers-choice.jpg"} alt="Number 1 Teachers Choice"/>
             </div>
             <div className="center">
-              <img src={"./../public/pencil-horizontal.png"} alt="Good-bye Scantrons"/>
+              <img src={"./../assets/pencil-horizontal.png"} alt="Good-bye Scantrons"/>
               <h1>Grade Less</h1>
               <h1>Teach More</h1>
               <input className="getStarted" type="button" value="Get Started" />
             </div>
             <div className="writingImage">
-              <img src={"./../public/goodbye.jpg"} alt="Good-bye Scantrons"/>
+              <img src={"./../assets/goodbye.jpg"} alt="Good-bye Scantrons"/>
             </div>
           </div>
           <div className="bonusContent">
             <div className="bonusItem">
               <h3>No more scantrons</h3>
-              <img src={"./../public/printer.png"} alt="Printer"/>
+              <img src={"./../assets/printer.png"} alt="Printer"/>
             </div>
             <div className="bonusItem">
               <h3>Automated grading</h3>
-              <img src={"./../public/iphone.png"} alt="Printer"/>
+              <img src={"./../assets/iphone.png"} alt="Printer"/>
             </div>
             <div className="bonusItem">
               <h3>Data visuals</h3>
-              <img src={"./../public/graph.png"} alt="Printer"/>
+              <img src={"./../assets/graph.png"} alt="Printer"/>
             </div>
             <div className="bonusItem">
               <h3>Storage in the cloud</h3>
-              <img src={"./../public/cloud.png"} alt="Printer"/>
+              <img src={"./../assets/cloud.png"} alt="Printer"/>
             </div>
           </div>
         </div>

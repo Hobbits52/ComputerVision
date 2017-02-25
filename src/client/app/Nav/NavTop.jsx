@@ -60,7 +60,7 @@ class NavTop extends React.Component {
         <div className="container-fluid">
           <div className="navbar-header">
             <Link to="/" className="navbar-brand navbar-left">
-              <img className="logo" src={'../../public/pencil.png'} alt="Brand" />
+              <img className="logo" src={'../../assets/pencil.png'} alt="Brand" />
             </Link>
             <Link to="/" className="navbar-brand navbar-left">
               <span>{"teacher\'s pet"}</span>
@@ -72,7 +72,7 @@ class NavTop extends React.Component {
                 <input type="text" className="form-control" placeholder="Search students" />
               </div>
               <button type="submit" className="btn btn-default">
-                <img className="search" src={'../../../public/search.png'} alt="Search" />
+                <img className="search" src={'../../../assets/search.png'} alt="Search" />
               </button>
             </form>
             <ul className="nav navbar-nav navbar-right">
