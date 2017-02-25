@@ -10,6 +10,7 @@ import StudentsView from './StudentsView.jsx';
 import ClassesView from './ClassesView.jsx';
 import KeysView from './KeysView.jsx';
 import StatisticsView from './StatisticsView.jsx';
+import LandingPage from './LandingPage.jsx';
 
 import TestResultsContainer from './TestResultsContainer.jsx';
 import TestResults from './TestResults.jsx';
@@ -17,7 +18,7 @@ import TestTakerResults from './TestTakerResults.jsx';
 // Need to add a route for the above!
 
 export default (
-  <Route path="/" component={App}>
+  <Route path="/" component={LandingPage}>
     <IndexRoute component={TeacherViewContainer} />
       <IndexRoute component={HomeView} />
       <Route path="/" component={HomeView} />
@@ -39,6 +40,6 @@ export default (
 //     </Route>
 //   </Route>
 // )
-// 
+//
 //       <IndexRoute component={TestResults} />
       // <Route path=":testTaker" component={TestTakerResults} />
