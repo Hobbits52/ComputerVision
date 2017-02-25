@@ -8,7 +8,7 @@ const NavSide = props => (
       <div className="userInfo">
         <img className="left-12"
              alt="User Picture"
-             src={'../../../public/apple.png'}
+             src={'../../../assets/apple.png'}
              width="150"/>
       </div>
       <div className="name">S.L. Jackson, PhD</div>

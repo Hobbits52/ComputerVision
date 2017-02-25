@@ -17,7 +17,7 @@ class LandingPage extends React.Component {
       <div>
         <NavTop />
         <div className="landingPage">
-          <div className="mainContent">
+          <div className="mainAdvertising">
             <div className="writingImage">
               <img src={"./../assets/teachers-choice.jpg"} alt="Number 1 Teachers Choice"/>
             </div>
