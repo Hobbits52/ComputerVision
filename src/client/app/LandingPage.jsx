@@ -32,17 +32,21 @@ class LandingPage extends React.Component {
             </div>
           </div>
           <div className="bonusContent">
-            <div>
+            <div className="bonusItem">
               <h3>No more scantrons</h3>
+              <img src={"./../public/printer.png"} alt="Printer"/>
             </div>
-            <div>
+            <div className="bonusItem">
               <h3>Automated grading</h3>
+              <img src={"./../public/iphone.png"} alt="Printer"/>
             </div>
-            <div>
-              <h3>Data visualization</h3>
+            <div className="bonusItem">
+              <h3>Data visuals</h3>
+              <img src={"./../public/graph.png"} alt="Printer"/>
             </div>
-            <div>
+            <div className="bonusItem">
               <h3>Storage in the cloud</h3>
+              <img src={"./../public/cloud.png"} alt="Printer"/>
             </div>
           </div>
         </div>

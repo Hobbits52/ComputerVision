@@ -104,6 +104,7 @@ input[type=button] {
 .bonusContent {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 .bonusContent h3 {
@@ -111,6 +112,14 @@ input[type=button] {
   text-align: center;
   display: block;
   margin: auto;
+  padding-bottom: 10px;
+}
+
+.bonusItem img {
+  width: 100px;
+  display: block;
+  margin: auto;
+  flex-wrap: wrap;
 }
 
 
