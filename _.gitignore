@@ -27,3 +27,10 @@ public/bundle.js
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
 node_modules/
 bower_components/
+
+#Mac components
+.DS_Store
+spec/.DS_Store
+src/.DS_Store
+src/client/.DS_Store
+src/client/public/.DS_Store
