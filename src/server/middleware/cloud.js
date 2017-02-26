@@ -14,13 +14,13 @@ const cloudinary = require('cloudinary');
 // };
 
 
-  cloudinary.config(apiKey.cloudinaryAPI);
-  cloudinary.v2.uploader.upload('./studenttest.jpg',
-  	{public_id: 'test/studenttest', upload_preset: 'uqbfq8ql'},
-  	function(error, result) {
-  	  if(error) {
-  	  	console.log(error);
-  	  }
-  	  console.log(result)}
-  	);
+  // cloudinary.config(apiKey.cloudinaryAPI);
+  // cloudinary.v2.uploader.upload('./studenttest.jpg',
+  // 	{public_id: 'test/studenttest', upload_preset: 'uqbfq8ql'},
+  // 	function(error, result) {
+  // 	  if(error) {
+  // 	  	console.log(error);
+  // 	  }
+  // 	  console.log(result)}
+  // 	);
 
