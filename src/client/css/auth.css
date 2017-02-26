@@ -30,6 +30,10 @@ input[type=submit] {
   padding: 10px 80px;
 }
 
+input[type=submit]:hover {
+  color: black;
+}
+
 input[type=text], input[type=password] {
   background-color: white;
   border: none;
