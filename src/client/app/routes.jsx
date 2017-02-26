@@ -4,7 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './App.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';
-import TeacherViewContainer from './TeacherViewContainer.jsx';
+import Dashboard from './Dashboard.jsx';
 import HomeView from './HomeView.jsx';
 import StudentsView from './StudentsView.jsx';
 import ClassesView from './ClassesView.jsx';
@@ -18,28 +18,16 @@ import TestTakerResults from './TestTakerResults.jsx';
 // Need to add a route for the above!
 
 export default (
-  <Route path="/" component={LandingPage}>
-    <IndexRoute component={TeacherViewContainer} />
+  <Route path="/" component={App}>
+    <IndexRoute component={LandingPage} />
+    <Route path="login" component={Login} />
+    <Route path="signup" component={Signup} />
+    <Route path="dashboard" component={Dashboard} >
       <IndexRoute component={HomeView} />
-      <Route path="/" component={HomeView} />
       <Route path="students" component={StudentsView} />
       <Route path="classes" component={ClassesView} />
       <Route path="keys" component={KeysView} />
       <Route path="statistics" component={StatisticsView} />
-
+    </Route>  
   </Route>
-)
-
-// export default (
-//   <Route path="/" component={App}>
-//     <IndexRoute component={Login} />
-//     <Route path="signup" component={Signup} />
-//     <Route path="testresults" component={TestResultsContainer}>
-//       <IndexRoute component={TestResults} />
-//       <Route path=":testTaker" component={TestTakerResults} />
-//     </Route>
-//   </Route>
-// )
-//
-//       <IndexRoute component={TestResults} />
-      // <Route path=":testTaker" component={TestTakerResults} />
+);
