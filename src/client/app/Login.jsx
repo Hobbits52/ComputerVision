@@ -27,39 +27,40 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
+    // Call userLogin from authentication.js
+    // if !loggedIn, alert user improper info
+    // else, 
+    console.log('handling submit!');
     const user = {
       username: this.state.username,
       password: this.state.password
     };
 
     login(user)
-    .then((resp) => { console.log('logged in'); })
-    .catch((err) => { console.log('could not login', err); });
+    // here i am receiving a user with a user.username
+    // 
+    // This is working...this is where you stopped
+    .then((resp) => { console.log(resp.body);
+                      this.props.handleLoginSubmit() })
+    .catch((err) => { alert('You are not who you say you are.\n  Reconsider your identity.');
+                      console.log('Login Error: ', err) });
   }
 
   render() {
     return (
-      <div>
-        <NavTop />
-        <div className="login">
-          <div>
-            <h1>Login</h1>
-            <form onSubmit={this.handleSubmit} method="post">
-              <label htmlFor="username"></label>
-              <input id="username" name="username" type="text" value={this.state.username} onChange={this.handleInputChange} />
-              <br/>
-              <label htmlFor="password"></label>
-              <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleInputChange} />
-              <br/>
-              <input type="submit" value="Login" />
-            </form>
-            <Link className="alreadyText" to="/signup">Not registered?  Create an Account &rarr;</Link>
-            <br/>
-            <Link className="alreadyText" to="/testresults">Want to skip authentication Anthony?!  Click ME!</Link>
-          </div>
-        </div>
-      </div>
+      <div className="login">
+        <h1>Login</h1>
+        <form onSubmit={this.handleSubmit} method="post">
+          <label htmlFor="username">Username:</label>
+          <input id="username" name="username" type="text" value={this.state.username} onChange={this.handleInputChange} />
+          <br/>
+          <label htmlFor="password">Password:</label>
+          <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleInputChange} />
+          <br/>
+          <input type="submit" value="Login" />
+        </form>
+        <Link to="/signup">Not registered?  Create an Account &rarr;</Link>
+      </div>  
     );
   }
 }
