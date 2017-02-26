@@ -2,7 +2,7 @@ node_modules/
 bower_components/
 *.log
 
-src/client/public/
+src/client/public/	
 dist/
 
 src/server/api_config/
