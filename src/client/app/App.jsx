@@ -33,7 +33,6 @@ class App extends React.Component {
 // Component Lifecycle Functions
 // --------------------------------------------------------------------
 
-<<<<<<< HEAD
   componentWillMount() {
     checkSession()
     .then((res) => {
@@ -45,10 +44,9 @@ class App extends React.Component {
     })
     // Catch the error and then do nothing with it.
     .catch(err => { console.log('err: ', err); })
-=======
+  }
   componentDidMount() {
 
->>>>>>> (feat) add public navbar to landing page
   }
 // --------------------------------------------------------------------
 
