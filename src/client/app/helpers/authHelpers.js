@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+exports.checkSession = () => {
+  return axios.get('auth/signedIn');
+}
+
 exports.signup = (user) => {
   return axios({
     method: 'POST',
