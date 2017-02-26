@@ -26,7 +26,7 @@ class LandingPage extends React.Component {
               <img className="pencil" src={"./../assets/pencil-horizontal.png"} alt="Horizontal Pencil"/>
               <h1>Grade Less</h1>
               <h1>Teach More</h1>
-              <input className="getStarted" type="button" value="Get Started" />
+              <Link to="/signup"><input className="getStarted" type="button" value="Get Started" /></Link>
             </div>
             <div className="writingImage">
               <img src={"./../assets/goodbye.jpg"} alt="Good-bye Scantrons"/>

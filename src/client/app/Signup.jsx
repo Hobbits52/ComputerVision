@@ -54,7 +54,7 @@ class Signup extends React.Component {
               <br/>
               <input type="submit" value="Sign Up" />
             </form>
-            <Link className="alreadyText" to="/signup">Already registered?  Login &rarr;</Link>
+            <Link className="alreadyText" to="/login">Already registered?  Login &rarr;</Link>
           </div>
         </div>
       </div>

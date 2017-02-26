@@ -48,18 +48,23 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="login">
-        <h1>Login</h1>
-        <form onSubmit={this.handleSubmit} method="post">
-          <label htmlFor="username"></label>
-          <input id="username" name="username" type="text" value={this.state.username} onChange={this.handleInputChange} />
-          <br/>
-          <label htmlFor="password"></label>
-          <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleInputChange} />
-          <br/>
-          <input type="submit" value="Login" />
-        </form>
-        <Link className = "alreadyText" to="/signup">Not registered?  Create an Account &rarr;</Link>
+      <div>
+        <NavPublic />
+        <div className="login">
+          <div>
+          <h1>Login</h1>
+          <form onSubmit={this.handleSubmit} method="post">
+            <label htmlFor="username"></label>
+            <input id="username" name="username" type="text" value={this.state.username} onChange={this.handleInputChange} />
+            <br/>
+            <label htmlFor="password"></label>
+            <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleInputChange} />
+            <br/>
+            <input type="submit" value="Login" />
+          </form>
+          <Link className = "alreadyText" to="/signup">Not registered?  Create an Account &rarr;</Link>
+          </div>
+        </div>
       </div>
     );
   }
