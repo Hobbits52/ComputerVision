@@ -21,3 +21,12 @@ exports.addClass = (newClassInput, cb) => {
   	}
   });
 };
+
+exports.getClasses = (cb) => {
+  Classes.findAll()
+  .then((classes) => {
+    cb(null, classes);
+  }).catch((err) => {
+    cb(err);
+  })
+}

@@ -9,6 +9,7 @@ const Scanner = function(uploadFile, type, cb) {
 	let url = uploadFile.url;
 	let TeacherId = uploadFile.TeacherId;
 	let ClassId = uploadFile.ClassId;
+	console.log('*******', uploadFile)
 	let dataString = '';
 
 	py.stdin.write(JSON.stringify(url));
@@ -16,7 +17,7 @@ const Scanner = function(uploadFile, type, cb) {
 
 	py.stderr.on('data', function(data) {
 		console.log('stderr: ' + data);
-	})
+	});
 
 	py.on('close', function(code) {
 		console.log('Child process exited with code ' + code);
@@ -34,6 +35,7 @@ const Scanner = function(uploadFile, type, cb) {
 		  data.answers = JSON.stringify(data.answers);
 		  data.TeacherId = TeacherId;
 		  data.ClassId = ClassId;
+		  console.log('WOOOOOOOOO')
 		  if (type === 'key') {
 		  	Answerkey.addKey(data, function(err, data) {
 		  	  if (err) {
@@ -43,6 +45,8 @@ const Scanner = function(uploadFile, type, cb) {
 		  	  }
 		  	});
 		  } else {
+		  	data.answerkeyId = 1;
+		  	data.StudentId = 1;
 		  	Test.addTest(data, function(err, data) {
 		  	  if (err) {
 		  	  	cb(err);
