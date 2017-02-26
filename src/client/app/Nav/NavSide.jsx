@@ -14,27 +14,27 @@ const NavSide = props => (
       <div className="name">S.L. Jackson, PhD</div>
       <div className="listItem">
         <img className="menuIcons" alt="Home" src={'../../../assets/white-home.png'}/>
-        <Link to="/">Home</Link>
+        <Link to="/dashboard">Home</Link>
         <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
       </div>
       <div className="listItem">
         <img className="menuIcons" alt="Students" src={'../../../assets/user.png'}/>
-        <Link to="students">Students</Link>
+        <Link to="/dashboard/students">Students</Link>
         <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
       </div>
       <div className="listItem">
         <img className="menuIcons" alt="Classes" src={'../../../assets/white-pencil.png'}/>
-        <Link to="classes">Classes</Link>
+        <Link to="/dashboard/classes">Classes</Link>
         <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
       </div>
       <div className="listItem">
         <img className="menuIcons" alt="Keys" src={'../../../assets/key.png'}/>
-        <Link to="keys">Keys</Link>
+        <Link to="/dashboard/keys">Keys</Link>
         <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
       </div>
       <div className="listItem">
         <img className="menuIcons" alt="Statistics" src={'../../../assets/pie.png'}/>
-        <Link to="statistics">Statistics</Link>
+        <Link to="/dashboard/statistics">Statistics</Link>
         <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
       </div>
     </div>
