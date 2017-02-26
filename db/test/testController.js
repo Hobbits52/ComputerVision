@@ -31,7 +31,7 @@ exports.addTest = (test, cb) => {
   //MVP: only one answer key
   //MVP: refactor for multiple answer keys
   
-  answerKeys.findOne({where: {id: 8}})
+  answerKeys.findOne({where: {id: test.answerkeyId}})
   .then((answerKey) => {
     let keyAnswers = JSON.parse(answerKey.answers);
     let studentResponses = JSON.parse(test.answers);
@@ -40,8 +40,9 @@ exports.addTest = (test, cb) => {
         studentAnswers: test.answers,
         URL: test.URL,
         result: percentage,
-        StudentId: test.studentId,
-        TeacherId: test.teacherId,
+        StudentId: test.StudentId,
+        TeacherId: test.TeacherId,
+        ClassId: test.ClassId,
         answerKeyId: answerKey.id
       })
       .then((savedTest) => {

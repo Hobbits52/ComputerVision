@@ -23,7 +23,8 @@ app.post('/auth/login', auth.userLogin, teacherdata.getTeacherData);
 app.post('/auth/signup', auth.userSignup, teacherdata.getTeacherData);
 app.post('/teacher/addClass', teacherdata.addClass);
 app.post('/teacher/addAnswerKey', teacherdata.addAnswerKey);
-//app.post('/teacher/addTest', auth.checkSession, );
+app.post('/teacher/addTest', teacherdata.addTest);
+app.get('/teacher/getClasses', teacherdata.getClasses);
 
 
 //STUDENT
