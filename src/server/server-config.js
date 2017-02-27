@@ -35,4 +35,9 @@ app.post('/studentauth/signup', auth.studentSignup);
 
 app.use(express.static(path.join(__dirname + '/../client/')));
 
+// Handle wildcard route
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/../client/index.html'));
+});
+
 module.exports = app;
