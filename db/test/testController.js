@@ -86,6 +86,8 @@ exports.getClassAnswers = (classId, cb) => {
 const addStudentNames = (students, cb) => {
   var counter = 0;
   for(var student in students) {
+    console.log('student is: ', student);
+    console.log('students is: ', students);
     StudentsCont.addStudentName(students[student], function(err, student) {
       if(err) {
         cb(err);
