@@ -3,7 +3,6 @@ import {Link} from 'react-router';
 import axios from 'axios';
 import {login, logout} from './helpers/authHelpers.js';
 import css from '../css/auth.css';
-
 import NavBar from './Nav/NavBar.jsx';
 
 class Login extends React.Component {
