@@ -99,7 +99,7 @@ exports.getAllStudentsWhoTookTest = (testId) => {
 // --------------------------------------------------------------------------
 
 exports.getAllStudents = (teacherId) => {
-  return axios.get('teacher/getAllStudents', {
+  return axios.get('/teacher/getAllStudents', {
     params: {
       // I might need to change the property names here?
       teacher_id: teacherId
