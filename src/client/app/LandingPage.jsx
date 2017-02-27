@@ -2,8 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import axios from 'axios';
 import css from '../css/main.css';
-import NavTop from './Nav/NavTop.jsx';
-import NavPublic from './Nav/NavPublic.jsx';
+import NavBar from './Nav/NavBar.jsx';
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -16,7 +15,7 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div>
-        <NavPublic />
+        <NavBar location={this.props.location}/>
         <div className="landingPage">
           <div className="mainAdvertising">
             <div className="writingImage">

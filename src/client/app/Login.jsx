@@ -4,7 +4,7 @@ import axios from 'axios';
 import {login, logout} from './helpers/authHelpers.js';
 import css from '../css/auth.css';
 
-import NavPublic from './Nav/NavPublic.jsx';
+import NavBar from './Nav/NavBar.jsx';
 
 class Login extends React.Component {
   constructor(props) {
@@ -49,7 +49,7 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <NavPublic />
+        <NavBar location={this.props.location}/>
         <div className="login">
           <div>
           <h1>Login</h1>
