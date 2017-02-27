@@ -2,12 +2,10 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 import {checkSession} from './helpers/authHelpers.js';
-import NavTop from './Nav/NavTop.jsx';
 import NavSide from './Nav/NavSide.jsx';
 import TeacherViewContainer from './TeacherViewContainer.jsx';
 import Login from './Login.jsx';
 import css from '../css/nav.css';
-
 import NavBar from './Nav/NavBar.jsx';
 
 class Dashboard extends React.Component {

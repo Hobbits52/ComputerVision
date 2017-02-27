@@ -2,8 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 import {checkSession} from './helpers/authHelpers.js';
-import NavTop from './Nav/NavTop.jsx'
-import NavTopPublic from './Nav/NavPublic.jsx'
+import NavBar from './Nav/NavBar.jsx'
 import NavSide from './Nav/NavSide.jsx'
 import TeacherViewContainer from './TeacherViewContainer.jsx'
 import Login from './Login.jsx';
