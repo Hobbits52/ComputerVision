@@ -19,7 +19,7 @@ const checkSession = function(req, res, next) {
 
 const createSession = function(req, res, user) {
   return req.session.regenerate(function() {
-      req.session.user = user;
+    req.session.user = user;
   })
 };
 
