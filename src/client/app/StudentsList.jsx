@@ -20,7 +20,6 @@ class StudentsList extends React.Component {
 // --------------------------------------------------------------------
 
   componentDidMount() {
-
   }
 // --------------------------------------------------------------------
 
@@ -30,7 +29,6 @@ class StudentsList extends React.Component {
 // --------------------------------------------------------------------
 
   handleSomeEvent(someParameter) {
-
   }
 // --------------------------------------------------------------------
 
@@ -41,7 +39,7 @@ class StudentsList extends React.Component {
           <thead>
             <tr>
               <th>ID</th>
-              <th>Name</th>
+              <th>Name</th> 
               <th>Class</th>
             </tr>
           </thead>
@@ -51,9 +49,10 @@ class StudentsList extends React.Component {
                                  currentStudent={this.props.currentStudent}
                                  handleStudentListEntryClick={this.props.handleStudentListEntryClick}
                                  key={index}
-              />
+              />              
             )}
-          </tbody>
+          </tbody>  
+
         </table>
       </div>
     );
