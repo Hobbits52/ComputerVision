@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { logout } from '../helpers/authHelpers.js';
 
 
@@ -19,19 +19,6 @@ class NavTop extends React.Component {
     this.logOut = this.logOut.bind(this);
   };
 
-  // ----------------------------------------------
-  // Component Lifecycle Functions
-  // ----------------------------------------------
-  // shouldComponentUpdate(nextState) {
-  //   if (this.props.studentObj !== nextState) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
-  // ----------------------------------------------
-  // Axios calls
-  // ----------------------------------------------
   searchStudent(event) {
     this.props.handleSearchStudent(event.target.value);
   };
@@ -48,13 +35,6 @@ class NavTop extends React.Component {
   };
 
   render () {
-    // const isHomePage = this.props.location.pathname === '/login' || this.props.location.pathname === '/signup';
-    // if (isHomePage) {
-    //   let defineClassname = "navbar navbar-default navbar-static-top showLoginSignup";
-    // } else {
-    //   let defineClassname = "navbar navbar-default navbar-static-top showSearchBarLogout";
-    // }
-
     return(
       <nav className="navbar navbar-default navbar-static-top">
         <div className="container-fluid">
@@ -85,5 +65,4 @@ class NavTop extends React.Component {
   }
 }
 
-//
 export default NavTop;

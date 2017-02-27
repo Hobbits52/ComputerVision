@@ -2,11 +2,11 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 import {checkSession} from './helpers/authHelpers.js';
-import NavTop from './Nav/NavTop.jsx';
 import NavSide from './Nav/NavSide.jsx';
 import TeacherViewContainer from './TeacherViewContainer.jsx';
 import Login from './Login.jsx';
 import css from '../css/nav.css';
+import NavBar from './Nav/NavBar.jsx';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class Dashboard extends React.Component {
     //     isLoggedIn: true
     //   });
     //   console.log('You did it!  Now you deserve to get food! :D');
-    
+
   }
 
 // --------------------------------------------------------------------
@@ -50,7 +50,7 @@ class Dashboard extends React.Component {
 // --------------------------------------------------------------------
 
   handleSomeEvent(someParameter) {
-    
+
   }
 // --------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div>
-        <NavTop />
+        <NavBar location={this.props.location} />
         <div className="container-fluid below-nav-top">
           <div className="row">
             <NavSide className="navSide"/>

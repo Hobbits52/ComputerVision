@@ -3,8 +3,7 @@ import {browserHistory, Link} from 'react-router';
 import axios from 'axios';
 import {login, logout, signup} from './helpers/authHelpers.js';
 import css from '../css/auth.css';
-
-import NavPublic from './Nav/NavPublic.jsx';
+import NavBar from './Nav/NavBar.jsx';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -41,7 +40,7 @@ class Signup extends React.Component {
   render() {
     return (
       <div>
-        <NavPublic />
+        <NavBar location={this.props.location}/>
         <div className="signup">
           <div>
             <h1>Sign Up</h1>

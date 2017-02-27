@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const expect = require('chai').expect;
 const answerKeys = require('./../../db/key/keyModel.js').answerKeys;
 
-describe('Database Unit Testing - Keys', () => {
+xdescribe('Database Unit Testing - Keys', () => {
   let dbConnection;
 
   beforeEach((done) => {
@@ -37,7 +37,7 @@ describe('Database Unit Testing - Keys', () => {
 
   it('Should store answers in JSON stringified form', () => {
     let sampleAnswers = {
-      1:['A','B'], 
+      1:['A','B'],
       2:['D']
     };
     sampleAnswers = JSON.stringify(sampleAnswers);
@@ -53,7 +53,7 @@ describe('Database Unit Testing - Keys', () => {
   it('Should have a URL', () => {
     let beginUrl = 'http://'
     let sampleAnswers = {
-      1:['A','B'], 
+      1:['A','B'],
       2:['D']
     };
     sampleAnswers = JSON.stringify(sampleAnswers);

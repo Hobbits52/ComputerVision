@@ -20,7 +20,6 @@ class StudentsList extends React.Component {
 // --------------------------------------------------------------------
 
   componentDidMount() {
-    
   }
 // --------------------------------------------------------------------
 
@@ -30,7 +29,6 @@ class StudentsList extends React.Component {
 // --------------------------------------------------------------------
 
   handleSomeEvent(someParameter) {
-    
   }
 // --------------------------------------------------------------------
 
@@ -54,6 +52,7 @@ class StudentsList extends React.Component {
               />              
             )}
           </tbody>  
+
         </table>
       </div>
     );
