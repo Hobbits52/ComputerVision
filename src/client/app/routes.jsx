@@ -28,6 +28,6 @@ export default (
       <Route path="classes" component={ClassesView} />
       <Route path="keys" component={KeysView} />
       <Route path="statistics" component={StatisticsView} />
-    </Route>  
+    </Route>
   </Route>
 );
