@@ -99,7 +99,7 @@ tr {
   align-items: stretch;
 }
 
-.header:last-child {
+thead th:last-child {
   background-color: #85AF4B;
 }
 

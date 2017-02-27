@@ -39,7 +39,7 @@ class StudentsList extends React.Component {
       <div>
         <table>
           <thead>
-            <tr className="header">
+            <tr>
               <th>ID</th>
               <th>Name</th>
               <th>Class</th>
