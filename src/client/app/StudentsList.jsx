@@ -38,13 +38,6 @@ class StudentsList extends React.Component {
     return (
       <div>
         <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Class</th>
-            </tr>
-          </thead>
           <tbody>
             {this.props.students.map((student, index) =>
               <StudentsListEntry student={student}
