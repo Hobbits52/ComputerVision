@@ -110,7 +110,7 @@ const getAllStudents = function(req, res) {
       res.status(400).send(err);
       res.end();
     } else if(classes.length === 0) {
-        res.status(404);
+        res.status(400).send({});
         res.end();
     }else {
       var classesArr = [];
