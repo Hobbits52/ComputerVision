@@ -36,9 +36,9 @@ class StudentsListEntry extends React.Component {
   render() {
     return (
       <tr onClick={this.props.handleStudentListEntryClick}>
-        <td>{this.props.student.id}</td>
-        <td>{this.props.student.name}</td>
-        <td>{this.props.student.class}</td>
+        <td>{this.props.student.StudentId}</td>
+        <td>{this.props.student.StudentName}</td>
+        <td>{"Biology 101"}</td>
       </tr>
     );
   }
