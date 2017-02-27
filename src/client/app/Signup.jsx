@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {browserHistory, Link} from 'react-router';
 import axios from 'axios';
 import {login, logout, signup} from './helpers/authHelpers.js';
 import css from '../css/auth.css';
@@ -34,7 +34,7 @@ class Signup extends React.Component {
     };
 
     signup(user)
-    .then((resp) => { console.log('Account created!'); })
+    .then((resp) => { browserHistory.push('/login'); })
     .catch((err) => { console.log('Error while attempting to create an account: ', err); });
   }
 
