@@ -14,33 +14,28 @@ class TestTakerResults extends React.Component {
         <table>
           <tbody>
             <tr>
-              <th>Student Answer</th>
-              <th>Actual Answer</th> 
-              <th>Correct?</th>
-            </tr>
-            <tr>
               <td>A</td>
-              <td>A</td> 
+              <td>A</td>
               <td>✅</td>
             </tr>
             <tr>
               <td>C</td>
-              <td>D</td> 
+              <td>D</td>
               <td>❌</td>
             </tr>
             <tr>
               <td>E</td>
-              <td>B</td> 
+              <td>B</td>
               <td>❌</td>
             </tr>
             <tr>
               <td>B</td>
-              <td>B</td> 
+              <td>B</td>
               <td>✅</td>
             </tr>
-          </tbody>  
+          </tbody>
         </table>
-      </div>  
+      </div>
     );
   }
 }
