@@ -1,30 +1,36 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
-import Nav from './Nav/Nav.jsx'
-import NavSide from './Nav/NavSide.jsx'
-import TeacherViewContainer from './TeacherViewContainer.jsx'
-import HomeView from './HomeView.jsx'
-import Login from './Login.jsx';
+import {getAllStudents} from './helpers/viewHelpers.js';
+import StudentsList from './StudentsList.jsx'; 
 import css from '../css/nav.css';
 
-class App extends React.Component {
+class StudentsView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       // State variables to go here
+      students: [{id: 1, name: 'Anthony Pecchillo', class: 'BIO-101'},
+                 {id: 1, name: 'Anthony Pecchillo', class: 'BIO-101'},
+                 {id: 1, name: 'Anthony Pecchillo', class: 'BIO-101'},
+                 {id: 1, name: 'Anthony Pecchillo', class: 'BIO-101'}],
+      currenteStudent: null
     };
 
-    // this.handleSomeEvent = this.handleSomeEvent.bind(this);
+    this.handleStudentsListEntryClick = this.handleStudentsListEntryClick.bind(this);
   }
 
 // --------------------------------------------------------------------
 // Component Lifecycle Functions
 // --------------------------------------------------------------------
 
-  componentDidMount() {
-    
+  componentWillMount() {
+    // getAllStudents().then((res) => { 
+    //   this.setState({
+    //     students: res.data
+    //   });
+    // });
   }
 // --------------------------------------------------------------------
 
@@ -33,25 +39,29 @@ class App extends React.Component {
 // Event Handlers
 // --------------------------------------------------------------------
 
-  handleSomeEvent(someParameter) {
-    
+  handleStudentsListEntryClick(event) {
+      console.log('You clicked a StudentListEntry!');
+      console.log('sdfasdf', event.target);
+      this.setState({
+        currentStudent: event.target.id
+      }, () => this.props.router.push('/dashboard'));
+      console.log('this.state.students inside StudentView is: ', this.state.students);
+      console.log('this.state.currentStudent inside StudentView is: ', this.state.currentStudent);
+    // })
   }
 // --------------------------------------------------------------------
-
-// <div className="construction">
-//   <p>Under Construction!</p>
-// </div>
 
   render() {
     return (
       <div>
-        {"StudentsView"}
+        <h2>Students</h2>
+        <StudentsList students={this.state.students}
+                      currentStudentId={this.state.currentStudent}
+                      handleStudentListEntryClick={this.handleStudentsListEntryClick} 
+        />
       </div>
     );
   }
-
 }
 
-export default App;
-
-//{this.props.children}
+export default StudentsView;
