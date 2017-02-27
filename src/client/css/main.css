@@ -10,6 +10,10 @@ html, body, #app, [data-reactroot] {
   padding: 0 40px;
 }
 
+.innerViews {
+  padding: 0 40px;
+}
+
 h3 {
   margin: 40px 0 20px 0;
 }

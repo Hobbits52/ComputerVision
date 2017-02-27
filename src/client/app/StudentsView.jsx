@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
 import {getAllStudents} from './helpers/viewHelpers.js';
-import StudentsList from './StudentsList.jsx'; 
+import StudentsList from './StudentsList.jsx';
 import css from '../css/nav.css';
 
 class StudentsView extends React.Component {
@@ -26,7 +26,7 @@ class StudentsView extends React.Component {
 // --------------------------------------------------------------------
 
   componentWillMount() {
-    // getAllStudents().then((res) => { 
+    // getAllStudents().then((res) => {
     //   this.setState({
     //     students: res.data
     //   });
@@ -53,11 +53,11 @@ class StudentsView extends React.Component {
 
   render() {
     return (
-      <div>
-        <h2>Students</h2>
+      <div className="innerViews">
+        <h3>Students</h3>
         <StudentsList students={this.state.students}
                       currentStudentId={this.state.currentStudent}
-                      handleStudentListEntryClick={this.handleStudentsListEntryClick} 
+                      handleStudentListEntryClick={this.handleStudentsListEntryClick}
         />
       </div>
     );
