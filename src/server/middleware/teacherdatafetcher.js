@@ -105,7 +105,9 @@ const getStudentsforClass = function(req, res) {
 ////////////////////////////////////////////////////////////////
 const getAllStudents = function(req, res) {
   const teacherId = req.query.teacher_id;
+  console.log('teacherId is: ', teacherId);
   Classes.getClasses(teacherId, function(err, classes) {
+    console.log('err and classes inside first callback, respectively: ', err, classes);
     if (err) {
       res.status(400).send(err);
       res.end();
@@ -116,9 +118,11 @@ const getAllStudents = function(req, res) {
       var classesArr = [];
       var counter = 0;
       for (var i = 0; i < classes.length; i++) {
+        console.log('For loop i is: ', i);
         var classObj = {};
         classObj.classname = classes[i].classname;
         Test.getClassAnswers(classes[i].id, function(err, students) {
+          console.log('err and students inside getClassAnswers is, respectively: ', err, students);
           if(err) {
             res.status(400).send(err);
             res.end();
