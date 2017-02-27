@@ -109,7 +109,10 @@ const getAllStudents = function(req, res) {
     if (err) {
       res.status(400).send(err);
       res.end();
-    } else {
+    } else if(classes.length === 0) {
+        res.status(404);
+        res.end();
+    }else {
       var classesArr = [];
       var counter = 0;
       for (var i = 0; i < classes.length; i++) {
