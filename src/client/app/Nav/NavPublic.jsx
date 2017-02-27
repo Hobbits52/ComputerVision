@@ -1,7 +1,7 @@
 //TODO: Refactor to one nav bar with logic paired with this.props.location.pathname
 
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 class NavPublic extends React.Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class NavPublic extends React.Component {
   };
 
   render () {
+    console.log('This is the current page:', this.props.location.pathname);
     return(
       <nav className="navbar navbar-default navbar-static-top">
         <div className="container-fluid">
