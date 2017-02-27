@@ -76,7 +76,8 @@ const addClass = function(req, res) {
 
 ////////////////////////////////////////////////////////////////
 const getClasses = function(req, res) {
-  Classes.getClasses(function(err, classes) {
+  const teacherId = req.query.teacher_id;
+  Classes.getClasses(teacherId, function(err, classes) {
     if (err) {
       res.status(500).send(err);
       res.end();
@@ -85,13 +86,32 @@ const getClasses = function(req, res) {
       res.end();
     }
   })
+};
+
+////////////////////////////////////////////////////////////////
+const getStudentsforClass = function(req, res) {
+  const classId = req.query.class_id;
+  Test.getClassAnswers(classId, function(err, students) {
+    if(err) {
+      res.status(400).send(err);
+      res.end();
+    } else {
+      res.status(200).send(students);
+      res.end();
+    }
+  });
 }
 
+////////////////////////////////////////////////////////////////
+const getAllStudents = function(req, res) {
+
+}
 ////////////////////////////////////////////////////////////////
 module.exports = {
   'getTeacherData': getTeacherData,
   'addAnswerKey': addAnswerKey,
   'addClass': addClass,
   'addTest': addTest,
-  'getClasses': getClasses
+  'getClasses': getClasses,
+  'getStudentsforClass': getStudentsforClass
 }

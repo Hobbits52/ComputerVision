@@ -1,12 +1,13 @@
 const Tests = require('./testModel.js').Tests;
 const Students = require('./../student/studentModel.js').Students;
+const StudentsCont = require('./../student/studentController.js');
 const answerKeys = require('./../key/keyModel.js').answerKeys;
 const helpers = require('./../../src/server/utility/helpers');
 
-exports.getStudentAnswers = (student, cb) => {
+exports.getStudentAnswers = (studentId, cb) => {
   //TODO: coordinate input object with server
   //MVP: only one answer key
-  Tests.findOne({where: {StudentId: student.id}})
+  Tests.findOne({where: {StudentId: studentId}})
   .then((fetchedTest) => {
     let testObj = {
       studentAnswers: fetchedTest.studentAnswers,
@@ -54,4 +55,46 @@ exports.addTest = (test, cb) => {
   }).catch((err) => {
     cb(err);
   });
+};
+
+exports.getClassAnswers = (classId, cb) => {
+  let students = {};
+  students.length = 0;
+
+  Tests.findAll({where: {ClassId: classId}})
+  .then((tests) => {
+    for(var i = 0; i < tests.length; i++) {
+      if(students[tests[i].StudentId] === undefined) {
+        students[tests[i].StudentId] = {};
+        students[tests[i].StudentId].StudentId = tests[i].StudentId;
+        students[tests[i].StudentId].StudentName = "";
+        students[tests[i].StudentId].tests = [tests[i]];
+        students.length++;
+      } else {
+        students[tests[i].StudentId].tests.push(tests[i]);
+      }
+
+      if (i === tests.length -1) {
+        addStudentNames(students, cb);
+      }
+    };
+  }).catch((err) => {
+    cb(err);
+  });
+};
+
+const addStudentNames = (students, cb) => {
+  var counter = 0;
+  for(var student in students) {
+    StudentsCont.addStudentName(students[student], function(err, student) {
+      if(err) {
+        cb(err);
+      } else {
+        counter++;
+      }
+      if (counter === students.length) {
+        cb(null, students);
+      }
+    });
+  }
 };
