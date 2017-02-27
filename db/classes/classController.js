@@ -1,6 +1,8 @@
 const Classes = require('./classModel.js').Classes;
 const teacherSearch = require('./../teacher/teacherController.js').teacherSearch;
 
+
+////////////////////////////////////////////////////////////////
 exports.addClass = (newClassInput, cb) => {
   var teacher = newClassInput.username;
   var newClass = newClassInput.classname;
@@ -22,11 +24,28 @@ exports.addClass = (newClassInput, cb) => {
   });
 };
 
-exports.getClasses = (cb) => {
-  Classes.findAll()
+
+////////////////////////////////////////////////////////////////
+
+exports.getClasses = (teacherId, cb) => {
+  Classes.findAll({where: {TeacherId:teacherId}})
   .then((classes) => {
     cb(null, classes);
   }).catch((err) => {
     cb(err);
   })
-}
+};
+
+
+////////////////////////////////////////////////////////////////
+// exports.getClass = (classId, cb) => {
+//   let data;
+//   Classes.findOne({where: {id: classId}})
+//   .then((Class) => {
+//     data.classname = Class.classname;
+    
+
+//   }).catch((err) {
+//     cb(err);
+//   })
+// };

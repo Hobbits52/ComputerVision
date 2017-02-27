@@ -40,3 +40,13 @@ exports.studentLogin = (studentInput, cb) => {
     cb(err);
   });
 };
+
+exports.addStudentName = (studentObj, cb) => {
+  Students.findOne({where: {id: studentObj.StudentId}})
+  .then((student) => {
+    studentObj.StudentName = student.username;
+    cb(null, studentObj);
+  }).catch((err) => {
+    cb(err);
+  });
+}

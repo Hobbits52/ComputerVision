@@ -25,7 +25,9 @@ app.post('/teacher/addClass', teacherdata.addClass);
 app.post('/teacher/addAnswerKey', teacherdata.addAnswerKey);
 app.post('/teacher/addTest', teacherdata.addTest);
 app.get('/teacher/getClasses', teacherdata.getClasses);
-
+app.get('/teacher/getStudentsforClass', teacherdata.getStudentsforClass);
+app.get('/teacher/getAllStudents', teacherdata.getAllStudents);
+//app.get('/teacher/getClass', teacherdata.getClass);
 
 //STUDENT
 app.post('/studentauth/signup', auth.studentSignup);
