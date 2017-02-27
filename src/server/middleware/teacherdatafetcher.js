@@ -104,7 +104,34 @@ const getStudentsforClass = function(req, res) {
 
 ////////////////////////////////////////////////////////////////
 const getAllStudents = function(req, res) {
-
+  const teacherId = req.query.teacher_id;
+  Classes.getClasses(teacherId, function(err, classes) {
+    if (err) {
+      res.status(400).send(err);
+      res.end();
+    } else {
+      var classesArr = [];
+      var counter = 0;
+      for (var i = 0; i < classes.length; i++) {
+        var classObj = {};
+        classObj.classname = classes[i].classname;
+        Test.getClassAnswers(classes[i].id, function(err, students) {
+          if(err) {
+            res.status(400).send(err);
+            res.end();
+          } else {
+            classObj.students = students;
+            classesArr.push(classObj);
+            counter++;
+            if (counter === classes.length) {
+              res.status(200).send(classesArr);
+              res.end();
+            }
+          }
+        });
+      }
+    }
+  });
 }
 ////////////////////////////////////////////////////////////////
 module.exports = {
@@ -113,5 +140,6 @@ module.exports = {
   'addClass': addClass,
   'addTest': addTest,
   'getClasses': getClasses,
-  'getStudentsforClass': getStudentsforClass
+  'getStudentsforClass': getStudentsforClass,
+  'getAllStudents': getAllStudents
 }
