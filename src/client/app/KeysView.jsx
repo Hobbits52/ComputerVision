@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
-import Nav from './Nav/Nav.jsx'
+import NavBar from './Nav/NavBar.jsx'
 import NavSide from './Nav/NavSide.jsx'
 import TeacherViewContainer from './TeacherViewContainer.jsx'
 import HomeView from './HomeView.jsx'
@@ -24,7 +24,7 @@ class App extends React.Component {
 // --------------------------------------------------------------------
 
   componentDidMount() {
-    
+
   }
 // --------------------------------------------------------------------
 
