@@ -5,7 +5,7 @@ import axios from 'axios';
 // --------------------------------------------------------------------------
 
 exports.getAllTeachersClasses = (teacherId) => {
-  return axios.get('api/allTeachersClasses', {
+  return axios.get('teacher/allTeachersClasses', {
     params: {
       // I might need to change the property names here?
       teacher_id: teacherId
@@ -49,7 +49,7 @@ exports.getAllTeachersClasses = (teacherId) => {
 // --------------------------------------------------------------------------
 
 exports.getAllStudentsInClass = (classId) => {
-  return axios.get('api/allClassesStudents', {
+  return axios.get('teacher/allClassesStudents', {
     params: {
       class_Id: classId
     }
@@ -59,7 +59,7 @@ exports.getAllStudentsInClass = (classId) => {
 // router.get('/allClassesStudents', controller.students.getAll);
 
 exports.getAllTestsInClass = (classId) => {
-  return axios.get('api/allClassesTests', {
+  return axios.get('teacher/allClassesTests', {
     params: {
       class_Id: classId
     }
@@ -69,7 +69,7 @@ exports.getAllTestsInClass = (classId) => {
 // router.get('/allClassesTests', controller.tests.getAll);
 
 exports.getAllStudentsWhoTookTest = (testId) => {
-  return axios.get('api/allStudentsWhoTookTest', {
+  return axios.get('teacher/allStudentsWhoTookTest', {
     params: {
       test_Id: testId
     }
@@ -83,13 +83,26 @@ exports.getAllStudentsWhoTookTest = (testId) => {
 // Other Model Requests:
 
 // exports.getTeachersClasses = (teacherId) => {
-//   return axios.get('api/teachersClasses');
+//   return axios.get('teacher/teachersClasses');
 // };
 
 // exports.addSomeKindOfData = (dataToAdd) => {
 //   return axios({
 //     method: 'POST',
-//     url: 'api/emotionalStateData',
+//     url: 'teacher/emotionalStateData',
 //     data: emotionalStateEntry
 //   });
 // };
+
+// --------------------------------------------------------------------------
+// StudentsView Helpers
+// --------------------------------------------------------------------------
+
+exports.getAllStudents = (teacherId) => {
+  return axios.get('teacher/getAllStudents', {
+    params: {
+      // I might need to change the property names here?
+      teacher_id: teacherId
+    }
+  }); 
+};
