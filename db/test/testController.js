@@ -95,6 +95,7 @@ const addStudentNames = (students, cb) => {
         counter++;
       }
       if (counter === students.length) {
+        delete students.length;
         cb(null, students);
       }
     });
