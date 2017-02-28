@@ -9,7 +9,6 @@ const Scanner = function(uploadFile, type, cb) {
 	let url = uploadFile.url;
 	let TeacherId = uploadFile.TeacherId;
 	let ClassId = uploadFile.ClassId;
-	console.log('*******', uploadFile)
 	let dataString = '';
 
 	py.stdin.write(JSON.stringify(url));
@@ -35,7 +34,6 @@ const Scanner = function(uploadFile, type, cb) {
 		  data.answers = JSON.stringify(data.answers);
 		  data.TeacherId = TeacherId;
 		  data.ClassId = ClassId;
-		  console.log('WOOOOOOOOO')
 		  if (type === 'key') {
 		  	Answerkey.addKey(data, function(err, data) {
 		  	  if (err) {
