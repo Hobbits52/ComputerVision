@@ -52,9 +52,12 @@ const userSignup = function(req, res, next) {
   });
 };
 
-// const userLogout = function(req, res) {
-//   req.session
-// };
+const userLogout = function(req, res) {
+  req.session.destroy(function() {
+    res.status(200);
+    res.end();
+  })
+};
 
 //////////////////////////////////////////////////////////////////
 //STUDENT
