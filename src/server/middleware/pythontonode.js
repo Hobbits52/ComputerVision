@@ -1,4 +1,3 @@
-const Image = require('./imageFetch.js');
 const Test = require('./../../../db/test/testController.js');
 const Answerkey = require('./../../../db/key/keyController.js');
 const spawn = require('child_process').spawn;
