@@ -45,6 +45,8 @@ class Login extends React.Component {
                       console.log('Login Error: ', err) });
   }
 
+  //react-router has access to a location object as a view renders
+  //setting the location prop to this object to that the NavBar can have access
   render() {
     return (
       <div>

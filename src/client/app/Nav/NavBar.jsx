@@ -1,33 +1,30 @@
-//TODO: Refactor to one nav bar with logic paired with this.props.location.pathname
-
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-
     };
   };
 
   render () {
+    //this.props.location is set in each component that contains a navbar
     let publicPages = this.props.location.pathname === '/' ||
-                        this.props.location.pathname === '/signup' ||
-                        this.props.location.pathname === '/login';
+                      this.props.location.pathname === '/signup' ||
+                      this.props.location.pathname === '/login';
 
     let classNameLocation, farRightLinkTo, farRightLinkClass, farRightText;
 
-    if (this.props.location.pathname === '/' ||
-                        this.props.location.pathname === '/signup' ||
-                        this.props.location.pathname === '/login') {
+    if (publicPages) {
+      //adding the classname publicPages if splash page, signup, and login
+      //the classnames determine what is turned on and what is turned off
       classNameLocation = "navbar navbar-default navbar-static-top publicPages";
       farRightLinkTo = "/signup";
       farRightLinkClass = "signupButton";
       farRightText = "Signup";
     } else {
-      console.log('wah')
+      //adding the classname dashboardPages if any other routes
       classNameLocation = "navbar navbar-default navbar-static-top dashboardPages";
       farRightLinkTo = "#";
       farRightLinkClass = "logoutButton";
