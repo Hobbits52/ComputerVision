@@ -93,5 +93,6 @@ module.exports = {
   'userLogin' : userLogin,
   'userSignup' : userSignup,
   'studentLogin:' : studentLogin,
-  'studentSignup' : studentSignup
+  'studentSignup' : studentSignup,
+  'userLogout' : userLogout
 };
