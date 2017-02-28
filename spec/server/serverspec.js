@@ -80,40 +80,6 @@ xdescribe('Authentication', () =>{
   })
 });
 
-xdescribe('Fetching image from Cloudinary', () =>{
-  let cloud = require('./../../src/server/middleware/cloud.js');
-  let url;
-  it('Fetches an image when given an image name', (done) => {
-    cloud.getImageUrl('/test/papillon', function(err, result) {
-      if (err) {
-        console.log(err);
-      } else {
-        url = result.url;
-      }
-      expect(url).to.equal('http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487621067/test/papillon.jpg');
-      done();
-    });
-  });
-
-  url = '';
-  let Image = require('./../../src/server/middleware/imageFetch.js');
-  let imgName = 'papillon';
-  let type = 'test';
-
-  it('Fetches an image when given an image name and folder name', (done) => {
-    Image.fetchImage(imgName, type, function(err, imgUrl) {
-      if (err) {
-        console.log(err);
-      } else {
-        url = imgUrl;
-      }
-
-      expect(url).to.equal('http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487621067/test/papillon.jpg');
-      done();
-    })
-  });
-});
-
 xdescribe('Scanner', () =>{
 
   it('Correctly Grades Test Hosted On Cloudinary', (done) => {
