@@ -51,7 +51,8 @@ exports.getAllTeachersClasses = (teacherId) => {
 exports.getAllStudentsInClass = (classId) => {
   return axios.get('teacher/allClassesStudents', {
     params: {
-      class_Id: classId
+      class_Id: classId,
+      token: window.localStorage.token
     }
   }); 
 };
@@ -61,7 +62,8 @@ exports.getAllStudentsInClass = (classId) => {
 exports.getAllTestsInClass = (classId) => {
   return axios.get('teacher/allClassesTests', {
     params: {
-      class_Id: classId
+      class_Id: classId,
+      token: window.localStorage.token
     }
   }); 
 };
@@ -71,7 +73,8 @@ exports.getAllTestsInClass = (classId) => {
 exports.getAllStudentsWhoTookTest = (testId) => {
   return axios.get('teacher/allStudentsWhoTookTest', {
     params: {
-      test_Id: testId
+      test_Id: testId,
+      token: window.localStorage.token
     }
   }); 
 };
@@ -102,7 +105,8 @@ exports.getAllStudents = (teacherId) => {
   return axios.get('/teacher/getAllStudents', {
     params: {
       // I might need to change the property names here?
-      teacher_id: teacherId
+      teacher_id: teacherId,
+      token: window.localStorage.token
     }
   }); 
 };

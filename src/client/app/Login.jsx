@@ -44,7 +44,7 @@ class Login extends React.Component {
     .then((res) => {
       console.log('response');
       // save token to Global
-      window.token = res.data.token;
+      window.localStorage.token = res.data.token;
       this.props.handleLoginSubmit();
     }); 
 

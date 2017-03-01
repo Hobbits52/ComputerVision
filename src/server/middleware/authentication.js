@@ -20,9 +20,12 @@ const checkSession = function(req, res, next) {
 
 const checkToken = function(req, res, next) {
   console.log('checkToken called');
-  console.log(req.headers)
-  // check header for token --> backup req body or url ending
-  var token = req.headers['x-access-token'] || req.body.token || req.query.token
+  // console.log(req.headers)
+  console.log(req.body.token)
+  console.log(req.headers['x-access-token'])
+  console.log(req.query.token)
+  // check header for token --> our client will be in query string of GET request
+  var token = req.query.token || req.headers['x-access-token'] || req.body.token
   if (token) {
    // verifies secret and checks exp
     console.log('token provided =====> ', token)

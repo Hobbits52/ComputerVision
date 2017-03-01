@@ -65,6 +65,7 @@ app.get('/auth/signedIn', auth.checkSession);
 app.post('/auth/login', auth.userLogin);
 app.post('/auth/signup', auth.userSignup, teacherdata.getTeacherData);
 app.post('/auth/logout', auth.userLogout);
+
 app.post('/teacher/addClass', auth.checkToken, teacherdata.addClass);
 app.post('/teacher/addAnswerKey', auth.checkToken, teacherdata.addAnswerKey);
 app.post('/teacher/addTest', auth.checkToken, teacherdata.addTest);
