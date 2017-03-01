@@ -65,12 +65,12 @@ app.get('/auth/signedIn', auth.checkSession);
 app.post('/auth/login', auth.userLogin);
 app.post('/auth/signup', auth.userSignup, teacherdata.getTeacherData);
 app.post('/auth/logout', auth.userLogout);
-app.post('/teacher/addClass',  teacherdata.addClass);
-app.post('/teacher/addAnswerKey',  teacherdata.addAnswerKey);
-app.post('/teacher/addTest', teacherdata.addTest);
-app.get('/teacher/getClasses', teacherdata.getClasses);
-app.get('/teacher/getStudentsforClass', teacherdata.getStudentsforClass);
-app.get('/teacher/getAllStudents', teacherdata.getAllStudents);
+app.post('/teacher/addClass', auth.checkToken, teacherdata.addClass);
+app.post('/teacher/addAnswerKey', auth.checkToken, teacherdata.addAnswerKey);
+app.post('/teacher/addTest', auth.checkToken, teacherdata.addTest);
+app.get('/teacher/getClasses', auth.checkToken, teacherdata.getClasses);
+app.get('/teacher/getStudentsforClass', auth.checkToken, teacherdata.getStudentsforClass);
+app.get('/teacher/getAllStudents', auth.checkToken, teacherdata.getAllStudents);
 //app.get('/teacher/getClass', teacherdata.getClass);
 
 //STUDENT
