@@ -23,6 +23,8 @@ class App extends React.Component {
   }
 
   handleLoginSubmit() {
+    console.log('handleLoginSubmit called')
+    console.log(window.token)
     this.setState({
       isLoggedIn: true
     }, () => this.props.router.push('/dashboard'));
