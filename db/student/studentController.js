@@ -42,7 +42,6 @@ exports.studentLogin = (studentInput, cb) => {
 };
 
 exports.addStudentName = (studentObj, cb) => {
-  console.log('------------------', studentObj);
   Students.findOne({where: {id: studentObj.StudentId}})
   .then((student) => {
     studentObj.StudentName = student.username;

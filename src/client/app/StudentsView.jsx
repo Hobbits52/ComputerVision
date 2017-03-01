@@ -12,6 +12,8 @@ class StudentsView extends React.Component {
 
     this.state = {
       // State variables to go here
+      //****************************************/
+      //<-----from getAllData
       students: [{id: 1, name: 'Anthony Pecchillo', class: 'BIO-101'},
                  {id: 1, name: 'Anthony Pecchillo', class: 'BIO-101'},
                  {id: 1, name: 'Anthony Pecchillo', class: 'BIO-101'},
@@ -28,7 +30,6 @@ class StudentsView extends React.Component {
 
   componentWillMount() {
     getAllStudents(1).then((res) => { 
-      console.log('aaa', res);
       this.setState({
         students: Array(res.data[0].students[1])
       });

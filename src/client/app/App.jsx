@@ -22,9 +22,10 @@ class App extends React.Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
-  handleLoginSubmit() {
+  handleLoginSubmit(user) {
     this.setState({
-      isLoggedIn: true
+      isLoggedIn: true,
+      user: user
     }, () => this.props.router.push('/dashboard'));
   }
 

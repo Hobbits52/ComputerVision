@@ -3,7 +3,9 @@ import {Link} from 'react-router';
 import css from '../../css/nav.css';
 
 const NavSide = props => (
+
   <div className="col-sm-2 navSide">
+  {console.log('NavSideBar', props)}
     <div className="navSide">
       <div className="userInfo">
         <img className="left-12"

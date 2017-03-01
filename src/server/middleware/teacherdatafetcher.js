@@ -104,8 +104,8 @@ const getStudentsforClass = function(req, res) {
 
 ////////////////////////////////////////////////////////////////
 const getAllStudents = function(req, res) {
+  const redisClient = require('./../server.js').redis;
   const teacherId = req.query.teacher_id;
-  console.log('teacherId is: ', teacherId);
   Classes.getClasses(teacherId, function(err, classes) {
     if (err) {
       res.status(400).send(err);
@@ -132,14 +132,31 @@ const getAllStudents = function(req, res) {
             classesArr.push(classObj);
             counter++;
             if (counter === classes.length) {
-              res.status(200).send(classesArr);
-              // res.end();
+                res.status(200).send(classesArr);
+                res.end();
+                var k = JSON.stringify(classesArr);
+                redisClient.setAsync('teacherData', k).then(function(response) {
+                  console.log(response);
+                }).catch(function(err) {
+                  console.log(err);
+                });
             }
           }
         });
       }
     }
   });
+}
+////////////////////////////////////////////////////////////////
+const gettest = function(req, res) {
+  const redisClient = require('./../server.js').redis;
+  redisClient.getAsync('teacherData').then(function(response) {
+    res.status(200).send(response);
+    res.end();
+  }).catch(function() {
+    res.status(400).send('SOMETHING');
+    res.end();
+  })
 }
 ////////////////////////////////////////////////////////////////
 module.exports = {
@@ -149,5 +166,6 @@ module.exports = {
   'addTest': addTest,
   'getClasses': getClasses,
   'getStudentsforClass': getStudentsforClass,
-  'getAllStudents': getAllStudents
+  'getAllStudents': getAllStudents,
+  'gettest': gettest
 }

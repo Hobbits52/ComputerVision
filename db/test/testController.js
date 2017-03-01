@@ -5,8 +5,6 @@ const answerKeys = require('./../key/keyModel.js').answerKeys;
 const helpers = require('./../../src/server/utility/helpers');
 
 exports.getStudentAnswers = (studentId, cb) => {
-  //TODO: coordinate input object with server
-  //MVP: only one answer key
   Tests.findOne({where: {StudentId: studentId}})
   .then((fetchedTest) => {
     let testObj = {
@@ -29,9 +27,6 @@ exports.getAllStudentAnswers = (cb) => {
 };
 
 exports.addTest = (test, cb) => {
-  //MVP: only one answer key
-  //MVP: refactor for multiple answer keys
-  
   answerKeys.findOne({where: {id: test.answerkeyId}})
   .then((answerKey) => {
     let keyAnswers = JSON.parse(answerKey.answers);
@@ -86,17 +81,15 @@ exports.getClassAnswers = (classId, cb) => {
 const addStudentNames = (students, cb) => {
   var counter = 0;
   for(var student in students) {
-    console.log('student is: ', student);
-    console.log('students is: ', students);
     StudentsCont.addStudentName(students[student], function(err, student) {
       if(err) {
         cb(err);
       } else {
-        counter++;
-      }
-      if (counter === students.length) {
-        delete students.length;
-        cb(null, students);
+        counter++; 
+        if (counter === students.length) {
+          delete students.length;
+          cb(null, students);
+        }
       }
     });
   }
