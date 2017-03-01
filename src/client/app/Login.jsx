@@ -10,8 +10,8 @@ class Login extends React.Component {
     super(props)
 
     this.state = {
-      username: 'Full Name',
-      password: 'password'
+      username: 'aaa',
+      password: 'bbb'
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -35,14 +35,33 @@ class Login extends React.Component {
       password: this.state.password
     };
 
-    login(user)
+    // DEV NOTE: I took out error handling from before, because wasn't passing info correctly.
+    axios({
+      method: 'POST',
+      url: 'auth/login',
+      data: user
+    })
+    .then((res) => {
+      console.log('response');
+      // save token to Global
+      window.token = res.data.token;
+      this.props.handleLoginSubmit();
+    }); 
+
+
+    
     // here i am receiving a user with a user.username
     //
     // This is working...this is where you stopped
-    .then((resp) => { console.log(resp.body);
-                      this.props.handleLoginSubmit() })
-    .catch((err) => { alert('You are not who you say you are.\n  Reconsider your identity.');
-                      console.log('Login Error: ', err) });
+    // .then((res) => { 
+    //   console.log('login')
+    //   console.log('arguments.length() => ')
+    //   console.log(arguments.length)
+    //   console.log(res)
+    //   this.props.handleLoginSubmit()
+    // })
+    // .catch((err) => { alert('You are not who you say you are.\n  Reconsider your identity.');
+    //                   console.log('Login Error: ', err) });
   }
 
   //react-router has access to a location object as a view renders
