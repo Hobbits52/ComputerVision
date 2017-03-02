@@ -12,12 +12,7 @@ class TeacherViewContainer extends React.Component {
     super(props)
 
     this.state = {
-      teacherId: 1,
-      teacher: this.props.user,
-      students: 'An array of objects, each representing an individual students data.',
-      classes: 'An array of objects, each representing the data of an individual class.',
-      keys: 'An array of objects, each representing the data corresponding to a particular key.',
-      mostRecentTest: 'An object representing the data of the most recent exam to fill the stats view',
+
     };
 
     // this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
@@ -44,11 +39,11 @@ class TeacherViewContainer extends React.Component {
     return (
       <div className="col-sm-10 teacherViewContainer">
         {React.cloneElement(this.props.children, {
-                teacher: this.state.teacher,
-                students: this.state.students,
-                classes: this.state.classes,
-                keys: this.state.keys,
-                mostRecentTest: this.state.mostRecentTest,
+                teacher: this.props.teacher,
+                students: this.props.students,
+                classes: this.props.classes,
+                keys: this.props.keys,
+                mostRecentTest: this.props.mostRecentTest,
                 handleSearchInputChange: this.handleSearchInputChange,
                 handleSearchSubmit: this.handleSearchSubmit,
                 handleSidebarClick: this.handleSidebarClick

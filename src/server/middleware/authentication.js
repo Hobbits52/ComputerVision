@@ -3,8 +3,6 @@ const studentDBController = require('./../../../db/student/studentController.js'
 const jwt = require('jsonwebtoken');
 const Cache = require('./../utility/cacheData.js');
 
-
-
 //////////////////////////////////////////////////////////////////
 //TOKEN SPECIFIC FUNCTIONS
 //////////////////////////////////////////////////////////////////
