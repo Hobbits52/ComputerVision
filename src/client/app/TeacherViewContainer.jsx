@@ -13,7 +13,7 @@ class TeacherViewContainer extends React.Component {
 
     this.state = {
       teacherId: 1,
-      teacher: 'An object with the logged in teacher\'s info.  Picture, Name, etc.',
+      teacher: this.props.user,
       students: 'An array of objects, each representing an individual students data.',
       classes: 'An array of objects, each representing the data of an individual class.',
       keys: 'An array of objects, each representing the data corresponding to a particular key.',

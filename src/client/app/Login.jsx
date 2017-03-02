@@ -10,8 +10,8 @@ class Login extends React.Component {
     super(props)
 
     this.state = {
-      username: 'aaa',
-      password: 'bbb'
+      username: 'Full Name',
+      password: 'password'
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,16 +26,11 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // Call userLogin from authentication.js
-    // if !loggedIn, alert user improper info
-    // else,
-    console.log('handling submit!');
     const user = {
       username: this.state.username,
       password: this.state.password
     };
 
-    // DEV NOTE: I took out error handling from before, because wasn't passing info correctly.
     axios({
       method: 'POST',
       url: 'auth/login',
@@ -46,26 +41,11 @@ class Login extends React.Component {
       // save token to Global
       window.localStorage.token = res.data.token;
       this.props.handleLoginSubmit();
-    }); 
-  };
-
-    
-    // here i am receiving a user with a user.username
-    //
-    // This is working...this is where you stopped
-    // .then((res) => { 
-    //   console.log('login')
-    //   console.log('arguments.length() => ')
-    //   console.log(arguments.length)
-    //   console.log(res)
-    //   this.props.handleLoginSubmit()
-    // })
-    // .catch((err) => { alert('You are not who you say you are.\n  Reconsider your identity.');
-    //                   console.log('Login Error: ', err) });
-
-
-  //react-router has access to a location object as a view renders
-  //setting the location prop to this object to that the NavBar can have access
+    });
+    .then((resp) => { console.log('This is the response body', resp);
+                      this.props.handleLoginSubmit(user.username) })
+    .catch((err) => { alert('You are not who you say you are.\n  Reconsider your identity.');
+                      console.log('Login Error: ', err) });
   render() {
     return (
       <div>

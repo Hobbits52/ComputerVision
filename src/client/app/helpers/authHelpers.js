@@ -23,5 +23,3 @@ exports.login = (user) => {
 exports.logout = () => {
   return axios.get('auth/logout');
 };
-
-// exports.logout = () => axios.get('auth/logout');

@@ -7,30 +7,25 @@ import TeacherViewContainer from './TeacherViewContainer.jsx';
 import Login from './Login.jsx';
 import css from '../css/nav.css';
 import NavBar from './Nav/NavBar.jsx';
+import { getAllTeachersClasses } from './helpers/viewHelpers';
+
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // State variables to go here
-      // isLoggedIn: this.props.isLoggedIn,
-      isLoggedIn: true,
-      user: null
+      isLoggedIn: this.props.isLoggedIn,
+      user: this.props.user, 
+
+      latestTest: 'Pull tests with latest key', //key uploaded, needs the createdAt and updatedAt properties
+      teacherId: 1,
+      teacher: this.props.user,
+      students: 'An array of objects, each representing an individual students data.',
+      classes: 'An array of objects, each representing the data of an individual class.',
+      keys: 'An array of objects, each representing the data corresponding to a particular key.',
+      mostRecentTest: 'An object representing the data of the most recent exam to fill the stats view'
     };
-
-    // this.handleSomeEvent = this.handleSomeEvent.bind(this);
-    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
-  }
-
-  handleLoginSubmit() {
-    // checkSession()
-    // .then((res) => {
-    //   this.setState({
-    //     isLoggedIn: true
-    //   });
-    //   console.log('You did it!  Now you deserve to get food! :D');
-
   }
 
 // --------------------------------------------------------------------
@@ -38,6 +33,7 @@ class Dashboard extends React.Component {
 // --------------------------------------------------------------------
 
   componentWillMount() {
+    console.log('This is the current state in Dashboard', this.state.isLoggedIn);
     if (!this.props.isLoggedIn) {
       this.props.router.push('/login');
     }
@@ -49,23 +45,22 @@ class Dashboard extends React.Component {
 // Event Handlers
 // --------------------------------------------------------------------
 
+  // Get classes for post it classes
+  // 
+
   handleSomeEvent(someParameter) {
 
   }
 // --------------------------------------------------------------------
 
-// <div className="construction">
-//   <p>Under Construction!</p>
-// </div>
-
-    // helper.checkSession // This is an axios call from a helper file
   render() {
+    console.log('handle click within dashboard', this.props.handleLogoutClick);
     return (
       <div>
-        <NavBar location={this.props.location} />
+        <NavBar location={this.props.location} handleLogoutClick={this.props.handleLogoutClick} />
         <div className="container-fluid below-nav-top">
           <div className="row">
-            <NavSide className="navSide"/>
+            <NavSide className="navSide" user={this.state.user} />
             <TeacherViewContainer>
               {this.props.children}
             </TeacherViewContainer>
@@ -78,7 +73,6 @@ class Dashboard extends React.Component {
 
 export default Dashboard;
 
-//{this.props.children}
 
 
 

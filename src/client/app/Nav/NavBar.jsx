@@ -8,13 +8,14 @@ class NavBar extends React.Component {
     };
   };
 
+
   render () {
     //this.props.location is set in each component that contains a navbar
     let publicPages = this.props.location.pathname === '/' ||
                       this.props.location.pathname === '/signup' ||
                       this.props.location.pathname === '/login';
 
-    let classNameLocation, farRightLinkTo, farRightLinkClass, farRightText;
+    let classNameLocation, farRightLinkTo, farRightLinkClass, farRightText, redirect;
 
     if (publicPages) {
       //adding the classname publicPages if splash page, signup, and login
@@ -31,6 +32,7 @@ class NavBar extends React.Component {
       farRightText = "Logout";
     }
 
+    //fix logic for new onClick. needs to work for signup
     return(
       <nav className={classNameLocation}>
         <div className="container-fluid">
@@ -53,7 +55,9 @@ class NavBar extends React.Component {
             </form>
             <ul className="nav navbar-nav signUpArea navbar-right">
               <li className="loginLink"><Link to="/login">Login</Link></li>
-              <li className={farRightLinkClass}><Link to={farRightLinkTo}>{farRightText}</Link></li>
+              <li className={farRightLinkClass} onClick={this.props.handleLogoutClick}>
+                <Link to={farRightLinkTo}>{farRightText}</Link>
+              </li>
             </ul>
           </div>
         </div>

@@ -11,11 +11,6 @@ class HomeView extends React.Component {
     super(props)
 
     this.state = {
-      teacher: 'An object with the logged in teacher\'s info.  Picture, Name, etc.',
-      students: 'An array of objects, each representing an individual students data.',
-      classes: 'An array of objects, each representing the data of an individual class.',
-      keys: 'An array of objects, each representing the data corresponding to a particular key.',
-      mostRecentTest: 'An object representing the data of the most recent exam to fill the stats view',
     };
 
     // this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
