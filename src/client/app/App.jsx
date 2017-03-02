@@ -14,7 +14,8 @@ class App extends React.Component {
 
     this.state = {
       isLoggedIn: false,
-      user: null
+      user: null,
+      // teacherId: null
     };
 
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -28,6 +29,7 @@ class App extends React.Component {
       this.setState({
       isLoggedIn: false,
       user: null
+      // teacherId: null
       }, () => this.props.router.push('/'))
     });
   };
@@ -36,7 +38,8 @@ class App extends React.Component {
   handleLoginSubmit(user) {
     this.setState({
       isLoggedIn: true,
-      user: user //user is the username provided by successful login
+      user: user //user is the username provided by successful login (user.username)
+      // teacherId: user.data.teacherId
     }, () => this.props.router.push('/dashboard'));
   }
 
@@ -55,6 +58,7 @@ class App extends React.Component {
     .catch(err => { console.log('err: ', err); })
   }
 
+
 // --------------------------------------------------------------------
 
   render() {
@@ -63,6 +67,7 @@ class App extends React.Component {
       handleLoginSubmit: this.handleLoginSubmit,
       handleLogoutClick: this.handleLogoutClick,
       user: this.state.user 
+      // teacherId: this.state.teacherId
     });
   }
 }

@@ -4,13 +4,8 @@ import axios from 'axios';
 // HomeView Helpers
 // --------------------------------------------------------------------------
 
-exports.getAllTeachersClasses = (teacherId) => {
-  return axios.get('api/allTeachersClasses', {
-    params: {
-      // I might need to change the property names here?
-      teacher_id: teacherId
-    }
-  }); 
+exports.getAllTeachersClasses = () => {
+  return axios.get('api/allTeachersClasses'); 
 };
 
 // --------------------------------------------------------------------------

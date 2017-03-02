@@ -40,10 +40,9 @@ class Login extends React.Component {
       console.log('response');
       // save token to Global
       window.localStorage.token = res.data.token;
-      this.props.handleLoginSubmit();
-    });
-    .then((resp) => { console.log('This is the response body', resp);
-                      this.props.handleLoginSubmit(user.username) })
+      console.log('This is the res', res);
+      this.props.handleLoginSubmit(user.username);
+    }) 
     .catch((err) => { alert('You are not who you say you are.\n  Reconsider your identity.');
                       console.log('Login Error: ', err) });
   render() {
