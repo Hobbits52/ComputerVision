@@ -55,7 +55,7 @@ const addClass = function(req, res) {
 
 ////////////////////////////////////////////////////////////////
 module.exports = {
-  'addAnswerKey': addAnswerKey,
-  'addClass': addClass,
-  'addTest': addTest
+  'AnswerKey': addAnswerKey,
+  'Class': addClass,
+  'Test': addTest
 }

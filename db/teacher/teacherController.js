@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt-nodejs');
 const Cache = require('./../../src/server/utility/cacheData.js');
 //TODO: Refactor with promises on server side
 
-exports.teacherSignup = (teacherInput, cb) => {
+const Signup = (teacherInput, cb) => {
   let username = teacherInput.username;
   let password = teacherInput.password;
 
@@ -22,7 +22,7 @@ exports.teacherSignup = (teacherInput, cb) => {
   });
 };
 
-exports.teacherLogin = (teacherInput, cb) => {
+const Login = (teacherInput, cb) => {
   let username = teacherInput.username;
   let password = teacherInput.password;
 
@@ -45,11 +45,17 @@ exports.teacherLogin = (teacherInput, cb) => {
   });
 };
 
-exports.teacherSearch = (username, cb) => {
+const Search = (username, cb) => {
   Teachers.findOne({where: {username: username}})
   .then((teacher) => {
     cb(null, teacher);
   }).catch((err) => {
     cb(err);
   });
+}
+
+module.exports = {
+  'Signup': Signup,
+  'Login': Login,
+  'Search': Search
 }
