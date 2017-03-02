@@ -1,16 +1,17 @@
 'use strict';
 
 const authentication = require('./../middleware/authentication.js')
-const api = require('./../middleware/teacherdatafetcher.js');
+const api = {get: require('./../middleware/teacherGetHelper.js'),
+						 post: require('./../middleware/teacherPostHelper.js')};
+
 const route = require('express').Router();
 
 route.use(authentication.checkToken);
 
-route.post('/addClass', api.addClass);
-route.post('/addAnswerKey', api.addAnswerKey);
-route.post('/addTest', api.addTest);
-route.get('/getClasses', api.getClasses);
-route.get('/getStudentsforClass', api.getStudentsforClass);
-route.get('/getAllStudents', api.getAllStudents);
+route.post('/addClass', api.post.Class);
+route.post('/addAnswerKey', api.post.AnswerKey);
+route.post('/addTest', api.post.Test);
+route.get('/getClasses', api.get.Classes);
+route.get('/getStudentsforClass', api.get.StudentsforClass);
 
 module.exports = route;

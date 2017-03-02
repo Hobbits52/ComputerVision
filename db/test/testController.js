@@ -4,7 +4,7 @@ const StudentsCont = require('./../student/studentController.js');
 const answerKeys = require('./../key/keyModel.js').answerKeys;
 const helpers = require('./../../src/server/utility/helpers');
 
-exports.getStudentAnswers = (studentId, cb) => {
+const getStudentAnswers = (studentId, cb) => {
   Tests.findOne({where: {StudentId: studentId}})
   .then((fetchedTest) => {
     let testObj = {
@@ -17,7 +17,7 @@ exports.getStudentAnswers = (studentId, cb) => {
   });
 };
 
-exports.getAllStudentAnswers = (cb) => {
+const getAllStudentAnswers = (cb) => {
   Tests.findAll()
   .then((fetchedTests) => {
     cb(null, fetchedTests);
@@ -26,7 +26,7 @@ exports.getAllStudentAnswers = (cb) => {
   })
 };
 
-exports.addTest = (test, cb) => {
+const addTest = (test, cb) => {
   answerKeys.findOne({where: {id: test.answerkeyId}})
   .then((answerKey) => {
     let keyAnswers = JSON.parse(answerKey.answers);
@@ -52,7 +52,7 @@ exports.addTest = (test, cb) => {
   });
 };
 
-exports.getClassAnswers = (classId, cb) => {
+const getClassAnswers = (classId, cb) => {
   let students = {};
   students.length = 0;
 
@@ -99,3 +99,12 @@ const addStudentNames = (students, cb) => {
     }
   }
 };
+
+
+module.exports = {
+  'getStudentAnswers': getStudentAnswers,
+  'getAllStudentAnswers': getAllStudentAnswers,
+  'addTest': addTest,
+  'getClassAnswers': getClassAnswers,
+  'addStudentNames': addStudentNames
+}

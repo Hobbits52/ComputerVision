@@ -6,8 +6,8 @@ const teacherPosts = require('./middleware/teacherPostHelper.js');
 const teacherGets = require('./middleware/teacherGetHelper.js');
 const path = require('path');
 const bodyParser = require('body-parser');
-const authRoute = require('./routes/auth.js');
-const apiRoute = require('./routes/api.js');
+const authRouter = require('./routes/auth.js');
+const apiRouter = require('./routes/api.js');
 
 const app = express();
 
@@ -18,8 +18,8 @@ app.use(bodyParser.json());
 
 
 // routes
-app.use('/auth', auth);
-app.use('/api', api);
+app.use('/auth', authRouter);
+app.use('/api', apiRouter);
 
 app.use(express.static(path.join(__dirname + '/../client/')));
 

@@ -3,7 +3,7 @@ const teacherSearch = require('./../teacher/teacherController.js').teacherSearch
 
 
 ////////////////////////////////////////////////////////////////
-exports.addClass = (newClassInput, cb) => {
+const addClass = (newClassInput, cb) => {
   var teacherId = newClassInput.TeacherId;
   var newClass = newClassInput.ClassName;
   Classes.findOrCreate({where: {classname: newClass, TeacherId: teacherId}})
@@ -20,7 +20,7 @@ exports.addClass = (newClassInput, cb) => {
 
 ////////////////////////////////////////////////////////////////
 
-exports.getClasses = (teacherId, cb) => {
+const getClasses = (teacherId, cb) => {
   Classes.findAll({where: {TeacherId:teacherId}})
   .then((classes) => {
     cb(null, classes);
@@ -29,16 +29,7 @@ exports.getClasses = (teacherId, cb) => {
   })
 };
 
-
-////////////////////////////////////////////////////////////////
-// exports.getClass = (classId, cb) => {
-//   let data;
-//   Classes.findOne({where: {id: classId}})
-//   .then((Class) => {
-//     data.classname = Class.classname;
-    
-
-//   }).catch((err) {
-//     cb(err);
-//   })
-// };
+module.exports = {
+  'addClass': addClass,
+  'getClasses': getClasses
+};

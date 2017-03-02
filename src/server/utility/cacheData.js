@@ -2,13 +2,13 @@ const Test = require('./../../../db/test/testController.js');
 const AnswerKey = require('./../../../db/key/keyController.js');
 const Classes = require('./../../../db/classes/classController.js');
 
-const TeacherData = function(teacherId) {
+const saveTeacherData = function(teacherId) {
   const redisClient = require('./../server.js').redis;
   Classes.getClasses(teacherId, function(err, classes) {
     if (err) {
       console.log(err);
     } else if(classes.length === 0) {
-        console.log('Teacher has no students');
+        console.log('Teacher has no classes');
     }else {
       var classesArr = [];
       var counter = 0;
@@ -45,5 +45,5 @@ const TeacherData = function(teacherId) {
 };
 
 module.exports = {
-  'TeacherData': TeacherData
+  'saveTeacherData': saveTeacherData
 }
