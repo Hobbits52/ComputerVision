@@ -1,5 +1,6 @@
 const Teachers = require('./teacherModel.js').Teachers;
 const bcrypt = require('bcrypt-nodejs');
+const Cache = require('./../../src/server/utility/cacheData.js');
 //TODO: Refactor with promises on server side
 
 exports.teacherSignup = (teacherInput, cb) => {
@@ -14,6 +15,7 @@ exports.teacherSignup = (teacherInput, cb) => {
       cb(error);
     } else {
       let newUser = {};
+      newUser.id = teacher.id;
       newUser.username = teacher.username;
       cb(null, newUser);
     }
@@ -32,7 +34,9 @@ exports.teacherLogin = (teacherInput, cb) => {
       cb(error);
     } else {
       let newUser = {};
+      newUser.id = teacher.id;
       newUser.username = teacher.username;
+      Cache.TeacherData(teacher.id);
       cb(null, newUser);
     }
     })
