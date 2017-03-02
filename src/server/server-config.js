@@ -16,6 +16,7 @@ app.use(require('morgan')('dev'));
 
 app.use(bodyParser.json());
 
+
 // routes
 app.use('/auth', auth);
 app.use('/api', api);

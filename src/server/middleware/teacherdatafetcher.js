@@ -2,6 +2,9 @@ const Test = require('./../../../db/test/testController.js');
 const AnswerKey = require('./../../../db/key/keyController.js');
 const Classes = require('./../../../db/classes/classController.js');
 const Scanner = require('./pythontonode.js').Scanner;
+const Cache = require('./cacheController.js');
+const bluebird = require('bluebird');
+const cacheParser = require('./../utility/cacheParser.js');
 
 ////////////////////////////////////////////////////////////////
 
@@ -119,6 +122,7 @@ const getAllStudents = function(req, res) {
       for (var i = 0; i < classes.length; i++) {
         var classObj = {};
         classObj.classname = classes[i].classname;
+        classObj.ClassId = classes[i].id;
         Test.getClassAnswers(classes[i].id, function(err, students) {
           if(err) {
             res.status(400).send(err);
@@ -159,6 +163,33 @@ const gettest = function(req, res) {
   })
 }
 ////////////////////////////////////////////////////////////////
+const getStudents = function(req, res) {
+  bluebird.promisifyAll(Cache.fetchCache.prototype);
+  bluebird.promisifyAll(cacheParser.getStudentName);
+
+  Cache.fetchCache('teacherData').then(function(response) {
+    cacheParser.getStudentName(response, function(err, resp) {
+      if (err) {
+        res.status(400).send('ERROR');
+        res.end();
+      } else {
+        res.status(200).send(resp);
+        res.end();
+      }
+    });
+  }).catch(function() {
+    res.status(400).send('EHOH');
+    res.end();
+  });
+};
+
+
+  // .catch(function() {
+  //   res.status(400).send('ERROR');
+  //   res.end();
+  // });
+
+////////////////////////////////////////////////////////////////
 module.exports = {
   'getTeacherData': getTeacherData,
   'addAnswerKey': addAnswerKey,
@@ -167,5 +198,6 @@ module.exports = {
   'getClasses': getClasses,
   'getStudentsforClass': getStudentsforClass,
   'getAllStudents': getAllStudents,
-  'gettest': gettest
+  'gettest': gettest,
+  'getStudents': getStudents
 }
