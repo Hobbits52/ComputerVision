@@ -81,6 +81,59 @@ describe('Authentication', () =>{
   })
 });
 
+describe('API', () =>{
+  let server;
+  
+  beforeEach( () => {
+    delete require.cache[require.resolve('./../../src/server/server.js')];
+    server = require('./../../src/server/server.js');
+  });
+
+  afterEach( () => {
+    server.close();
+    console.log('Server now closed.');
+  });
+
+  it('Does not allow POST request without token to api/addClass', (done) => {
+    request(server)
+      .post('/api/addClass')
+      .expect(403, done);
+  });
+
+  it('Does not allow POST request without token to api/addAnswerKey', (done) => {
+    request(server)
+      .post('/api/addAnswerKey')
+      .expect(403, done);
+  });
+
+  it('Does not allow POST request without token to api/addTest', (done) => {
+    request(server)
+      .post('/api/addTest')
+      .expect(403, done);
+  });
+
+  it('Does not allow GET request without token to api/getClasses', (done) => {
+    request(server)
+      .get('/api/getClasses')
+      .expect(403, done);
+  });
+
+  it('Does not allow GET request without token to api/getStudentsforClass', (done) => {
+    request(server)
+      .get('/api/getStudentsforClass')
+      .expect(403, done);
+  });
+
+  it('Does not allow GET request without token to api/getAllStudents', (done) => {
+    request(server)
+      .get('/api/getAllStudents')
+      .expect(403, done);
+  });
+
+
+});
+
+
 xdescribe('Scanner', () =>{
 
   it('Correctly Grades Test Hosted On Cloudinary', (done) => {
