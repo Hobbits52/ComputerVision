@@ -1,10 +1,13 @@
 const express = require('express');
 const session = require('express-session');
 const jwt    = require('jsonwebtoken')
+const authMiddleware = require('./middleware/authentication.js');
+const teacherPosts = require('./middleware/teacherPostHelper.js');
+const teacherGets = require('./middleware/teacherGetHelper.js');
 const path = require('path');
 const bodyParser = require('body-parser');
-const auth = require('./routes/auth.js');
-const api = require('./routes/api.js');
+const authRoute = require('./routes/auth.js');
+const apiRoute = require('./routes/api.js');
 
 const app = express();
 
