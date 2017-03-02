@@ -109,10 +109,10 @@ const getAllStudents = function(req, res) {
   Classes.getClasses(teacherId, function(err, classes) {
     if (err) {
       res.status(400).send(err);
-      res.end();
+      // res.end();
     } else if(classes.length === 0) {
         res.status(400).send({});
-        res.end();
+        // res.end();
     }else {
       var classesArr = [];
       var counter = 0;
@@ -122,7 +122,7 @@ const getAllStudents = function(req, res) {
         Test.getClassAnswers(classes[i].id, function(err, students) {
           if(err) {
             res.status(400).send(err);
-            res.end();
+            // res.end();
           } else {
             var studentArr = [];
             for (var student in students) {
@@ -133,7 +133,7 @@ const getAllStudents = function(req, res) {
             counter++;
             if (counter === classes.length) {
               res.status(200).send(classesArr);
-              res.end();
+              // res.end();
             }
           }
         });
