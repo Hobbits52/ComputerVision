@@ -1,14 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
-import NavBar from './Nav/NavBar.jsx'
-import NavSide from './Nav/NavSide.jsx'
-import TeacherViewContainer from './TeacherViewContainer.jsx'
-import HomeView from './HomeView.jsx'
-import Login from './Login.jsx';
-import css from '../css/nav.css';
+import Chart from './data_visualisation/Chart.jsx';
 
-class App extends React.Component {
+class StatisticsView extends React.Component {
   constructor(props) {
     super(props);
 
@@ -45,13 +40,13 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {"StatisticsView"}
+        <Chart />
       </div>
     );
   }
 
 }
 
-export default App;
+export default StatisticsView;
 
 //{this.props.children}
