@@ -5,7 +5,7 @@ import axios from 'axios';
 // --------------------------------------------------------------------------
 
 exports.getAllTeachersClasses = (teacherId) => {
-  return axios.get('teacher/allTeachersClasses', {
+  return axios.get('api/allTeachersClasses', {
     params: {
       // I might need to change the property names here?
       teacher_id: teacherId
@@ -49,7 +49,7 @@ exports.getAllTeachersClasses = (teacherId) => {
 // --------------------------------------------------------------------------
 
 exports.getAllStudentsInClass = (classId) => {
-  return axios.get('teacher/allClassesStudents', {
+  return axios.get('api/allClassesStudents', {
     params: {
       class_Id: classId,
       token: window.localStorage.token
@@ -60,7 +60,7 @@ exports.getAllStudentsInClass = (classId) => {
 // router.get('/allClassesStudents', controller.students.getAll);
 
 exports.getAllTestsInClass = (classId) => {
-  return axios.get('teacher/allClassesTests', {
+  return axios.get('api/allClassesTests', {
     params: {
       class_Id: classId,
       token: window.localStorage.token
@@ -71,7 +71,7 @@ exports.getAllTestsInClass = (classId) => {
 // router.get('/allClassesTests', controller.tests.getAll);
 
 exports.getAllStudentsWhoTookTest = (testId) => {
-  return axios.get('teacher/allStudentsWhoTookTest', {
+  return axios.get('api/allStudentsWhoTookTest', {
     params: {
       test_Id: testId,
       token: window.localStorage.token
@@ -102,7 +102,7 @@ exports.getAllStudentsWhoTookTest = (testId) => {
 // --------------------------------------------------------------------------
 
 exports.getAllStudents = (teacherId) => {
-  return axios.get('/teacher/getAllStudents', {
+  return axios.get('/api/getAllStudents', {
     params: {
       // I might need to change the property names here?
       teacher_id: teacherId,

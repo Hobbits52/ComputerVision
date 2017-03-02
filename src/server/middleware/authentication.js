@@ -20,10 +20,6 @@ const checkSession = function(req, res, next) {
 
 const checkToken = function(req, res, next) {
   console.log('checkToken called');
-  // console.log(req.headers)
-  console.log(req.body.token)
-  console.log(req.headers['x-access-token'])
-  console.log(req.query.token)
   // check header for token --> our client will be in query string of GET request
   var token = req.query.token || req.headers['x-access-token'] || req.body.token
   if (token) {
@@ -48,11 +44,6 @@ const checkToken = function(req, res, next) {
     });
   };
 };
-
-
-
-
-
 
 const createSession = function(req, res, user) {
   return req.session.regenerate(function() {
@@ -118,6 +109,7 @@ const userLogout = function(req, res) {
 //////////////////////////////////////////////////////////////////
 //STUDENT
 //////////////////////////////////////////////////////////////////
+// IMPORTANT: studentLogin should NEVER issue token
 const studentLogin = function(req, res) {
   studentController.studentLogin(req.body, function(err, user) {
     if (err) {
@@ -131,6 +123,7 @@ const studentLogin = function(req, res) {
   });
 };
 
+// IMPORTANT: studentLogin should NEVER issue token
 const studentSignup = function(req, res) {
   studentController.studentSignup(req.body, function(err, user) {
     if (err) {
@@ -148,7 +141,7 @@ module.exports = {
   'checkSession': checkSession,
   'userLogin' : userLogin,
   'userSignup' : userSignup,
-  'studentLogin:' : studentLogin,
+  'studentLogin' : studentLogin,
   'studentSignup' : studentSignup,
   'userLogout' : userLogout,
   'checkToken': checkToken

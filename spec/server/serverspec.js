@@ -17,7 +17,7 @@ const spawn = require('child_process').spawn;
 // (but commented out) as an educational resource, but it will not be
 // utilized moving forward.
 
-xdescribe('Loading express', () => {
+describe('Loading express', () => {
   
   let server;
   
@@ -39,14 +39,15 @@ xdescribe('Loading express', () => {
       .expect(200, done);
   });
 
-  it('404 errors everything else', (done) => {
+  // KG: do we want this behavior? Or reroute?
+  xit('404 errors everything else', (done) => {
     request(server)
       .get('/foo/bar')
       .expect(404, done);
   });
 });
 
-xdescribe('Authentication', () =>{
+describe('Authentication', () =>{
   let server;
   
   beforeEach( () => {
