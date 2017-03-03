@@ -2,10 +2,12 @@ const Test = require('./../../../db/test/testController.js');
 const AnswerKey = require('./../../../db/key/keyController.js');
 const Classes = require('./../../../db/classes/classController.js');
 const Scanner = require('./pythonChildProcess.js').Scanner;
+const Cache = require('./../utility/cacheData.js');
 
 
 //DOCUMENT UPLOAD///////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
+//ANSWER KEY UPLOAD/////////////////////////////////////////////
 const addAnswerKey = function(req, res) {
   let keyUpload = req.body;
   Scanner(keyUpload, 'key', function(err, answerKey) {
@@ -16,12 +18,14 @@ const addAnswerKey = function(req, res) {
   	} else {
   		res.status(200);
       res.send(answerKey);
+      Cache.saveTeacherData(keyUpload.TeacherId);
   		res.end();
   	}
   });
 };
 
 ////////////////////////////////////////////////////////////////
+//TEST UPLOAD///////////////////////////////////////////////////
 const addTest = function(req, res) {
   let testUpload = req.body;
   Scanner(testUpload, 'test', function(err, test) {
@@ -33,11 +37,13 @@ const addTest = function(req, res) {
       //UPDATE REDIS
       res.status(200);
       res.send(test);
+      Cache.saveTeacherData(testUpload.TeacherId);
       res.end();
     }
   });
 }
 
+//NEW CLASS/////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 const addClass = function(req, res) {
   let classInfo = req.body;
@@ -48,6 +54,7 @@ const addClass = function(req, res) {
     } else {
       //UPDATE REDIS
       res.status(200).send(newClass);
+      Cache.saveTeacherData(keyUpload.TeacherId);
       res.end();
     }
   })
