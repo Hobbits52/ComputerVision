@@ -58,7 +58,7 @@ class ClassesView extends React.Component {
             </select>
           </label>
       </form>
-      <h2 className="statisticsClassesDefault">{this.state.currentClass}</h2>
+      <h2 className="statisticsClassesDefault"> {"This is a placeholder for a graph representing grades from the class " + this.state.currentClass}</h2>
       </div>
     );
   }
@@ -66,5 +66,3 @@ class ClassesView extends React.Component {
 }
 
 export default ClassesView;
-
-//{this.props.children}

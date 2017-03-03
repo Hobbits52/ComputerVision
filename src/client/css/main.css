@@ -33,6 +33,7 @@ p {
 
 .postIts {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin: -50px 15px -40px 15px;
   position: relative;
@@ -46,6 +47,7 @@ p {
 
 .postImage {
   position: relative;
+  width: 200px;
 }
 
 .postImage h5 {

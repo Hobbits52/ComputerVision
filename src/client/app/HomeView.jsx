@@ -2,20 +2,18 @@ import React, { cloneElement } from 'react';
 import {Link} from 'react-router';
 import axios from 'axios';
 import css from '../css/main.css';
+import PostIt from './PostIts.jsx';
 
 import {getAllTeachersClasses} from './helpers/viewHelpers.js';
 
 
 class HomeView extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-    };
 
-    // this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
-    // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
-    // this.handleSidebarClick = this.handleSidebarClick.bind(this);
+    };
   }
 
   componentWillMount() {
@@ -40,20 +38,11 @@ class HomeView extends React.Component {
   render() {
     return (
       <div className="col-sm-10 mainContent">
-        <h3>To-Do List</h3>
+        <h3>My Classes</h3>
           <div className="postIts">
-            <div className="postImage">
-              <img className="background-image" src={'../assets/post-it.png'}/>
-              <h5> - help joe with midterm prep</h5>
-            </div>
-            <div className="postImage">
-              <img className="background-image" src={'../assets/post-it.png'}/>
-              <h5> - parent teacher conference for sally</h5>
-            </div>
-            <div className="postImage">
-              <img className="background-image" src={'../assets/post-it.png'}/>
-              <h5> - make midterm key</h5>
-            </div>
+            {this.props.classes.map((course, key) => {
+              return <PostIt class={course} key={key} />
+            })}
           </div>
         <h3>Most Recent Test Results</h3>
         <div className="testTitle">
