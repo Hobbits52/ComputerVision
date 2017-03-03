@@ -9,7 +9,7 @@ class StudentsList extends React.Component {
     super(props);
 
     this.state = {
-      // State variables to go here
+      students: this.props.students
     };
 
     // this.handleSomeEvent = this.handleSomeEvent.bind(this);
@@ -35,21 +35,38 @@ class StudentsList extends React.Component {
 // --------------------------------------------------------------------
 
   render() {
-    return (
-      <div>
-        <table>
-          <tbody>
-            {this.props.students.map((student, index) =>
-              <StudentsListEntry student={student}
-                                 currentStudent={this.props.currentStudent}
-                                 handleStudentListEntryClick={this.props.handleStudentListEntryClick}
-                                 key={index}
-              />
-            )}
-          </tbody>
-        </table>
-      </div>
-    );
+
+    // re-format data for data list
+    let data = [];
+    this.state.students.map((obj) => {
+      var studentObj = {courseName: obj.class.ClassName}
+      for (var i = 0; i < obj.students.length; i++) {
+        studentObj['StudentId'] = obj.students[i].StudentId;
+        studentObj['StudentName'] = obj.students[i].StudentName;
+        data.push(studentObj);
+      }
+    });
+
+    
+      return (
+        <div>
+          <table>
+            <tbody>
+              {data.map((pupil, index) => {
+                console.log('This is one student entry', pupil);
+                  return <StudentsListEntry student={pupil}
+                                     currentStudent={this.props.currentStudent}
+                                     handleStudentListEntryClick={this.props.handleStudentListEntryClick}
+                                     key={index}
+                  />
+                })
+              }
+            </tbody>
+          </table>
+        </div>
+      );
+
+
   }
 
 }

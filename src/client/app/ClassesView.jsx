@@ -7,7 +7,6 @@ import TeacherViewContainer from './TeacherViewContainer.jsx'
 import HomeView from './HomeView.jsx'
 import Login from './Login.jsx';
 import css from '../css/main.css';
-import Dropdown from 'react-dropdown';
 
 class ClassesView extends React.Component {
   constructor(props) {
@@ -35,8 +34,6 @@ class ClassesView extends React.Component {
 // --------------------------------------------------------------------
 
   selectClass(event) {
-    console.log('This is the event', event.target.value);
-    console.log('this is this', this);
     this.setState({
       currentClass: event.target.value
     });
@@ -44,7 +41,6 @@ class ClassesView extends React.Component {
 // --------------------------------------------------------------------
 
   render() {
-    console.log(this.state.currentClass);
     return (
       <div>
         <h2>{"Classes"}</h2>
@@ -52,6 +48,7 @@ class ClassesView extends React.Component {
           <label>
             Select a class:
             <select value={this.state.currentClass} onChange={this.selectClass} >
+              <option value={'Choose a class'}>{"Choose a class"}</option>
               {this.props.classes.map((course, key) => {
                 return <option value={course.ClassName} key={key}>{course.ClassName}</option>
               })}

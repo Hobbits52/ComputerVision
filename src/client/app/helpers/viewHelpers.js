@@ -5,7 +5,11 @@ import axios from 'axios';
 // --------------------------------------------------------------------------
 
 exports.getAllTeachersClasses = () => {
-  return axios.get('api/allTeachersClasses'); 
+  return axios.get('/api/getClasses', {
+    params: {
+      token: window.localStorage.token
+    }
+  }); 
 };
 
 // --------------------------------------------------------------------------
@@ -97,7 +101,7 @@ exports.getAllStudentsWhoTookTest = (testId) => {
 // --------------------------------------------------------------------------
 
 exports.getAllStudents = (teacherId) => {
-  return axios.get('/api/getAllStudents', {
+  return axios.get('/api/getStudentsByClass', {
     params: {
       // I might need to change the property names here?
       teacher_id: teacherId,

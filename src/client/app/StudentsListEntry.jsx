@@ -3,6 +3,8 @@ import {render} from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 import css from '../css/nav.css';
 
+///not getting here
+
 class StudentsListEntry extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +12,7 @@ class StudentsListEntry extends React.Component {
     this.state = {
       // State variables to go here
     };
-
+    console.log('in student list entry', this.props.student);
     // this.handleSomeEvent = this.handleSomeEvent.bind(this);
   }
 
@@ -34,6 +36,7 @@ class StudentsListEntry extends React.Component {
 // --------------------------------------------------------------------
 
   render() {
+    console.log('in list entry', this.props.student);
     return (
       <tr onClick={this.props.handleStudentListEntryClick}>
         <td>{this.props.student.StudentId}</td>

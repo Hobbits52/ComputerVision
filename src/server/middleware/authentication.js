@@ -7,7 +7,7 @@ const Cache = require('./../utility/cacheData.js');
 //TOKEN SPECIFIC FUNCTIONS
 //////////////////////////////////////////////////////////////////
 const checkToken = function(req, res, next) {
-  console.log('checkToken called');
+  console.log('checkToken called', req.query.token);
   // check header for token --> our client will be in query string of GET request
   var token = req.query.token || req.headers['x-access-token'] || req.body.token
   if (token) {
@@ -45,6 +45,7 @@ const createToken = function(req, res, user, usertype) {
 //////////////////////////////////////////////////////////////////
 //TEACHER LOGIN FUNCTIONS
 //////////////////////////////////////////////////////////////////
+
 const teacherLogin = function(req, res) {
   teacherDBController.Login(req.body, function(err, teacher) {
     if (err) {

@@ -11,7 +11,6 @@ class PostIt extends React.Component {
   }
 
   render() {
-    console.log('GOT TO POSTITS');
     return (
       <div className="postImage">
         <img className="background-image" src={'../assets/post-it.png'}/>

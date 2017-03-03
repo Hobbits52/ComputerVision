@@ -11,17 +11,12 @@ class StudentsView extends React.Component {
     super(props);
 
     this.state = {
-      // State variables to go here
-      //****************************************/
-      //<-----from getAllData
-      students: [{id: 1, name: 'Anthony Pecchillo', class: 'BIO-101'},
-                 {id: 1, name: 'Anthony Pecchillo', class: 'BIO-101'},
-                 {id: 1, name: 'Anthony Pecchillo', class: 'BIO-101'},
-                 {id: 1, name: 'Anthony Pecchillo', class: 'BIO-101'}],
+      students: this.props.students,
       currentStudent: null
     };
 
     this.handleStudentsListEntryClick = this.handleStudentsListEntryClick.bind(this);
+    console.log('In the students view', this.state.students);
   }
 
 // --------------------------------------------------------------------
@@ -43,8 +38,6 @@ class StudentsView extends React.Component {
 // --------------------------------------------------------------------
 
   handleStudentsListEntryClick(event) {
-    console.log('You clicked a StudentListEntry!');
-    console.log('sdfasdf', event.target);
     this.setState({
       // currentStudent: event.target.id   THIS IS NOT WORKING - FIX IT LATER!
       currentStudent: true
@@ -57,7 +50,7 @@ class StudentsView extends React.Component {
 // --------------------------------------------------------------------
 
   render() {
-    if (this.state.currentStudent === null) {
+    // if (this.state.currentStudent === null) {
       return (
         <div>
           <h2>Students</h2>
@@ -67,13 +60,13 @@ class StudentsView extends React.Component {
           />
         </div>
       );  
-    } else {
-      return (
-        <div>
-          <StudentResults />
-        </div>
-      );
-    }
+  //   } else {
+  //     return (
+  //       <div>
+  //         <StudentResults />
+  //       </div>
+  //     );
+  //   }
   }
 }
 

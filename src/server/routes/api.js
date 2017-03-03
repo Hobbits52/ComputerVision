@@ -8,6 +8,7 @@ const route = require('express').Router();
 
 route.use(authentication.checkToken);
 
+
 route.post('/addClass', api.post.Class);
 route.post('/addAnswerKey', api.post.AnswerKey);
 route.post('/addTest', api.post.Test);

@@ -15,7 +15,7 @@ class App extends React.Component {
     this.state = {
       isLoggedIn: false,
       teacher: null,
-      // teacherId: null
+      teacherId: null
     };
 
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
@@ -28,16 +28,17 @@ class App extends React.Component {
       this.setState({
       isLoggedIn: false,
       teacher: null
-      // teacherId: null
       }, () => this.props.router.push('/'))
     });
   };
   
 
   handleLoginSubmit(teacher) {
+    console.log("This is the teacher", teacher)
     this.setState({
       isLoggedIn: true,
-      teacher: teacher //user is the username provided by successful login (user.username)
+      teacher: teacher.username,
+      teacherId: teacher.id
       // teacherId: user.data.teacherId
     }, () => this.props.router.push('/dashboard'));
   }
@@ -53,7 +54,6 @@ class App extends React.Component {
         isLoggedIn: true
       });
     })
-    // Catch the error and then do nothing with it.
     .catch(err => { console.log('err: ', err); })
   }
 
@@ -65,8 +65,8 @@ class App extends React.Component {
       isLoggedIn: this.state.isLoggedIn,
       handleLoginSubmit: this.handleLoginSubmit,
       handleLogoutClick: this.handleLogoutClick,
-      teacher: this.state.teacher 
-      // teacherId: this.state.teacherId
+      teacher: this.state.teacher, 
+      teacherId: this.state.teacherId
     });
   }
 }
