@@ -20,7 +20,7 @@ class Dashboard extends React.Component {
       teacherId: 5, //this.props.teacherId
 
       students: 'An array of objects, each representing an individual students data.',
-      classes: [ {ClassName: 'Bio 101', ClassId: 1}, {ClassName: 'AP Bio', ClassId: 2}, {ClassName: 'Freshman Bio', ClassId: 3} ],
+      classes: [ {ClassName: 'Bio 101', ClassId: 1}, {ClassName: 'AP Bio', ClassId: 2}, {ClassName: 'Freshman Bio', ClassId: 3}, {ClassName: 'Honors Bio', ClassId: 4} ],
       keys: 'An array of objects, each representing the data corresponding to a particular key.',
       mostRecentTest: 'An object representing the data of the most recent exam to fill the stats view'
     };
