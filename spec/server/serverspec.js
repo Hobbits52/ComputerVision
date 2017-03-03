@@ -25,7 +25,7 @@ describe('Loading express', () => {
     // Line below utilizes 'really-need':
     // server = require('../../server/server.js', { bustCache: true });
     delete require.cache[require.resolve('./../../src/server/server.js')];
-    server = require('./../../src/server/server.js');
+    server = require('./../../src/server/server.js').server;
   });
 
   afterEach( () => {
@@ -52,7 +52,7 @@ describe('Authentication', () =>{
   
   beforeEach( () => {
     delete require.cache[require.resolve('./../../src/server/server.js')];
-    server = require('./../../src/server/server.js');
+    server = require('./../../src/server/server.js').server;
   });
 
   afterEach( () => {
@@ -86,7 +86,7 @@ describe('API', () =>{
   
   beforeEach( () => {
     delete require.cache[require.resolve('./../../src/server/server.js')];
-    server = require('./../../src/server/server.js');
+    server = require('./../../src/server/server.js').server;
   });
 
   afterEach( () => {
