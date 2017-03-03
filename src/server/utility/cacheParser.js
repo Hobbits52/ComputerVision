@@ -28,6 +28,7 @@ const getClasses = (cache, cb) => {
 	let classes;
 	let counter = 0;
 	let length = cache.length;
+	console.log('this is the cache', cache);
 	cache.forEach(function(course) {
 		counter++;
 		if (classes === undefined) {

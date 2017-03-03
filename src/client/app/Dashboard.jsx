@@ -18,9 +18,10 @@ class Dashboard extends React.Component {
       isLoggedIn: this.props.isLoggedIn,
       teacher: this.props.teacher, 
       teacherId: this.props.teacherId,
+      currentCourse: null,
 
       students: 'An array of objects, each representing an individual students data.',
-      classes: [ {ClassName: 'Bio 101', ClassId: 1}, {ClassName: 'AP Bio', ClassId: 2}, {ClassName: 'Freshman Bio', ClassId: 3}, {ClassName: 'Honors Bio', ClassId: 4} ],
+      classes: null,
       keys: 'An array of objects, each representing the data corresponding to a particular key.',
       mostRecentTest: 'An object representing the data of the most recent exam to fill the stats view'
     };
@@ -28,6 +29,8 @@ class Dashboard extends React.Component {
     this.addClass = this.addClass.bind(this);
     this.addKey = this.addKey.bind(this);
     this.addTest = this.addTest.bind(this);
+    this.handlePostItClick = this.handlePostItClick.bind(this);
+    this.handleSideBarClick = this.handleSideBarClick.bind(this);
   }
 
 // --------------------------------------------------------------------
@@ -86,32 +89,54 @@ class Dashboard extends React.Component {
     console.log('Add new test');
   }
 
+  handlePostItClick(course) {
+    console.log('why is this firing', course);
+    this.setState({
+      currentCourse: course
+    })
+  }
+
+  handleSideBarClick() {
+    this.setState({
+      currentCourse: null
+    })
+  }
+
 
 // --------------------------------------------------------------------
 
   render() {
-    return (
-      <div>
-        <NavBar location={this.props.location} students={this.state.students} handleLogoutClick={this.props.handleLogoutClick} />
-        <div className="container-fluid below-nav-top">
-          <div className="row">
-            <NavSide className="navSide" teacher={this.state.teacher} />
-              <div className="col-sm-10 teacherViewContainer">
-                {React.cloneElement(this.props.children, {
-                    isLoggedIn: this.state.isLoggedIn,
-                    teacher: this.state.teacher,
-                    teacherId: this.state.teacherId,
-                    students: this.state.students,
-                    classes: this.state.classes,
-                    keys: this.state.keys,
-                    mostRecentTest: this.state.mostRecentTest,
-                    addClass: this.addClass
-                  })}
-              </div>
+    if (this.state.classes === null) {
+      return (
+        <div>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <NavBar location={this.props.location} students={this.state.students} handleLogoutClick={this.props.handleLogoutClick} />
+          <div className="container-fluid below-nav-top">
+            <div className="row">
+              <NavSide className="navSide" teacher={this.state.teacher} handleSideBarClick={this.handleSideBarClick}/>
+                <div className="col-sm-10 teacherViewContainer">
+                  {React.cloneElement(this.props.children, {
+                      isLoggedIn: this.state.isLoggedIn,
+                      teacher: this.state.teacher,
+                      teacherId: this.state.teacherId,
+                      students: this.state.students,
+                      classes: this.state.classes,
+                      keys: this.state.keys,
+                      mostRecentTest: this.state.mostRecentTest,
+                      addClass: this.addClass,
+                      handlePostItClick: this.handlePostItClick,
+                      currentCourse: this.state.currentCourse
+                    })}
+                </div>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
