@@ -1,7 +1,7 @@
 const Test = require('./../../../db/test/testController.js');
 const AnswerKey = require('./../../../db/key/keyController.js');
 const Classes = require('./../../../db/classes/classController.js');
-const Scanner = require('./pythontonode.js').Scanner;
+const Scanner = require('./pythonChildProcess.js').Scanner;
 
 
 //DOCUMENT UPLOAD///////////////////////////////////////////////

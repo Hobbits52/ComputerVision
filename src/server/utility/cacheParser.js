@@ -22,6 +22,7 @@ const getStudents = (cache, cb) => {
 		}
 	});
 };
+
 ///////////////////////////////////////////////////////////////
 const getClasses = (cache, cb) => {
 	let classes;
@@ -33,7 +34,7 @@ const getClasses = (cache, cb) => {
 			classes = [];
 		}
 		let courseObj = {'ClassId': course.classId,
-											 'ClassName': course.classname};
+										 'ClassName': course.classname};
 		classes.push(courseObj);
 		if (counter === length) {
 			cb(null, classes);
