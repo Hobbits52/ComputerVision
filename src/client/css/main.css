@@ -196,5 +196,22 @@ input[type=button]:hover {
   @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
   @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
+/******CLASSESVIEW******/
+
+.dropdown {
+  color: #666666;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 0 200px;
+}
+
+.statisticsClassesDefault {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
 
 

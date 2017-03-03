@@ -6,17 +6,18 @@ import NavSide from './Nav/NavSide.jsx'
 import TeacherViewContainer from './TeacherViewContainer.jsx'
 import HomeView from './HomeView.jsx'
 import Login from './Login.jsx';
-import css from '../css/nav.css';
+import css from '../css/main.css';
+import Dropdown from 'react-dropdown';
 
-class App extends React.Component {
+class ClassesView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // State variables to go here
+      currentClass: 'Choose a class'
     };
 
-    // this.handleSomeEvent = this.handleSomeEvent.bind(this);
+    this.selectClass = this.selectClass.bind(this);
   }
 
 // --------------------------------------------------------------------
@@ -33,25 +34,37 @@ class App extends React.Component {
 // Event Handlers
 // --------------------------------------------------------------------
 
-  handleSomeEvent(someParameter) {
-
+  selectClass(event) {
+    console.log('This is the event', event.target.value);
+    console.log('this is this', this);
+    this.setState({
+      currentClass: event.target.value
+    });
   }
 // --------------------------------------------------------------------
 
-// <div className="construction">
-//   <p>Under Construction!</p>
-// </div>
-
   render() {
+    console.log(this.state.currentClass);
     return (
       <div>
-        {"ClassesView"}
+        <h2>{"Classes"}</h2>
+        <form className="dropdown">
+          <label>
+            Select a class:
+            <select value={this.state.currentClass} onChange={this.selectClass} >
+              {this.props.classes.map((course, key) => {
+                return <option value={course.ClassName} key={key}>{course.ClassName}</option>
+              })}
+            </select>
+          </label>
+      </form>
+      <h2 className="statisticsClassesDefault">{this.state.currentClass}</h2>
       </div>
     );
   }
 
 }
 
-export default App;
+export default ClassesView;
 
 //{this.props.children}

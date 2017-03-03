@@ -26,7 +26,7 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const user = {
+    const teacher = {
       username: this.state.username,
       password: this.state.password
     };
@@ -34,14 +34,14 @@ class Login extends React.Component {
     axios({
       method: 'POST',
       url: 'auth/login',
-      data: user
+      data: teacher
     })
     .then((res) => {
       console.log('response');
       // save token to Global
       window.localStorage.token = res.data.token;
       console.log('This is the res', res);
-      this.props.handleLoginSubmit(user.username);
+      this.props.handleLoginSubmit(teacher.username); //user might change to teacher
     }) 
     .catch((err) => { alert('You are not who you say you are.\n  Reconsider your identity.');
                       console.log('Login Error: ', err) });
