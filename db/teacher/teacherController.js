@@ -1,7 +1,5 @@
 const Teachers = require('./teacherModel.js').Teachers;
 const bcrypt = require('bcrypt-nodejs');
-const Cache = require('./../../src/server/utility/cacheData.js');
-//TODO: Refactor with promises on server side
 
 const Signup = (teacherInput, cb) => {
   let username = teacherInput.username;

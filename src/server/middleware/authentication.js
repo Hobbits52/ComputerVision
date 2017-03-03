@@ -100,7 +100,7 @@ const studentLogin = function(req, res) {
 
 // IMPORTANT: studentLogin should NEVER issue token
 const studentSignup = function(req, res) {
-  studentDBController.studentSignup(req.body, function(err, user) {
+  studentDBController.studentSignup(req.body, function(err, student) {
     if (err) {
       res.status(400).send(err);
       res.end();
