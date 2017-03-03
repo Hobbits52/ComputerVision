@@ -62,7 +62,7 @@ const teacherLogin = function(req, res) {
 };
 
 const teacherSignup = function(req, res, next) {
-  teacherDBController.Signup(req.body, function(err, teaher) {
+  teacherDBController.Signup(req.body, function(err, teacher) {
     if (err) {
       res.status(400).send(err);
       res.end();
