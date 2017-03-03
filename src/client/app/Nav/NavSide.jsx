@@ -20,7 +20,7 @@ class NavSide extends React.Component {
                  src={'../../../assets/apple.png'}
                  width="150"/>
           </div>
-          <div className="name">{this.props.user}</div>
+          <div className="name">{this.props.teacher}</div>
           <div className="listItem">
             <img className="menuIcons" alt="Home" src={'../../../assets/white-home.png'}/>
             <Link to="/dashboard">Home</Link>

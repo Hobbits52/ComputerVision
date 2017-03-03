@@ -14,7 +14,7 @@ class App extends React.Component {
 
     this.state = {
       isLoggedIn: false,
-      user: null,
+      teacher: null,
       // teacherId: null
     };
 
@@ -23,22 +23,21 @@ class App extends React.Component {
   }
 
   handleLogoutClick() {
-    console.log("helloooooo");
     logout()
     .then((res) => {
       this.setState({
       isLoggedIn: false,
-      user: null
+      teacher: null
       // teacherId: null
       }, () => this.props.router.push('/'))
     });
   };
   
 
-  handleLoginSubmit(user) {
+  handleLoginSubmit(teacher) {
     this.setState({
       isLoggedIn: true,
-      user: user //user is the username provided by successful login (user.username)
+      teacher: teacher //user is the username provided by successful login (user.username)
       // teacherId: user.data.teacherId
     }, () => this.props.router.push('/dashboard'));
   }
@@ -66,7 +65,7 @@ class App extends React.Component {
       isLoggedIn: this.state.isLoggedIn,
       handleLoginSubmit: this.handleLoginSubmit,
       handleLogoutClick: this.handleLogoutClick,
-      user: this.state.user 
+      teacher: this.state.teacher 
       // teacherId: this.state.teacherId
     });
   }

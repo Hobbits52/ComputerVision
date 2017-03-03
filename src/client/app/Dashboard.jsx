@@ -16,11 +16,11 @@ class Dashboard extends React.Component {
 
     this.state = {
       isLoggedIn: this.props.isLoggedIn,
-      user: this.props.user, 
+      teacher: this.props.teacher, 
       teacherId: 5, //this.props.teacherId
 
       students: 'An array of objects, each representing an individual students data.',
-      classes: 'An array of objects, each representing the data of an individual class.',
+      classes: [ {ClassName: 'Bio 101', ClassId: 1}, {ClassName: 'AP Bio', ClassId: 2}, {ClassName: 'Freshman Bio', ClassId: 3} ],
       keys: 'An array of objects, each representing the data corresponding to a particular key.',
       mostRecentTest: 'An object representing the data of the most recent exam to fill the stats view'
     };
@@ -40,18 +40,20 @@ class Dashboard extends React.Component {
     }
   }
 
-  componentDidMount() {
-    getAllTeachersClasses()
-    .then((res) => {
-      console.log('======= LINE 44 ========', res);
-      this.setState({
-        classes: res.body // confirm 
-      });
-    })
-    .catch((err) => {
-      console.log('Could not retrieve classes', err);
-    })
-  }
+  //NEED SERVER CONNECTION//
+
+  // componentDidMount() {
+  //   getAllTeachersClasses()
+  //   .then((res) => {
+  //     console.log('======= LINE 44 ========', res);
+  //     this.setState({
+  //       classes: res.body // confirm 
+  //     });
+  //   })
+  //   .catch((err) => {
+  //     console.log('Could not retrieve classes', err);
+  //   })
+  // }
 
 
 // --------------------------------------------------------------------
@@ -83,11 +85,11 @@ class Dashboard extends React.Component {
         <NavBar location={this.props.location} students={this.state.students} handleLogoutClick={this.props.handleLogoutClick} />
         <div className="container-fluid below-nav-top">
           <div className="row">
-            <NavSide className="navSide" user={this.state.user} />
+            <NavSide className="navSide" teacher={this.state.teacher} />
               <div className="col-sm-10 teacherViewContainer">
                 {React.cloneElement(this.props.children, {
                     isLoggedIn: this.state.isLoggedIn,
-                    user: this.state.user,
+                    teacher: this.state.teacher,
                     teacherId: this.state.teacherId,
                     students: this.state.students,
                     classes: this.state.classes,
