@@ -50,14 +50,12 @@ def url_to_image(url):
 	image = cv.imdecode(image, cv.IMREAD_COLOR) # DEV: optimize by reading in Grayscale?
 	return image
 
-<<<<<<< HEAD
 # DEV To Do: should modularize the scan_image code.
 def scan_image(url):
 	# print ' <==========  Running scanner.py =========>'
 	# get image from url
 	image = url_to_image(url)
-=======
->>>>>>> (cleanup) modularized scanner function
+
 
 def find_paper(image):
 	# convert to grayscale, grab edges (don't need to blur image, Canny method does this)
