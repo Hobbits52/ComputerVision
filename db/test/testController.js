@@ -52,10 +52,10 @@ const addTest = (test, cb) => {
   });
 };
 
-const getClassAnswers = (classId, cb) => {
+const getClassAnswers = (classObj, cb) => {
   let students = {};
   students.length = 0;
-
+  let classId = classObj.classId;
   Tests.findAll({where: {ClassId: classId}})
   .then((tests) => {
     if (tests.length > 0) {
@@ -70,18 +70,19 @@ const getClassAnswers = (classId, cb) => {
           students[tests[i].StudentId].tests.push(tests[i]);
         }
         if (i === tests.length -1) {
-          addStudentNames(students, cb);
+          addStudentNames(students, classObj, cb);
         }
       };
     } else {
-      cb(null, 'noStudent');
+      classObj.students = [];
+      cb(null, classObj);
     }
   }).catch((err) => {
     cb(err);
   });
 };
 
-const addStudentNames = (students, cb) => {
+const addStudentNames = (students, classObj, cb) => {
   var counter = 0;
   for(var student in students) {
     if (typeof students[student] === 'object') {
@@ -92,7 +93,12 @@ const addStudentNames = (students, cb) => {
           counter++; 
           if (counter === students.length) {
             delete students.length;
-            cb(null, students);
+            var studentArr = [];
+            for (var student in students) {
+              studentArr.push(students[student]);
+            };
+            classObj.students = studentArr;
+            cb(null, classObj);
           }
         }
       });

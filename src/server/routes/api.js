@@ -12,6 +12,7 @@ route.post('/addClass', api.post.Class);
 route.post('/addAnswerKey', api.post.AnswerKey);
 route.post('/addTest', api.post.Test);
 route.get('/getClasses', api.get.Classes);
-route.get('/getStudentsforClass', api.get.StudentsforClass);
+route.get('/getStudentsByClass', api.get.StudentsByClass);
+route.get('/getTestsForClass', api.get.TestsForClass);
 
 module.exports = route;

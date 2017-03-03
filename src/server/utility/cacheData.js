@@ -16,26 +16,18 @@ const saveTeacherData = function(teacherId) {
         var classObj = {};
         classObj.classId = classes[i].id;
         classObj.classname = classes[i].classname;
-
-        Test.getClassAnswers(classes[i].id, function(err, students) {
+        Test.getClassAnswers(classObj, function(err, classObject) {
           if(err) {
             console.log(err);
           } else {
-            var studentArr = [];
-            if (students !== 'noStudent') {
-              for (var student in students) {
-                studentArr.push(students[student]);
-              };
-            };
-            classObj.students = studentArr;
-            classesArr.push(classObj);
+            classesArr.push(classObject);
             counter++;
             if (counter === classes.length) {
-                var k = JSON.stringify(classesArr);
-                redisClient.setAsync('teacherData', k).then(function(response) {
-                }).catch(function(err) {
-                  console.log(err);
-                });
+              var k = JSON.stringify(classesArr);
+              redisClient.setAsync('teacherData', k).then(function(response) {
+              }).catch(function(err) {
+                console.log(err);
+              });
             }
           }
         });
@@ -44,6 +36,19 @@ const saveTeacherData = function(teacherId) {
   });
 };
 
+
+const getCache = function() {
+  const redisClient = require('./../server.js').redis;
+  return redisClient.getAsync('teacherData').then(function(response) {
+    var k = JSON.parse(response);
+    return k;
+  }).catch(function() {
+    var error = 'Something went wrong with cache fetching';
+    return error;
+  })
+};
+
 module.exports = {
-  'saveTeacherData': saveTeacherData
+  'saveTeacherData': saveTeacherData,
+  'getCache': getCache
 }

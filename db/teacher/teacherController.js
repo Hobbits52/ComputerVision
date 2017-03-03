@@ -36,7 +36,6 @@ const Login = (teacherInput, cb) => {
       let newUser = {};
       newUser.id = teacher.id;
       newUser.username = teacher.username;
-      Cache.TeacherData(teacher.id);
       cb(null, newUser);
     }
     })
