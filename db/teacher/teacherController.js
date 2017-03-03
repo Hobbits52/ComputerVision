@@ -1,8 +1,7 @@
 const Teachers = require('./teacherModel.js').Teachers;
 const bcrypt = require('bcrypt-nodejs');
-//TODO: Refactor with promises on server side
 
-exports.teacherSignup = (teacherInput, cb) => {
+const Signup = (teacherInput, cb) => {
   let username = teacherInput.username;
   let password = teacherInput.password;
 
@@ -14,13 +13,14 @@ exports.teacherSignup = (teacherInput, cb) => {
       cb(error);
     } else {
       let newUser = {};
+      newUser.id = teacher.id;
       newUser.username = teacher.username;
       cb(null, newUser);
     }
   });
 };
 
-exports.teacherLogin = (teacherInput, cb) => {
+const Login = (teacherInput, cb) => {
   let username = teacherInput.username;
   let password = teacherInput.password;
 
@@ -32,6 +32,7 @@ exports.teacherLogin = (teacherInput, cb) => {
       cb(error);
     } else {
       let newUser = {};
+      newUser.id = teacher.id;
       newUser.username = teacher.username;
       cb(null, newUser);
     }
@@ -41,11 +42,17 @@ exports.teacherLogin = (teacherInput, cb) => {
   });
 };
 
-exports.teacherSearch = (username, cb) => {
+const Search = (username, cb) => {
   Teachers.findOne({where: {username: username}})
   .then((teacher) => {
     cb(null, teacher);
   }).catch((err) => {
     cb(err);
   });
+}
+
+module.exports = {
+  'Signup': Signup,
+  'Login': Login,
+  'Search': Search
 }

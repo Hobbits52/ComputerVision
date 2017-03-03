@@ -1,40 +1,28 @@
-const teacherController = require('./../../../db/teacher/teacherController.js');
-const studentController = require('./../../../db/student/studentController.js');
-const jwt    = require('jsonwebtoken')
+const teacherDBController = require('./../../../db/teacher/teacherController.js');
+const studentDBController = require('./../../../db/student/studentController.js');
+const jwt = require('jsonwebtoken');
+const Cache = require('./../utility/cacheData.js');
 
-const checkSession = function(req, res, next) {
-  const isLoggedIn = req.session ? !!req.session.user : false;
-  console.log('req.session.user: ', req.session.user);
-  if (!isLoggedIn) {
-      res.status(401);
-      res.end();
-  } else {
-      if(next) {
-        next();
-      } else {
-        res.status(200);
-        res.end();
-      }
-  }
-};
 
+
+//////////////////////////////////////////////////////////////////
+//TOKEN SPECIFIC FUNCTIONS
+//////////////////////////////////////////////////////////////////
 const checkToken = function(req, res, next) {
   console.log('checkToken called');
   // check header for token --> our client will be in query string of GET request
   var token = req.query.token || req.headers['x-access-token'] || req.body.token
   if (token) {
    // verifies secret and checks exp
-    console.log('token provided =====> ', token)
-    jwt.verify(token, 'secret', function(err, decoded) {      
+    jwt.verify(token, 'secret', function(err, decoded) {
       if (err) {
         return res.status(403).send({ success: false, message: 'Failed to authenticate token.' });    
       } else {
         // if everything is good, save to request for use in other routes
-        req.decoded = decoded;    
+        req.decoded = decoded;
         next();
       }
     });
-
   } else {
     // if there is no token
     // return an error
@@ -45,53 +33,42 @@ const checkToken = function(req, res, next) {
   };
 };
 
-const createSession = function(req, res, user) {
-  return req.session.regenerate(function() {
-    req.session.user = user;
-  })
+const createToken = function(req, res, user, usertype) {
+  //express token based authentication instead of session
+  var token = jwt.sign({key: 'sample', user: usertype}, 'secret', {
+    expiresIn: '1m' // expires in 1 min for dev cycle
+  });
+  res.status(200).send({token: token, user: user});
+  //send token as well as user object containing
+  //{id: id, username: username}
 };
 
-const createToken = function(req, res) {
-  console.log('createToken called')
-  var token = jwt.sign({key: 'sample'}, 'secret', {
-      expiresIn: '1m' // expires in 1 min for dev cycle
-  });
-  console.log('Token created ------------------------------------------')
-  console.log(token)
-  res.status(200).send({token: token})
-}
-
 
 //////////////////////////////////////////////////////////////////
-//TEACHER
+//TEACHER LOGIN FUNCTIONS
 //////////////////////////////////////////////////////////////////
-const userLogin = function(req, res) {
-  console.log('userLogin called -------------------->')
-  console.log(req.body)
-  teacherController.teacherLogin(req.body, function(err, user) {
+const teacherLogin = function(req, res) {
+  teacherDBController.Login(req.body, function(err, teacher) {
     if (err) {
       console.log('Login Error: ', err);
       res.status(401).send(err);
       res.end();
   	} else {
-      // changed from Session to Token
-  	  // res.status(200).send('helloworld')
-      createToken(req, res);
+      //teacher: {id: id, username: username}
+      createToken(req, res, teacher, 'teacher');
+      Cache.saveTeacherData(teacher.id);
   	}
   });
 };
 
-
-
-const userSignup = function(req, res, next) {
-  teacherController.teacherSignup(req.body, function(err, user) {
+const teacherSignup = function(req, res, next) {
+  teacherDBController.Signup(req.body, function(err, teacher) {
     if (err) {
       res.status(400).send(err);
       res.end();
     } else {
       //changed from Session to Token
-      createToken(req, res);
-      next();
+      createToken(req, res, teacher, 'teacher');
     }
   });
 };
@@ -99,7 +76,7 @@ const userSignup = function(req, res, next) {
 
 
 // DEV TO DO: Change from session to token
-const userLogout = function(req, res) {  
+const teacherLogout = function(req, res) {  
   req.session.destroy(function() {
     res.status(200);
     res.end();
@@ -111,38 +88,33 @@ const userLogout = function(req, res) {
 //////////////////////////////////////////////////////////////////
 // IMPORTANT: studentLogin should NEVER issue token
 const studentLogin = function(req, res) {
-  studentController.studentLogin(req.body, function(err, user) {
+  studentDBController.studentLogin(req.body, function(err, student) {
     if (err) {
       res.status(401).send(err);
       res.end();
     } else {
-      createSession(req, res, user);
-      res.status(200);
-      res.end();
+      createToken(req, res, student, 'student');
     }
   });
 };
 
 // IMPORTANT: studentLogin should NEVER issue token
 const studentSignup = function(req, res) {
-  studentController.studentSignup(req.body, function(err, user) {
+  studentDBController.studentSignup(req.body, function(err, student) {
     if (err) {
       res.status(400).send(err);
       res.end();
     } else {
-      createSession(req, res, user);
-      res.status(200);
-      res.end();
+      createToken(req, res, student, 'student');
     }
   });
 };
 
 module.exports = {
-  'checkSession': checkSession,
-  'userLogin' : userLogin,
-  'userSignup' : userSignup,
+  'teacherLogin' : teacherLogin,
+  'teacherSignup' : teacherSignup,
   'studentLogin' : studentLogin,
   'studentSignup' : studentSignup,
-  'userLogout' : userLogout,
+  'teacherLogout' : teacherLogout,
   'checkToken': checkToken
 };
