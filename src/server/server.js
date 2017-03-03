@@ -4,11 +4,13 @@ const redis = require('redis');
 const bluebird = require('bluebird');
 bluebird.promisifyAll(redis.RedisClient.prototype);
 
-const redisClient = redis.createClient();
+const redisCl = null;
+//UNCOMMENT to run/////////////////////////
+// = redis.createClient();
 
 const server = app.listen(port);
 
 console.log('Server now listening on port ' + port);
 
 module.exports = {'server': server,
-									'redis': redisClient}
+									'redis': redisCl}
