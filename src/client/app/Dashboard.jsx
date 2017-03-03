@@ -6,7 +6,7 @@ import NavSide from './Nav/NavSide.jsx';
 import Login from './Login.jsx';
 import css from '../css/nav.css';
 import NavBar from './Nav/NavBar.jsx';
-import { getAllTeachersClasses } from './helpers/viewHelpers';
+import { getAllTeachersClasses, getAllStudents } from './helpers/viewHelpers';
 
 
 class Dashboard extends React.Component {
@@ -17,7 +17,7 @@ class Dashboard extends React.Component {
     this.state = {
       isLoggedIn: this.props.isLoggedIn,
       teacher: this.props.teacher, 
-      teacherId: 5, //this.props.teacherId
+      teacherId: this.props.teacherId,
 
       students: 'An array of objects, each representing an individual students data.',
       classes: [ {ClassName: 'Bio 101', ClassId: 1}, {ClassName: 'AP Bio', ClassId: 2}, {ClassName: 'Freshman Bio', ClassId: 3}, {ClassName: 'Honors Bio', ClassId: 4} ],
@@ -40,20 +40,28 @@ class Dashboard extends React.Component {
     }
   }
 
-  //NEED SERVER CONNECTION//
+  componentDidMount() {
+    getAllTeachersClasses()
+    .then((res) => {
+      this.setState({
+        classes: res.data 
+      });
 
-  // componentDidMount() {
-  //   getAllTeachersClasses()
-  //   .then((res) => {
-  //     console.log('======= LINE 44 ========', res);
-  //     this.setState({
-  //       classes: res.body // confirm 
-  //     });
-  //   })
-  //   .catch((err) => {
-  //     console.log('Could not retrieve classes', err);
-  //   })
-  // }
+      getAllStudents(this.state.teacherId)
+        .then((res) => {
+          console.log('======== LINE 56 ========', res);
+          this.setState({
+            students: res.data
+          })
+        })
+        .catch((err) => {
+          console.log('Could not retrieve students', err);
+        });
+    })
+    .catch((err) => {
+      console.log('Could not retrieve classes', err);
+    });
+  }
 
 
 // --------------------------------------------------------------------
