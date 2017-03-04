@@ -10,7 +10,7 @@ class Login extends React.Component {
     super(props)
 
     this.state = {
-      username: 'Full Name',
+      username: 'Mr.Fiddles',
       password: 'password'
     };
 
@@ -37,13 +37,12 @@ class Login extends React.Component {
       data: teacher
     })
     .then((res) => {
-      console.log('response');
       // save token to Global
       window.localStorage.token = res.data.token;
-      console.log('This is the res', res.data);
       this.props.handleLoginSubmit(res.data.user); 
     }) 
     .catch((err) => { 
+      // TODO: don't be alert message
       alert('You are not who you say you are.\n  Reconsider your identity.');
       console.log('Login Error: ', err); 
     });

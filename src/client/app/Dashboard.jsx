@@ -49,7 +49,6 @@ class Dashboard extends React.Component {
 
       getAllStudents(this.state.teacherId)
         .then((res) => {
-          console.log('======== LINE 56 ========', res);
           this.setState({
             students: res.data
           })
@@ -87,7 +86,6 @@ class Dashboard extends React.Component {
 // --------------------------------------------------------------------
 
   render() {
-    console.log('handle click within dashboard', this.props.handleLogoutClick);
     return (
       <div>
         <NavBar location={this.props.location} students={this.state.students} handleLogoutClick={this.props.handleLogoutClick} />

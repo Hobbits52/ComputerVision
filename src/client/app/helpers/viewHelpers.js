@@ -12,40 +12,6 @@ exports.getAllTeachersClasses = () => {
   }); 
 };
 
-// --------------------------------------------------------------------------
-// Example Route for this axios request:
-// --------------------------------------------------------------------------
-// In a file called dataRoutes.js, provide me the following route:
-// 
-// router.get('/allTeachersClasses', controller.classes.getAll);
-// --------------------------------------------------------------------------
-// 
-// --------------------------------------------------------------------------
-// Example Controller for this route:
-// --------------------------------------------------------------------------
-// In a file called dataControllers.js, provide the following function:
-// 
-// THIS EXAMPLE IS IN KNEX, NOT SEQUELIZE!!!!
-// 
-// ...but same idea!
-// 
-// classes: {   
-//   getAll: function(req, res) {
-//     console.log(req.query);
-//     var teacher_id = req.query.teacher_id;
-//     knex('Teachers')
-//       .select('*')
-//       .where('teacher_id', '=', teacher_id)
-//       .then(function(data){
-//         res.send(data);
-//       })
-//   },
-//   nextFunctionUnderClasses: function(req, res) {},
-//   etc: function(req, res) {}
-// }
-// 
-// 
-// --------------------------------------------------------------------------
 
 exports.getAllStudentsInClass = (classId) => {
   return axios.get('api/allClassesStudents', {
@@ -56,8 +22,6 @@ exports.getAllStudentsInClass = (classId) => {
   }); 
 };
 
-// router.get('/allClassesStudents', controller.students.getAll);
-
 exports.getAllTestsInClass = (classId) => {
   return axios.get('api/allClassesTests', {
     params: {
@@ -66,9 +30,7 @@ exports.getAllTestsInClass = (classId) => {
     }
   }); 
 };
-
-// router.get('/allClassesTests', controller.tests.getAll);
-
+ 
 exports.getAllStudentsWhoTookTest = (testId) => {
   return axios.get('api/allStudentsWhoTookTest', {
     params: {
@@ -86,14 +48,6 @@ exports.getAllStudentsWhoTookTest = (testId) => {
 
 // exports.getTeachersClasses = (teacherId) => {
 //   return axios.get('teacher/teachersClasses');
-// };
-
-// exports.addSomeKindOfData = (dataToAdd) => {
-//   return axios({
-//     method: 'POST',
-//     url: 'teacher/emotionalStateData',
-//     data: emotionalStateEntry
-//   });
 // };
 
 // --------------------------------------------------------------------------

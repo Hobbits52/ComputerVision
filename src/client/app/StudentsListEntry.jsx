@@ -12,8 +12,6 @@ class StudentsListEntry extends React.Component {
     this.state = {
       // State variables to go here
     };
-    console.log('in student list entry', this.props.student);
-    // this.handleSomeEvent = this.handleSomeEvent.bind(this);
   }
 
 // --------------------------------------------------------------------
@@ -36,12 +34,16 @@ class StudentsListEntry extends React.Component {
 // --------------------------------------------------------------------
 
   render() {
-    console.log('in list entry', this.props.student);
     return (
-      <tr onClick={this.props.handleStudentListEntryClick}>
+      <tr name={this.props.student.StudentName} onClick={() => {
+        this.props.handleStudentsListEntryClick(
+          this.props.student.StudentName,
+          this.props.student.StudentId,
+          this.props.student.courseName
+          )}}>
         <td>{this.props.student.StudentId}</td>
         <td>{this.props.student.StudentName}</td>
-        <td>{"Biology 101"}</td>
+        <td>{this.props.student.courseName}</td>
       </tr>
     );
   }

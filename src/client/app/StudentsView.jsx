@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
 import {getAllStudents} from './helpers/viewHelpers.js';
 import StudentsList from './StudentsList.jsx';
-import StudentResults from './StudentResults.jsx';
+import StudentTestList from './StudentTestList.jsx';
 import css from '../css/nav.css';
 
 class StudentsView extends React.Component {
@@ -12,61 +12,52 @@ class StudentsView extends React.Component {
 
     this.state = {
       students: this.props.students,
-      currentStudent: null
+      currentStudentName: null,
+      currentId: null,
+      currentCourse: null
     };
 
     this.handleStudentsListEntryClick = this.handleStudentsListEntryClick.bind(this);
-    console.log('In the students view', this.state.students);
   }
-
-// --------------------------------------------------------------------
-// Component Lifecycle Functions
-// --------------------------------------------------------------------
 
   componentWillMount() {
-    getAllStudents(1).then((res) => { 
-      this.setState({
-        students: Array(res.data[0].students[1])
-      });
-    });
   }
-// --------------------------------------------------------------------
 
+  handleStudentsListEntryClick(studentName, studentId, studentCourse ) {
+    console.log('STUDENT NAME', studentName);
+    console.log('STUDENT ID', studentId);
+    console.log('STUDENT COURSE', studentCourse);
 
-// --------------------------------------------------------------------
-// Event Handlers
-// --------------------------------------------------------------------
-
-  handleStudentsListEntryClick(event) {
     this.setState({
-      // currentStudent: event.target.id   THIS IS NOT WORKING - FIX IT LATER!
-      currentStudent: true
+      currentStudent: studentName,
+      currentId: studentId,
+      currentCourse: studentCourse
     });
-    // }, () => this.props.router.push('studentresults'));   SAME AS ABOVE
-    console.log('this.state.students inside StudentView is: ', this.state.students);
-    console.log('this.state.currentStudent inside StudentView is: ', this.state.currentStudent);
-  // })
   }
-// --------------------------------------------------------------------
 
   render() {
-    // if (this.state.currentStudent === null) {
+    console.log('This is this.props.students', this.props.students);
+    if (this.state.currentStudentName === null) {
       return (
         <div>
           <h2>Students</h2>
           <StudentsList students={this.state.students}
                         currentStudentId={this.state.currentStudent}
-                        handleStudentListEntryClick={this.handleStudentsListEntryClick} 
+                        handleStudentsListEntryClick={this.handleStudentsListEntryClick} 
           />
         </div>
       );  
-  //   } else {
-  //     return (
-  //       <div>
-  //         <StudentResults />
-  //       </div>
-  //     );
-  //   }
+    } else {
+      return (
+        <div>
+          <StudentTestList
+            studentName={this.state.currentStudentName}
+            studentId={this.state.currentId}
+            currentCourse={this.state.currentCourse}
+            />
+        </div>
+      );
+    }
   }
 }
 

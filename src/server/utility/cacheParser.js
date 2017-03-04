@@ -7,7 +7,7 @@ const getStudents = (cache, cb) => {
 	cache.forEach(function(course) {
 		counter++;
 		let courseObj = {};
-		courseObj.class = {'ClassId': course.ClassId,
+		courseObj.class = {'ClassId': course.classId,
 											 'ClassName': course.classname,
 											};
 		courseObj.students = [];
@@ -28,7 +28,6 @@ const getClasses = (cache, cb) => {
 	let classes;
 	let counter = 0;
 	let length = cache.length;
-	console.log('this is the cache', cache);
 	cache.forEach(function(course) {
 		counter++;
 		if (classes === undefined) {

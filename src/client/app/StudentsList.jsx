@@ -9,34 +9,14 @@ class StudentsList extends React.Component {
     super(props);
 
     this.state = {
-      students: this.props.students
+      students: this.props.students,
+      currentStudent: this.props.currentStudent
     };
-
-    // this.handleSomeEvent = this.handleSomeEvent.bind(this);
   }
-
-// --------------------------------------------------------------------
-// Component Lifecycle Functions
-// --------------------------------------------------------------------
-
-  componentDidMount() {
-
-  }
-// --------------------------------------------------------------------
-
-
-// --------------------------------------------------------------------
-// Event Handlers
-// --------------------------------------------------------------------
-
-  handleSomeEvent(someParameter) {
-
-  }
-// --------------------------------------------------------------------
 
   render() {
 
-    // re-format data for data list
+    // re-format data for student list
     let data = [];
     this.state.students.map((obj) => {
       var studentObj = {courseName: obj.class.ClassName}
@@ -47,28 +27,26 @@ class StudentsList extends React.Component {
       }
     });
 
-    
-      return (
-        <div>
-          <table>
-            <tbody>
-              {data.map((pupil, index) => {
-                console.log('This is one student entry', pupil);
-                  return <StudentsListEntry student={pupil}
-                                     currentStudent={this.props.currentStudent}
-                                     handleStudentListEntryClick={this.props.handleStudentListEntryClick}
-                                     key={index}
-                  />
-                })
-              }
-            </tbody>
-          </table>
-        </div>
-      );
 
+    return (
+      <div>
+        <table>
+          <tbody>
+            {data.map((pupil, index) => {
+                return <StudentsListEntry student={pupil}
+                                   currentStudent={this.props.currentStudent}
+                                   handleStudentsListEntryClick={this.props.handleStudentsListEntryClick}
+                                   key={index}
+                                   
+                />
+              })
+            }
+          </tbody>
+        </table>
+      </div>
+    );
 
   }
-
 }
 
 export default StudentsList;
