@@ -1,18 +1,19 @@
-import React  from 'react';
-import Axis   from './Axis.jsx';
+import React from 'react';
+import Axis from './Axis.jsx';
+import * as d3 from "d3";
 
 const XYAxis = (props) => {
   
   const xSettings = {
     translate: `translate(0, ${(props.height - props.padding)})`,
     scale: props.xScale,
-    orient: 'bottom'
+    orient: d3.axisBottom()
   };
   
   const ySettings = {
     translate: `translate(${props.padding}, 0)`,
     scale: props.yScale,
-    orient: 'left'
+    orient: d3.axisLeft()
   };
 
   return (
