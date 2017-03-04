@@ -51,10 +51,10 @@ def url_to_image(url):
 	return image
 
 # DEV To Do: should modularize the scan_image code.
-def scan_image(url):
+#def scan_image(url):
 	# print ' <==========  Running scanner.py =========>'
 	# get image from url
-	image = url_to_image(url)
+	#image = url_to_image(url)
 
 
 def find_paper(image):
@@ -94,7 +94,7 @@ def find_paper(image):
 	if perimeter < 2300 or perimeter > 3200:
 		data['status'] = 400
 		data['message'] = 'Paper not found. Make sure image has a clear background'
-		return  # DEV: try alternate approaches when image has "textured" background.
+		return # DEV: try alternate approaches when image has "textured" background.
 	
 	# straighten grayscale image.
 	return four_point_transform(gray, documentContours.reshape(4, 2))
@@ -229,8 +229,8 @@ def get_id(idSheetThresh):
 
 	# if there aren't 32 idBubbles, return partial results
 	if len(idBubbles) != 32:
-		testdata['status'] = 206
-		testdata['message'] = 'could not read 32 id bubbles. check photo quality'
+		data['status'] = 206
+		data['message'] = 'could not read 32 id bubbles. check photo quality'
 		return
 
 	# sort left to right to find rows
