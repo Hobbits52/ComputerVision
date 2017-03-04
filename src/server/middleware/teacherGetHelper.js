@@ -3,7 +3,7 @@ const bluebird = require('bluebird');
 const CacheParser = require('./../utility/cacheParser.js');
 ////////////////////////////////////////////////////////////////
 const Classes = function(req, res) {
-	if (req.decoded.user !== 'teacher') {
+	if (req.decoded.user === 'teacher') {
 		bluebird.promisify(Cache.getCache);
 		Cache.getCache('teacherData').then(function(cache) {
 				CacheParser.getClasses(cache, function(err, resp) {
@@ -23,7 +23,7 @@ const Classes = function(req, res) {
 
 ////////////////////////////////////////////////////////////////
 const StudentsByClass = function(req, res) {
-	if (req.decode.user === 'teacher') {
+	if (req.decoded.user === 'teacher') {
 	 	bluebird.promisify(Cache.getCache);
 		Cache.getCache('teacherData').then(function(cache) {
 			CacheParser.getStudents(cache, function(err, resp) {
