@@ -18,6 +18,7 @@ class StudentTestList extends React.Component {
     };
 
     this.handleUserSelectTest = this.handleUserSelectTest.bind(this);
+    this.handleGoBackTestList = this.handleGoBackTestList.bind(this);
   }
 
   componentWillMount() {
@@ -42,9 +43,15 @@ class StudentTestList extends React.Component {
   }
 
   handleUserSelectTest(test) {
-    console.log('this was clicked');
     this.setState({
       currentTest: test
+    })
+  }
+
+  handleGoBackTestList() {
+    console.log('helloooooo', this.state.currentStudentName);
+    this.setState({
+      currentTest: null
     })
   }
 
@@ -84,7 +91,11 @@ class StudentTestList extends React.Component {
     if (this.state.currentTest !== null) {
       return (
         <div>
-          <StudentResults test={this.state.currentTest}/>
+          <StudentResults 
+            test={this.state.currentTest} 
+            studentName={this.state.currentStudentName}
+            handleGoBackTestList={this.handleGoBackTestList}
+          />
         </div>
       );
     }

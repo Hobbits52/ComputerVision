@@ -4,9 +4,18 @@ import axios from 'axios';
 import css from '../css/auth.css';
 
 class StudentResults extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentStudentName: this.props.studentName
+    };
+  }
+
   render() {
     return (
       <div className="studentResults">
+        <h5 className = "backCrumb" onClick={this.props.handleGoBackTestList}>{"< Back to " + this.state.currentStudentName + "'s tests"}</h5>
         <h3>Rachel's Results: 82%</h3>
         <h3>BIO 101: Midterm 1</h3>
         <table>
