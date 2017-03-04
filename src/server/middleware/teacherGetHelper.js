@@ -66,8 +66,26 @@ const TestsForClass = function(req, res) {
 	}
 }
 ////////////////////////////////////////////////////////////////
+const KeysForClass = function(req, res) {
+	if (req.decoded.user === 'teacher') {
+		let classId = req.query.class_Id;
+		bluebird.promisify(Cache.getCache);
+		Cache.getCache('teacherData').then(function(cache) {
+			CacheParser.getKeysForClass(cache, classId, function(err, resp) {
+				if (err) {
+					res.status(400).send(err);
+				} else {
+					res.status(200).send(resp);
+					res.end();
+				}
+			})
+		})
+	}
+}
+////////////////////////////////////////////////////////////////
 module.exports = {
 	'Classes': Classes,
   'StudentsByClass': StudentsByClass,
-  'TestsForClass': TestsForClass
+  'TestsForClass': TestsForClass,
+  'KeysForClass': KeysForClass
 }

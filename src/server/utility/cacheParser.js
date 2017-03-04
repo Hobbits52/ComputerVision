@@ -57,8 +57,28 @@ const getTestsForClass = (cache, classId, cb) => {
 };
 
 ///////////////////////////////////////////////////////////////
+const getKeysForClass = (cache, classId, cb) => {
+	let course = cache.filter(function(cls) {
+		return cls.classId === parseInt(classId, 10);
+	});
+
+	if (course.length > 0) {
+		let classObj = {};
+		console.log('************', course);
+		classObj.classId = course[0].classId;
+		classObj.classname = course[0].classname;
+		classObj.answerkey = course[0].answerKey;
+		cb(null, classObj);
+	} else {
+		let error = 'No such class in database';
+		cb(error);
+	}
+};
+
+///////////////////////////////////////////////////////////////
 module.exports = {
 	'getStudents': getStudents,
 	'getClasses': getClasses,
-	'getTestsForClass': getTestsForClass
+	'getTestsForClass': getTestsForClass,
+	'getKeysForClass': getKeysForClass
 };

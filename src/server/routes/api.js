@@ -14,5 +14,6 @@ route.post('/addTest', api.post.Test);
 route.get('/getClasses', api.get.Classes);
 route.get('/getStudentsByClass', api.get.StudentsByClass);
 route.get('/getTestsForClass', api.get.TestsForClass);
+route.get('/getKeysForClass', api.get.KeysForClass);
 
 module.exports = route;
