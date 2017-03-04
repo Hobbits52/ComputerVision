@@ -66,6 +66,7 @@ const TestsForClass = function(req, res) {
 		res.end();
 	}
 }
+
 ////////////////////////////////////////////////////////////////
 const KeysForClass = function(req, res) {
 	if (req.decoded.user === 'teacher') {
