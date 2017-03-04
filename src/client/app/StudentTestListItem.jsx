@@ -12,11 +12,10 @@ class StudentTestListItem extends React.Component {
   }
 
   render() {
-    console.log(this.props.test);
     var result = this.state.test.result * 100 + "%"
-    // var result += "%";
+    console.log('This is in the test', this.state.test);
     return (
-      <tr>
+      <tr onClick={() => {this.props.handleUserSelectTest(this.state.test[0])}}>
         <td>{this.props.currentCourse}</td>
         <td>{result}</td>
       </tr>

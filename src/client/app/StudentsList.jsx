@@ -36,10 +36,11 @@ class StudentsList extends React.Component {
         <table>
           <tbody>
             {data.map((pupil, index) => {
-                return <StudentsListEntry student={pupil}
-                                   currentStudent={this.props.currentStudent}
-                                   handleStudentsListEntryClick={this.props.handleStudentsListEntryClick}
-                                   key={index}
+                return <StudentsListEntry 
+                    student={pupil}
+                    currentStudent={this.props.currentStudent}
+                    handleStudentsListEntryClick={this.props.handleStudentsListEntryClick}
+                    key={index}
                                    
                 />
               })
