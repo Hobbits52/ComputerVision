@@ -6,8 +6,6 @@ const path = require('path');
 const Scanner = function(uploadFile, type, cb) {
 	const py = spawn('python', [path.join(__dirname + '/../utility/scanner.py')]);
 	let url = uploadFile.url;
-	let TeacherId = uploadFile.TeacherId;
-	let ClassId = uploadFile.ClassId;
 	let dataString = '';
 
 	py.stdin.write(JSON.stringify(url));
@@ -31,8 +29,8 @@ const Scanner = function(uploadFile, type, cb) {
 	  	cb(data.message);
 	  } else {
 		  data.answers = JSON.stringify(data.answers);
-		  data.TeacherId = TeacherId;
-		  data.ClassId = ClassId;
+		  data.TeacherId = uploadFile.TeacherId;
+		  data.ClassId = uploadFile.ClassId;
 		  if (type === 'key') {
 		  	Answerkey.addKey(data, function(err, data) {
 		  	  if (err) {

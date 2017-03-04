@@ -47,7 +47,7 @@ class Login extends React.Component {
       window.localStorage.token = res.data.token;
       this.props.handleLoginSubmit();
     }); 
-
+  };
 
     
     // here i am receiving a user with a user.username
