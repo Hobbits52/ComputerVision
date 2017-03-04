@@ -15,10 +15,10 @@ app.use(require('morgan')('dev'));
 
 app.use(bodyParser.json());
 
-
 // routes
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);
+
 
 app.use(express.static(path.join(__dirname + '/../client/')));
 

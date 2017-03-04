@@ -75,11 +75,11 @@ class Dashboard extends React.Component {
   }
 
   addKey() {
-    console.log('Add new class');
+    console.log('Add new ckey');
   }
 
   addTest() {
-    console.log('Add new class');
+    console.log('Add new test');
   }
 
 

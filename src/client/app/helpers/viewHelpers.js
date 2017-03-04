@@ -23,7 +23,7 @@ exports.getAllStudentsInClass = (classId) => {
 };
 
 exports.getAllTestsInClass = (classId) => {
-  return axios.get('api/allClassesTests', {
+  return axios.get('/api/getTestsForClass', {
     params: {
       class_Id: classId,
       token: window.localStorage.token

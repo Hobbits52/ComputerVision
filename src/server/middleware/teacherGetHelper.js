@@ -46,6 +46,7 @@ const StudentsByClass = function(req, res) {
 
 ////////////////////////////////////////////////////////////////
 const TestsForClass = function(req, res) {
+	console.log('in tests for class', req.query.classId);
 	if (req.decoded.user === 'teacher') {
 		let classId = req.query.class_Id;
 		bluebird.promisify(Cache.getCache);
@@ -55,6 +56,7 @@ const TestsForClass = function(req, res) {
 					res.status(400).send(err);
 					res.end();
 				} else {
+					console.log('THIS IS THE RESP IN TESTSFORCLASS', resp);
 					res.status(200).send(resp);
 					res.end();
 				}
