@@ -1,5 +1,6 @@
 import React from 'react';
 import ScatterPlot from './ScatterPlot.jsx';
+import css from '../../css/scatterplot.css'
 
 // ----------------------------------------------------------------------------
 // Everything in here can me moved to another file!
@@ -20,12 +21,37 @@ const randomNum = () => Math.floor(Math.random() * 1000);
 const randomDataSet = () => {
   return Array.apply(null, {length: numDataPoints}).map(() => [randomNum(), randomNum()]);
 }
+
+// Returns a pair of random gaussian numbers
+const randomGaussNum = (mu, sigma) => {
+  // Generate pair of independent random uniformly distributed variables
+  // within interval (0,1).
+  let u1 = Math.random();
+  let u2 = Math.random();
+
+  // Transform u1 and u2 to independent random variables with a standard 
+  // normal distribution.
+  let z0 = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+  let z1 = Math.sqrt(-2 * Math.log(u1)) * Math.sin(2 * Math.PI * u2);
+
+  // Transform standard normal deviate, z0, to a value within a normal
+  // distribution with mean, mu, and standard deviation, sigma.
+  return z0 * sigma + mu;
+}
+
+// Creates an array of random normally distrubted test scores with mean, mu,
+// and standard deviation, sigma.
+const randomGaussDataSet = (mu, sigma) => {
+  return Array.apply(null, {length: numDataPoints}).map(() => randomGaussNum(mu, sigma));
+}
+
 // ----------------------------------------------------------------------------
 class Chart extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      data: randomDataSet() 
+      data: randomDataSet(),
+      gaussData: randomGaussDataSet()
     };
   }
 
@@ -37,9 +63,10 @@ class Chart extends React.Component {
     return (
       <div>
         <h1>BIO 365: Cancer Biology - MidTerm 1</h1>
-        <ScatterPlot {...props} {...styles} />
+        <ScatterPlot {...this.state} {...styles} />
+        <Histogram {...this.state} {...styles} />
         <div className="controls">
-          <button className="btn randomize" onClick={() => props.randomizeData()}>
+          <button className="btn randomize" onClick={() => this.randomizeData()}>
             Randomize Data
           </button>
         </div>
