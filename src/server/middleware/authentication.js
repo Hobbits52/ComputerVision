@@ -36,7 +36,7 @@ const checkToken = function(req, res, next) {
 const createToken = function(req, res, user, usertype) {
   //express token based authentication instead of session
   var token = jwt.sign({key: 'sample', user: usertype}, 'secret', {
-    expiresIn: '1m' // expires in 1 min for dev cycle
+    expiresIn: '5m' // expires in 1 min for dev cycle
   });
   res.status(200).send({token: token, user: user});
   //send token as well as user object containing

@@ -12,12 +12,29 @@ exports.getAnswers = (cb) => {
   });
 };
 
-exports.getAllAnswerKeys = (cb) => {
-  answerKeys.findAll()
+exports.getKeysForClass = (classId, classObj, cb) => {
+  answerKeys.findAll({where: {ClassId: classId}})
   .then((fetchedKeys) => {
-    cb(null, fetchedKeys);
-  }).catch((err) =>{
-    cb(err);
+    let length = fetchedKeys.length;
+    let counter = 0;
+    let keyObj = {};
+    if (length > 0) {
+      fetchedKeys.forEach(function(key) {
+        keyObj[key.id] = key.answers;
+        counter++;
+        if (counter === length) {
+          classObj.answerKey = keyObj;
+          console.log('SUCCESS ADDING KEY', classObj);
+          cb(null, classObj);
+        }
+      });
+    } else {
+      classObj.answerKey = keyObj;
+      console.log('NO KEY TO ADD', classObj);
+      cb(null, classObj);
+    }
+  }).catch((err) => {
+      cb(err);
   });
 };
 

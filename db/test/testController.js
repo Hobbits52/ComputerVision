@@ -55,6 +55,9 @@ const addTest = (test, cb) => {
 const getClassAnswers = (classObj, cb) => {
   let students = {};
   students.length = 0;
+  if (!classObj.classId) {
+    cb(null, classObj);
+  }
   let classId = classObj.classId;
   Tests.findAll({where: {ClassId: classId}})
   .then((tests) => {
