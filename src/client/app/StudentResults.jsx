@@ -2,22 +2,39 @@ import React from 'react';
 import {Link} from 'react-router';
 import axios from 'axios';
 import css from '../css/auth.css';
+import { getKeysForClass } from './helpers/viewHelpers.js';
 
 class StudentResults extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentStudentName: this.props.studentName
+      currentStudentName: this.props.studentName,
+      currentCourseId: this.props.currentCourseId,
+      currentCourseName: null,
+      answers: null,
+      test: this.props.test
     };
   }
 
+  componentWillMount() {
+    getKeysForClass(this.state.currentCourseId)
+    .then((res) => {
+      console.log('This is the response from all keys', res.data);
+      this.setState({
+        answers: res.answerkey,
+        currentCourseName: res.classname
+      })
+    })
+  }
+
   render() {
+    var result = this.state.test.result * 100 + "%"
     return (
       <div className="studentResults">
         <h5 className = "backCrumb" onClick={this.props.handleGoBackTestList}>{"< Back to " + this.state.currentStudentName + "'s tests"}</h5>
-        <h3>Rachel's Results: 82%</h3>
-        <h3>BIO 101: Midterm 1</h3>
+        <h3>{this.state.currentStudentName + "'s Results: " + result}</h3>
+        <h3>{this.state.currentCourseName}</h3>
         <table>
           <tbody>
             <tr>

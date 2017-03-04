@@ -7,15 +7,16 @@ class StudentTestListItem extends React.Component {
     super(props);
 
     this.state = {
-      test: this.props.test[0]
+      test: this.props.test
     };
   }
 
+
   render() {
     var result = this.state.test.result * 100 + "%"
-    console.log('This is in the test', this.state.test);
+    console.log('This is the state test', this.state.test);
     return (
-      <tr onClick={() => {this.props.handleUserSelectTest(this.state.test[0])}}>
+      <tr onClick={() => {this.props.handleUserSelectTest(this.state.test)}}>
         <td>{this.props.currentCourse}</td>
         <td>{result}</td>
       </tr>

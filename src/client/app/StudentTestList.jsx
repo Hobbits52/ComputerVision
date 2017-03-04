@@ -12,7 +12,7 @@ class StudentTestList extends React.Component {
     this.state = {
       currentStudentName: this.props.studentName,
       currentCourseId: this.props.currentCourseId,
-      tests: null,
+      classes: null,
       returnTests: null,
       currentTest: null
     };
@@ -25,20 +25,26 @@ class StudentTestList extends React.Component {
     getAllTestsInClass(this.state.currentCourseId)
     .then((res) => {
       this.setState({
-        tests: res.data
+        classes: res.data
       });
 
       let allStudentTests = [];
-      for (var i = 0; i < this.state.tests[0].students.length; i++) {
-        if (this.props.studentId === this.state.tests[0].students[i].StudentId) {
-          allStudentTests.push(this.state.tests[0].students[i].tests);
+
+      console.log('This is res.data', res.data);
+
+      //for now, assume that a student is not in more than one class with the same teacher
+      for (var i = 0; i < this.state.classes.length; i++) {
+        for (var j = 0; j < this.state.classes[i].students.length; j++) {
+          if (this.props.studentId === this.state.classes[i].students[j].StudentId) {
+            allStudentTests = this.state.classes[i].students[j].tests;
+            break;
+          }
         }
       }
 
       this.setState({
         returnTests: allStudentTests
       });
-
     })
   }
 
@@ -49,7 +55,6 @@ class StudentTestList extends React.Component {
   }
 
   handleGoBackTestList() {
-    console.log('helloooooo', this.state.currentStudentName);
     this.setState({
       currentTest: null
     })
@@ -95,6 +100,7 @@ class StudentTestList extends React.Component {
             test={this.state.currentTest} 
             studentName={this.state.currentStudentName}
             handleGoBackTestList={this.handleGoBackTestList}
+            currentCourseId={this.state.currentCourseId}
           />
         </div>
       );
