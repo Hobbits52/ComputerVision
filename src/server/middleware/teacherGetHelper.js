@@ -56,7 +56,6 @@ const TestsForClass = function(req, res) {
 					res.status(400).send(err);
 					res.end();
 				} else {
-					console.log('THIS IS THE RESP IN TESTSFORCLASS', resp);
 					res.status(200).send(resp);
 					res.end();
 				}

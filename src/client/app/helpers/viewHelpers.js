@@ -40,15 +40,17 @@ exports.getAllStudentsWhoTookTest = (testId) => {
   }); 
 };
 
+exports.getKeysForClass = (classId) => {
+  return axios.get('/api/getKeysForClass', {
+    params: {
+      class_Id: classId,
+      token: window.localStorage.token
+    }
+  })
+}
+
 
 // Need one more function for getting most recent test results...
-
-
-// Other Model Requests:
-
-// exports.getTeachersClasses = (teacherId) => {
-//   return axios.get('teacher/teachersClasses');
-// };
 
 // --------------------------------------------------------------------------
 // StudentsView Helpers
