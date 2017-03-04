@@ -70,6 +70,14 @@ p {
 
 /******INNERVIEWS******/
 
+.entryView {
+  margin-top: 65px;
+}
+
+.backCrumb:hover {
+  color: #434343;
+}
+
 .innerViews {
   padding: 0 40px;
 }

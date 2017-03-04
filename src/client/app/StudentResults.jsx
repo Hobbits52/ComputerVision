@@ -4,12 +4,10 @@ import axios from 'axios';
 import css from '../css/auth.css';
 
 class StudentResults extends React.Component {
-// const StudentResults = function({ testTitle, testTaker, handleTestTakerClick }) {
   render() {
-    console.log(this.props);
     return (
       <div className="studentResults">
-        <h1>Rachel's Results: 82%</h1>
+        <h3>Rachel's Results: 82%</h3>
         <h3>BIO 101: Midterm 1</h3>
         <table>
           <tbody>

@@ -3,23 +3,26 @@ import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
 import StudentTestListItem from './StudentTestListItem.jsx';
 import {getAllTestsInClass} from './helpers/viewHelpers.js';
+import StudentResults from './StudentResults.jsx';
 
 class StudentTestList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // State variables to go here
+      currentStudentName: this.props.studentName,
       currentCourseId: this.props.currentCourseId,
       tests: null,
-      returnTests: null
+      returnTests: null,
+      currentTest: null
     };
+
+    this.handleUserSelectTest = this.handleUserSelectTest.bind(this);
   }
 
   componentWillMount() {
     getAllTestsInClass(this.state.currentCourseId)
     .then((res) => {
-      console.log('here is the res', res);
       this.setState({
         tests: res.data
       });
@@ -38,10 +41,19 @@ class StudentTestList extends React.Component {
     })
   }
 
+  handleUserSelectTest(test) {
+    console.log('this was clicked');
+    this.setState({
+      currentTest: test
+    })
+  }
+
   render() {
-    if (this.state.returnTests !== null) {
+    if (this.state.returnTests !== null && this.state.currentTest === null) {
       return (
         <div>
+          <h5 className="backCrumb" onClick={this.props.handleGoBackStudents}>{"< Back to Students"}</h5>
+          <h3>{this.state.currentStudentName + "'s Tests"}</h3>
           <table>
             <tbody>
                 {this.state.returnTests.map((test, index) => {
@@ -52,6 +64,7 @@ class StudentTestList extends React.Component {
                             currentCourse={this.props.currentCourse}
                             currentCourseId={this.props.currentCourseId}
                             key={index}
+                            handleUserSelectTest={this.handleUserSelectTest}
                                      
                   />
                 })
@@ -60,9 +73,18 @@ class StudentTestList extends React.Component {
           </table>
         </div>
       ); 
-    } else {
+    } 
+    if (this.state.returnTests === null) {
       return (
         <div>
+        </div>
+      );
+    }
+
+    if (this.state.currentTest !== null) {
+      return (
+        <div>
+          <StudentResults test={this.state.currentTest}/>
         </div>
       );
     }
