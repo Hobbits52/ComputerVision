@@ -46,7 +46,7 @@ const StudentsByClass = function(req, res) {
 ////////////////////////////////////////////////////////////////
 const TestsForClass = function(req, res) {
 	if (req.decoded.user === 'teacher') {
-		let classId = req.query.classId;
+		let classId = req.query.class_Id;
 		bluebird.promisify(Cache.getCache);
 		Cache.getCache('teacherData').then(function(cache) {
 			CacheParser.getTestsForClass(cache, classId, function(err, resp) {
