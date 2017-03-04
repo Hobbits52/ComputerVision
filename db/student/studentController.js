@@ -14,6 +14,7 @@ exports.studentSignup = (studentInput, cb) => {
       cb(error);
     } else {
       let newUser = {};
+      newUser.id = student.id;
       newUser.username = student.username;
       cb(null, newUser);
     }
@@ -32,6 +33,7 @@ exports.studentLogin = (studentInput, cb) => {
       cb(error);
     } else {
       let newUser = {};
+      newUser.id = student.id;
       newUser.username = student.username;
       cb(null, newUser);
     }

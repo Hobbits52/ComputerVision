@@ -37,8 +37,8 @@ const addTest = (test, cb) => {
         URL: test.URL,
         result: percentage,
         StudentId: test.StudentId,
-        TeacherId: test.TeacherId,
-        ClassId: test.ClassId,
+        TeacherId: answerKey.TeacherId,
+        ClassId: answerKey.ClassId,
         answerKeyId: answerKey.id
       })
       .then((savedTest) => {
