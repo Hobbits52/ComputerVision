@@ -14,7 +14,6 @@ class StudentTestListItem extends React.Component {
 
   render() {
     var result = this.state.test.result * 100 + "%"
-    console.log('This is the state test', this.state.test);
     return (
       <tr onClick={() => {this.props.handleUserSelectTest(this.state.test)}}>
         <td>{this.props.currentCourse}</td>

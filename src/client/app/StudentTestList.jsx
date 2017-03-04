@@ -45,6 +45,8 @@ class StudentTestList extends React.Component {
       this.setState({
         returnTests: allStudentTests
       });
+
+      console.log('THIS IS RETURN TESTS', this.state.returnTests);
     })
   }
 
@@ -68,6 +70,10 @@ class StudentTestList extends React.Component {
           <h3>{this.state.currentStudentName + "'s Tests"}</h3>
           <table>
             <tbody>
+              <tr>
+                <th>Class</th>
+                <th>Student Score</th>
+              </tr>
                 {this.state.returnTests.map((test, index) => {
                   return <StudentTestListItem 
                             test={test}
