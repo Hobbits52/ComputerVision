@@ -43,7 +43,7 @@ class ClassesView extends React.Component {
   render() {
     return (
       <div>
-        <h2>{"Classes"}</h2>
+        <h3 className="entryView">{"Classes"}</h3>
         <form className="dropdown">
           <label>
             Select a class:

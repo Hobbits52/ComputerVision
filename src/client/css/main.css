@@ -74,6 +74,10 @@ p {
   margin-top: 65px;
 }
 
+.answers {
+  height: 20px;
+}
+
 .backCrumb:hover {
   color: #434343;
 }
@@ -89,13 +93,16 @@ table {
 th {
   background-color: #85AF4B;
   color: white;
-  padding: 0 30px 0 25px;
 }
 
 th:last-child {
   flex: 1;
   display:inline-block;
-  padding: 0 20px 0 173px;
+  padding: 0 100px;
+}
+
+.testResult:hover {
+  background-color: #ADC986;
 }
 
 tr {
@@ -109,16 +116,21 @@ tr {
   align-items: stretch;
 }
 
-thead th:last-child {
-  background-color: #85AF4B;
-}
-
 tr:hover {
   background-color: #D3E2BD;
 }
 
+td, th {
+  width: 200px;
+  text-align: center;
+}
+
 td {
-  padding: 20px 30px;
+  padding: 20px 30px;;
+}
+
+th {
+  padding: 0 30px;
 }
 
 td:last-child {
