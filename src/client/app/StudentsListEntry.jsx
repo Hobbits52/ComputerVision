@@ -39,7 +39,8 @@ class StudentsListEntry extends React.Component {
         this.props.handleStudentsListEntryClick(
           this.props.student.StudentName,
           this.props.student.StudentId,
-          this.props.student.courseName
+          this.props.student.courseName,
+          this.props.student.courseId
           )}}>
         <td>{this.props.student.StudentId}</td>
         <td>{this.props.student.StudentName}</td>

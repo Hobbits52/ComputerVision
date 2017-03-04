@@ -19,7 +19,10 @@ class StudentsList extends React.Component {
     // re-format data for student list
     let data = [];
     this.state.students.map((obj) => {
-      var studentObj = {courseName: obj.class.ClassName}
+      var studentObj = {
+        courseName: obj.class.ClassName,
+        courseId: obj.class.ClassId
+      }
       for (var i = 0; i < obj.students.length; i++) {
         studentObj['StudentId'] = obj.students[i].StudentId;
         studentObj['StudentName'] = obj.students[i].StudentName;

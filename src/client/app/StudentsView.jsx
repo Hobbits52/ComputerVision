@@ -14,7 +14,8 @@ class StudentsView extends React.Component {
       students: this.props.students,
       currentStudentName: null,
       currentId: null,
-      currentCourse: null
+      currentCourse: null,
+      currentCourseId: null
     };
 
     this.handleStudentsListEntryClick = this.handleStudentsListEntryClick.bind(this);
@@ -23,24 +24,25 @@ class StudentsView extends React.Component {
   componentWillMount() {
   }
 
-  handleStudentsListEntryClick(studentName, studentId, studentCourse ) {
+  handleStudentsListEntryClick(studentName, studentId, studentCourse, studentCourseId) {
     console.log('STUDENT NAME', studentName);
     console.log('STUDENT ID', studentId);
     console.log('STUDENT COURSE', studentCourse);
+    console.log('CURRENT COURSE', studentCourseId);
 
     this.setState({
-      currentStudent: studentName,
+      currentStudentName: studentName,
       currentId: studentId,
-      currentCourse: studentCourse
+      currentCourse: studentCourse,
+      currentCourseId: studentCourseId
     });
   }
 
   render() {
-    console.log('This is this.props.students', this.props.students);
     if (this.state.currentStudentName === null) {
       return (
         <div>
-          <h2>Students</h2>
+          <h3>Students</h3>
           <StudentsList students={this.state.students}
                         currentStudentId={this.state.currentStudent}
                         handleStudentsListEntryClick={this.handleStudentsListEntryClick} 
@@ -50,10 +52,12 @@ class StudentsView extends React.Component {
     } else {
       return (
         <div>
+          <h3>{this.state.currentStudentName + "'s Tests"}</h3>
           <StudentTestList
             studentName={this.state.currentStudentName}
             studentId={this.state.currentId}
             currentCourse={this.state.currentCourse}
+            currentCourseId={this.state.currentCourseId}
             />
         </div>
       );
