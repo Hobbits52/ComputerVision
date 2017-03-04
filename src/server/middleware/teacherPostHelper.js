@@ -37,7 +37,9 @@ const addTest = function(req, res) {
       //UPDATE REDIS
       res.status(200);
       res.send(test);
-      Cache.saveTeacherData(testUpload.TeacherId);
+      if (testUpload.TeacherId) {
+        Cache.saveTeacherData(testUpload.TeacherId);
+      }
       res.end();
     }
   });

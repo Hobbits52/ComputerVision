@@ -40,8 +40,8 @@ const Scanner = function(uploadFile, type, cb) {
 		  	  }
 		  	});
 		  } else {
-		  	data.answerkeyId = 1;
-		  	data.StudentId = 1;
+		  	data.answerkeyId = uploadFile.AnswerKeyId;
+		  	data.StudentId = uploadFile.StudentId;
 		  	Test.addTest(data, function(err, data) {
 		  	  if (err) {
 		  	  	cb(err);
