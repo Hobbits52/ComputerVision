@@ -1,57 +1,98 @@
 import React from 'react';
 import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
-import NavBar from './Nav/NavBar.jsx'
-import NavSide from './Nav/NavSide.jsx'
-import TeacherViewContainer from './TeacherViewContainer.jsx'
-import HomeView from './HomeView.jsx'
-import Login from './Login.jsx';
 import css from '../css/nav.css';
+import KeyViewList from './KeyViewList.jsx';
+import KeyViewAnswers from './KeyViewAnswers.jsx'
 
-class App extends React.Component {
+class KeysView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // State variables to go here
+      currentClass: 'Choose a class',
+      selectedClass: null,
+      currentKey: null,
+      currentKeyId: null
     };
 
-    // this.handleSomeEvent = this.handleSomeEvent.bind(this);
-  }
-
-// --------------------------------------------------------------------
-// Component Lifecycle Functions
-// --------------------------------------------------------------------
-
-  componentDidMount() {
+    this.selectClass = this.selectClass.bind(this);
+    this.selectKey = this.selectKey.bind(this);
+    this.showAllTestsForClass = this.showAllTestsForClass.bind(this);
 
   }
-// --------------------------------------------------------------------
 
-
-// --------------------------------------------------------------------
-// Event Handlers
-// --------------------------------------------------------------------
-
-  handleSomeEvent(someParameter) {
-    //
+  selectClass(event) {
+    this.setState({
+      selectedClass: event.target.value,
+      currentClass: this.state.selectedClass
+    });
   }
-// --------------------------------------------------------------------
 
-// <div className="construction">
-//   <p>Under Construction!</p>
-// </div>
+  selectKey(key, id) {
+    console.log('this is the key', key);
+    this.setState({
+      currentKey: JSON.parse(key),
+      currentKeyId: id
+    })
+  }
 
-  render() {
-    return (
+  showAllTestsForClass() {
+    this.setState({
+      currentKey: null, 
+      currentKeyId: null,
+      selectedClass: null,
+      currentClass: 'Choose a class'
+    })
+  }
+
+  render() { 
+    if (this.state.selectedClass === null) {
+      return (
       <div>
-        {"KeysView"}
+        <h3 className="entryView">{"Keys"}</h3>
+        <form className="dropdown">
+        <label>
+            Select a class: 
+            <select value={this.state.currentClass} onChange={this.selectClass} >
+              <option value={'Choose a class'}>{"Choose a class"}</option>
+              {this.props.classes.map((course, key) => {
+                return <option value={course.ClassId} key={key}>{course.ClassName}</option>
+              })}
+            </select>
+          </label>
+        </form>
       </div>
     );
+    } else if (this.state.selectedClass !== null && this.state.currentKey === null) {
+      return (
+        <div>
+          <h3 className="entryView">{"Keys"}</h3>
+          <form className="dropdown">
+          <label>
+              Select a class:
+              <select value={this.state.currentClass} onChange={this.selectClass} >
+                <option value={'Choose a class'}>{"Choose a class"}</option>
+                {this.props.classes.map((course, key) => {
+                  return <option value={course.ClassName} key={key}>{course.ClassName}</option>
+                })}
+              </select>
+            </label>
+          </form>
+          <KeyViewList currentClass={this.state.selectedClass} selectKey={this.selectKey} />
+        </div>
+      );
+    } else if (this.state.currentKey !== null) {
+      return (
+        <div>
+          <h5 className = "backCrumb" onClick={this.showAllTestsForClass}>{"< Back to all keys"}</h5>
+          <h3>{"Key " + this.state.currentKeyId}</h3>
+          <KeyViewAnswers currentKey={this.state.currentKey} currentKeyId={this.state.currentKeyId} />
+        </div>
+      );
+    }
   }
-
 }
 
-export default App;
+export default KeysView;
 
-//{this.props.children}
