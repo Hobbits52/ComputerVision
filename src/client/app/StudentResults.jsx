@@ -47,7 +47,11 @@ class StudentResults extends React.Component {
             </tr>
             <tbody>
               {Object.keys(this.state.test).map((answer, key) => {
-                return <StudentResultsItem testNum={key + 1} studentAnswer={this.state.test[key + 1]} keyAnswer={this.state.answers[key + 1]} key={key} />
+                return <StudentResultsItem 
+                  testNum={key + 1} 
+                  studentAnswer={this.state.test[key + 1]} 
+                  keyAnswer={this.state.answers[key + 1]} 
+                  key={key} />
               })}
             </tbody>
           </table>

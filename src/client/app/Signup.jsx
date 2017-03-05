@@ -37,6 +37,8 @@ class Signup extends React.Component {
     .catch((err) => { console.log('Error while attempting to create an account: ', err); });
   }
 
+  // TODO: add another field to signup 'full name'
+
   render() {
     return (
       <div>
