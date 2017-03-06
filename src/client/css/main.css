@@ -70,10 +70,39 @@ p {
 
 /******INNERVIEWS******/
 
-.answerKey img {
-  display: block;
+.answerKey img, .answerKey h5 {
   margin: 0 auto;
   width: 30%;
+  text-align: center;
+}
+
+.answerKey h5 {
+  display: block;
+  padding: 10px;
+  color: #434343;
+}
+
+.answerKey .answerKeyTitle:hover{
+  background-color: #D3E2BD;
+}
+
+.answerKey .answerKeyTitle {
+  background-color: #ADC986;
+}
+
+.hideImage {
+  display: none;
+}
+
+.showImage {
+  display: block;
+  background-color: #ADC986;
+  padding: 30px;
+}
+
+.showImage img {
+  display: block;
+  margin: 0 auto;
 }
 
 .entryView {
@@ -220,9 +249,9 @@ input[type=button]:hover {
   animation:spin 4s linear infinite;
 }
 
- @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-  @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-  @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 /******CLASSESVIEW******/
 
