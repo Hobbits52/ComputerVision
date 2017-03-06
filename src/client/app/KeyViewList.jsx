@@ -38,7 +38,6 @@ class KeyViewList extends React.Component {
             <tbody>
               <tr>
                 <th>Key ID</th>
-                <th>URL</th>
               </tr>
                 {Object.keys(this.state.keysForClass).map((answerKey, index) => {
                   return <KeyViewListItem

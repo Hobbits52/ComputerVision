@@ -1,4 +1,6 @@
 import axios from 'axios';
+// var request = require('request');
+// var fs = require('fs');
 
 // --------------------------------------------------------------------------
 // HomeView Helpers
@@ -65,3 +67,11 @@ exports.getAllStudents = (teacherId) => {
     }
   }); 
 };
+
+// --------------------------------------------------------------------------
+// Retrieving Key Image
+// --------------------------------------------------------------------------
+
+//storing the image so we are not storing the url
+// exports.getImage = ()
+

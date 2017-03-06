@@ -10,12 +10,30 @@ class KeyViewAnswers extends React.Component {
     super(props);
 
     this.state = {
+      clicked: false
     };
+    this.showImage = this.showImage.bind(this);
   }
 
+  showImage() {
+    this.setState({
+      clicked: !this.state.clicked
+    })
+  }
+
+  // once url is included in server-side, remove hardcode on line 20
   render() { 
+    if (this.state.clicked) {
+      var arrowText = "Hide scan"
+    } else {
+      var arrowText = "Show scan"
+    }
     return (
         <div>
+          <div className="answerKey">
+            <h5 onClick={this.showImage} >{arrowText}</h5>
+            <img src={"http://res.cloudinary.com/dn4vqx2gu/image/upload/v1488063990/a0r7nm168jnjmoiruznx.jpg"} alt={"answer key for " + this.props.currentKeyId} />
+          </div>
           <table>
             <tbody>
               <tr>
