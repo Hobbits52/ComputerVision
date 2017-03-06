@@ -1,5 +1,6 @@
 import React from 'react';
 import ScatterPlot from './ScatterPlot.jsx';
+import Histogram from './Histogram.jsx';
 import css from '../../css/scatterplot.css'
 
 // ----------------------------------------------------------------------------
@@ -42,6 +43,7 @@ const randomGaussNum = (mu, sigma) => {
 // Creates an array of random normally distrubted test scores with mean, mu,
 // and standard deviation, sigma.
 const randomGaussDataSet = (mu, sigma) => {
+  console.log('From CHART: ', Array.apply(null, {length: numDataPoints}).map(() => randomGaussNum(mu, sigma)));
   return Array.apply(null, {length: numDataPoints}).map(() => randomGaussNum(mu, sigma));
 }
 
@@ -51,7 +53,7 @@ class Chart extends React.Component {
     super(props);
     this.state = { 
       data: randomDataSet(),
-      gaussData: randomGaussDataSet()
+      gaussData: randomGaussDataSet(68, 8)
     };
   }
 
