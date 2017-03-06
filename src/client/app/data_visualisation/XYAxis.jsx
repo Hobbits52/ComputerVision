@@ -17,7 +17,7 @@ const XYAxis = (props) => {
   };
 
   return (
-    <g className="xy-axis">
+    <g className="axis">
       <Axis {...xSettings}/>
       <Axis {...ySettings}/>
     </g>
