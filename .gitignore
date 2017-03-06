@@ -5,6 +5,8 @@ bower_components/
 src/client/public/	
 dist/
 
+.DS_Store
+
 src/server/api_config/
 
 # compiled python
