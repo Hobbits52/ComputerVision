@@ -37,8 +37,13 @@ class NavSide extends React.Component {
             <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
           </div>
           <div className="listItem">
-            <img className="menuIcons" alt="Keys" src={'../../../assets/key.png'}/>
+            <img className="menuIcons" alt="Keys" src={'../../../assets/llave.png'}/>
             <Link to="/dashboard/keys">Keys</Link>
+            <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
+          </div>
+          <div className="listItem">
+            <img className="menuIcons" alt="Templates" src={'../../../assets/key.png'}/>
+            <Link to="/dashboard/templates">Templates</Link>
             <img className="hiddenArrow" alt="Home" src={'../../../assets/arrow.png'}/>
           </div>
           <div className="listItem">

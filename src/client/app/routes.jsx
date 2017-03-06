@@ -11,6 +11,7 @@ import ClassesView from './ClassesView.jsx';
 import KeysView from './KeysView.jsx';
 import StatisticsView from './StatisticsView.jsx';
 import LandingPage from './LandingPage.jsx';
+import TemplatesView from './TemplatesView.jsx'
 
 import TestResultsContainer from './TestResultsContainer.jsx';
 import TestResults from './TestResults.jsx';
@@ -27,6 +28,7 @@ export default (
       <Route path="students" component={StudentsView} />
       <Route path="classes" component={ClassesView} />
       <Route path="keys" component={KeysView} />
+      <Route path="templates" component={TemplatesView} />
       <Route path="statistics" component={StatisticsView} />
     </Route>
   </Route>
