@@ -68,10 +68,15 @@ exports.getAllStudents = (teacherId) => {
   }); 
 };
 
+
 // --------------------------------------------------------------------------
-// Retrieving Key Image
+// Template Helpers
 // --------------------------------------------------------------------------
 
-//storing the image so we are not storing the url
-// exports.getImage = ()
-
+exports.clickLinkToPDF = () => {
+  return axios.get('/api/pdf', {
+    params: {
+      token: window.localStorage.token
+    }
+  }); 
+}

@@ -16,7 +16,7 @@ class NavBar extends React.Component {
                       this.props.location.pathname === '/signup' ||
                       this.props.location.pathname === '/login';
 
-    let classNameLocation, farRightLinkTo, farRightLinkClass, farRightText, redirect;
+    let classNameLocation, farRightLinkTo, farRightLinkClass, farRightText, redirect, home;
 
     if (publicPages) {
       //adding the classname publicPages if splash page, signup, and login
@@ -25,12 +25,14 @@ class NavBar extends React.Component {
       farRightLinkTo = "/signup";
       farRightLinkClass = "signupButton";
       farRightText = "Signup";
+      home = "/"
     } else {
       //adding the classname dashboardPages if any other routes
       classNameLocation = "navbar navbar-default navbar-static-top dashboardPages";
       farRightLinkTo = "#";
       farRightLinkClass = "logoutButton";
       farRightText = "Logout";
+      home="/dashboard/"
     }
 
     //fix logic for new onClick. needs to work for signup
@@ -41,7 +43,7 @@ class NavBar extends React.Component {
             <Link to="/" className="navbar-brand navbar-left">
               <img className="logo" src={'../../assets/pencil.png'} alt="Brand" />
             </Link>
-            <Link to="/" className="navbar-brand navbar-left">
+            <Link to={home} className="navbar-brand navbar-left">
               <span>{"teacher\'s pet"}</span>
             </Link>
           </div>

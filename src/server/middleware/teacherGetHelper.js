@@ -10,7 +10,6 @@ const Classes = function(req, res) {
 					if (err) {
 						res.status(400).send(err);
 					} else {
-						console.log('this is resp', resp);
 						res.status(200).send(resp);
 					}
 				});
