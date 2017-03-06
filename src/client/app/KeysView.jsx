@@ -19,6 +19,7 @@ class KeysView extends React.Component {
     this.selectClass = this.selectClass.bind(this);
     this.selectKey = this.selectKey.bind(this);
     this.showAllTestsForClass = this.showAllTestsForClass.bind(this);
+    this.showImage = this.showImage.bind(this);
 
   }
 
@@ -44,6 +45,14 @@ class KeysView extends React.Component {
       selectedClass: null,
       currentClass: 'Choose a class'
     })
+  }
+
+  showImage(answerID) {
+    //use answerID to call redis
+    //use url to access image and save image to file system
+    //every time you call this function, it will overwite the image
+    //only one image should be stored at a time
+
   }
 
   render() { 
