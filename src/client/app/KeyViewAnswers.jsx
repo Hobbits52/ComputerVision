@@ -24,15 +24,21 @@ class KeyViewAnswers extends React.Component {
   // once url is included in server-side, remove hardcode on line 20
   render() { 
     if (this.state.clicked) {
-      var arrowText = "Hide scan"
+      var arrowText = "Hide scan";
+      var toggleImage = "showImage";
     } else {
-      var arrowText = "Show scan"
+      var arrowText = "Show scan";
+      var toggleImage = "hideImage";
     }
     return (
         <div>
           <div className="answerKey">
-            <h5 onClick={this.showImage} >{arrowText}</h5>
-            <img src={"http://res.cloudinary.com/dn4vqx2gu/image/upload/v1488063990/a0r7nm168jnjmoiruznx.jpg"} alt={"answer key for " + this.props.currentKeyId} />
+            <div className="answerKeyTitle" onClick={this.showImage}>
+              <h5>{arrowText}</h5>
+            </div>
+            <div className={toggleImage} >
+              <img src={"http://res.cloudinary.com/dn4vqx2gu/image/upload/v1488063990/a0r7nm168jnjmoiruznx.jpg"} alt={"answer key for " + this.props.currentKeyId} />
+            </div>
           </div>
           <table>
             <tbody>
