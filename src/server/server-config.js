@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // routes
 app.use('/auth', authRouter);
 app.use('/api', apiRouter);
-
+app.use('dashboard/api', apiRouter);
 
 app.use(express.static(path.join(__dirname + '/../client/')));
 
