@@ -17,19 +17,23 @@ exports.getKeysForClass = (classId, classObj, cb) => {
   .then((fetchedKeys) => {
     let length = fetchedKeys.length;
     let counter = 0;
-    let keyObj = {};
+    let keyArr = [];
     if (length > 0) {
       fetchedKeys.forEach(function(key) {
-        keyObj[key.id] = key.answers;
+        let keyObj = {};
+        keyObj.keyId = key.id;
+        keyObj.keyName = key.keyName;
+        keyObj.answers = key.answers;
+        keyArr.push(keyObj);
         counter++;
         if (counter === length) {
-          classObj.answerKey = keyObj;
+          classObj.answerKeys = keyArr;
           console.log('SUCCESS ADDING KEY', classObj);
           cb(null, classObj);
         }
       });
     } else {
-      classObj.answerKey = keyObj;
+      classObj.answerKeys = [];
       console.log('NO KEY TO ADD', classObj);
       cb(null, classObj);
     }
@@ -41,10 +45,12 @@ exports.getKeysForClass = (classId, classObj, cb) => {
 exports.addKey = (keyInput, cb) => {
   let URL = keyInput.URL;
   //is this a JSON.stringified object?
+  let keyName = keyInput.keyName;
   let answers = keyInput.answers;
   let ClassId = keyInput.ClassId;
   let TeacherId = keyInput.TeacherId;
     answerKeys.create({
+    keyName: keyName,
     answers: answers,
     URL: URL,
     ClassId: ClassId,

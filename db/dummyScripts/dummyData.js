@@ -67,24 +67,39 @@ const Students = function() {
 
 
 const AnswerKeys = function() {
-	const Scanner = require('./../../src/server/middleware/pythonChildProcess.js').Scanner;
-	let dummyObj = [
-		{'url': 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1488672122/rzcckliek05taq6a2pul.jpg', 'TeacherId': 1, 'ClassId': 1}
-	];
+	// const Scanner = require('./../../src/server/middleware/pythonChildProcess.js').Scanner;
+	// let dummyObj = [
+	// 	{'url': 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1488672122/rzcckliek05taq6a2pul.jpg', 'TeacherId': 1, 'ClassId': 1}
+	// ];
+	// var count = 0;
+	// Scanner(dummyObj[0], 'key', function(err, data) {
+	// 	if (err) {
+	// 		console.log('FAIL', err);
+	// 	} else {
+	// 		console.log('SUCCESS');
+	// 	}
+	// 	count++;
+	// 	if (count === dummyObj.length) {
+	// 		generateTestData();
+	// 	}
+	// })
+	const KeyCon = require('./../key/keyController.js');
+	var keys = require('./answerKey.json').keys;
 	var count = 0;
-	Scanner(dummyObj[0], 'key', function(err, data) {
-		if (err) {
-			console.log('FAIL', err);
-		} else {
-			console.log('SUCCESS');
-		}
-		count++;
-		if (count === dummyObj.length) {
-			generateTestData();
-		}
-	})
+	for (var i = 0; i < keys.length; i++) {
+		KeyCon.addKey(keys[i], function(err, data) {
+			if (err) {
+				console.log('FAIL');
+			} else {
+				console.log('SUCCESS');
+			}
+			count++;
+			if (count === keys.length) {
+				generateTestData();
+			}
+		});
+	}
 };
-
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -114,6 +129,5 @@ const generateTestData = function() {
     });
   };
 };
-
 
 Teacher();

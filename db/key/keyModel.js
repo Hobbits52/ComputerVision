@@ -8,6 +8,7 @@ const Teachers = require('./../teacher/teacherModel.js').Teachers;
 //MVP++: Foreign key for course 
 //MVP+++: Add names english names to the keys and english names to the templates (instead of just using key ID to display on front-end)
 const answerKeys = db.define('answerKeys', {
+	keyName: Sequelize.TEXT,
   answers: Sequelize.TEXT,
   URL: Sequelize.TEXT
 }, {timestamps: false});
