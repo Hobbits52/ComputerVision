@@ -94,7 +94,7 @@ def find_paper(image):
 	if perimeter < 2300 or perimeter > 3200:
 		data['status'] = 400
 		data['message'] = 'Paper not found. Make sure image has a clear background'
-		return # DEV: try alternate approaches when image has "textured" background.
+		return data # DEV: try alternate approaches when image has "textured" background.
 	
 	# straighten grayscale image.
 	return four_point_transform(gray, documentContours.reshape(4, 2))
@@ -152,7 +152,7 @@ def get_answers(answerSheetThresh):
 	if len(bubbles) != 140:
 		data['status'] = 400
 		data['message'] = 'could not find all bubbles -- check image quality or photo angle'
-		return
+		return data
 
 	# split into left and right bubbles
 	bubbles = imutilsContours.sort_contours(bubbles,
@@ -231,7 +231,7 @@ def get_id(idSheetThresh):
 	if len(idBubbles) != 32:
 		data['status'] = 206
 		data['message'] = 'could not read 32 id bubbles. check photo quality'
-		return
+		return data
 
 	# sort left to right to find rows
 	idBubbles = imutilsContours.sort_contours(idBubbles,
