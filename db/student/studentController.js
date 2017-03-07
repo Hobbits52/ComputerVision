@@ -5,9 +5,11 @@ const bcrypt = require('bcrypt-nodejs');
 exports.studentSignup = (studentInput, cb) => {
   let username = studentInput.username;
   let password = studentInput.password;
-  let TeacherId = studentInput.TeacherId;
+  let firstname = studentInput.firstname;
+  let lastname = studentInput.lastname;
+
   Students.findOrCreate({where: {username: username},
-    defaults: {password: password, TeacherId: TeacherId}})
+    defaults: {password: password, firstname: firstname, lastname: lastname}})
   .spread((student, created) => {
     if (created === false) {
       let error = "Username already in use";
@@ -16,6 +18,7 @@ exports.studentSignup = (studentInput, cb) => {
       let newUser = {};
       newUser.id = student.id;
       newUser.username = student.username;
+      newUser.StudentName = student.firstname + ' ' + student.lastname;
       cb(null, newUser);
     }
   });
@@ -35,6 +38,7 @@ exports.studentLogin = (studentInput, cb) => {
       let newUser = {};
       newUser.id = student.id;
       newUser.username = student.username;
+      newUser.StudentName = student.firstname + ' ' + student.lastname;
       cb(null, newUser);
     }
     })
@@ -46,7 +50,7 @@ exports.studentLogin = (studentInput, cb) => {
 exports.addStudentName = (studentObj, cb) => {
   Students.findOne({where: {id: studentObj.StudentId}})
   .then((student) => {
-    studentObj.StudentName = student.username;
+    studentObj.StudentName = student.firstname + ' ' + student.lastname;
     cb(null, studentObj);
   }).catch((err) => {
     cb(err);

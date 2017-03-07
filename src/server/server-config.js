@@ -1,5 +1,4 @@
 const express = require('express');
-const session = require('express-session');
 const jwt    = require('jsonwebtoken')
 const authMiddleware = require('./middleware/authentication.js');
 const teacherPosts = require('./middleware/teacherPostHelper.js');
