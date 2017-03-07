@@ -12,7 +12,7 @@ class NavSide extends React.Component {
 
   render() {
     return (
-      <div className="col-sm-2 navSide">
+      <div className="col-sm-2 navSide" onClick={this.props.handleSideBarClick}>
         <div className="navSide">
           <div className="userInfo">
             <img className="left-12"

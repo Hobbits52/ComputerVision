@@ -21,6 +21,7 @@ class StudentTestList extends React.Component {
     this.handleGoBackTestList = this.handleGoBackTestList.bind(this);
   }
 
+  // this will change, answers will come back in a diff form
   componentWillMount() {
     getAllTestsInClass(this.state.currentCourseId)
     .then((res) => {
@@ -29,8 +30,6 @@ class StudentTestList extends React.Component {
       });
 
       let allStudentTests = [];
-
-      console.log('This is res.data', res.data);
 
       //for now, assume that a student is not in more than one class with the same teacher
       for (var i = 0; i < this.state.classes.length; i++) {
@@ -46,7 +45,6 @@ class StudentTestList extends React.Component {
         returnTests: allStudentTests
       });
 
-      console.log('THIS IS RETURN TESTS', this.state.returnTests);
     })
   }
 
