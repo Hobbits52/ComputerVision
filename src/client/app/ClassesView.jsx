@@ -13,18 +13,23 @@ class ClassesView extends React.Component {
     super(props);
 
     this.state = {
-      currentClass: 'Choose a class'
+      currentClass: 'Choose a class' 
     };
 
     this.selectClass = this.selectClass.bind(this);
+    console.log('THIS IS IN IN CLASSES VIEW', this.props.currentCourse);
   }
 
 // --------------------------------------------------------------------
 // Component Lifecycle Functions
 // --------------------------------------------------------------------
 
-  componentDidMount() {
-
+  componentWillMount() {
+    if(this.props.currentCourse) {
+      this.setState({
+        currentClass: this.props.currentCourse
+      })
+    }
   }
 // --------------------------------------------------------------------
 
