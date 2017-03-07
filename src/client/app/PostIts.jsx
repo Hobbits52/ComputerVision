@@ -13,7 +13,7 @@ class PostIt extends React.Component {
   render() {
     return (
       <div className="postImage">
-        <img className="background-image" src={'../assets/post-it.png'}/>
+        <Link to="/dashboard/classes"><img className="background-image" src={'../assets/post-it.png'}/></Link>
         <h5>{this.props.class.ClassName}</h5>
       </div>
     );

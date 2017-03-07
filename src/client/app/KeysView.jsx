@@ -4,66 +4,69 @@ import {browserHistory} from 'react-router';
 import css from '../css/nav.css';
 import KeyViewList from './KeyViewList.jsx';
 import KeyViewAnswers from './KeyViewAnswers.jsx'
+import {getKeysForClass} from './helpers/viewHelpers.js';
 
 class KeysView extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentClass: 'Choose a class',
-      selectedClass: null,
+      selectClassId: null,
       currentKey: null,
-      currentKeyId: null
+      currentKeyId: null,
+      keysForClass: null
     };
 
     this.selectClass = this.selectClass.bind(this);
     this.selectKey = this.selectKey.bind(this);
     this.showAllTestsForClass = this.showAllTestsForClass.bind(this);
-    this.showImage = this.showImage.bind(this);
 
   }
 
   selectClass(event) {
-    this.setState({
-      selectedClass: event.target.value,
-      currentClass: this.state.selectedClass
-    });
+    var classId = event.target.value;
+    getKeysForClass(classId)
+    .then((res) => {
+      if (Object.keys(res.data.answerkey).length === 0) {
+        this.setState({
+          selectClassId: null,
+          keysForClass: null
+        });
+      } else {
+        this.setState({
+        selectClassId: classId,
+        currentKey: null, 
+        currentKeyId: null,
+        keysForClass: res.data.answerkey
+        });
+      }
+    })
   }
 
   selectKey(key, id) {
-    console.log('this is the key', key);
     this.setState({
       currentKey: JSON.parse(key),
       currentKeyId: id
-    })
+    });
   }
 
   showAllTestsForClass() {
     this.setState({
       currentKey: null, 
       currentKeyId: null,
-      selectedClass: null,
-      currentClass: 'Choose a class'
-    })
-  }
-
-  showImage(answerID) {
-    //use answerID to call redis
-    //use url to access image and save image to file system
-    //every time you call this function, it will overwite the image
-    //only one image should be stored at a time
-
+      selectClassId: null
+    });
   }
 
   render() { 
-    if (this.state.selectedClass === null) {
+    if (this.state.selectClassId === null) {
       return (
       <div>
         <h3 className="entryView">{"Keys"}</h3>
         <form className="dropdown">
         <label>
             Select a class: 
-            <select value={this.state.currentClass} onChange={this.selectClass} >
+            <select onChange={this.selectClass} >
               <option value={'Choose a class'}>{"Choose a class"}</option>
               {this.props.classes.map((course, key) => {
                 return <option value={course.ClassId} key={key}>{course.ClassName}</option>
@@ -73,22 +76,26 @@ class KeysView extends React.Component {
         </form>
       </div>
     );
-    } else if (this.state.selectedClass !== null && this.state.currentKey === null) {
+    } else if (this.state.currentKey === null) {
       return (
         <div>
           <h3 className="entryView">{"Keys"}</h3>
           <form className="dropdown">
           <label>
               Select a class:
-              <select value={this.state.currentClass} onChange={this.selectClass} >
+              <select onChange={this.selectClass} >
                 <option value={'Choose a class'}>{"Choose a class"}</option>
                 {this.props.classes.map((course, key) => {
-                  return <option value={course.ClassName} key={key}>{course.ClassName}</option>
+                  return <option value={course.ClassId} key={key}>{course.ClassName}</option>
                 })}
               </select>
             </label>
           </form>
-          <KeyViewList currentClass={this.state.selectedClass} selectKey={this.selectKey} />
+          <KeyViewList 
+            currentClass={this.state.selectClassId} 
+            selectKey={this.selectKey} 
+            showAllTestsForClass={this.showAllTestsForClass} 
+            keysForClass={this.state.keysForClass}/>
         </div>
       );
     } else if (this.state.currentKey !== null) {
@@ -96,7 +103,12 @@ class KeysView extends React.Component {
         <div>
           <h5 className = "backCrumb" onClick={this.showAllTestsForClass}>{"< Back to all keys"}</h5>
           <h3>{"Key " + this.state.currentKeyId}</h3>
-          <KeyViewAnswers currentKey={this.state.currentKey} currentKeyId={this.state.currentKeyId} />
+          <KeyViewAnswers currentKey={this.state.currentKey} currentKeyId={this.state.currentKeyId} showAllTestsForClass={this.showAllTestsForClass}/>
+        </div>
+      );
+    } else if (this.state.selectClassId !== null && this.state.currentKey === null){
+      return (
+        <div>
         </div>
       );
     }
