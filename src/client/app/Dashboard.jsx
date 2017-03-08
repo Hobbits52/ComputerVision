@@ -18,8 +18,9 @@ class Dashboard extends React.Component {
       teacher: this.props.teacher, 
       teacherId: this.props.teacherId,
       currentCourse: null,
+      renderOk: false,
 
-      students: 'An array of objects, each representing an individual students data.',
+      students: null,
       classes: null,
       keys: 'An array of objects, each representing the data corresponding to a particular key.',
       mostRecentTest: 'An object representing the data of the most recent exam to fill the stats view'
@@ -49,9 +50,11 @@ class Dashboard extends React.Component {
       getAllStudents(this.state.teacherId)
         .then((res) => {
           this.setState({
-            students: res.data
+            students: res.data,
+            renderOk: true
           })
 
+          console.log('RENDEROK', this.state.renderOk);
           console.log('THIS IS AN ARRAY WITH ALL THE STUDENTS', this.state.students);
         })
         .catch((err) => {
@@ -96,7 +99,8 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    if (this.state.classes === null) {
+    console.log('STUDENTS', this.state.students);
+    if (this.state.classes === null && this.state.renderOk === false) {
       return (
         <div>
         </div>
@@ -104,7 +108,9 @@ class Dashboard extends React.Component {
     } else {
       return (
         <div>
-          <NavBar location={this.props.location} students={this.state.students} handleLogoutClick={this.props.handleLogoutClick} />
+          <NavBar location={this.props.location} 
+                  students={this.state.students} 
+                  handleLogoutClick={this.props.handleLogoutClick} />
           <div className="container-fluid below-nav-top">
             <div className="row">
               <NavSide  className="navSide" 
