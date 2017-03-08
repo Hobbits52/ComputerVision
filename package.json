@@ -50,7 +50,6 @@
   "dependencies": {
     "axios": "^0.15.3",
     "bcrypt-nodejs": "^0.0.3",
-    "bluebird": "^3.4.7",
     "body-parser": "^1.16.1",
     "bootstrap": "^3.3.7",
     "cloudinary": "^1.7.0",
