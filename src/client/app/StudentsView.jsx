@@ -54,7 +54,6 @@ class StudentsView extends React.Component {
   }
 
   handleStudentsListEntryClick(studentName, studentId, studentCourse, studentCourseId) {
-
     this.setState({
       currentStudentName: studentName,
       currentId: studentId,
@@ -64,19 +63,21 @@ class StudentsView extends React.Component {
   }
 
   handleGoBackStudents() {
+    console.log('Got here');
     this.setState({
       currentStudentName: null,
       currentId: null,
       currentCourse: null,
-      currentCourseId: null
+      currentCourseId: null,
+      value: '',
+      suggestions: []
     })
   }
 
-  ///////////////////////////////////////
+  /////////////////SEARCH FEATURE/////////////////////
 
 
   getSuggestions(value, students) {
-    console.log('ayayyyyyayaya');
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
@@ -90,7 +91,6 @@ class StudentsView extends React.Component {
   };
 
   renderSuggestion(suggestion) {
-    console.log('this is the suggestion', suggestion);
     return (
       <tr className = "suggestionResults" onClick={() => {
         this.handleStudentsListEntryClick(
@@ -107,7 +107,6 @@ class StudentsView extends React.Component {
   }; 
 
   onChange(event, { newValue }) {
-    console.log('NEW VALUE', newValue);
     this.setState({
       value: newValue
     });

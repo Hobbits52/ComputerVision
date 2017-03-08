@@ -23,7 +23,7 @@ class StudentsListEntry extends React.Component {
           this.props.student.courseName,
           this.props.student.courseId
           )}}>
-        <td>{this.props.student.StudentId}</td>
+        <td>{this.props.student.StudentId.toString(4)}</td>
         <td>{this.props.student.StudentName}</td>
         <td>{this.props.student.courseName}</td>
       </tr>
