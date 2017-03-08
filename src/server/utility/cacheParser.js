@@ -69,7 +69,7 @@ const getKeysForClass = (cache, classId, cb) => {
 		console.log('************', course);
 		classObj.classId = course[0].classId;
 		classObj.classname = course[0].classname;
-		classObj.answerkey = course[0].answerKey;
+		classObj.answerkey = course[0].answerKeys;
 		cb(null, classObj);
 	} else {
 		let error = 'No such class in database';

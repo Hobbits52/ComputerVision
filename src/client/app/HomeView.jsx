@@ -54,14 +54,3 @@ class HomeView extends React.Component {
 
 export default HomeView;
 
-        // {React.cloneElement(this.props.children, {
-        //   teacher: this.state.teacher,
-        //   students: this.state.students,
-        //   classes: this.state.classes,
-        //   keys: this.state.keys,
-        //   mostRecentTest: this.state.mostRecentTest,
-        //   handleSearchInputChange: this.handleSearchInputChange,
-        //   handleSearchSubmit: this.handleSearchSubmit,
-        //   handleSidebarClick: this.handleSidebarClick
-        // })}
-        //

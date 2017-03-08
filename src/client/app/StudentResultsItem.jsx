@@ -13,7 +13,9 @@ class StudentResultsItem extends React.Component {
   }
 
 
-  render() {
+  render() {  
+
+    console.log('uayayyayayyaya');
 
     if (compareArrays(this.props.studentAnswer, this.props.keyAnswer)) {
       var imageUrl = '../../assets/white-check.png';

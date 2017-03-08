@@ -21,7 +21,7 @@ class KeyViewAnswers extends React.Component {
     })
   }
 
-  // once url is included in server-side, remove hardcode on line 20
+  // TODO:once url is included in server-side, remove hardcode on line 20
   render() { 
     if (this.state.clicked) {
       var arrowText = "Hide scan";

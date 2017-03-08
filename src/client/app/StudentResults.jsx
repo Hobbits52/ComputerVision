@@ -22,8 +22,17 @@ class StudentResults extends React.Component {
   componentWillMount() {
     getKeysForClass(this.state.currentCourseId)
     .then((res) => {
+      var singleAnswerJSON = '';
+      for (var i = 0; i < res.data.answerkey.length; i++) {
+        if (this.props.test.answerKeyId === res.data.answerkey[i].keyId) {
+          console.log('this happens');
+          singleAnswerJSON = res.data.answerkey[i].answers;
+          break;
+        }
+      }
+      console.log('singleAnswerJSON', singleAnswerJSON);
       this.setState({
-        answers: JSON.parse(res.data.answerkey[1]),
+        answers: JSON.parse(singleAnswerJSON),
         currentCourseName: res.data.classname
       })
     })
@@ -31,6 +40,7 @@ class StudentResults extends React.Component {
 
   render() {
     var result = this.state.result * 100 + "%"
+    console.log('arrawrrrrrrrrrrrr');
 
     if (this.state.answers !== null && this.state.test !== null) {
       return (

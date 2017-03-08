@@ -51,13 +51,13 @@ class StudentTestList extends React.Component {
   handleUserSelectTest(test) {
     this.setState({
       currentTest: test
-    })
+    });
   }
 
   handleGoBackTestList() {
     this.setState({
       currentTest: null
-    })
+    });
   }
 
   render() {
@@ -70,6 +70,7 @@ class StudentTestList extends React.Component {
             <tbody>
               <tr>
                 <th>Class</th>
+                <th>Test Name</th>
                 <th>Student Score</th>
               </tr>
                 {this.state.returnTests.map((test, index) => {
@@ -81,6 +82,7 @@ class StudentTestList extends React.Component {
                             currentCourseId={this.props.currentCourseId}
                             key={index}
                             handleUserSelectTest={this.handleUserSelectTest}
+                            classes={this.state.classes}
                                      
                   />
                 })
