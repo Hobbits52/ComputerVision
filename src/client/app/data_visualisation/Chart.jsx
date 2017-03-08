@@ -1,11 +1,12 @@
 import React from 'react';
 import ScatterPlot from './ScatterPlot.jsx';
 import Histogram from './Histogram.jsx';
-import css from '../../css/scatterplot.css'
+import css from '../../css/scatterplot.css';
 
 // ----------------------------------------------------------------------------
 // Everything in here can me moved to another file!
 // ----------------------------------------------------------------------------
+
 const styles = {
   width   : 500,
   height  : 300,
@@ -46,14 +47,17 @@ const randomGaussDataSet = (mu, sigma) => {
   console.log('From CHART: ', Array.apply(null, {length: numDataPoints}).map(() => randomGaussNum(mu, sigma)));
   return Array.apply(null, {length: numDataPoints}).map(() => randomGaussNum(mu, sigma));
 }
-
 // ----------------------------------------------------------------------------
+
+
 class Chart extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
       data: randomDataSet(),
-      gaussData: randomGaussDataSet(68, 8)
+      currentClassId: this.props.currentClassId,
+      currentClassName: this.props.currentClassName,
+      gaussData: this.props.classTestData
     };
   }
 
@@ -64,7 +68,7 @@ class Chart extends React.Component {
   render() {
     return (
       <div>
-        <h1>BIO 365: Cancer Biology - MidTerm 1</h1>
+        <h1>{this.props.currentClassName} - MidTerm 1</h1>
         <ScatterPlot {...this.state} {...styles} />
         <Histogram {...this.state} {...styles} />
         <div className="controls">
