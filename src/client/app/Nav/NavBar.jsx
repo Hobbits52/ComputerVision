@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
+import Autosuggest from 'react-autosuggest';
 
 class NavBar extends React.Component {
   constructor(props) {

@@ -60,6 +60,7 @@
     "mysql": "2.5.0",
     "path": "^0.12.7",
     "react": "^15.4.2",
+    "react-autosuggest": "^9.0.0",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2",
     "redis": "^2.6.5",
