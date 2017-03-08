@@ -27,10 +27,8 @@ const saveTeacherData = function(teacherId) {
                 classesArr.push(classO);
                 counter++;
                 if (counter === classes.length) {
-                  //SAVE teacherData in a string
                   var teacherData = JSON.stringify(classesArr);
-                  console.log('TEACHERDATA', teacherData);
-                  redisClient.setAsync('teacherData', teacherData).then(function(response) {
+                  redisClient.setAsync(teacherId, teacherData).then(function(response) {
                   }).catch(function(err) {
                     console.log(err);
                   });
@@ -47,9 +45,9 @@ const saveTeacherData = function(teacherId) {
 };
 
 
-const getCache = function() {
+const getCache = function(teacherId) {
   const redisClient = require('./../server.js').redis;
-  return redisClient.getAsync('teacherData').then(function(response) {
+  return redisClient.getAsync(teacherId).then(function(response) {
     var k = JSON.parse(response);
     return k;
   }).catch(function() {
