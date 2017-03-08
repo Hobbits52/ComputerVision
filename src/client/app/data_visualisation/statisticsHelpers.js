@@ -1,133 +1,83 @@
-import { getAllTestFromClass } from '../helpers/viewHelpers.js';
+import { getAllTestsInClass } from '../helpers/viewHelpers.js';
 
-var allTestsFromClass = getAllTestsFromClass(1);
-console.log(allTestsFromClass);
-
-var master = {};
-
-for (var key in allTestsInClass.answerKeys) {
-  master[key] = {id: key,
-                 name: key,  // This will be name in the future. 
-                 correctAnswers: JSON.parse(allTestsInClass.answerKeys[key]),
-                 studentAnswers: []
-                });
+var objToArray = function(obj) {
+  return Object.keys(obj).map(function(key) {
+    return obj[key];
+  });
 };
 
-allTestsInClass.students.forEach(function(student) {
-  var studentId = student.StudentId;
-  var studentName = student.StudentName;
+exports.processData = function(classId) {
+  return getAllTestsInClass(classId).then(function(allTestsFromClass) {
+    var allTestData = {};
+    console.log('allTestsFromClass: ', allTestsFromClass);
 
-  student.tests.forEach(function(item) {
-    var test = {};
-    // test.testId = item.id;
-    test.studentId = studentId;
-    test.studentName = studentName;
-    test.studentScore = item.result;
-    test.studentAnswers = JSON.parse(item.studentAnswers);
-    test.imageUrl = item.URL;
+    for (var key in allTestsFromClass.data[0].answerKeys) {     
+      allTestData[key] = {id: allTestsFromClass.data[0].answerKeys[key].keyId,
+                          name: allTestsFromClass.data[0].answerKeys[key].keyName,  // This will be name in the future. 
+                          correctAnswers: objToArray(JSON.parse(allTestsFromClass.data[0].answerKeys[key].answers)),
+                          studentTestResults: [],
+                          studentTestScores: []
+                         };
+    };
 
-    master.forEach(function(exam) {
-      if (item.id === exam.id) {
-        exam.studentAnswers.push(test);
-      }
+    allTestsFromClass.data[0].students.forEach(function(student) {
+      var studentId = student.StudentId;
+      var studentName = student.StudentName;
+
+      student.tests.forEach(function(item) {
+        var test = {};
+        // test.testId = item.id;
+        test.student = {id: studentId, name: studentName};
+        test.studentScore = Math.round(item.result * 100);
+        test.studentAnswers = objToArray(JSON.parse(item.studentAnswers));
+        test.imageUrl = item.URL;
+        test.answerKeyId = item.answerKeyId;
+
+        for (var key in allTestData) {
+          if (Number(allTestData[key].id) === Number(test.answerKeyId)) {
+            allTestData[key].studentTestResults.push(test);
+            allTestData[key].studentTestScores.push(test.studentScore);
+          }
+        }
+      });
     });
+    console.log('Final allTestData object after processing: ', allTestData);
+    return allTestData;
   });
-});
+};
+
+// // --------------------------------------------------------------------------------
+// // Formulas for Statistical Variables:
+// // --------------------------------------------------------------------------------
+
+// // Sum
+// const sum = (arrayOfGrades) => d3.sum(arrayOfGrades, 'Accessor Function Here!');
+
+// // Mean
+// const mean = (arrayOfGrades) => d3.mean(arrayOfGrades, 'Accessor Function Here!');
+
+// // Median
+// const median = (arrayOfGrades) => d3.median(arrayOfGrades, 'Accessor Function Here!');
+
+// // Standard Deviation
+// const stdDev = (arrayOfGrades) => d3.deviation(arrayOfGrades, 'Acessore Function Here!');
+
+// // Variance
+// const variance = (arrayOfGrades) => d3.variance(arrayOfGrades, 'Acessore Function Here!');
+
+// // Quantiles, where p is a number in the range [0, 1].  
+// const quantile = (arrayOfGrades) => d3.quantile(arrayOfGrades, p, 'Acessore Function Here!');
+// // Example: p = 0.25 is the first quantile, Q1.  
+// //          p = 0.75 is the third quantile, Q3.
 
 
-// --------------------------------------------------------------------------------
-// All Students' Results from a Single Exam
-// --------------------------------------------------------------------------------
-var allStudentResults =
-  [
-    {student: {id: 123456, name: 'Anthony Pecchillo'},
-     answers: [ [A], [B], [C,D], [E], [D], [C], [A,B], [B], [A], [D] ],
-     score: 95
-    },
-    {student: {id: 234567, name: 'Benze Gong'},
-     answers: [ [D], [C], [A,B], [B], [A], [D], [C,E], [C], [C], [E] ],
-     score: 95
-    },
-    {student: {id: 345678, name: 'Cynthia Bathgate'},
-     answers: [ [A], [D], [C,E], [C], [C], [E], [A,B], [B], [A], [D] ],
-     score: 95
-    },
-    {student: {id: 456789, name: 'Kevin Gin'},
-     answers: [ [A], [D], [C,E], [C], [C], [E], [A,B], [B], [A], [D] ],
-     score: 95
-    }
-  ]
+// // Test Item Difficulty
+// const singleItemDifficulty = (arrayIndivQuesScores) => mean(arrayIndivQuesScores) / arrayIndivQuesScores.length;
 
-// --------------------------------------------------------------------------------
-// Answer Key from a Single Exam
-// --------------------------------------------------------------------------------
-var answerKey = [ [A], [B], [C,D], [E], [D], [C], [A,B], [B], [A], [D] ]
+// // Test Difficulty
 
+// const testDifficulty = ()
 
-
-
-
-// --------------------------------------------------------------------------------
-// Formulas for Statistical Variables:
-// --------------------------------------------------------------------------------
-
-// Sum
-const sum = (arrayOfGrades) => d3.sum(arrayOfGrades, 'Accessor Function Here!');
-
-// Mean
-const mean = (arrayOfGrades) => d3.mean(arrayOfGrades, 'Accessor Function Here!');
-
-// Median
-const median = (arrayOfGrades) => d3.median(arrayOfGrades, 'Accessor Function Here!');
-
-// Standard Deviation
-const stdDev = (arrayOfGrades) => d3.deviation(arrayOfGrades, 'Acessore Function Here!');
-
-// Variance
-const variance = (arrayOfGrades) => d3.variance(arrayOfGrades, 'Acessore Function Here!');
-
-// Quantiles, where p is a number in the range [0, 1].  
-const quantile = (arrayOfGrades) => d3.quantile(arrayOfGrades, p, 'Acessore Function Here!');
-// Example: p = 0.25 is the first quantile, Q1.  
-//          p = 0.75 is the third quantile, Q3.
-
-
-// Test Item Difficulty
-const singleItemDifficulty = (arrayIndivQuesScores) => mean(arrayIndivQuesScores) / arrayIndivQuesScores.length;
-
-// Test Difficulty
-
-const testDifficulty = ()
-
-
-
-
-
-
-
-// Reliability Coeffecient (Chronbach's Alpha)
-const alpha = (k, arrayOfArraysOfStudentAnswers, arrayOfGrades) => {'sttuffff'};
-// alpha = (k / (k - 1)) * (1 - (sum( sigma2(arrayOfGradesForSignleTestItem))) / sigma2(arrayOfExamGrades) )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// // Reliability Coeffecient (Chronbach's Alpha)
+// const alpha = (k, arrayOfArraysOfStudentAnswers, arrayOfGrades) => {'sttuffff'};
+// // alpha = (k / (k - 1)) * (1 - (sum( sigma2(arrayOfGradesForSignleTestItem))) / sigma2(arrayOfExamGrades) )
