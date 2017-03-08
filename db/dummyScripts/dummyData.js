@@ -138,5 +138,5 @@ const generateTestData = function() {
   loopExams(examCount);
 };
 
-generateTestData();
-// Teacher();
+// generateTestData();
+Teacher();
