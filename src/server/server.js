@@ -5,10 +5,9 @@ const bluebird = require('bluebird');
 
 bluebird.promisifyAll(redis.RedisClient.prototype);
 
-const redisCl = null;
-// const redisCl = redis.createClient();
-// UNCOMMENT to run/////////////////////////
-// redisCL = redis.createClient();
+let redisCl = null;
+//redisCl = redis.createClient();
+
 const server = app.listen(port);
 
 console.log('Server now listening on port ' + port);
