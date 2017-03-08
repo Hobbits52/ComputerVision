@@ -9,7 +9,6 @@ class XAxis extends React.Component {
     let { height, scale } = this.props;
 
     let ticks = scale.ticks(20).map(function(tick, index) {
-      console.log(index);
       return (
         <Tick value={tick} 
               scale={scale} 
