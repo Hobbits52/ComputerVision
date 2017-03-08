@@ -6,7 +6,7 @@ const bluebird = require('bluebird');
 bluebird.promisifyAll(redis.RedisClient.prototype);
 
 let redisCl = null;
-//redisCl = redis.createClient();
+redisCl = redis.createClient();
 
 const server = app.listen(port);
 

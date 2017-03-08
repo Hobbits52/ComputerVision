@@ -3,9 +3,9 @@ const bluebird = require('bluebird');
 const CacheParser = require('./../utility/cacheParser.js');
 ////////////////////////////////////////////////////////////////
 const Classes = function(req, res) {
-	if (req.decoded.user === 'teacher') {
+	if (req.decoded.usertype === 'teacher') {
 		bluebird.promisify(Cache.getCache);
-		Cache.getCache('teacherData').then(function(cache) {
+		Cache.getCache(req.decoded.userId).then(function(cache) {
 				CacheParser.getClasses(cache, function(err, resp) {
 					if (err) {
 						res.status(400).send(err);
@@ -23,9 +23,9 @@ const Classes = function(req, res) {
 
 ////////////////////////////////////////////////////////////////
 const StudentsByClass = function(req, res) {
-	if (req.decoded.user === 'teacher') {
+	if (req.decoded.usertype === 'teacher') {
 	 	bluebird.promisify(Cache.getCache);
-		Cache.getCache('teacherData').then(function(cache) {
+		Cache.getCache(req.decoded.userId).then(function(cache) {
 			CacheParser.getStudents(cache, function(err, resp) {
 				if (err) {
 					res.status(400).send(err);
@@ -46,10 +46,10 @@ const StudentsByClass = function(req, res) {
 ////////////////////////////////////////////////////////////////
 const TestsForClass = function(req, res) {
 	console.log('in tests for class', req.query.classId);
-	if (req.decoded.user === 'teacher') {
+	if (req.decoded.usertype === 'teacher') {
 		let classId = req.query.class_Id;
 		bluebird.promisify(Cache.getCache);
-		Cache.getCache('teacherData').then(function(cache) {
+		Cache.getCache(req.decoded.userId).then(function(cache) {
 			CacheParser.getTestsForClass(cache, classId, function(err, resp) {
 				if (err) {
 					res.status(400).send(err);
@@ -69,10 +69,10 @@ const TestsForClass = function(req, res) {
 
 ////////////////////////////////////////////////////////////////
 const KeysForClass = function(req, res) {
-	if (req.decoded.user === 'teacher') {
+	if (req.decoded.usetype === 'teacher') {
 		let classId = req.query.class_Id;
 		bluebird.promisify(Cache.getCache);
-		Cache.getCache('teacherData').then(function(cache) {
+		Cache.getCache(req.decoded.userId).then(function(cache) {
 			CacheParser.getKeysForClass(cache, classId, function(err, resp) {
 				if (err) {
 					res.status(400).send(err);
