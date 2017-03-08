@@ -5,6 +5,9 @@ import {getAllStudents} from './helpers/viewHelpers.js';
 import StudentsList from './StudentsList.jsx';
 import StudentTestList from './StudentTestList.jsx';
 import css from '../css/nav.css';
+import Autosuggest from 'react-autosuggest';
+// import {getSuggestions, getSuggestionValue, renderSuggestion} from './helpers/authHelpers.js';
+
 
 class StudentsView extends React.Component {
   constructor(props) {
@@ -15,11 +18,39 @@ class StudentsView extends React.Component {
       currentStudentName: null,
       currentId: null,
       currentCourse: null,
-      currentCourseId: null
+      currentCourseId: null,
+      decoratedStudents: [],
+      value: '',
+      suggestions: []
     };
 
     this.handleStudentsListEntryClick = this.handleStudentsListEntryClick.bind(this);
     this.handleGoBackStudents = this.handleGoBackStudents.bind(this);
+    this.getSuggestions = this.getSuggestions.bind(this);
+    this.getSuggestionValue = this.getSuggestionValue.bind(this);
+    this.renderSuggestion = this.renderSuggestion.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
+    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+
+  }
+
+  componentDidMount() {
+
+    // need to decorate students to access class name and id
+
+    if (this.state.students) {
+      for (var i = 0; i < this.state.students.length; i++) {
+        for (var j = 0; j < this.state.students[i].students.length; j++) {
+          this.state.decoratedStudents.push({
+            classId: this.state.students[i].class.ClassId,
+            className: this.state.students[i].class.ClassName,
+            studentId: this.state.students[i].students[j].StudentId,
+            studentName: this.state.students[i].students[j].StudentName
+          })
+        }
+      }
+    }
   }
 
   handleStudentsListEntryClick(studentName, studentId, studentCourse, studentCourseId) {
@@ -41,11 +72,84 @@ class StudentsView extends React.Component {
     })
   }
 
+  ///////////////////////////////////////
+
+
+  getSuggestions(value, students) {
+    console.log('ayayyyyyayaya');
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+
+    return inputLength === 0 ? [] : students.filter(val =>
+      val.studentName.toLowerCase().slice(0, inputLength) === inputValue
+    );
+  };
+
+  getSuggestionValue(suggestion) {
+    suggestion.studentName;
+  };
+
+  renderSuggestion(suggestion) {
+    console.log('this is the suggestion', suggestion);
+    return (
+      <tr className = "suggestionResults" onClick={() => {
+        this.handleStudentsListEntryClick(
+          suggestion.studentName,
+          suggestion.studentId,
+          suggestion.className,
+          suggestion.classId
+          )}}>
+        <td>{suggestion.studentId}</td>
+        <td>{suggestion.studentName}</td>
+        <td>{suggestion.className}</td>
+      </tr>
+    );
+  }; 
+
+  onChange(event, { newValue }) {
+    console.log('NEW VALUE', newValue);
+    this.setState({
+      value: newValue
+    });
+  };
+
+  onSuggestionsFetchRequested({ value }) {
+    this.setState({
+      suggestions: this.getSuggestions(value, this.state.decoratedStudents)
+    });
+  };
+
+  onSuggestionsClearRequested() {
+    this.setState({
+      suggestions: []
+    });
+  };
+
+  ///////////////////////////////////////
+
   render() {
+
+    const { value, suggestions } = this.state;
+
+    // Autosuggest will pass through all these props to the input element.
+    const inputProps = {
+      placeholder: 'Search students',
+      value,
+      onChange: this.onChange
+    };
+
     if (this.state.currentStudentName === null) {
       return (
         <div>
           <h3 className="entryView">Students</h3>
+          <Autosuggest
+            suggestions={this.state.suggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            getSuggestionValue={this.getSuggestionValue}
+            renderSuggestion={this.renderSuggestion}
+            inputProps={inputProps}
+          />
           <StudentsList 
             students={this.state.students}
             currentStudentId={this.state.currentStudent}

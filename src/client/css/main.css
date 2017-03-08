@@ -70,6 +70,10 @@ p {
 
 /******INNERVIEWS******/
 
+.suggestionResults {
+  list-style-type: none;
+}
+
 .emptyObject {
   display: block;
   margin: 0 auto;

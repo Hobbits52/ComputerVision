@@ -8,26 +8,62 @@ class NavBar extends React.Component {
     this.state = {
       students: this.props.students,
       matches: [],
-      decoratedStudents: []
+      decoratedStudents: [],
+      suggestions: [],
+      value: ''
     };
   };
 
+  // converting the students to be an array of students, with the classId included.
+  // must cycle through each class, and decorate each student object with the class ID
 
-  // componentWillMount() {
-  //   for (var i = 0; i < this.props)
+  // TODO: implement student search on navbar
+  componentDidMount() {
+    // console.log('yayyyyyyayayayay', this.props.students);
+    // if (this.state.students) {
+    //   console.log('in here');
+    //   for (var i = 0; i < this.state.students.length; i++) {
+    //     for (var j = 0; j < this.state.students[i].students; j++) {
+    //       this.state.decoratedStudents.push({
+    //         classId: this.state.students[i].class.ClassId,
+    //         className: this.state.students[i].class.ClassName,
+    //         studentId: this.state.students[i].students[j].StudentId,
+    //         studentName: this.state.students[i].students[j].StudentName
+    //       })
+    //     }
+    //   }
+    // }
+    // console.log('=======these are the decoratedStudents=======', this.state.decoratedStudents);
+  }
+
+  // onChange(event { newValue }) => {
+  //   this.setState({
+  //     value: newValue
+  //   })
   // }
-  // getSuggestions = value => {
 
-  //   const inputValue = value.trim().toLowerCase();
-  //   const inputLength = inputValue.length;
+  // onSuggestionsFetchRequested({ value }) => {
+  //   this.setState({
+  //     suggestions: getSuggestions(value) //(implemented above)
+  //   });
+  // }
 
-  //   return inputLength === 0 ? [] : languages.filter(name =>
-  //     name.name.toLowerCase().slice(0, inputLength) === inputValue
-  //   );
-  // };
+  // onSuggestionsClearRequested() => {
+  //   this.setState({
+  //     suggestions: []
+  //   });
+  // }
 
 
   render () {
+
+    // const { value, suggestions } = this.state;
+
+    // const inputProps = {
+    //   placeholder: 'Search Students',
+    //   value,
+    //   onChange: this.onChange
+    // };
 
     //this.props.location is set in each component that contains a navbar
     let publicPages = this.props.location.pathname === '/' ||
