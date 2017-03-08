@@ -2,21 +2,16 @@ import axios from 'axios';
 // var request = require('request');
 // var fs = require('fs');
 
-// --------------------------------------------------------------------------
-// HomeView Helpers
-// --------------------------------------------------------------------------
-
-exports.getAllTeachersClasses = () => {
-  return axios.get('/api/getClasses', {
+exports.getAllTeachersClasses = (teacherId) => {
+  return axios.get('/api/allTeachersClasses', {
     params: {
       token: window.localStorage.token
     }
   }); 
 };
 
-
 exports.getAllStudentsInClass = (classId) => {
-  return axios.get('api/allClassesStudents', {
+  return axios.get('/api/allClassesStudents', {
     params: {
       class_Id: classId,
       token: window.localStorage.token
@@ -32,9 +27,9 @@ exports.getAllTestsInClass = (classId) => {
     }
   }); 
 };
- 
+
 exports.getAllStudentsWhoTookTest = (testId) => {
-  return axios.get('api/allStudentsWhoTookTest', {
+  return axios.get('/api/allStudentsWhoTookTest', {
     params: {
       test_Id: testId,
       token: window.localStorage.token
@@ -50,13 +45,6 @@ exports.getKeysForClass = (classId) => {
     }
   })
 }
-
-
-// Need one more function for getting most recent test results...
-
-// --------------------------------------------------------------------------
-// StudentsView Helpers
-// --------------------------------------------------------------------------
 
 exports.getAllStudents = (teacherId) => {
   return axios.get('/api/getStudentsByClass', {
