@@ -5,12 +5,12 @@ class Bar extends React.Component {
 
   render() {
     let { binData, xScale, yScale, height } = this.props;
-    console.log('From Bar, binData is: ', binData);
+    // console.log('From Bar, binData is: ', binData);
 
     let scaledX = xScale(binData.x0);
     let scaledY = yScale(binData.length);
     let scaledDx = xScale(binData.x1 - binData.x0);
-    console.log('scaledX is: ', xScale(binData.x0));
+    // console.log('scaledX is: ', xScale(binData.x0));
 
     return (
       <g className="axis" transform={"translate(" + scaledX + "," + scaledY + ")"}>
