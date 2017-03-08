@@ -16,7 +16,6 @@ class StudentsList extends React.Component {
 
   render() {
 
-    // re-format data for student list
     let data = [];
     this.state.students.map((obj) => {
 
