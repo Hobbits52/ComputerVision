@@ -7,7 +7,6 @@ const Cache = require('./../utility/cacheData.js');
 //TOKEN SPECIFIC FUNCTIONS
 //////////////////////////////////////////////////////////////////
 const checkToken = function(req, res, next) {
-  console.log('checkToken called', req.query.token);
   // check header for token --> our client will be in query string of GET request
   var token = req.query.token || req.headers['x-access-token'] || req.body.token
   if (token) {
@@ -73,13 +72,19 @@ const teacherSignup = function(req, res, next) {
 };
 
 
-
 // DEV TO DO: Change from session to token
-const teacherLogout = function(req, res) {  
-  req.session.destroy(function() {
-    res.status(200);
-    res.end();
-  })
+const teacherLogout = function(req, res) {
+  const redisClient = require('./../server.js').redis;
+  checkToken(req, res, function() {
+    redisClient.delAsync(req.decoded.userId).then(function(response) {
+      res.status(200);
+      res.end();
+    }).catch(function(err) {
+      console.log(err);
+      res.status(200);
+      res.end();
+    });
+  });
 };
 
 //////////////////////////////////////////////////////////////////

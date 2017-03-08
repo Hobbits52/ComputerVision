@@ -44,7 +44,6 @@ const saveTeacherData = function(teacherId) {
   });
 };
 
-
 const getCache = function(teacherId) {
   const redisClient = require('./../server.js').redis;
   return redisClient.getAsync(teacherId).then(function(response) {
