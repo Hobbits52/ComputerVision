@@ -28,7 +28,7 @@ class App extends React.Component {
       this.setState({
       isLoggedIn: false,
       teacher: null
-      }, () => this.props.router.push('/'))
+      }, () => this.props.router.push('/'));
     });
   };
   
