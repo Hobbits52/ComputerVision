@@ -23,7 +23,6 @@ exports.login = (user) => {
 exports.logout = () => {
   return axios.get('/auth/logout', {
     params: {
-      test: 'hello',
       token: window.localStorage.token
     }
   });
