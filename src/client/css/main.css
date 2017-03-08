@@ -70,6 +70,10 @@ p {
 
 /******INNERVIEWS******/
 
+.suggestionsList {
+  list-style-type: none;
+}
+
 .suggestionResults {
   list-style-type: none;
 }
