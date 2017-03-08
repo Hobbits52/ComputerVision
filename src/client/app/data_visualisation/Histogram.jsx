@@ -7,7 +7,7 @@ import Bar from './Bar.jsx';
 class Histogram extends React.Component {
 
   render() {
-    let { top, right, bottom, left, gaussData, width, height, padding } = this.props;
+    let { top, right, bottom, left, currentClassId, currentClassName, gaussData, width, height, padding } = this.props;
 
     console.log('Im Gaussian!: ', gaussData);
 
@@ -22,7 +22,7 @@ class Histogram extends React.Component {
         .thresholds(xScale.ticks(20))
         (data);
 
-    let histogramData = histogramGenerator(gaussData);
+    let histogramData = histogramGenerator(gaussData[0].studentTestScores);
     console.log('From Histogram, this is histogramData: ', histogramData);
 
     let yScale = 
@@ -57,7 +57,7 @@ Histogram.propTypes = {
   left: React.PropTypes.number,
   width: React.PropTypes.number.isRequired,
   height: React.PropTypes.number.isRequired,
-  gaussData: React.PropTypes.arrayOf(React.PropTypes.number).isRequired
+  gaussData: React.PropTypes.object.isRequired
 };
 
 Histogram.defaultProps = {
