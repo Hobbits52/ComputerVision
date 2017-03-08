@@ -11,7 +11,6 @@ import { getAllTeachersClasses, getAllStudents } from './helpers/viewHelpers';
 
 class Dashboard extends React.Component {
   constructor(props) {
-    //major state is stored within here
     super(props);
 
     this.state = {
@@ -33,10 +32,6 @@ class Dashboard extends React.Component {
     this.handleSideBarClick = this.handleSideBarClick.bind(this);
   }
 
-// --------------------------------------------------------------------
-// Component Lifecycle Functions
-// --------------------------------------------------------------------
-
   componentWillMount() {
     if (!this.props.isLoggedIn) {
       this.props.router.push('/login');
@@ -52,12 +47,9 @@ class Dashboard extends React.Component {
 
       getAllStudents(this.state.teacherId)
         .then((res) => {
-          console.log('this is the res object', res.data);
           this.setState({
             students: res.data
           })
-
-          console.log('THESE ARE ALL THE STUDENTS', this.state.students);
         })
         .catch((err) => {
           console.log('Could not retrieve students', err);
@@ -67,15 +59,6 @@ class Dashboard extends React.Component {
       console.log('Could not retrieve classes', err);
     });
   }
-
-
-
-// --------------------------------------------------------------------
-  
-
-// --------------------------------------------------------------------
-// Event Handlers
-// --------------------------------------------------------------------
 
   addClass() {
     console.log('Add new class');
@@ -90,7 +73,6 @@ class Dashboard extends React.Component {
   }
 
   handlePostItClick(course) {
-    console.log('why is this firing', course);
     this.setState({
       currentCourse: course
     })
@@ -101,9 +83,6 @@ class Dashboard extends React.Component {
       currentCourse: null
     })
   }
-
-
-// --------------------------------------------------------------------
 
   render() {
     if (this.state.classes === null) {

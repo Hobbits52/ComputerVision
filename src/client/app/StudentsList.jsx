@@ -19,16 +19,19 @@ class StudentsList extends React.Component {
     // re-format data for student list
     let data = [];
     this.state.students.map((obj) => {
-      var studentObj = {
-        courseName: obj.class.ClassName,
-        courseId: obj.class.ClassId
-      }
+
       for (var i = 0; i < obj.students.length; i++) {
+        var studentObj = {
+          courseName: obj.class.ClassName,
+          courseId: obj.class.ClassId
+        }
         studentObj['StudentId'] = obj.students[i].StudentId;
         studentObj['StudentName'] = obj.students[i].StudentName;
         data.push(studentObj);
       }
     });
+
+    console.log('THIS IS THE DATA IN STUDENTS LIST', data);
 
 
     return (

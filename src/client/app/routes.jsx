@@ -13,11 +13,6 @@ import StatisticsView from './StatisticsView.jsx';
 import LandingPage from './LandingPage.jsx';
 import TemplatesView from './TemplatesView.jsx'
 
-import TestResultsContainer from './TestResultsContainer.jsx';
-import TestResults from './TestResults.jsx';
-import TestTakerResults from './TestTakerResults.jsx';
-// Need to add a route for the above!
-
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={LandingPage} />

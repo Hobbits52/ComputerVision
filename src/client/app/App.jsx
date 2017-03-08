@@ -39,13 +39,8 @@ class App extends React.Component {
       isLoggedIn: true,
       teacher: teacher.username,
       teacherId: teacher.id
-      // teacherId: user.data.teacherId
     }, () => this.props.router.push('/dashboard'));
   }
-
-// --------------------------------------------------------------------
-// Component Lifecycle Functions
-// --------------------------------------------------------------------
 
   componentWillMount() {
     checkSession()
@@ -56,9 +51,6 @@ class App extends React.Component {
     })
     .catch(err => { console.log('err: ', err); })
   }
-
-
-// --------------------------------------------------------------------
 
   render() {
     return React.cloneElement(this.props.children, {

@@ -17,12 +17,7 @@ class ClassesView extends React.Component {
     };
 
     this.selectClass = this.selectClass.bind(this);
-    console.log('THIS IS IN IN CLASSES VIEW', this.props.currentCourse);
   }
-
-// --------------------------------------------------------------------
-// Component Lifecycle Functions
-// --------------------------------------------------------------------
 
   componentWillMount() {
     if(this.props.currentCourse) {
@@ -31,19 +26,12 @@ class ClassesView extends React.Component {
       })
     }
   }
-// --------------------------------------------------------------------
-
-
-// --------------------------------------------------------------------
-// Event Handlers
-// --------------------------------------------------------------------
 
   selectClass(event) {
     this.setState({
       currentClass: event.target.value
     });
   }
-// --------------------------------------------------------------------
 
   render() {
     return (
@@ -64,7 +52,6 @@ class ClassesView extends React.Component {
       </div>
     );
   }
-
 }
 
 export default ClassesView;

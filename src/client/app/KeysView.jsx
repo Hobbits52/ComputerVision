@@ -14,7 +14,8 @@ class KeysView extends React.Component {
       selectClassId: null,
       currentKey: null,
       currentKeyId: null,
-      keysForClass: null
+      keysForClass: null,
+      currentKeyName: null
     };
 
     this.selectClass = this.selectClass.bind(this);
@@ -44,9 +45,12 @@ class KeysView extends React.Component {
   }
 
   selectKey(key, id) {
+    console.log('THIS IS THE KEY IN SELECT KEY', key);
+    console.log('THIS IS THE ID', id);
     this.setState({
-      currentKey: JSON.parse(key),
-      currentKeyId: id
+      currentKey: JSON.parse(key.answers),
+      currentKeyId: id,
+      currentKeyName: key.keyName
     });
   }
 
@@ -102,8 +106,8 @@ class KeysView extends React.Component {
       return (
         <div>
           <h5 className = "backCrumb" onClick={this.showAllTestsForClass}>{"< Back to all keys"}</h5>
-          <h3>{"Key " + this.state.currentKeyId}</h3>
-          <KeyViewAnswers currentKey={this.state.currentKey} currentKeyId={this.state.currentKeyId} showAllTestsForClass={this.showAllTestsForClass}/>
+          <h3>{this.state.currentKeyName}</h3>
+          <KeyViewAnswers currentKeyName={this.state.currentKeyName} currentKey={this.state.currentKey} currentKeyId={this.state.currentKeyId} showAllTestsForClass={this.showAllTestsForClass}/>
         </div>
       );
     } else if (this.state.selectClassId !== null && this.state.currentKey === null){
