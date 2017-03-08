@@ -13,7 +13,6 @@ class KeyViewList extends React.Component {
       currentClass:this.props.currentClass,
       keysForClass: this.props.keysForClass,
     };
-    console.log('yassss', this.props.keysForClass);
   }
 
   render() {
@@ -26,7 +25,6 @@ class KeyViewList extends React.Component {
               <th>Key Name</th>
             </tr>
               {this.state.keysForClass.map((answerKey, index) => {
-                console.log('THIS IS THE ANSWER KEY', answerKey);
                 return <KeyViewListItem
                     answerKey={this.state.keysForClass[index]}
                     key={index}             

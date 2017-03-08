@@ -30,6 +30,7 @@ class Dashboard extends React.Component {
     this.addTest = this.addTest.bind(this);
     this.handlePostItClick = this.handlePostItClick.bind(this);
     this.handleSideBarClick = this.handleSideBarClick.bind(this);
+    this.handleSearchBarClick = this.handleSearchBarClick.bind(this);
   }
 
   componentWillMount() {
@@ -50,6 +51,8 @@ class Dashboard extends React.Component {
           this.setState({
             students: res.data
           })
+
+          console.log('THIS IS AN ARRAY WITH ALL THE STUDENTS', this.state.students);
         })
         .catch((err) => {
           console.log('Could not retrieve students', err);
@@ -70,6 +73,14 @@ class Dashboard extends React.Component {
 
   addTest() {
     console.log('Add new test');
+  }
+
+  handleSearchBarClick(currentStudentName) {
+    // loop through students in each class
+      // if student name matches a student name in this.state.students
+        // sets states here and pass them down to student view
+      // else 
+        // show message, student does not exist
   }
 
   handlePostItClick(course) {
