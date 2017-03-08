@@ -31,9 +31,6 @@ class StudentsList extends React.Component {
       }
     });
 
-    console.log('THIS IS THE DATA IN STUDENTS LIST', data);
-
-
     return (
       <div>
         <table>

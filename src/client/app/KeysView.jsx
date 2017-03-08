@@ -45,8 +45,6 @@ class KeysView extends React.Component {
   }
 
   selectKey(key, id) {
-    console.log('THIS IS THE KEY IN SELECT KEY', key);
-    console.log('THIS IS THE ID', id);
     this.setState({
       currentKey: JSON.parse(key.answers),
       currentKeyId: id,
