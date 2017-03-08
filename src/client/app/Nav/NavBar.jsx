@@ -6,12 +6,29 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      matches: []
+      students: this.props.students,
+      matches: [],
+      decoratedStudents: []
     };
   };
 
 
+  // componentWillMount() {
+  //   for (var i = 0; i < this.props)
+  // }
+  // getSuggestions = value => {
+
+  //   const inputValue = value.trim().toLowerCase();
+  //   const inputLength = inputValue.length;
+
+  //   return inputLength === 0 ? [] : languages.filter(name =>
+  //     name.name.toLowerCase().slice(0, inputLength) === inputValue
+  //   );
+  // };
+
+
   render () {
+
     //this.props.location is set in each component that contains a navbar
     let publicPages = this.props.location.pathname === '/' ||
                       this.props.location.pathname === '/signup' ||
@@ -36,7 +53,6 @@ class NavBar extends React.Component {
       home="/dashboard/"
     }
 
-    //fix logic for new onClick. needs to work for signup
     return(
       <nav className={classNameLocation}>
         <div className="container-fluid">

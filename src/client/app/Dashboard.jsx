@@ -107,7 +107,10 @@ class Dashboard extends React.Component {
           <NavBar location={this.props.location} students={this.state.students} handleLogoutClick={this.props.handleLogoutClick} />
           <div className="container-fluid below-nav-top">
             <div className="row">
-              <NavSide className="navSide" teacher={this.state.teacher} handleSideBarClick={this.handleSideBarClick}/>
+              <NavSide  className="navSide" 
+                        teacher={this.state.teacher} 
+                        handleSideBarClick={this.handleSideBarClick}
+                        students={this.state.students}/>
                 <div className="col-sm-10 teacherViewContainer">
                   {React.cloneElement(this.props.children, {
                       isLoggedIn: this.state.isLoggedIn,
