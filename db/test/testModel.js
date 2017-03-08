@@ -1,8 +1,8 @@
 const db = require('./../index.js').db;
 const Sequelize = require('sequelize');
-const answerKeys = require('./../key/keyModel').answerKeys;
 const Students = require('./../student/studentModel').Students;
 const Classes = require('./../classes/classModel').Classes;
+const answerKeys = require('./../key/keyModel').answerKeys;
 
 //MVP: 1 teacher
 //MVP+: Multiple teachers. Need foreign key with teacher_id

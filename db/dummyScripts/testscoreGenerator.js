@@ -26,7 +26,7 @@ const fs = require('fs');
 // Number of data points for the chart
 // const numDataPoints = 1000;
 
-// // Returns a pair of random gaussian numbers
+// // // // Returns a pair of random gaussian numbers
 // const randomGaussNum = (mu, sigma) => {
 //   // Generate pair of independent random uniformly distributed variables
 //   // within interval (0,1).
@@ -52,88 +52,73 @@ const fs = require('fs');
 
 // var distArr = [{mean: 81, sd: 4}, {mean: 65, sd: 6}, {mean: 68, sd: 4}, {mean: 73, sd: 8}];
 // var testData = [];
-// for (var i = 0; i < distArr.length; i++) {
-// 	testData.push(randomGaussDataSet(distArr[i].mean, distArr[i].sd));
-// 	if (i === distArr.length - 1) {
+// var count = 0;
+
+// var test = function() {
+// 	var data = randomGaussDataSet(distArr[count].mean, distArr[count].sd);
+// 	testData.push(data);
+// 	count++;
+// 	if (count === distArr.length) {
 // 		fs.writeFile('./testScore.json', JSON.stringify({'answers': testData}));
+// 	} else if (count < distArr.length) {
+// 		test();
 // 	}
 // };
 
+// test();
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-const generateStudentAnswers = function() {
-  var answerKeys = require('./answerKey.json').keys;
-  var studentScores = require('./testScore.json').answers;
-  var classAnswers = {};
-  classAnswers.answers = [];
-  var count = 0;
+// const generateStudentAnswers = function() {
+//   var answerKeys = require('./answerKey.json').keys;
+//   var studentScores = require('./testScore.json').answers;
+//   var classAnswers = {};
+//   classAnswers.answers = [];
+//   var count = 0;
+//  	var test = function() {
+//  		var studentAnswers = {};
+//  		studentAnswers.testName = answerKeys[count].keyName;
+//  		studentAnswers.tests = [];
+//  		var answerKey = answerKeys[count];
+//  		for (var i = 0; i < 1000; i++) {
+//  			console.log(studentScores[count][i], '************', i);
+//  			var studentAnswer = Object.assign({}, JSON.parse(answerKeys[count].answers));
+//  			var numWrong = Math.floor(((100 - studentScores[count][i])/100) * 28);
+//  			var changed = {};
+//  			while (numWrong > 0) {
+//  				var possible = ['a', 'b', 'c', 'd', 'e'];
+//  				var questNum = Math.ceil(Math.random() * 28);
+//  				if (changed[questNum] === undefined) {
+//  					changed[questNum] = questNum;
+//  					for (var j = 0; j < possible.length; j++) {
+//  						if (possible[j] !== studentAnswer[questNum]) {
+//  							studentAnswer[questNum] = [possible[j]];
+//  							numWrong--;
+//  							j = 1000;
+//  						}
+//  					}
+//  				}
+//  				if (numWrong === 0) {
+//  					studentAnswers.tests.push(studentAnswer);
+//  					if (i === 999) {
+// 	 					classAnswers.answers.push(studentAnswers);
+// 	 					count++;
+// 		 				if (count === answerKeys.length) {
+// 		 					fs.writeFile('./studentAnswers.json', JSON.stringify(classAnswers));
+// 		 				} else if (count < answerKeys.length) {
+// 		 					test();
+// 		 				}
+// 		 			}
+//  				}
+//  			}
+//  		}
+//  	}
+//  	test();
+// }
 
-  for (var k = 0; k < answerKeys.length; k++) {
-	  var studentAnswers = {};
-	  studentAnswers.answers = [];
-	  for (var i = 0; i < 1000; i++) {
-	    var studentAnswer = Object.assign({}, answerKeys[k].answers);
-	    var numWrong = Math.floor(((100 - studentScores[k][i])/100) * 28);
-	    var changed = {};
-	    while (numWrong > 0) {
-	      var possible = ['a', 'b', 'c', 'd', 'e'];
-	      var questNum = Math.floor(Math.random() * 28);
-	      if (changed[questNum] === undefined) {
-	        changed[questNum] = questNum;
-	        for (var j = 0; j < possible.length; j++) {
-	          if (possible[j] !== studentAnswer[questNum]) {
-	            studentAnswer[questNum] = [possible[j]];
-	            numWrong--;
-	            j = 1000;
-	          }
-	        }
-	      }
-	      if (numWrong === 0) {
-	        studentAnswers.answers.push(studentAnswer);
-	      }
-	    }
-	    if (i === 999) {
-	      var answer = studentAnswers;
-	      classAnswers.answers.push(answer);
-	      count++;
-	      if (count === answerKeys.length - 1) {
-	      	fs.writeFile('./studentAnswers.json', JSON.stringify(classAnswers));
-	      }
-	    }
-	  }
-	}
-}
- generateStudentAnswers();
+// generateStudentAnswers();
 
-// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// const generateTestData = function() {
-//   const TestCon = require('./test/testController.js');
-//   var tests = require('./studentAnswers.json').answers;
-//   var testData = {};
-//   var url = "http://res.cloudinary.com/dn4vqx2gu/image/upload/v1488672122/rzcckliek05taq6a2pul.jpg";
-
-//   for (var i = 0; i < tests.length; i++) {
-//     var temp = {};
-//     temp.answerkeyId = 4;
-//     temp.URL = url;
-//     temp.StudentId = i;
-//     temp.ClassId = 5; 
-//     temp.answers = JSON.stringify(tests[i]);
-//     TestCon.addTest(temp, function(err, data) {
-//       if (err) {
-//         console.log('FAIL ' + err);
-//       } else {
-//         console.log('SUCCESS');
-//       }
-//     });
-//   };
-// };
-
-// generateTestData();
-// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-var students = require('./studentJSON.json');
-console.log(students.length);
+var test = require('./studentAnswers.json').answers;
+console.log(test.length);

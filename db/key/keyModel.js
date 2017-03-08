@@ -1,7 +1,7 @@
 const db = require('./../index.js').db;
 const Sequelize = require('sequelize');
-const Classes = require('./../classes/classModel').Classes;
 const Teachers = require('./../teacher/teacherModel.js').Teachers;
+const Classes = require('./../classes/classModel').Classes;
 
 //MVP: 1 key. No associations with courses and teacher
 //MVP+: Multiple teachers. Need foreign key with teacher_id
