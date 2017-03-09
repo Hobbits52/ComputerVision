@@ -17,24 +17,19 @@ class StudentResults extends React.Component {
       test: JSON.parse(this.props.test.studentAnswers),
       result: this.props.test.result
     };
-
-    console.log('in student results');
   }
 
   componentWillMount() {
     console.log('is this working?!?!?!', this.state.currentCourseId);
     getKeysForClass(this.state.currentCourseId)
     .then((res) => {
-      console.log('keys for class', res.data);
       var singleAnswerJSON = '';
       for (var i = 0; i < res.data.answerkey.length; i++) {
         if (this.props.test.answerKeyId === res.data.answerkey[i].keyId) {
-          console.log('this happens');
           singleAnswerJSON = res.data.answerkey[i].answers;
           break;
         }
       }
-      console.log('singleAnswerJSON', singleAnswerJSON);
       this.setState({
         answers: JSON.parse(singleAnswerJSON),
         currentCourseName: res.data.classname
