@@ -45,7 +45,6 @@ const StudentsByClass = function(req, res) {
 
 ////////////////////////////////////////////////////////////////
 const TestsForClass = function(req, res) {
-	console.log('in tests for class', req.query.classId);
 	if (req.decoded.usertype === 'teacher') {
 		let classId = req.query.class_Id;
 		bluebird.promisify(Cache.getCache);
@@ -69,7 +68,7 @@ const TestsForClass = function(req, res) {
 
 ////////////////////////////////////////////////////////////////
 const KeysForClass = function(req, res) {
-	if (req.decoded.usetype === 'teacher') {
+	if (req.decoded.usertype === 'teacher') {
 		let classId = req.query.class_Id;
 		bluebird.promisify(Cache.getCache);
 		Cache.getCache(req.decoded.userId).then(function(cache) {

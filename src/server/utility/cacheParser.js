@@ -49,7 +49,6 @@ const getTestsForClass = (cache, classId, cb) => {
 	let course = cache.filter(function(cls) {
 		return cls.classId === parseInt(classId, 10);
 	});
-
 	if (course.length > 0) {
 		cb(null, course);
 	} else {
@@ -60,10 +59,10 @@ const getTestsForClass = (cache, classId, cb) => {
 
 ///////////////////////////////////////////////////////////////
 const getKeysForClass = (cache, classId, cb) => {
+	console.log('this is here yaya');
 	let course = cache.filter(function(cls) {
 		return cls.classId === parseInt(classId, 10);
 	});
-
 	if (course.length > 0) {
 		let classObj = {};
 		console.log('************', course);
