@@ -1,7 +1,7 @@
-const Tests = require('./testModel.js').Tests;
-const Students = require('./../student/studentModel.js').Students;
+const Tests = require('./../dbModels/teacherModel.js').Tests;
+const Students = require('./../dbModels/teacherModel.js').Students;
 const StudentsCont = require('./../student/studentController.js');
-const answerKeys = require('./../key/keyModel.js').answerKeys;
+const answerKeys = require('./../dbModels/teacherModel.js').answerKeys;
 const helpers = require('./../../src/server/utility/helpers');
 
 const getStudentAnswers = (studentId, cb) => {

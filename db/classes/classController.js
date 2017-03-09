@@ -1,4 +1,4 @@
-const Classes = require('./classModel.js').Classes;
+const Classes = require('./../dbModels/teacherModel.js').Classes;
 const teacherSearch = require('./../teacher/teacherController.js').teacherSearch;
 
 

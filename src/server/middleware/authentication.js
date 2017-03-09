@@ -77,11 +77,11 @@ const teacherLogout = function(req, res) {
   const redisClient = require('./../server.js').redis;
   checkToken(req, res, function() {
     redisClient.delAsync(req.decoded.userId).then(function(response) {
-      res.status(200);
+      res.status(200).send('LOGGED OUT');
       res.end();
     }).catch(function(err) {
-      console.log(err);
-      res.status(200);
+      console.log('********USER CACHE NOT DELETED********* \n', err);
+      res.status(200).send('LOGGED OUT');
       res.end();
     });
   });

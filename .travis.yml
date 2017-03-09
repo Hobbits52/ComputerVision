@@ -3,6 +3,7 @@ node_js:
   - node
 services:
   - mysql
+  - redis-server
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS computervision;'
 deploy:
