@@ -170,22 +170,13 @@ class StudentsView extends React.Component {
     } else {
       return (
         <div>
-          <table>
-            <tbody>
-              <tr>
-                <th>Student ID</th>
-                <th>Student Name</th>
-                <th>Class</th>
-              </tr>
-              <StudentTestList
-                studentName={this.state.currentStudentName}
-                studentId={this.state.currentId}
-                currentCourse={this.state.currentCourse}
-                currentCourseId={this.state.currentCourseId}
-                handleGoBackStudents={this.handleGoBackStudents}
-                />
-            </tbody>
-          </table>
+          <StudentTestList
+            studentName={this.state.currentStudentName}
+            studentId={this.state.currentId}
+            currentCourse={this.state.currentCourse}
+            currentCourseId={this.state.currentCourseId}
+            handleGoBackStudents={this.handleGoBackStudents}
+            />
         </div>
       );
     }
