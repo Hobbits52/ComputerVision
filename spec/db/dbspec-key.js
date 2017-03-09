@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const mysql = require('mysql');
 const expect = require('chai').expect;
-const answerKeys = require('./../../db/key/keyModel.js').answerKeys;
+const answerKeys = require('./../../db/dbModels/teacherModel.js').answerKeys;
 
 xdescribe('Database Unit Testing - Keys', () => {
   let dbConnection;
