@@ -20,10 +20,16 @@ class Dashboard extends React.Component {
       currentCourse: null,
       renderOk: false,
 
+      currentStudentName: null,
+      currentId: null,
+      currentCourseId: null,
+
       students: null,
       classes: null,
       keys: 'An array of objects, each representing the data corresponding to a particular key.',
       mostRecentTest: 'An object representing the data of the most recent exam to fill the stats view'
+
+
     };
 
     this.addClass = this.addClass.bind(this);
@@ -40,7 +46,7 @@ class Dashboard extends React.Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     getAllTeachersClasses()
     .then((res) => {
       this.setState({
@@ -53,9 +59,6 @@ class Dashboard extends React.Component {
             students: res.data,
             renderOk: true
           })
-
-          console.log('RENDEROK', this.state.renderOk);
-          console.log('THIS IS AN ARRAY WITH ALL THE STUDENTS', this.state.students);
         })
         .catch((err) => {
           console.log('Could not retrieve students', err);
@@ -78,12 +81,17 @@ class Dashboard extends React.Component {
     console.log('Add new test');
   }
 
-  handleSearchBarClick(currentStudentName) {
-    // loop through students in each class
-      // if student name matches a student name in this.state.students
-        // sets states here and pass them down to student view
-      // else 
-        // show message, student does not exist
+  handleSearchBarClick(studentName, studentId, className, classId) {
+    console.log('studentName: ', studentName);
+    console.log('studentId: ', studentId);
+    console.log('className: ', className);
+    console.log('classId: ', classId);
+    this.setState({
+      currentStudentName: studentName,
+      currentId: studentId,
+      currentCourse: className,
+      currentCourseId: classId
+    });
   }
 
   handlePostItClick(course) {
@@ -94,23 +102,28 @@ class Dashboard extends React.Component {
 
   handleSideBarClick() {
     this.setState({
-      currentCourse: null
+      currentCourse: null,
+      currentStudentName: null,
+      currentId: null,
+      currentCourseId: null
     })
   }
 
   render() {
     console.log('STUDENTS', this.state.students);
+    console.log('this is the current course', this.state.currentStudentName);
     if (this.state.classes === null && this.state.renderOk === false) {
       return (
         <div>
         </div>
       )
-    } else {
+    } else if (this.state.renderOk === true) {
       return (
         <div>
           <NavBar location={this.props.location} 
                   students={this.state.students} 
-                  handleLogoutClick={this.props.handleLogoutClick} />
+                  handleLogoutClick={this.props.handleLogoutClick}
+                  handleSearchBarClick={this.handleSearchBarClick} />
           <div className="container-fluid below-nav-top">
             <div className="row">
               <NavSide  className="navSide" 
@@ -128,13 +141,21 @@ class Dashboard extends React.Component {
                       mostRecentTest: this.state.mostRecentTest,
                       addClass: this.addClass,
                       handlePostItClick: this.handlePostItClick,
-                      currentCourse: this.state.currentCourse
+                      currentCourse: this.state.currentCourse,
+                      currentStudentName: this.state.currentStudentName,
+                      currentId: this.state.currentId,
+                      currentCourseId: this.state.currentCourseId
                     })}
                 </div>
             </div>
           </div>
         </div>
       );
+    } else {
+      return (
+        <div>
+        </div>
+      )
     }
   }
 }
