@@ -29,7 +29,6 @@ class Dashboard extends React.Component {
       keys: 'An array of objects, each representing the data corresponding to a particular key.',
       mostRecentTest: 'An object representing the data of the most recent exam to fill the stats view'
 
-
     };
 
     this.addClass = this.addClass.bind(this);
