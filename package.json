@@ -14,7 +14,8 @@
     "test": "mocha --bail --reporter nyan spec/*",
     "start": "nodemon src/server/server.js",
     "server-test": "mocha --bail --reporter nyan spec/server/serverspec.js",
-    "insertDummyData": "node db/dummyScripts/dummyData.js"
+    "insertDummyData": "node db/dummyScripts/dummyData.js",
+    "insertDummyTestData": "node db/dummyScripts/dummyTestData.js"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
