@@ -7,12 +7,14 @@ import cv2 as cv
 import urllib
 import json
 
+
+data = {}
+data['URL'] = url
+data['status'] = 200
+
 def scan_image(url):
 	# data is our object to return. Helper functions have closure over data object.
 	# helpers change data['status'] when they fail.
-	data = {}
-	data['URL'] = url
-	data['status'] = 200
 
 	# get image from url
 	image = url_to_image(url)
