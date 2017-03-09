@@ -3,8 +3,8 @@ const port = process.env.PORT || 8080;
 const bluebird = require('bluebird');
 
 let redisCl = null;
-redisCl = require('redis').createClient();
-// redisCl = require('redis').createClient(process.env.REDIS_URL);
+//redisCl = require('redis').createClient();
+redisCl = require('redis').createClient(process.env.REDIS_URL);
 bluebird.promisifyAll(redisCl);
 const server = app.listen(port);
 
