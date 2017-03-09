@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const request = require('supertest');
-const Teachers = require('./../../db/teacher/teacherModel.js').Teachers;
+const Teachers = require('./../../db//teacherModel.js').Teachers;
 const Sequelize = require('sequelize');
 const spawn = require('child_process').spawn;
 // ----------------------------------------------------------------------
@@ -134,7 +134,7 @@ describe('API', () =>{
 });
 
 
-xdescribe('Scanner', () =>{
+xdescribe('Scanner', () => {
 
   it('Correctly Grades Test Hosted On Cloudinary', (done) => {
 
