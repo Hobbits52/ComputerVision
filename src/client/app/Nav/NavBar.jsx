@@ -74,12 +74,15 @@ class NavBar extends React.Component {
 
 
   getSuggestions(value, students) {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
+    console.log('this is value', value);
+    if (value) {
+      const inputValue = value.trim().toLowerCase();
+      const inputLength = inputValue.length;
 
-    return inputLength === 0 ? [] : students.filter(val =>
-      val.studentName.toLowerCase().slice(0, inputLength) === inputValue
-    );
+      return inputLength === 0 ? [] : students.filter(val =>
+        val.studentName.toLowerCase().slice(0, inputLength) === inputValue
+      );
+    }
   };
 
   getSuggestionValue(suggestion) {
@@ -87,7 +90,6 @@ class NavBar extends React.Component {
   };
 
   clearSelection() {
-    console.log('whyyyy');
     this.setState({
       suggestions: [],
       value: ''
@@ -105,7 +107,7 @@ class NavBar extends React.Component {
               )
             this.clearSelection();
           }}>
-        <Link to= "/dashboard/students/">
+        <Link to= "/dashboard/students/" >
             <h5>{suggestion.studentName}</h5>
         </Link> 
       </div>
@@ -150,8 +152,7 @@ class NavBar extends React.Component {
                       this.props.location.pathname === '/login';
 
     console.log(this.props.location.pathname);
-    let students = this.props.location.pathname === '/dashboard/students';
-
+   
     let classNameLocation, farRightLinkTo, farRightLinkClass, farRightText, redirect, home;
 
     if (publicPages) {
@@ -162,12 +163,6 @@ class NavBar extends React.Component {
       farRightLinkClass = "signupButton";
       farRightText = "Signup";
       home = "/"
-    } else if (students) {
-      classNameLocation = "navbar navbar-default navbar-static-top publicPages";
-      farRightLinkTo = "#";
-      farRightLinkClass = "logoutButton";
-      farRightText = "Logout";
-      home="/dashboard/"
     } else {
       //adding the classname dashboardPages if any other routes
       classNameLocation = "navbar navbar-default navbar-static-top dashboardPages";

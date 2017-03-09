@@ -10,8 +10,19 @@ import Autosuggest from 'react-autosuggest';
 
 // Autosuggest uses css modules
 const theme = {
+  container: {
+    display: 'block',
+    margin: '0 auto'
+  },
   suggestionsContainerOpen: {
       marginLeft: '-40px'
+  },
+
+  input: {
+    display: 'flex',
+    justifyContent: 'center',
+    fontSize: '24px',
+    alignText: 'center'
   }
 }
 
@@ -161,7 +172,7 @@ class StudentsView extends React.Component {
       return (
         <div>
           <h3 className="entryView">Students</h3>
-          <div>
+          <div className="autoSuggestStudentsView">
             <Autosuggest 
               suggestions={this.state.suggestions}
               onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}

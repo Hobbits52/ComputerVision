@@ -70,6 +70,15 @@ p {
 
 /******INNERVIEWS******/
 
+.searchBarList a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.autoSuggestStudentsView input[type=button] {
+  text-align: center;
+}
+
 .searchBarListContainer {
   margin-bottom: -70px;
 }
