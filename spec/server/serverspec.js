@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const request = require('supertest');
-const Teachers = require('./../../db//teacherModel.js').Teachers;
+const Teachers = require('./../../db/dbModels/teacherModel.js').Teachers;
 const Sequelize = require('sequelize');
 const spawn = require('child_process').spawn;
 // ----------------------------------------------------------------------
