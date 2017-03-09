@@ -113,7 +113,6 @@ class NavBar extends React.Component {
               <li className="loginLink"><Link to="/login">Login</Link></li>
               <li className={farRightLinkClass} onClick={this.props.handleLogoutClick}>
                 <Link to={farRightLinkTo}>{farRightText}</Link>
-              }
               </li>
             </ul>
           </div>

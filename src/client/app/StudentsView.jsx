@@ -9,6 +9,14 @@ import Autosuggest from 'react-autosuggest';
 // import {getSuggestions, getSuggestionValue, renderSuggestion} from './helpers/authHelpers.js';
 
 
+
+// Autosuggest uses css modules
+const theme = {
+    suggestionsContainerOpen: {
+      marginLeft: '-40px'
+  },
+}
+
 class StudentsView extends React.Component {
   constructor(props) {
     super(props);
@@ -32,6 +40,7 @@ class StudentsView extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+    console.log(theme);
 
   }
 
@@ -141,15 +150,16 @@ class StudentsView extends React.Component {
       return (
         <div>
           <h3 className="entryView">Students</h3>
-          <Autosuggest
+          <Autosuggest 
             suggestions={this.state.suggestions}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={this.getSuggestionValue}
             renderSuggestion={this.renderSuggestion}
             inputProps={inputProps}
+            theme={theme}
           />
-          <StudentsList 
+          <StudentsList
             students={this.state.students}
             currentStudentId={this.state.currentStudent}
             handleStudentsListEntryClick={this.handleStudentsListEntryClick} 
@@ -160,13 +170,22 @@ class StudentsView extends React.Component {
     } else {
       return (
         <div>
-          <StudentTestList
-            studentName={this.state.currentStudentName}
-            studentId={this.state.currentId}
-            currentCourse={this.state.currentCourse}
-            currentCourseId={this.state.currentCourseId}
-            handleGoBackStudents={this.handleGoBackStudents}
-            />
+          <table>
+            <tbody>
+              <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Class</th>
+              </tr>
+              <StudentTestList
+                studentName={this.state.currentStudentName}
+                studentId={this.state.currentId}
+                currentCourse={this.state.currentCourse}
+                currentCourseId={this.state.currentCourseId}
+                handleGoBackStudents={this.handleGoBackStudents}
+                />
+            </tbody>
+          </table>
         </div>
       );
     }
