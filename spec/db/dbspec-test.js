@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const mysql = require('mysql');
 const expect = require('chai').expect;
-const answerKeys = require('./../../db/key/keyModel.js').answerKeys;
-const Tests = require('./../../db/test/testModel.js').Tests;
+const answerKeys = require('./../../db/dbModels/teacherModel.js').answerKeys;
+const Tests = require('./../../db/dbModels/teacherModel.js').Tests;
 const TestController = require('./../../db/test/testController');
 const KeyController = require('./../../db/key/keyController');
 
