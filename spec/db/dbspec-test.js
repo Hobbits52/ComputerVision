@@ -10,7 +10,6 @@ xdescribe('Database Unit Testing - Keys', () => {
   let dbConnection;
 
   beforeEach((done) => {
-
     //new connection to database
     dbConnection = mysql.createConnection({
       user: 'root',
