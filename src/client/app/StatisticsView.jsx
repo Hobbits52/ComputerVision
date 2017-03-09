@@ -4,8 +4,6 @@ import {browserHistory} from 'react-router';
 import Chart from './data_visualisation/Chart.jsx';
 import { processData } from './data_visualisation/statisticsHelpers.js';
 
-// processData(1);
-
 class StatisticsView extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +31,7 @@ class StatisticsView extends React.Component {
       })
       .catch((error) => {
         this.setState({
-          errorLoadingData: error
+          errorLoadingData: error.message
         })
       });
   }
