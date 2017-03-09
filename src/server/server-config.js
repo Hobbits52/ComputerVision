@@ -11,7 +11,7 @@ const apiRouter = require('./routes/api.js');
 const app = express();
 
 // DEV: uncomment 'morgan' for development
-app.use(require('morgan')('dev'));
+// app.use(require('morgan')('dev'));
 
 app.use(bodyParser.json());
 
