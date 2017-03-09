@@ -31,6 +31,7 @@ const Scanner = function(uploadFile, type, cb) {
 		  data.answers = JSON.stringify(data.answers);
 		  data.TeacherId = uploadFile.TeacherId;
 		  data.ClassId = uploadFile.ClassId;
+		  data.keyName = uploadFile.keyName;
 		  if (type === 'key') {
 		  	Answerkey.addKey(data, function(err, data) {
 		  	  if (err) {
