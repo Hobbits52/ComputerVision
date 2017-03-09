@@ -1,4 +1,4 @@
-const Teachers = require('./teacherModel.js').Teachers;
+const Teachers = require('./../dbModels/teacherModel.js').Teachers;
 const bcrypt = require('bcrypt-nodejs');
 
 const Signup = (teacherInput, cb) => {

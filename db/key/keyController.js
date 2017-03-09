@@ -1,14 +1,14 @@
-const answerKeys = require('./keyModel.js').answerKeys;
+const answerKeys = require('./../dbModels/teacherModel.js').answerKeys;
 
 //MVP: 1 key. No input from server controller except callback
-exports.getAnswers = (cb) => {
+exports.getAnswers = (keyId) => {
   //MVP+ : key will be based on keyInput.id
-  let answerKeyId = 1;
-  answerKeys.findOne({where: {id: answerKeyId}})
+  answerKeys.findOne({where: {id: keyId}})
   .then((targetKey) => {
-    cb(null, targetKey.answers);
+    return targetKey;
   }).catch((err) => {
-    cb(err);
+    var error = 'Cannot find key';
+    return error;
   });
 };
 

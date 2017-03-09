@@ -1,4 +1,4 @@
-const Students = require('./studentModel.js').Students;
+const Students = require('./../dbModels/teacherModel.js').Students;
 const bcrypt = require('bcrypt-nodejs');
 //TODO: Refactor with promises on server side
 
