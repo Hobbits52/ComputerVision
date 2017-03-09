@@ -8,8 +8,6 @@ import css from '../css/nav.css';
 import Autosuggest from 'react-autosuggest';
 // import {getSuggestions, getSuggestionValue, renderSuggestion} from './helpers/authHelpers.js';
 
-
-
 // Autosuggest uses css modules
 const theme = {
   suggestionsContainerOpen: {
@@ -40,8 +38,18 @@ class StudentsView extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-    console.log(theme);
+    console.log('helllloooo');
+  }
 
+  componentWillMount() {
+    if(this.props.currentStudentName) {
+      this.setState({
+        currentStudentName: this.props.currentStudentName,
+        currentId: this.props.currentId,
+        currentCourse: this.props.currentCourse,
+        currentCourseId: this.props.currentCourseId
+      })
+    }
   }
 
   componentDidMount() {

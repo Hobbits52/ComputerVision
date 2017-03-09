@@ -70,6 +70,15 @@ p {
 
 /******INNERVIEWS******/
 
+.searchBarListContainer {
+  margin-bottom: -70px;
+}
+
+.searchBarList td {
+  display: block;
+  width: 30%;
+}
+
 .hideMe {
   display: none;
 }
