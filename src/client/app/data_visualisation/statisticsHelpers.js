@@ -46,6 +46,43 @@ exports.processData = function(classId) {
   });
 };
 
+exports.prepStudentAnswersForTest = function(allTestData) {
+  console.log('Im Inside prepStudentAnswersForTest and allTestData is: ', allTestData);
+  return allTestData[0].studentTestResults.map(function(item) {
+    return item.studentAnswers;
+  });
+}
+
+exports.responseFrequency = function(studentAnswersForTest) {
+  console.log('studentAnswersForTest: ', studentAnswersForTest);
+
+  var totalFrequencyCount = [];
+  console.log('CYNTHIA: ', studentAnswersForTest);
+  for (var i = 0; i < studentAnswersForTest[0].length; i++) {
+    var singleFrequencyCount = {a: 0, b: 0, c: 0, d: 0, e: 0};
+    totalFrequencyCount[i] = singleFrequencyCount;
+  }
+
+  studentAnswersForTest.forEach(function(answerSet) {
+    answerSet.forEach(function(answer, index) {
+      if (answer[0] === 'a') {         // Maybe use .contains here instead for questions with more than one answer?
+        totalFrequencyCount[index]['a']++;
+        if (index === 1 && answer[0] === 'a') { console.log('KSJDHFKSJDHF: ', totalFrequencyCount[index]); }
+      } else if (answer[0] === 'b') {  // Maybe use .contains here instead for questions with more than one answer?
+        totalFrequencyCount[index]['b']++;
+      } else if (answer[0] === 'c') {  // Maybe use .contains here instead for questions with more than one answer?
+        totalFrequencyCount[index]['c']++;
+      } else if (answer[0] === 'd') {  // Maybe use .contains here instead for questions with more than one answer?
+        totalFrequencyCount[index]['d']++;
+      } else if (answer[0] === 'e') {  // Maybe use .contains here instead for questions with more than one answer?
+        totalFrequencyCount[index]['e']++;
+      }
+    });
+  });
+    // console.log('------', totalFrequencyCount);
+  return totalFrequencyCount;
+}
+
 // // --------------------------------------------------------------------------------
 // // Formulas for Statistical Variables:
 // // --------------------------------------------------------------------------------
