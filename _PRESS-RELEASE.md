@@ -16,11 +16,12 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-# teacher's pet 
+# teacher's pet ##
   > Grade less. Teach more.
 
-## Summary 
-  > teacher's pet is a revolutionary app that allows you to take a picture of a multiple choice test and know your results instantly
+## Summary ##
+
+teacher's pet is a revolutionary app that allows you to take a picture of a multiple choice test and know your results instantly
 
 ## Features 
 
@@ -30,19 +31,28 @@ Once the project moves into development, the press release can be used as a touc
 * Web app performs advanced analytics to help you build better tests
 
 ## Problem ##
-  > Describe the problem your product solves.
+
+Teachers’ jobs are tough enough. Not only do they have the huge responsibility of teaching their students new concepts every day, but they also need to grade all their students’ homework, projects, and tests. Grading a test, especially a scantron test, should be one of the easiest tasks: compare the student’s answers with a key. Unfortunately, even this seemingly simple task can take a lot of time: you must buy special scantrons that match the scantron reader, make special trips to the scantron reader after every test, and extract the data from this special machine. Even worse, what if the scantron machine breaks? Why should teachers be expected to manually input these entries?
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
 
-## Quote from You ##
-  > A quote from a spokesperson in your company.
+That’s where our app teacher’s pet comes in. It allows for the instant grading of a multiple choice test. Simply ask students at the end of their tests to take a picture with their phone. Using OpenCV, data will be extracted from the image, and the results for each student will be posted on your teacher dashboard. It’s that simple. 
+
+## A Word from our Product Owner ##
+
+"The name teacher's pet derives from the fact that this will become a teacher's favorite tool. Our app makes grading an easy and fun task. " - Cynthia Bathgate
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+
+[Teachers Web App](http://computer-vision.herokuapp.com/) 
+Student Mobile App
+Teacher Mobile App 
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
 
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+"teacher's pet has made my life so much easier. All I have to do is ask my students to take a picture of their test after they're finished, and BAM, instant results! We have used this tool to instantly see class averages so that we can have a real-time discussion about results. I have actually learned to make better, more balanced tests with this! Thanks teacher's pet!" - Elizabeth Tang, Biology Teacher
+
+"As a student, I love that my teacher uses this app. I like knowing my results right away so I don't have to worry about my peformance for the rest of the day. My teacher also uses it to instantly pinpoint concepts that the majority of students aren't understanding." - Benze Gong, Biology Student
+
+## Create an acccount here ##
+
