@@ -34,11 +34,6 @@ class StudentsList extends React.Component {
       <div>
         <table>
           <tbody>
-            <tr>
-              <th>Student ID</th>
-              <th>Student Name</th>
-              <th>Class</th>
-            </tr>
             {data.map((pupil, index) => {
                 return <StudentsListEntry 
                     student={pupil}

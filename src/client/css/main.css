@@ -70,6 +70,14 @@ p {
 
 /******INNERVIEWS******/
 
+.hideMe {
+  display: none;
+}
+
+.showMe {
+  display: block;
+}
+
 li {
   list-style-type: none;
 }

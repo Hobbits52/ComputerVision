@@ -12,9 +12,9 @@ import Autosuggest from 'react-autosuggest';
 
 // Autosuggest uses css modules
 const theme = {
-    suggestionsContainerOpen: {
+  suggestionsContainerOpen: {
       marginLeft: '-40px'
-  },
+  }
 }
 
 class StudentsView extends React.Component {
@@ -45,9 +45,6 @@ class StudentsView extends React.Component {
   }
 
   componentDidMount() {
-
-    // need to decorate students to access class name and id
-
     if (this.state.students) {
       for (var i = 0; i < this.state.students.length; i++) {
         for (var j = 0; j < this.state.students[i].students.length; j++) {
@@ -146,31 +143,41 @@ class StudentsView extends React.Component {
       onChange: this.onChange
     };
 
+    if (this.state.suggestions.length > 0) {
+      var StudentTestListClassName = "hideMe";
+    } else {
+      var StudentTestListClassName = "showMe";
+    }
+
     if (this.state.currentStudentName === null) {
       return (
         <div>
           <h3 className="entryView">Students</h3>
-          <Autosuggest 
-            suggestions={this.state.suggestions}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            getSuggestionValue={this.getSuggestionValue}
-            renderSuggestion={this.renderSuggestion}
-            inputProps={inputProps}
-            theme={theme}
-          />
-          <StudentsList
-            students={this.state.students}
-            currentStudentId={this.state.currentStudent}
-            handleStudentsListEntryClick={this.handleStudentsListEntryClick} 
-            handleGoBackStudents={this.handleGoBackStudents}
-          />
+          <div>
+            <Autosuggest 
+              suggestions={this.state.suggestions}
+              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+              getSuggestionValue={this.getSuggestionValue}
+              renderSuggestion={this.renderSuggestion}
+              inputProps={inputProps}
+              theme={theme}
+            />
+          </div>
+          <div className={StudentTestListClassName}>
+            <StudentsList 
+              students={this.state.students}
+              currentStudentId={this.state.currentStudent}
+              handleStudentsListEntryClick={this.handleStudentsListEntryClick} 
+              handleGoBackStudents={this.handleGoBackStudents}
+            />
+          </div>
         </div>
       );  
     } else {
       return (
         <div>
-          <StudentTestList
+          <StudentTestList 
             studentName={this.state.currentStudentName}
             studentId={this.state.currentId}
             currentCourse={this.state.currentCourse}
