@@ -4,6 +4,8 @@ import XAxis from './XAxis.jsx';
 import YAxis from './YAxis.jsx';
 import Bar from './Bar.jsx';
 
+import { processData, prepStudentAnswersForTest, responseFrequency } from './statisticsHelpers.js';
+
 class Histogram extends React.Component {
 
   render() {
@@ -30,6 +32,11 @@ class Histogram extends React.Component {
         .domain([0, d3.max(histogramData, (d) => d.length )])
         .range([height, 0]);
 
+      console.log('My input to prepStudentAnswersForTest is: ', gaussData);
+      var x = prepStudentAnswersForTest(gaussData);
+      console.log('x is: ', x);
+      var y = responseFrequency(x);
+      console.log('y is: ', y);
     return (
       <div className="react-d3-histogram">
         <svg width={width + left + right} height={height + top + bottom}>
