@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
 
-const db = process.env.DATABASE_URL ? new Sequelize(process.env.DATABASE_URL)
+const db = process.env.CLEARDB_DATABASE_URL ? new Sequelize(process.env.CLEARDB_DATABASE_URL)
                                     : new Sequelize('computervision', 'root', '');
 exports.db = db;
