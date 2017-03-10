@@ -147,20 +147,20 @@ exports.singleItemDifficulty = function(allTestData, testId, responseFrequency, 
 }
 
 const testDifficulty = function(allTestData, testId, studentAnswersForEntireTest) {
-      var fullScoreForItem = 1;
-      var sumSingleItems = 0;
-      var totalPointsForTest = 28;
-      console.log('studentAnswersForEntireTest: ', studentAnswersForEntireTest);
-      
-      for (var i = 1; i < studentAnswersForEntireTest[0].length; i++) {
-        var respFreq2 = responseFrequency(studentAnswersForEntireTest, i);
-        sumSingleItems += singleItemDifficulty(allTestData, testId, respFreq2, studentAnswersForEntireTest, i) * fullScoreForItem;
-      }
+  var fullScoreForItem = 1;
+  var sumSingleItems = 0;
+  var totalPointsForTest = 28;
+  console.log('studentAnswersForEntireTest: ', studentAnswersForEntireTest);
+  
+  for (var i = 1; i < studentAnswersForEntireTest[0].length; i++) {
+    var respFreq2 = responseFrequency(studentAnswersForEntireTest, i);
+    sumSingleItems += singleItemDifficulty(allTestData, testId, respFreq2, studentAnswersForEntireTest, i) * fullScoreForItem;
+  }
 
-      var totalDifficulty = (1 / totalPointsForTest) * sumSingleItems;
+  var totalDifficulty = (1 / totalPointsForTest) * sumSingleItems;
 
-      return totalDifficulty;
-    }
+  return totalDifficulty;
+}
 
 // Reliability Coeffecient (Chronbach's Alpha)
 exports.alpha = (k, arrayOfArraysOfStudentAnswers, arrayOfGrades) => {'sttuffff'};
