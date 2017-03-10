@@ -83,7 +83,6 @@ const fs = require('fs');
 //  		studentAnswers.tests = [];
 //  		var answerKey = answerKeys[count];
 //  		for (var i = 0; i < 1000; i++) {
-//  			console.log(studentScores[count][i], '************', i);
 //  			var studentAnswer = Object.assign({}, JSON.parse(answerKeys[count].answers));
 //  			var numWrong = Math.floor(((100 - studentScores[count][i])/100) * 28);
 //  			var changed = {};
@@ -92,13 +91,23 @@ const fs = require('fs');
 //  				var questNum = Math.ceil(Math.random() * 28);
 //  				if (changed[questNum] === undefined) {
 //  					changed[questNum] = questNum;
-//  					for (var j = 0; j < possible.length; j++) {
-//  						if (possible[j] !== studentAnswer[questNum]) {
-//  							studentAnswer[questNum] = [possible[j]];
+//  					var newAnswer = function() {
+//  						var num = Math.floor(Math.random() * 4.9);
+//  						if (possible[num] !== studentAnswer[questNum]) {
+//  							studentAnswer[questNum] = [possible[num]];
 //  							numWrong--;
-//  							j = 1000;
+//  						} else {
+//  							newAnswer();
 //  						}
 //  					}
+//  					newAnswer();
+//  					// for (var j = 0; j < possible.length; j++) {
+//  					// 	if (possible[j] !== studentAnswer[questNum]) {
+//  					// 		studentAnswer[questNum] = [possible[j]];
+//  					// 		numWrong--;
+//  					// 		j = 1000;
+//  					// 	}
+//  					// }
 //  				}
 //  				if (numWrong === 0) {
 //  					studentAnswers.tests.push(studentAnswer);
@@ -120,5 +129,5 @@ const fs = require('fs');
 
 // generateStudentAnswers();
 
-var test = require('./studentAnswers.json').answers;
-console.log(test.length);
+// var test = require('./studentAnswers.json').answers;
+// console.log(test.length);
