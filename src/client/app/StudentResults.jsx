@@ -20,7 +20,6 @@ class StudentResults extends React.Component {
   }
 
   componentWillMount() {
-    console.log('is this working?!?!?!', this.state.currentCourseId);
     getKeysForClass(this.state.currentCourseId)
     .then((res) => {
       var singleAnswerJSON = '';

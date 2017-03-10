@@ -35,7 +35,6 @@ class TeacherViewContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="col-sm-10 teacherViewContainer">
         {React.cloneElement(this.props.children, {
