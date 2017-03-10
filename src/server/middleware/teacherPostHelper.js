@@ -15,12 +15,12 @@ const addAnswerKey = function(req, res) {
   	if(err) {
   		res.status(500);
       res.send(err);
-  		return res.end();
+  		res.end();
   	} else {
   		res.status(200);
       res.send(answerKey);
+      res.end();
       Cache.saveTeacherData(keyUpload.TeacherId);
-  		return res.end();
   	}
   });
 };
@@ -33,23 +33,16 @@ const addTest = function(req, res) {
     if(err) {
       res.status(500);
       res.send(err);
-      return res.end();
+      res.end();
     } else {
       //UPDATE REDIS
       res.status(200);
       res.send(test);
-      console.log('******', test.TeacherId);
-      Cache.getCache(test.TeacherId).then(function(data) {
-        if(data === null) {
-          res.end();
-        } else {
-          Cache.saveTeacherData(test.TeacherId);
-        }
-      });
-      return res.end();
+      res.end();
+      Cache.saveTeacherData(test.TeacherId);
     }
   });
-}
+};
 
 //NEW CLASS/////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
@@ -58,12 +51,12 @@ const addClass = function(req, res) {
   Classes.addClass(classInfo, function(err, newClass) {
     if (err) {
       res.status(500).send(err);
-      return res.end();
+      res.end();
     } else {
       //UPDATE REDIS
       res.status(200).send(newClass);
       Cache.saveTeacherData(keyUpload.TeacherId);
-      return res.end();
+      res.end();
     }
   })
 };

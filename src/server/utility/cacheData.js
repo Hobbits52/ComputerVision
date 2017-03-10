@@ -9,17 +9,18 @@ const saveTeacherData = function(teacherId) {
     if (err) {
       console.log(err);
     } else if(classes.length === 0) {
-        console.log('Teacher has no classes');
-    }else {
-      let counter = 0;
-      let classesArr = [];
+      var error = 'Teacher has no classes';
+      console.log(error);
+    } else {
+      var counter = 0;
+      var classesArr = [];
       for (var i = 0; i < classes.length; i++) {
-        let classObj = {};
+        var classObj = {};
         classObj.classId = classes[i].id;
         classObj.classname = classes[i].classname;
         Key.getKeysForClass(classes[i].id, classObj, function(err, classObject) {
           if (!err) {
-            let clsObj = classObject;
+            var clsObj = classObject;
             Test.getClassAnswers(clsObj, function(err, classO) {
               if(err) {
                 console.log(err);
@@ -29,6 +30,7 @@ const saveTeacherData = function(teacherId) {
                 if (counter === classes.length) {
                   var teacherData = JSON.stringify(classesArr);
                   redisClient.setAsync(teacherId, teacherData).then(function(response) {
+                    console.log(response);
                   }).catch(function(err) {
                     console.log(err);
                   });
