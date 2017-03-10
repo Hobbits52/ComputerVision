@@ -16,6 +16,7 @@ class KeysView extends React.Component {
       currentKeyId: null,
       keysForClass: null,
       currentKeyName: null
+
     };
 
     this.selectClass = this.selectClass.bind(this);

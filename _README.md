@@ -1,12 +1,14 @@
-# Project Name
+# teacher's pet
 
-> Pithy project description
+![alt text](https://github.com/Hobbits52/ComputerVision/master/src/client/assets/hobbits.gif "teacher's pet")
+
+An app that takes pictures of tests and instantly grades them
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Cynthia Bathgate
+  - __Scrum Master__: Anthony Pecchillo
+  - __Development Team Members__: Kevin Gin, Benze Gong
 
 ## Table of Contents
 
