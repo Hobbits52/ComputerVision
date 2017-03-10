@@ -14,7 +14,7 @@ class PostIt extends React.Component {
   render() {
     return (
       <div className="postImage" onClick={() => {
-        this.props.handlePostItClick(this.state.course)
+        this.props.handlePostItClick(this.props.class.ClassName, this.props.class.ClassId)
       }}>
         <Link to= "/dashboard/classes/">
             <img className="background-image" src={'../assets/post-it.png'}/>
