@@ -81,10 +81,6 @@ class Dashboard extends React.Component {
   }
 
   handleSearchBarClick(studentName, studentId, className, classId) {
-    console.log('studentName: ', studentName);
-    console.log('studentId: ', studentId);
-    console.log('className: ', className);
-    console.log('classId: ', classId);
     this.setState({
       currentStudentName: studentName,
       currentId: studentId,
@@ -109,8 +105,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    console.log('STUDENTS', this.state.students);
-    console.log('this is the current course', this.state.currentStudentName);
     if (this.state.classes === null && this.state.renderOk === false) {
       return (
         <div>
