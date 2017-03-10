@@ -6,9 +6,9 @@ An app that takes pictures of tests and instantly grades them
 
 ## Team
 
-  - __Product Owner__: Cynthia Bathgate
-  - __Scrum Master__: Anthony Pecchillo
-  - __Development Team Members__: Kevin Gin, Benze Gong
+  - __Product Owner__: [Cynthia Bathgate](https://github.com/cbathgate)
+  - __Scrum Master__: [Anthony Pecchillo](https://github.com/anthonypecchillo)
+  - __Development Team Members__: [Kevin Gin](https://github.com/KevinGin), [Benze Gong](https://github.com/benzeg)
 
 ## Table of Contents
 
