@@ -1,6 +1,7 @@
 import React from 'react';
 import ScatterPlot from './ScatterPlot.jsx';
 import Histogram from './Histogram.jsx';
+import BarChart from './BarChart.jsx';
 import css from '../../css/scatterplot.css';
 
 // ----------------------------------------------------------------------------
@@ -71,6 +72,7 @@ class Chart extends React.Component {
         <h1>{this.props.currentClassName} - MidTerm 1</h1>
         <ScatterPlot {...this.state} {...styles} />
         <Histogram {...this.state} {...styles} />
+        <BarChart {...this.state} {...styles} />
         <div className="controls">
           <button className="btn randomize" onClick={() => this.randomizeData()}>
             Randomize Data
