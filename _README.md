@@ -1,6 +1,6 @@
 # teacher's pet
 
-![alt tag](http://src/client/assets/readme-logo.png)
+![alt tag](http://src/client/assets/readme-logo.jpg)
 
 An app that takes pictures of tests and instantly grades them
 
