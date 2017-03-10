@@ -83,7 +83,9 @@ class ClassesView extends React.Component {
     this.setState({
       currentKey: null, 
       currentKeyId: null,
-      selectClassId: null
+      selectClassId: null,
+      keysForClass: null,
+      currentClass: 'Choose a class'
     });
   }
 
