@@ -1,4 +1,6 @@
-# Project Name #
+# teacher's pet #
+
+![teacher's pet logo](/src/client/assets/readme-logo.jpg)
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -16,8 +18,7 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
  
-## teacher's pet ##
-  > Grade less. Teach more.
+## Grade less. Teach more. ##
 
 ## Summary ##
 
@@ -44,15 +45,15 @@ That’s where our app teacher’s pet comes in. It allows for the instant gradi
 
 ## How to Get Started ##
 
-[Teachers Web App](http://computer-vision.herokuapp.com/) 
-Student Mobile App
-Teacher Mobile App 
+- [Teachers Web App](http://computer-vision.herokuapp.com/) 
+- Student Mobile App 
+- Teacher Mobile App 
 
 ## Customer Quote ##
 
 "teacher's pet has made my life so much easier. All I have to do is ask my students to take a picture of their test after they're finished, and BAM, instant results! We have used this tool to instantly see class averages so that we can have a real-time discussion about results. I have actually learned to make better, more balanced tests with this! Thanks teacher's pet!" - Elizabeth Tang, Biology Teacher
 
-"As a student, I love that my teacher uses this app. I like knowing my results right away so I don't have to worry about my peformance for the rest of the day. My teacher also uses it to instantly pinpoint concepts that the majority of students aren't understanding." - Benze Gong, Biology Student
+"As a student, I love that my teacher uses this app. I like knowing my results right away so I don't have to worry about my peformance for the rest of the day. My teacher also uses it to instantly pinpoint concepts that the majority of students aren't understanding." - Timothy Johnson, Biology Student
 
-## Create an acccount here ##
+## Create an acccount [here](http://computer-vision.herokuapp.com/) ##
 
