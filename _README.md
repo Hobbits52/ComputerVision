@@ -1,6 +1,6 @@
 # teacher's pet
 
-![Alt text](/src/client/assets/hobbits.gif?raw=true "Optional Title")
+![alt tag](http://src/client/assets/readme-logo.png)
 
 An app that takes pictures of tests and instantly grades them
 
@@ -22,15 +22,15 @@ An app that takes pictures of tests and instantly grades them
 
 ## Usage
 
-> Some usage instructions
+![Alt text](/src/client/assets/hobbits.gif?raw=true "Optional Title")
 
 ## Requirements
 
 - Node 0.10.x
 - Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- mysql 2.5.x
+- nodemon 1.11.0
+- yarn v0.21.3
 
 ## Development
 
