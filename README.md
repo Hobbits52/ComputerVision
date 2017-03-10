@@ -39,14 +39,13 @@ An app that takes pictures of tests and instantly grades them
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
-npm install
-bower install
+brew update
+brew install yarn
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/Hobbits52/ComputerVision/issues)
 
 
 ## Contributing
