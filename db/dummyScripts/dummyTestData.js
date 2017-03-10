@@ -31,7 +31,7 @@ const generateTestData = function() {
   				console.log(testCount);
   				examCount++;
   				console.log(examCount);
-  				if (examCount === 4) {
+  				if (examCount === 2) {
   					console.log('**********COMPLETE**********');
   					console.log(loopcount);
   					return;
