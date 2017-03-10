@@ -2,6 +2,7 @@ import React from 'react';
 import * as d3 from "d3";
 import XAxis from './XAxis.jsx';
 import YAxis from './YAxis.jsx';
+import Axis from './Axis.jsx';
 import HistoBar from './HistoBar.jsx';
 
 import { processData, prepStudentAnswersForTest, responseFrequency } from './statisticsHelpers.js';
@@ -10,6 +11,8 @@ class Histogram extends React.Component {
 
   render() {
     let { top, right, bottom, left, currentClassId, currentClassName, gaussData, width, height, padding } = this.props;
+
+
 
     console.log('Im Gaussian!: ', gaussData);
 
@@ -32,11 +35,18 @@ class Histogram extends React.Component {
         .domain([0, d3.max(histogramData, (d) => d.length )])
         .range([height, 0]);
 
+    const ySettings = {
+      translate: `translate(${0}, 0)`,  // had padding before in {}
+      scale: yScale,
+      orient: d3.axisLeft()
+    };
+
     return (
       <div className="react-d3-histogram">
         <svg width={width + left + right} height={height + top + bottom}>
           <g transform={"translate(" + left + "," + top + ")"}>
             <XAxis className="axis" height={height} scale={xScale} numTicks={20}/>
+            <Axis {...ySettings} />
             {histogramData.map((bin, index) => 
               <HistoBar binData={bin} 
                         xScale={xScale} 
