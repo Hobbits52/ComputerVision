@@ -2,7 +2,7 @@ import React from 'react';
 import * as d3 from "d3";
 import XAxis from './XAxis.jsx';
 import YAxis from './YAxis.jsx';
-import Bar from './Bar.jsx';
+import HistoBar from './HistoBar.jsx';
 
 import { processData, prepStudentAnswersForTest, responseFrequency } from './statisticsHelpers.js';
 
@@ -25,29 +25,24 @@ class Histogram extends React.Component {
         (data);
 
     let histogramData = histogramGenerator(gaussData[0].studentTestScores);
-    console.log('From Histogram, this is histogramData: ', histogramData);
+    // console.log('From Histogram, this is histogramData: ', histogramData);
 
     let yScale = 
       d3.scaleLinear()
         .domain([0, d3.max(histogramData, (d) => d.length )])
         .range([height, 0]);
 
-      console.log('My input to prepStudentAnswersForTest is: ', gaussData);
-      var x = prepStudentAnswersForTest(gaussData);
-      console.log('x is: ', x);
-      var y = responseFrequency(x);
-      console.log('y is: ', y);
     return (
       <div className="react-d3-histogram">
         <svg width={width + left + right} height={height + top + bottom}>
           <g transform={"translate(" + left + "," + top + ")"}>
-            <XAxis className="axis" height={height} scale={xScale} />
+            <XAxis className="axis" height={height} scale={xScale} numTicks={20}/>
             {histogramData.map((bin, index) => 
-              <Bar binData={bin} 
-                   xScale={xScale} 
-                   yScale={yScale} 
-                   height={height} 
-                   key={index}
+              <HistoBar binData={bin} 
+                        xScale={xScale} 
+                        yScale={yScale}
+                        height={height} 
+                        key={index}
               />
             )}
           </g>
