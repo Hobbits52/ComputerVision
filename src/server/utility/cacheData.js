@@ -49,9 +49,9 @@ const getCache = function(teacherId) {
   return redisClient.getAsync(teacherId).then(function(response) {
     var k = JSON.parse(response);
     return k;
-  }).catch(function() {
+  }).catch(function(err) {
     var error = 'Something went wrong with cache fetching';
-    return error;
+    return ( err);
   })
 };
 

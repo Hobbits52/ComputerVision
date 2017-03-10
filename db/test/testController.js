@@ -37,11 +37,11 @@ const addTest = (test, cb) => {
         URL: test.URL,
         result: percentage,
         StudentId: test.StudentId,
-        TeacherId: answerKey.TeacherId,
         ClassId: answerKey.ClassId,
         answerKeyId: answerKey.id
       })
       .then((savedTest) => {
+        savedTest.TeacherId = answerKey.TeacherId;
         cb(null, savedTest);
       }).catch((err) => {
         cb(err);
