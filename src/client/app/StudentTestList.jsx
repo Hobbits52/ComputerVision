@@ -61,7 +61,6 @@ class StudentTestList extends React.Component {
   }
 
   render() {
-    console.log('got hereeeeee');
     if (this.state.returnTests !== null && this.state.currentTest === null) {
       return (
         <div>
@@ -101,7 +100,6 @@ class StudentTestList extends React.Component {
     }
 
     if (this.state.currentTest !== null) {
-      console.log('this shud renderrrr', this.state.currentTest);
       return (
         <div>
           <StudentResults 

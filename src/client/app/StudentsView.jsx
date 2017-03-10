@@ -17,7 +17,6 @@ const theme = {
   suggestionsContainerOpen: {
       marginLeft: '-40px'
   },
-
   input: {
     display: 'flex',
     justifyContent: 'center',
@@ -49,7 +48,6 @@ class StudentsView extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-    console.log('helllloooo');
   }
 
   componentWillMount() {
@@ -88,7 +86,6 @@ class StudentsView extends React.Component {
   }
 
   handleGoBackStudents() {
-    console.log('Got here');
     this.setState({
       currentStudentName: null,
       currentId: null,

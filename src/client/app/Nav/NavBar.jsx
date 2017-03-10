@@ -74,7 +74,6 @@ class NavBar extends React.Component {
 
 
   getSuggestions(value, students) {
-    console.log('this is value', value);
     if (value) {
       const inputValue = value.trim().toLowerCase();
       const inputLength = inputValue.length;
@@ -150,8 +149,6 @@ class NavBar extends React.Component {
     let publicPages = this.props.location.pathname === '/' ||
                       this.props.location.pathname === '/signup' ||
                       this.props.location.pathname === '/login';
-
-    console.log(this.props.location.pathname);
    
     let classNameLocation, farRightLinkTo, farRightLinkClass, farRightText, redirect, home;
 
@@ -171,8 +168,6 @@ class NavBar extends React.Component {
       farRightText = "Logout";
       home="/dashboard/"
     }
-
-
 
     return(
       <nav className={classNameLocation}>

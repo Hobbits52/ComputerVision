@@ -34,7 +34,6 @@ class App extends React.Component {
   
 
   handleLoginSubmit(teacher) {
-    console.log("This is the teacher", teacher)
     this.setState({
       isLoggedIn: true,
       teacher: teacher.username,
