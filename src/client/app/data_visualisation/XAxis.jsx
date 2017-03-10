@@ -6,16 +6,19 @@ import Path from "./Path.jsx";
 class XAxis extends React.Component {
 
   render() {
-    let { height, scale } = this.props;
-
-    let ticks = scale.ticks(20).map(function(tick, index) {
-      return (
-        <Tick value={tick} 
-              scale={scale} 
-              key={index} 
-        />
-      );
-    });
+    let { height, scale, numTicks } = this.props;
+    let ticks;
+    if (numTicks === 20) {
+      ticks = scale.ticks(numTicks).map(function(tick, index) {
+        return (
+          <Tick className="tick"
+                value={tick} 
+                scale={scale} 
+                key={index} 
+          />
+        );
+      });
+    } 
 
     return (
       <g className="axis" transform={"translate(0," + height + ")"}>
