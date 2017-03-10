@@ -2,10 +2,11 @@ import axios from 'axios';
 // var request = require('request');
 // var fs = require('fs');
 
-exports.getAllTeachersClasses = (teacherId) => {
-  return axios.get('/api/allTeachersClasses', {
+exports.getAllTeachersClasses = () => {
+  return axios.get('/api/getClasses', {
     params: {
       token: window.localStorage.token
+
     }
   }); 
 };
