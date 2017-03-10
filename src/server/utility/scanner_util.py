@@ -7,15 +7,14 @@ import cv2 as cv
 import urllib
 import json
 
-
 data = {}
-data['URL'] = url
-data['status'] = 200
 
 def scan_image(url):
 	# data is our object to return. Helper functions have closure over data object.
 	# helpers change data['status'] when they fail.
-
+	global data
+	data['URL'] = url
+	data['status'] = 200
 	# get image from url
 	image = url_to_image(url)
 
@@ -33,6 +32,7 @@ def scan_image(url):
 	if data['status'] == 400:  # error handling
 		data = json.dumps(data)
 		return data
+
 	data['answers'] = answers
 
 	# get studentID
@@ -40,7 +40,7 @@ def scan_image(url):
 	if data['status'] == 206:  # error handling
 		data = json.dumps(data)  # DEV TO DO: More error handling on invalid ID string.
 		return data
-	data['id'] = int(idString,4)  #convert idString to base4 integer
+	data['StudentId'] = int(idString,4)  #convert idString to base4 integer
 	data = json.dumps(data)
 	return data
 
@@ -60,6 +60,7 @@ def url_to_image(url):
 
 
 def find_paper(image):
+	global data
 	# convert to grayscale, grab edges (don't need to blur image, Canny method does this)
 	gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
 	edged = cv.Canny(gray, 75, 200)
@@ -89,14 +90,14 @@ def find_paper(image):
 	if documentContours is None:
 		data['status'] = 400
 		data['message'] = 'Paper not found. Make sure image in overlay box '
-		return
+		return data
 
 	# Error handling when largest four-cornered contour isn't approximate size of what paper should be.
 	# Client should relay message to User.
 	if perimeter < 2300 or perimeter > 3200:
 		data['status'] = 400
 		data['message'] = 'Paper not found. Make sure image has a clear background'
-		return data # DEV: try alternate approaches when image has "textured" background.
+		return data# DEV: try alternate approaches when image has "textured" background.
 	
 	# straighten grayscale image.
 	return four_point_transform(gray, documentContours.reshape(4, 2))
@@ -131,6 +132,7 @@ def split_paper(paperGray):
 	return (answerSheetThresh, idSheetThresh)
 
 def get_answers(answerSheetThresh):
+	global data
 	# get contours again -- to search for bubbles
 	contours = cv.findContours(answerSheetThresh.copy(), cv.RETR_EXTERNAL,
 		cv.CHAIN_APPROX_SIMPLE)
@@ -214,6 +216,7 @@ def get_answers(answerSheetThresh):
 	return answers
 
 def get_id(idSheetThresh):
+	global data
 	# find contours (RETR_EXTERNAL works here because idBubble contours are not children - we cropped out bounding rectangle on form
 	contours = cv.findContours(idSheetThresh.copy(), cv.RETR_EXTERNAL,
 		cv.CHAIN_APPROX_SIMPLE)
@@ -233,7 +236,7 @@ def get_id(idSheetThresh):
 	if len(idBubbles) != 32:
 		data['status'] = 206
 		data['message'] = 'could not read 32 id bubbles. check photo quality'
-		return data
+		return
 
 	# sort left to right to find rows
 	idBubbles = imutilsContours.sort_contours(idBubbles,

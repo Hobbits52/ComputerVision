@@ -25,14 +25,14 @@ const Scanner = function(uploadFile, type, cb) {
 
 	py.stdout.on('end', function() {
 	  let data = JSON.parse(dataString);
-	  if (data.status === 400) {
+	  if (data.status !== 200) {
 	  	cb(data.message);
 	  } else {
 		  data.answers = JSON.stringify(data.answers);
-		  data.TeacherId = uploadFile.TeacherId;
-		  data.ClassId = uploadFile.ClassId;
-		  data.keyName = uploadFile.keyName;
 		  if (type === 'key') {
+		  	data.TeacherId = uploadFile.TeacherId;
+		  	data.ClassId = uploadFile.ClassId;
+		  	data.keyName = uploadFile.keyName;
 		  	Answerkey.addKey(data, function(err, data) {
 		  	  if (err) {
 		  	  	cb(err);
@@ -42,7 +42,6 @@ const Scanner = function(uploadFile, type, cb) {
 		  	});
 		  } else {
 		  	data.answerkeyId = uploadFile.AnswerKeyId;
-		  	data.StudentId = uploadFile.StudentId;
 		  	Test.addTest(data, function(err, data) {
 		  	  if (err) {
 		  	  	cb(err);
