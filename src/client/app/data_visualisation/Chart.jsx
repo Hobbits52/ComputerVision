@@ -70,14 +70,8 @@ class Chart extends React.Component {
     return (
       <div>
         <h1>{this.props.currentClassName} - MidTerm 1</h1>
-        <ScatterPlot {...this.state} {...styles} />
         <Histogram {...this.state} {...styles} />
         <BarChart {...this.state} {...styles} />
-        <div className="controls">
-          <button className="btn randomize" onClick={() => this.randomizeData()}>
-            Randomize Data
-          </button>
-        </div>
       </div>
     );
   }
