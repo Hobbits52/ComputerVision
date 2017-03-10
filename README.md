@@ -47,7 +47,8 @@ brew install yarn
 
 View the project roadmap [here](https://github.com/Hobbits52/ComputerVision/issues)
 
-
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+
+Credits: http://www.designbolts.com, https://clipartfest.com/
