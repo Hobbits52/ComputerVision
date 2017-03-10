@@ -1,2 +1,1 @@
-imutils==0.4.0
-https://github.com/jrosebr1/imutils.git
+imutils=0.4.0

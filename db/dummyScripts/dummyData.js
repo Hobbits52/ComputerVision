@@ -113,7 +113,7 @@ const AnswerKeys = function() {
 				  				console.log(testCount);
 				  				examCount++;
 				  				console.log(examCount);
-				  				if (examCount === 2) {
+				  				if (examCount === 4) {
 				  					console.log('**********COMPLETE**********');
 				  					console.log(loopcount);
 				  					return;
