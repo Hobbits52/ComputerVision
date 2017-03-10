@@ -1,6 +1,6 @@
 # teacher's pet
 
-![alt tag](http://src/client/assets/readme-logo.jpg)
+![teacher's pet logo](/src/client/assets/readme-logo.jpg)
 
 An app that takes pictures of tests and instantly grades them
 
@@ -22,7 +22,7 @@ An app that takes pictures of tests and instantly grades them
 
 ## Usage
 
-![Alt text](/src/client/assets/hobbits.gif?raw=true "Optional Title")
+![Gif showing product runthrough](/src/client/assets/hobbits.gif?raw=true "Optional Title")
 
 ## Requirements
 
