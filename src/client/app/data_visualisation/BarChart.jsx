@@ -52,8 +52,6 @@ class BarChart extends React.Component {
 
 
 
-
-
     let xScale = d3.scaleBand()
       .domain(["A", "B", "C", "D", "E"])  // Where data is read in..?..use x.domain(data.map(function(d) { return d.name; }));
       .rangeRound([0, width], .1)
@@ -68,6 +66,116 @@ class BarChart extends React.Component {
     console.log(yScale);
     let xAxis = d3.axisBottom(xScale).tickFormat((d) => d.x);
     let yAxis = d3.axisLeft(yScale);
+
+
+    const pointBiSerial = function(allTestData, testId, studentAnswersForEntireTest, questionOfInterest) {
+      var correctChoice = allTestData[testId - 1].correctAnswers[questionOfInterest - 1][0];
+
+      var Mp = allTestData[testId - 1].studentTestResults.filter(function(item, index) {
+        if(index===1) {console.log('item: ', item);}
+        return item.studentAnswers[questionOfInterest - 1][0] === correctChoice;
+      }).map(function(studentTestResult) {
+        return studentTestResult.studentScore;
+      });
+
+      var MpReal = d3.sum(Mp)/Mp.length;
+      // console.log('MpReal: ', MpReal);
+
+      var Mq = allTestData[testId - 1].studentTestResults.filter(function(item) {
+        return item.studentAnswers[questionOfInterest - 1][0] !== correctChoice;
+      }).map(function(studentTestResult) {
+        return studentTestResult.studentScore;
+      });
+
+      var MqReal = d3.sum(Mq)/Mq.length;
+      // console.log('MqReal: ', MqReal);
+
+      var stdev = d3.deviation(allTestData[testId - 1].studentTestScores);
+      // console.log('stdev: ', stdev);
+      var p = Mp.length / (Mp.length + Mq.length);
+      var q = Mq.length / (Mp.length + Mq.length);
+      return ((MpReal - MqReal) / stdev) * Math.sqrt(p * q)
+    }
+
+    let PBS = pointBiSerial(gaussData, 1, studentAnswersForTest, 6);
+    console.log('PBS: ', PBS);
+
+
+    const topBottom27 = function(allTestData, testId, questionOfInterest) {
+      var correctChoice = allTestData[testId - 1].correctAnswers[questionOfInterest - 1][0];
+
+      var results;
+
+      // Find score that qualifies student for top 27%
+      console.log('allTestData[testId - 1].studentTestScores: ', allTestData[testId - 1].studentTestScores.sort(function(a, b) {
+        return Number(a) - Number(b);
+      }).reverse());
+      
+      var studentsRanked = allTestData[testId - 1].studentTestScores.sort(function(a, b) {
+        return Number(a) - Number(b);
+      }).reverse();
+      
+      var top27TestScore = studentsRanked[Math.ceil(0.27 * studentsRanked.length)];
+      console.log('top27TestScore: ', top27TestScore);
+      // results.top27AvgTestScore = top27TestScore;
+
+      var bottom27TestScore = studentsRanked[Math.ceil((1 - 0.27) * studentsRanked.length)];
+      console.log('bottom27TestScore: ', bottom27TestScore);
+      // results.bottom27AvgTestScore = bottom27TestScore;
+
+      // Filter for only studentTestResults whos .studentScore is in top 27%
+      var top27ScoreOnQuestion = allTestData[testId - 1].studentTestResults.filter(function(item) {
+        return item.studentScore >= top27TestScore;
+      }).map(function(studentTestResult) {
+        if(studentTestResult.studentAnswers[questionOfInterest - 1][0] === correctChoice) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
+      var Ph = d3.mean(top27ScoreOnQuestion);
+
+      // Filter for only studentTestResults whos .studentScore is in bottom 27%
+      var bottom27ScoreOnQuestion = allTestData[testId - 1].studentTestResults.filter(function(item) {
+        return item.studentScore >= bottom27TestScore;
+      }).map(function(studentTestResult) {
+        if(studentTestResult.studentAnswers[questionOfInterest - 1][0] === correctChoice) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+
+      var Pl = d3.mean(bottom27ScoreOnQuestion);
+
+      var discriminationIndex = (Ph*100 - Pl*100) / 100;
+      console.log('ds', discriminationIndex);
+
+
+      let top27AnswerSets = allTestData[testId - 1].studentTestResults.filter(function(item) {
+        return item.studentScore >= top27TestScore;
+      }).map(function(studentTestResult) {
+        return studentTestResult.studentAnswers;
+      });
+
+      console.log('----',top27AnswerSets);
+
+      let top27RespFreq = responseFrequency(top27AnswerSets, questionOfInterest);
+      console.log('top27RespFreq', top27RespFreq);
+
+      results = {top27AvgScoreOnQuestion: Ph,
+                 bottom27AvgScoreOnQuestion: Pl,
+                 top27RespFreq: 0,
+                 bottom27RespFreq: 0,
+                 discriminationIndex: discriminationIndex}
+
+      console.log('ASFASDASDASD: ', results);
+      return results;
+
+    }
+
+    topBottom27(gaussData, 1, 6);
 
     return (
       <div className="responseFrequency">
