@@ -1,6 +1,6 @@
 # teacher's pet
 
-![alt text](https://github.com/Hobbits52/ComputerVision/master/src/client/assets/hobbits.gif "teacher's pet")
+![alt text](https://github.com/cbathgate/ComputerVision/tree/master/src/client/assets/hobbits.gif "teacher's pet")
 
 An app that takes pictures of tests and instantly grades them
 
