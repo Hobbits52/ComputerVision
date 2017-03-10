@@ -3,6 +3,7 @@ const AnswerKey = require('./../../../db/key/keyController.js');
 const Classes = require('./../../../db/classes/classController.js');
 const Scanner = require('./pythonChildProcess.js').Scanner;
 const Cache = require('./../utility/cacheData.js');
+const Redis = require('./../server.js').redis;
 
 
 //DOCUMENT UPLOAD///////////////////////////////////////////////
@@ -14,12 +15,12 @@ const addAnswerKey = function(req, res) {
   	if(err) {
   		res.status(500);
       res.send(err);
-  		res.end();
+  		return res.end();
   	} else {
   		res.status(200);
       res.send(answerKey);
       Cache.saveTeacherData(keyUpload.TeacherId);
-  		res.end();
+  		return res.end();
   	}
   });
 };
@@ -32,15 +33,20 @@ const addTest = function(req, res) {
     if(err) {
       res.status(500);
       res.send(err);
-      res.end();
+      return res.end();
     } else {
       //UPDATE REDIS
       res.status(200);
       res.send(test);
-      if (testUpload.TeacherId) {
-        Cache.saveTeacherData(testUpload.TeacherId);
-      }
-      res.end();
+      console.log('******', test.TeacherId);
+      Cache.getCache(test.TeacherId).then(function(data) {
+        if(data === null) {
+          res.end();
+        } else {
+          Cache.saveTeacherData(test.TeacherId);
+        }
+      });
+      return res.end();
     }
   });
 }
@@ -52,12 +58,12 @@ const addClass = function(req, res) {
   Classes.addClass(classInfo, function(err, newClass) {
     if (err) {
       res.status(500).send(err);
-      res.end();
+      return res.end();
     } else {
       //UPDATE REDIS
       res.status(200).send(newClass);
       Cache.saveTeacherData(keyUpload.TeacherId);
-      res.end();
+      return res.end();
     }
   })
 };
