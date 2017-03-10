@@ -132,8 +132,6 @@ const AnswerKeys = function() {
 				};
 
 				generateTestData();
-				console.log('********COMPLETE*********');
-				return;
 			}
 		});
 	}
