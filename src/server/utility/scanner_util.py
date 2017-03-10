@@ -69,7 +69,7 @@ def find_paper(image):
 	# (the retrieval mode (cv.RETR_EXTERNAL) will not find nested contours)
 	contours = cv.findContours(edged.copy(), cv.RETR_EXTERNAL,
 		cv.CHAIN_APPROX_SIMPLE)
-	contours = contours[1]
+	contours = contours[0] if imutils.is_cv2() else contours[1]
 
 	# find the largest contour (which should be the paper)
 	contours = sorted(contours, key=cv.contourArea, reverse=True)
@@ -110,7 +110,7 @@ def split_paper(paperGray):
 	# find contours, to find text box at bottom of document.
 	contours = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL,
 		cv.CHAIN_APPROX_SIMPLE)
-	contours = contours[1]
+	contours = contours[0] if imutils.is_cv2() else contours[1]
 
 	# the text box at bottom will be largest contour by area
 	contours = sorted(contours, key=cv.contourArea, reverse=True)
@@ -136,7 +136,7 @@ def get_answers(answerSheetThresh):
 	# get contours again -- to search for bubbles
 	contours = cv.findContours(answerSheetThresh.copy(), cv.RETR_EXTERNAL,
 		cv.CHAIN_APPROX_SIMPLE)
-	contours = contours[1]
+	contours = contours[0] if imutils.is_cv2() else contours[1]
 
 	bubbles = []
 
@@ -220,7 +220,7 @@ def get_id(idSheetThresh):
 	# find contours (RETR_EXTERNAL works here because idBubble contours are not children - we cropped out bounding rectangle on form
 	contours = cv.findContours(idSheetThresh.copy(), cv.RETR_EXTERNAL,
 		cv.CHAIN_APPROX_SIMPLE)
-	contours = contours[1]
+	contours = contours[0] if imutils.is_cv2() else contours[1]
 
 	idBubbles = []
 
