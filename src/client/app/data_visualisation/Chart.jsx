@@ -69,7 +69,7 @@ class Chart extends React.Component {
   render() {
     return (
       <div>
-        <h1>{this.props.currentClassName} - MidTerm 1</h1>
+        <h1>{"Precourse Exam Score Distribution"}</h1>
         <Histogram {...this.state} {...styles} />
         <BarChart {...this.state} {...styles} />
       </div>
@@ -78,3 +78,4 @@ class Chart extends React.Component {
 };
 
 export default Chart
+

@@ -1,4 +1,5 @@
 import { getAllTestsInClass } from '../helpers/viewHelpers.js';
+import * as d3 from "d3";
 
 var objToArray = function(obj) {
   return Object.keys(obj).map(function(key) {
@@ -103,13 +104,13 @@ exports.responseFrequency = function(studentAnswersForTest, questionOfInterest) 
 exports.sum = (arrayOfGrades) => d3.sum(arrayOfGrades, 'Accessor Function Here!');
 
 // Mean
-exports.mean = (arrayOfGrades) => d3.mean(arrayOfGrades, 'Accessor Function Here!');
+exports.mean = (arrayOfGrades) => d3.mean(arrayOfGrades);
 
 // Median
 exports.median = (arrayOfGrades) => d3.median(arrayOfGrades, 'Accessor Function Here!');
 
 // Standard Deviation
-exports.stdDev = (arrayOfGrades) => d3.deviation(arrayOfGrades, 'Acessore Function Here!');
+exports.stdDev = (arrayOfGrades) => d3.deviation(arrayOfGrades);
 
 // Variance
 exports.variance = (arrayOfGrades) => d3.variance(arrayOfGrades, 'Acessore Function Here!');

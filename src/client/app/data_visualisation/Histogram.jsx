@@ -1,7 +1,7 @@
 import React from 'react';
 import * as d3 from "d3";
 import XAxis from './XAxis.jsx';
-import YAxis from './YAxis.jsx';
+// import YAxis from './YAxis.jsx';
 import Axis from './Axis.jsx';
 import HistoBar from './HistoBar.jsx';
 

@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import XAxis from './XAxis.jsx';
 import Bar from './Bar.jsx';
 
-import { processData, prepStudentAnswersForTest, responseFrequency, singleItemDifficulty, totalDifficulty } from './statisticsHelpers.js';
+import { processData, prepStudentAnswersForTest, responseFrequency, singleItemDifficulty, totalDifficulty, mean, stdDev } from './statisticsHelpers.js';
 
 class BarChart extends React.Component {
   constructor(props) {
@@ -179,6 +179,17 @@ class BarChart extends React.Component {
 
     return (
       <div className="responseFrequency">
+        <center>
+          <h4>Class Average:  {Math.floor(mean(gaussData[0].studentTestScores))}</h4>
+          <h4>Standard Deviation: {Math.floor(stdDev(gaussData[0].studentTestScores))} </h4>
+          <h4>Difficulty Index:  {wholeDifficulty}</h4>
+        </center>
+        <br/>
+        <br/>
+        <center>
+          <h2>Example: Single Question Analysis</h2>
+          <h3>Frequency Distribution - Question 6</h3>
+        </center>
         <svg width={width + left + right} height={height + top + bottom}>
           <g transform={"translate(" + left + "," + top + ")"}>
             <XAxis className="axis" height={height} scale={xScale} numTicks={5}/>
@@ -192,6 +203,10 @@ class BarChart extends React.Component {
             )}
           </g>
         </svg>
+        <center>
+          <h4>{'Answer Choice Frequency Distribution:'}</h4>
+          <h4>{'A: 3.2%  B: 2.2%  C: 88.6%  D: 3.1%  E: 2.9%'}</h4>
+        </center>
       </div>
     );
   }
@@ -215,3 +230,5 @@ BarChart.defaultProps = {
 };
 
 export default BarChart;
+
+

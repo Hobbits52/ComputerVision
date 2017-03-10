@@ -141,7 +141,7 @@ class ClassesView extends React.Component {
       return (
         <div>
           <h5 className = "backCrumb" onClick={this.showAllTestsForClass}>{"< Back to all tests"}</h5>
-          <h3>{this.state.currentKeyName}</h3>
+          <h3>{'Biology 101'}</h3>
           <StatisticsView currentKeyName={this.state.currentKeyName} currentKey={this.state.currentKey} currentKeyId={this.state.currentKeyId} showAllTestsForClass={this.showAllTestsForClass}/>
         </div>
       );
