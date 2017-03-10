@@ -9,7 +9,7 @@ var objToArray = function(obj) {
 exports.processData = function(classId) {
   return getAllTestsInClass(classId).then(function(allTestsFromClass) {
     var allTestData = {};
-    console.log('allTestsFromClass: ', allTestsFromClass);
+    // console.log('allTestsFromClass: ', allTestsFromClass);
 
     for (var key in allTestsFromClass.data[0].answerKeys) {     
       allTestData[key] = {id: allTestsFromClass.data[0].answerKeys[key].keyId,
@@ -41,7 +41,7 @@ exports.processData = function(classId) {
         }
       });
     });
-    console.log('Final allTestData object after processing: ', allTestData);
+    // console.log('Final allTestData object after processing: ', allTestData);
     return allTestData;
   });
 };
@@ -53,68 +53,145 @@ exports.prepStudentAnswersForTest = function(allTestData) {
   });
 }
 
-exports.responseFrequency = function(studentAnswersForTest) {
-  console.log('studentAnswersForTest: ', studentAnswersForTest);
+// exports.getCorrectAnswerForTestQuestion = function(allTestData, testId, questionOfInterest) {
+//   //        indexOfTestInfo
+//   console.log('1: ', gaussData[testId - 1]);
+//   console.log('2: ', gaussData[testId - 1].correctAnswers);
+//   console.log('3: ', gaussData[testId - 1].correctAnswers[questionOfInterest - 1]);
+//   return allTestData[testId - 1].correctAnswers[questionOfInterest - 1][0];
+// }
+
+exports.responseFrequency = function(studentAnswersForTest, questionOfInterest) {
+  // console.log('studentAnswersForTest: ', studentAnswersForTest);
 
   var totalFrequencyCount = [];
-  console.log('CYNTHIA: ', studentAnswersForTest);
   for (var i = 0; i < studentAnswersForTest[0].length; i++) {
-    var singleFrequencyCount = {a: 0, b: 0, c: 0, d: 0, e: 0};
+    var singleFrequencyCount = [
+      {name: 'A', value: 0}, 
+      {name: 'B', value: 0}, 
+      {name: 'C', value: 0}, 
+      {name: 'D', value: 0}, 
+      {name: 'E', value: 0}
+    ];
     totalFrequencyCount[i] = singleFrequencyCount;
   }
 
   studentAnswersForTest.forEach(function(answerSet) {
     answerSet.forEach(function(answer, index) {
       if (answer[0] === 'a') {         // Maybe use .contains here instead for questions with more than one answer?
-        totalFrequencyCount[index]['a']++;
-        if (index === 1 && answer[0] === 'a') { console.log('KSJDHFKSJDHF: ', totalFrequencyCount[index]); }
+        totalFrequencyCount[index][0].value++;
       } else if (answer[0] === 'b') {  // Maybe use .contains here instead for questions with more than one answer?
-        totalFrequencyCount[index]['b']++;
+        totalFrequencyCount[index][1].value++;
       } else if (answer[0] === 'c') {  // Maybe use .contains here instead for questions with more than one answer?
-        totalFrequencyCount[index]['c']++;
+        totalFrequencyCount[index][2].value++;
       } else if (answer[0] === 'd') {  // Maybe use .contains here instead for questions with more than one answer?
-        totalFrequencyCount[index]['d']++;
+        totalFrequencyCount[index][3].value++;
       } else if (answer[0] === 'e') {  // Maybe use .contains here instead for questions with more than one answer?
-        totalFrequencyCount[index]['e']++;
+        totalFrequencyCount[index][4].value++;
       }
     });
   });
     // console.log('------', totalFrequencyCount);
-  return totalFrequencyCount;
+  return totalFrequencyCount[questionOfInterest - 1];
 }
 
 // // --------------------------------------------------------------------------------
 // // Formulas for Statistical Variables:
 // // --------------------------------------------------------------------------------
 
-// // Sum
-// const sum = (arrayOfGrades) => d3.sum(arrayOfGrades, 'Accessor Function Here!');
+// Sum
+exports.sum = (arrayOfGrades) => d3.sum(arrayOfGrades, 'Accessor Function Here!');
 
-// // Mean
-// const mean = (arrayOfGrades) => d3.mean(arrayOfGrades, 'Accessor Function Here!');
+// Mean
+exports.mean = (arrayOfGrades) => d3.mean(arrayOfGrades, 'Accessor Function Here!');
 
-// // Median
-// const median = (arrayOfGrades) => d3.median(arrayOfGrades, 'Accessor Function Here!');
+// Median
+exports.median = (arrayOfGrades) => d3.median(arrayOfGrades, 'Accessor Function Here!');
 
-// // Standard Deviation
-// const stdDev = (arrayOfGrades) => d3.deviation(arrayOfGrades, 'Acessore Function Here!');
+// Standard Deviation
+exports.stdDev = (arrayOfGrades) => d3.deviation(arrayOfGrades, 'Acessore Function Here!');
 
-// // Variance
-// const variance = (arrayOfGrades) => d3.variance(arrayOfGrades, 'Acessore Function Here!');
+// Variance
+exports.variance = (arrayOfGrades) => d3.variance(arrayOfGrades, 'Acessore Function Here!');
 
-// // Quantiles, where p is a number in the range [0, 1].  
-// const quantile = (arrayOfGrades) => d3.quantile(arrayOfGrades, p, 'Acessore Function Here!');
-// // Example: p = 0.25 is the first quantile, Q1.  
-// //          p = 0.75 is the third quantile, Q3.
+// Quantiles, where p is a number in the range [0, 1].  
+exports.quantile = (arrayOfGrades) => d3.quantile(arrayOfGrades, p, 'Acessore Function Here!');
+// Example: p = 0.25 is the first quantile, Q1.  
+//          p = 0.75 is the third quantile, Q3.
 
 
-// // Test Item Difficulty
-// const singleItemDifficulty = (arrayIndivQuesScores) => mean(arrayIndivQuesScores) / arrayIndivQuesScores.length;
+// Test Item Difficulty
+exports.singleItemDifficulty = function(allTestData, testId, responseFrequency, studentAnswersForEntireTest, questionOfInterest) {
+  // Assume item is worth 1 point.
+  var fullScoreForItem = 1;
+  // var fullScoreForItem = (1 / studentAnswersForEntireTest[0].length) * 100;
+  console.log('Question of Interest: ', questionOfInterest);
+  var correctChoice = allTestData[testId - 1].correctAnswers[questionOfInterest - 1][0];
+  console.log('Correct Choice: ', correctChoice);
+  
+  var numIncorrect = responseFrequency.reduce(function(acc, curr) {
+    if (curr.name.toLowerCase() !== correctChoice) {
+      acc += curr.value;
+    }
+    return acc;
+  }, 0);
+  // console.log('Number Incorrect: ', numIncorrect);
 
-// // Test Difficulty
+  // Replace studentAnswersForEntireTest with responseFrequency!!!!
+  var averageScoreForItem = (studentAnswersForEntireTest.length - numIncorrect) / studentAnswersForEntireTest.length;
+  // console.log('averageScoreForItem: ', averageScoreForItem);
+  var itemDifficulty = averageScoreForItem / fullScoreForItem;
+  console.log('itemDifficulty #', questionOfInterest, ': ', itemDifficulty);
 
-// const testDifficulty = ()
+  return itemDifficulty;
+}
 
-// // Reliability Coeffecient (Chronbach's Alpha)
-// const alpha = (k, arrayOfArraysOfStudentAnswers, arrayOfGrades) => {'sttuffff'};
-// // alpha = (k / (k - 1)) * (1 - (sum( sigma2(arrayOfGradesForSignleTestItem))) / sigma2(arrayOfExamGrades) )
+const testDifficulty = function(allTestData, testId, studentAnswersForEntireTest) {
+      var fullScoreForItem = 1;
+      var sumSingleItems = 0;
+      var totalPointsForTest = 28;
+      console.log('studentAnswersForEntireTest: ', studentAnswersForEntireTest);
+      
+      for (var i = 1; i < studentAnswersForEntireTest[0].length; i++) {
+        var respFreq2 = responseFrequency(studentAnswersForEntireTest, i);
+        sumSingleItems += singleItemDifficulty(allTestData, testId, respFreq2, studentAnswersForEntireTest, i) * fullScoreForItem;
+      }
+
+      var totalDifficulty = (1 / totalPointsForTest) * sumSingleItems;
+
+      return totalDifficulty;
+    }
+
+// Reliability Coeffecient (Chronbach's Alpha)
+exports.alpha = (k, arrayOfArraysOfStudentAnswers, arrayOfGrades) => {'sttuffff'};
+// alpha = (k / (k - 1)) * (1 - (sum( sigma2(arrayOfGradesForSignleTestItem))) / sigma2(arrayOfExamGrades) )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
