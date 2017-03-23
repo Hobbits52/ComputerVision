@@ -94,9 +94,9 @@ def find_paper(image):
 
 	# Error handling when largest four-cornered contour isn't approximate size of what paper should be.
 	# Client should relay message to User.
-	if perimeter < 2600 or perimeter > 4000:
+	if perimeter < 2600 or perimeter > 4500:
 		data['status'] = 400
-		data['message'] = 'Paper not found. Make sure image has a clear background'
+		data['message'] = 'Paper not found. Make sure image has a clear background, and box overlay outlines paper.'
 		return data# DEV: try alternate approaches when image has "textured" background.
 	
 	# straighten grayscale image.
@@ -272,7 +272,9 @@ def get_id(idSheetThresh):
 	return idString
 
 
-# uncomment for DEV/DEBUG
+# URLs for Development / Debug
+
+# Each is pretty standard shot (of same answer key):
 # sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1487892182/p6ybu5bjev1nnfkpebcc.jpg'
 # sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1489173282/prn9pepikh7jbgpvbrm9.jpg'
 # sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1489173208/qb3vzxhvq7j2rrtspuql.jpg'
@@ -280,10 +282,25 @@ def get_id(idSheetThresh):
 # sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1489172330/uwexe9clmpc72cwdqevs.jpg'
 # sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1489171760/uey1y9twfiqaqeduplbs.jpg'
 # sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1489171618/lelakfo0etcruo6guoho.jpg'
-sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1489172961/z0edbtb0l83sgpefzjoo.jpg'
+# sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1489172961/z0edbtb0l83sgpefzjoo.jpg'
+# sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1489131555/s9ya7wmu94dr2hzympqh.jpg'
 
 
-print scan_image(sampleURL)
+# Different background:
+# sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1489125242/csid0qghuh1g64kd04qr.jpg'
+
+# Other images:
+# sampleURL = 'sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1488672122/rzcckliek05taq6a2pul.jpg'
+
+# ************
+
+# DEV TO DO: These black pen images do not currently work
+# sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1488670680/ngx0eff2rdwojfln0yl4.jpg'
+# sampleURL = 'http://res.cloudinary.com/dn4vqx2gu/image/upload/v1488670898/alyzmvcwdrsfyzd0yscp.jpg'
+
+# ************
+
+# print scan_image(sampleURL)
 
 
 	# Examples of GUI stuff
