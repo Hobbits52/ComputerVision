@@ -1,6 +1,15 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
+
+// Autosuggest module & search helper functions
 import Autosuggest from 'react-autosuggest';
+import {onSuggestionsClearRequested, 
+        onSuggestionsFetchRequested,
+        onChange,
+        getSuggestionValue,
+        getSuggestions,
+        clearSelection} from '../helpers/searchHelpers.js';
+        
 
 // Autosuggest uses css modules
 const theme = {
@@ -43,13 +52,15 @@ class NavBar extends React.Component {
       value: '',
     };
 
-    this.getSuggestions = this.getSuggestions.bind(this);
-    this.getSuggestionValue = this.getSuggestionValue.bind(this);
     this.renderSuggestion = this.renderSuggestion.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
-    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
-    this.clearSelection = this.clearSelection.bind(this);
+
+    // search helper functions
+    this.onChange = onChange.bind(this);
+    this.getSuggestions = getSuggestions.bind(this);
+    this.getSuggestionValue = getSuggestionValue.bind(this);
+    this.onSuggestionsFetchRequested = onSuggestionsFetchRequested.bind(this);
+    this.onSuggestionsClearRequested = onSuggestionsClearRequested.bind(this);
+    this.clearSelection = clearSelection.bind(this);
   };
 
 // --------------------------------------------------------------------
@@ -73,33 +84,10 @@ class NavBar extends React.Component {
 
 // --------------------------------------------------------------------
 
+
 // --------------------------------------------------------------------
 // Event Handlers
 // --------------------------------------------------------------------
-
-  /////////////////SEARCH FEATURE/////////////////////
-
-  getSuggestions(value, students) {
-    if (value) {
-      const inputValue = value.trim().toLowerCase();
-      const inputLength = inputValue.length;
-
-      return inputLength === 0 ? [] : students.filter(val =>
-        val.studentName.toLowerCase().slice(0, inputLength) === inputValue
-      );
-    }
-  };
-
-  getSuggestionValue(suggestion) {
-    suggestion.studentName;
-  };
-
-  clearSelection() {
-    this.setState({
-      suggestions: [],
-      value: ''
-    })
-  }
 
   renderSuggestion(suggestion) {
     return (
@@ -119,30 +107,11 @@ class NavBar extends React.Component {
     );
   }; 
 
-  onChange(event, { newValue }) {
-    this.setState({
-      value: newValue
-    });
-  };
-
-  onSuggestionsFetchRequested({ value }) {
-    this.setState({
-      suggestions: this.getSuggestions(value, this.state.decoratedStudents)
-    });
-  };
-
-  onSuggestionsClearRequested() {
-    this.setState({
-      suggestions: []
-    });
-  };
-
-  ///////////////////////////////////////
-
-
 // --------------------------------------------------------------------
 
   render () {
+
+    /////////////////SEARCH FEATURE/////////////////////
 
     const { value, suggestions } = this.state;
 
@@ -153,7 +122,10 @@ class NavBar extends React.Component {
       onChange: this.onChange
     };
 
-    //this.props.location is set in each component that contains a navbar
+    ///////////////////////////////////////////////////
+
+
+    // this.props.location is set in each component that contains a navbar
     let publicPages = this.props.location.pathname === '/' ||
                       this.props.location.pathname === '/signup' ||
                       this.props.location.pathname === '/login';
@@ -161,15 +133,15 @@ class NavBar extends React.Component {
     let classNameLocation, farRightLinkTo, farRightLinkClass, farRightText, redirect, home;
 
     if (publicPages) {
-      //adding the classname publicPages if splash page, signup, and login
-      //the classnames determine what is turned on and what is turned off
+      // adding the classname publicPages if splash page, signup, and login
+      // the classnames determine what is turned on and what is turned off
       classNameLocation = "navbar navbar-default navbar-static-top publicPages";
       farRightLinkTo = "/signup";
       farRightLinkClass = "signupButton";
       farRightText = "Signup";
       home = "/"
     } else {
-      //adding the classname dashboardPages if any other routes
+      // adding the classname dashboardPages if any other routes
       classNameLocation = "navbar navbar-default navbar-static-top dashboardPages";
       farRightLinkTo = "#";
       farRightLinkClass = "logoutButton";
@@ -177,7 +149,7 @@ class NavBar extends React.Component {
       home="/dashboard/"
     }
 
-    return(
+    return (
       <nav className={classNameLocation}>
         <div className="container-fluid">
           <div className="navbar-header">

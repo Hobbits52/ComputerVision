@@ -3,6 +3,8 @@ import {browserHistory, Link} from 'react-router';
 import axios from 'axios';
 import {login, logout, signup} from './helpers/authHelpers.js';
 import css from '../css/auth.css';
+
+// components
 import NavBar from './Nav/NavBar.jsx';
 
 class Signup extends React.Component {

@@ -1,7 +1,9 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-import StudentTestListItem from './StudentTestListItem.jsx';
 import {getAllTestsInClass} from './helpers/viewHelpers.js';
+
+// components
+import StudentTestListItem from './StudentTestListItem.jsx';
 import StudentResults from './StudentResults.jsx';
 
 class StudentTestList extends React.Component {

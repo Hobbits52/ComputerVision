@@ -15,7 +15,6 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      isLoggedIn: this.props.isLoggedIn,
       teacher: this.props.teacher, 
       teacherId: this.props.teacherId,
       currentCourse: null,
@@ -126,7 +125,7 @@ class Dashboard extends React.Component {
                         students={this.state.students}/>
                 <div className="col-sm-10 teacherViewContainer">
                   {React.cloneElement(this.props.children, {
-                      isLoggedIn: this.state.isLoggedIn,
+                      isLoggedIn: this.props.isLoggedIn,
                       teacher: this.state.teacher,
                       teacherId: this.state.teacherId,
                       students: this.state.students,

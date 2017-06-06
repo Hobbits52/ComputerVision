@@ -1,6 +1,4 @@
 import axios from 'axios';
-// var request = require('request');
-// var fs = require('fs');
 
 exports.getAllTeachersClasses = () => {
   return axios.get('/api/getClasses', {

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
-import axios from 'axios';
 import css from '../css/main.css';
+
+// components
 import NavBar from './Nav/NavBar.jsx';
 
 class LandingPage extends React.Component {

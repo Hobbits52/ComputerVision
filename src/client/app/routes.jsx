@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
+// components
 import App from './App.jsx';
 import Login from './Login.jsx';
 import Signup from './Signup.jsx';

@@ -1,8 +1,10 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
 import {getKeysForClass} from './helpers/viewHelpers.js';
-import KeyViewListItem from './KeyViewListItem.jsx';
 import css from '../css/nav.css';
+
+// components
+import KeyViewListItem from './KeyViewListItem.jsx';
 
 class KeyViewList extends React.Component {
   

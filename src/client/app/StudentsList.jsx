@@ -1,7 +1,9 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
-import StudentsListEntry from './StudentsListEntry.jsx';
 import css from '../css/nav.css';
+
+// components
+import StudentsListEntry from './StudentsListEntry.jsx';
 
 class StudentsList extends React.Component {
   

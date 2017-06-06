@@ -1,11 +1,20 @@
 import React from 'react';
 import {browserHistory} from 'react-router';
 import {getAllStudents} from './helpers/viewHelpers.js';
+
+// components
 import StudentsList from './StudentsList.jsx';
 import StudentTestList from './StudentTestList.jsx';
 import css from '../css/nav.css';
+
+// Autosuggest module & search helper functions
 import Autosuggest from 'react-autosuggest';
-// import {getSuggestions, getSuggestionValue, renderSuggestion} from './helpers/authHelpers.js';
+import {onSuggestionsClearRequested, 
+        onSuggestionsFetchRequested,
+        onChange,
+        getSuggestionValue,
+        getSuggestions} from './helpers/searchHelpers.js';
+        
 
 // Autosuggest uses css modules
 const theme = {
@@ -41,12 +50,14 @@ class StudentsView extends React.Component {
 
     this.handleStudentsListEntryClick = this.handleStudentsListEntryClick.bind(this);
     this.handleGoBackStudents = this.handleGoBackStudents.bind(this);
-    this.getSuggestions = this.getSuggestions.bind(this);
-    this.getSuggestionValue = this.getSuggestionValue.bind(this);
     this.renderSuggestion = this.renderSuggestion.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this);
-    this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
+
+    // search helper functions
+    this.getSuggestions = getSuggestions.bind(this);
+    this.getSuggestionValue = getSuggestionValue.bind(this);
+    this.onChange = onChange.bind(this);
+    this.onSuggestionsFetchRequested = onSuggestionsFetchRequested.bind(this);
+    this.onSuggestionsClearRequested = onSuggestionsClearRequested.bind(this);
   }
 
 // --------------------------------------------------------------------
@@ -105,22 +116,6 @@ class StudentsView extends React.Component {
     })
   }
 
-  /////////////////SEARCH FEATURE/////////////////////
-
-
-  getSuggestions(value, students) {
-    const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
-
-    return inputLength === 0 ? [] : students.filter(val =>
-      val.studentName.toLowerCase().slice(0, inputLength) === inputValue
-    );
-  };
-
-  getSuggestionValue(suggestion) {
-    suggestion.studentName;
-  };
-
   renderSuggestion(suggestion) {
     return (
       <tr className = "suggestionResults" onClick={() => {
@@ -136,26 +131,6 @@ class StudentsView extends React.Component {
       </tr>
     );
   }; 
-
-  onChange(event, { newValue }) {
-    this.setState({
-      value: newValue
-    });
-  };
-
-  onSuggestionsFetchRequested({ value }) {
-    this.setState({
-      suggestions: this.getSuggestions(value, this.state.decoratedStudents)
-    });
-  };
-
-  onSuggestionsClearRequested() {
-    this.setState({
-      suggestions: []
-    });
-  };
-
-  ///////////////////////////////////////
 
 // --------------------------------------------------------------------
 

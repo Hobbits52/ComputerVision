@@ -10,19 +10,19 @@ class TemplatesView extends React.Component {
       <div>
         <h3 className="entryView">{"Templates"}</h3>
         <table>
-            <tbody>
-              <tr>
-                <th>Template Type</th>
-                <th>Download Link</th>
-              </tr>
-              <tr>
-                <td>Bubble Fill</td>
-                <td>
-                  <a href='/api/pdf' target="_blank">Click here to download pdf</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <tbody>
+            <tr>
+              <th>Template Type</th>
+              <th>Download Link</th>
+            </tr>
+            <tr>
+              <td>Bubble Fill</td>
+              <td>
+                <a href='/api/pdf' target="_blank">Click here to download pdf</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }

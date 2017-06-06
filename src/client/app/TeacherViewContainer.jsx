@@ -3,6 +3,7 @@ import {Link} from 'react-router';
 import axios from 'axios';
 import css from '../css/auth.css';
 
+// components
 import HomeView from './HomeView.jsx';
 import StudentsView from './StudentsView.jsx';
 

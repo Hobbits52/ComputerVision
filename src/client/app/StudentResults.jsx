@@ -3,6 +3,8 @@ import {Link} from 'react-router';
 import axios from 'axios';
 import css from '../css/auth.css';
 import { getKeysForClass } from './helpers/viewHelpers.js';
+
+// components
 import StudentResultsItem from './StudentResultsItem.jsx';
 
 class StudentResults extends React.Component {

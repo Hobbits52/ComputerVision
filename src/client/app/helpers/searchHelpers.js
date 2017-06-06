@@ -1,7 +1,5 @@
-import Autosuggest from 'react-autosuggest';
 
-exports.getSuggestions = (value, students) => {
-  console.log('ayayyyyyayaya');
+exports.getSuggestions = function(value, students) {
   const inputValue = value.trim().toLowerCase();
   const inputLength = inputValue.length;
 
@@ -10,10 +8,32 @@ exports.getSuggestions = (value, students) => {
   );
 };
 
-exports.getSuggestionValue = suggestion => suggestion.studentName;
+exports.getSuggestionValue = function(suggestion) {
+  suggestion.studentName;
+};
 
-exports.renderSuggestion = suggestion => (
-  <div>
-    {suggestion.studentName}
-  </div>
-);
+exports.onChange = function(event, { newValue }) {
+  this.setState({
+    value: newValue
+  });
+};
+
+exports.onSuggestionsFetchRequested = function({ value }) {
+  this.setState({
+    suggestions: this.getSuggestions(value, this.state.decoratedStudents)
+  });
+};
+
+exports.onSuggestionsClearRequested = function() {
+  this.setState({
+    suggestions: []
+  });
+}
+
+exports.clearSelection = function() {
+  this.setState({
+    suggestions: [],
+    value: ''
+  })
+}
+
