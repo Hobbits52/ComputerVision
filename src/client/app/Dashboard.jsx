@@ -1,12 +1,13 @@
 import React from 'react';
-import {render} from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 import {checkSession} from './helpers/authHelpers.js';
+import { getAllTeachersClasses, getAllStudents } from './helpers/viewHelpers';
+
+// components
 import NavSide from './Nav/NavSide.jsx';
 import Login from './Login.jsx';
 import css from '../css/nav.css';
 import NavBar from './Nav/NavBar.jsx';
-import { getAllTeachersClasses, getAllStudents } from './helpers/viewHelpers';
 
 
 class Dashboard extends React.Component {
@@ -31,13 +32,14 @@ class Dashboard extends React.Component {
 
     };
 
-    this.addClass = this.addClass.bind(this);
-    this.addKey = this.addKey.bind(this);
-    this.addTest = this.addTest.bind(this);
     this.handlePostItClick = this.handlePostItClick.bind(this);
     this.handleSideBarClick = this.handleSideBarClick.bind(this);
     this.handleSearchBarClick = this.handleSearchBarClick.bind(this);
   }
+
+// --------------------------------------------------------------------
+// Component Lifecycle Functions
+// --------------------------------------------------------------------
 
   componentWillMount() {
     if (!this.props.isLoggedIn) {
@@ -45,7 +47,9 @@ class Dashboard extends React.Component {
     }
   }
 
-  componentWillMount() {
+  // ajax calls should happen in componentDidMount() 
+  // https://daveceddia.com/ajax-requests-in-react/
+  componentDidMount() {
     getAllTeachersClasses()
     .then((res) => {
       this.setState({
@@ -68,17 +72,11 @@ class Dashboard extends React.Component {
     });
   }
 
-  addClass() {
-    console.log('Add new class');
-  }
+// --------------------------------------------------------------------
 
-  addKey() {
-    console.log('Add new ckey');
-  }
-
-  addTest() {
-    console.log('Add new test');
-  }
+// --------------------------------------------------------------------
+// Event Handlers
+// --------------------------------------------------------------------
 
   handleSearchBarClick(studentName, studentId, className, classId) {
     this.setState({
@@ -104,6 +102,8 @@ class Dashboard extends React.Component {
       currentCourseId: null
     })
   }
+
+// --------------------------------------------------------------------
 
   render() {
     if (this.state.classes === null && this.state.renderOk === false) {

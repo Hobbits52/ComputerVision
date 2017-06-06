@@ -19,7 +19,13 @@ class StudentResults extends React.Component {
     };
   }
 
-  componentWillMount() {
+// --------------------------------------------------------------------
+// Component Lifecycle Functions
+// --------------------------------------------------------------------
+
+  // ajax calls should happen in componentDidMount() 
+  // https://daveceddia.com/ajax-requests-in-react/
+  componentDidMount() {
     getKeysForClass(this.state.currentCourseId)
     .then((res) => {
       var singleAnswerJSON = '';
@@ -36,6 +42,8 @@ class StudentResults extends React.Component {
     })
   }
 
+// --------------------------------------------------------------------
+
   render() {
     var result = this.state.result * 100 + "%"
     if (this.state.answers !== null && this.state.test !== null) {
@@ -45,12 +53,14 @@ class StudentResults extends React.Component {
           <h3>{this.state.currentStudentName + "'s Results: " + result}</h3>
           <h3>{this.state.currentCourseName + " Test"}</h3>
           <table>
-            <tr>
-              <th>Question #</th>
-              <th>Student Answer</th>
-              <th>Correct Answer</th>
-              <th>Result</th>
-            </tr>
+            <thead>
+              <tr>
+                <th>Question #</th>
+                <th>Student Answer</th>
+                <th>Correct Answer</th>
+                <th>Result</th>
+              </tr>
+            </thead>
             <tbody>
               {Object.keys(this.state.test).map((answer, key) => {
                 return <StudentResultsItem 

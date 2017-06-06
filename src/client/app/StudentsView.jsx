@@ -1,5 +1,4 @@
 import React from 'react';
-import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
 import {getAllStudents} from './helpers/viewHelpers.js';
 import StudentsList from './StudentsList.jsx';
@@ -50,6 +49,10 @@ class StudentsView extends React.Component {
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this);
   }
 
+// --------------------------------------------------------------------
+// Component Lifecycle Functions
+// --------------------------------------------------------------------
+
   componentWillMount() {
     if(this.props.currentStudentName) {
       this.setState({
@@ -75,6 +78,12 @@ class StudentsView extends React.Component {
       }
     }
   }
+
+// --------------------------------------------------------------------
+
+// --------------------------------------------------------------------
+// Event Handlers
+// --------------------------------------------------------------------
 
   handleStudentsListEntryClick(studentName, studentId, studentCourse, studentCourseId) {
     this.setState({
@@ -147,6 +156,8 @@ class StudentsView extends React.Component {
   };
 
   ///////////////////////////////////////
+
+// --------------------------------------------------------------------
 
   render() {
 

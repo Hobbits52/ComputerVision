@@ -1,23 +1,13 @@
 import React from 'react';
-import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
 import StudentsListEntry from './StudentsListEntry.jsx';
 import css from '../css/nav.css';
 
 class StudentsList extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      students: this.props.students,
-      currentStudent: this.props.currentStudent
-    };
-  }
-
+  
   render() {
-
     let data = [];
-    this.state.students.map((obj) => {
+    this.props.students.map((obj) => {
 
       for (var i = 0; i < obj.students.length; i++) {
         var studentObj = {

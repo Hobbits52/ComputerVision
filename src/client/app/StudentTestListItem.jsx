@@ -1,19 +1,10 @@
 import React from 'react';
-import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
 
 class StudentTestListItem extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      test: this.props.test
-    };
-  }
-
-
+  
   render() {
-    var result = this.state.test.result * 100 + "%"
+    var result = this.props.test.result * 100 + "%"
 
     var testName = '';
 
@@ -26,7 +17,7 @@ class StudentTestListItem extends React.Component {
     }
 
     return (
-      <tr onClick={() => {this.props.handleUserSelectTest(this.state.test)}}>
+      <tr onClick={() => {this.props.handleUserSelectTest(this.props.test)}}>
         <td>{this.props.currentCourse}</td>
         <td>{testName}</td>
         <td>{result}</td>

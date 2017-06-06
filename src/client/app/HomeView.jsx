@@ -2,10 +2,10 @@ import React, { cloneElement } from 'react';
 import {Link} from 'react-router';
 import axios from 'axios';
 import css from '../css/main.css';
-import PostIt from './PostIts.jsx';
-
 import {getAllTeachersClasses} from './helpers/viewHelpers.js';
 
+// components
+import PostIt from './PostIts.jsx';
 
 class HomeView extends React.Component {
   

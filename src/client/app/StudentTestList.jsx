@@ -1,5 +1,4 @@
 import React from 'react';
-import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
 import StudentTestListItem from './StudentTestListItem.jsx';
 import {getAllTestsInClass} from './helpers/viewHelpers.js';
@@ -21,8 +20,13 @@ class StudentTestList extends React.Component {
     this.handleGoBackTestList = this.handleGoBackTestList.bind(this);
   }
 
-  // this will change, answers will come back in a diff form
-  componentWillMount() {
+// --------------------------------------------------------------------
+// Component Lifecycle Functions
+// --------------------------------------------------------------------
+
+  // ajax calls should happen in componentDidMount() 
+  // https://daveceddia.com/ajax-requests-in-react/
+  componentDidMount() {
     getAllTestsInClass(this.state.currentCourseId)
     .then((res) => {
       this.setState({
@@ -48,6 +52,12 @@ class StudentTestList extends React.Component {
     })
   }
 
+// --------------------------------------------------------------------
+
+// --------------------------------------------------------------------
+// Event Handlers
+// --------------------------------------------------------------------
+
   handleUserSelectTest(test) {
     this.setState({
       currentTest: test
@@ -59,6 +69,8 @@ class StudentTestList extends React.Component {
       currentTest: null
     });
   }
+
+// --------------------------------------------------------------------
 
   render() {
     if (this.state.returnTests !== null && this.state.currentTest === null) {

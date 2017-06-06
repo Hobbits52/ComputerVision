@@ -1,5 +1,4 @@
 import React from 'react';
-import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
 import {clickLinkToPDF} from './helpers/viewHelpers.js';
 import routes from './routes.jsx';

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import Autosuggest from 'react-autosuggest';
-import StudentsView from '../StudentsView.jsx'
 
 // Autosuggest uses css modules
 const theme = {
@@ -38,7 +37,6 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      students: this.props.students,
       matches: [],
       decoratedStudents: [],
       suggestions: [],
@@ -54,24 +52,32 @@ class NavBar extends React.Component {
     this.clearSelection = this.clearSelection.bind(this);
   };
 
+// --------------------------------------------------------------------
+// Component Lifecycle Functions
+// --------------------------------------------------------------------
+
   componentDidMount() {
-    if (this.state.students) {
-      for (var i = 0; i < this.state.students.length; i++) {
-        for (var j = 0; j < this.state.students[i].students.length; j++) {
+    if (this.props.students) {
+      for (var i = 0; i < this.props.students.length; i++) {
+        for (var j = 0; j < this.props.students[i].students.length; j++) {
           this.state.decoratedStudents.push({
-            classId: this.state.students[i].class.ClassId,
-            className: this.state.students[i].class.ClassName,
-            studentId: this.state.students[i].students[j].StudentId,
-            studentName: this.state.students[i].students[j].StudentName
+            classId: this.props.students[i].class.ClassId,
+            className: this.props.students[i].class.ClassName,
+            studentId: this.props.students[i].students[j].StudentId,
+            studentName: this.props.students[i].students[j].StudentName
           })
         }
       }
     }
   }
 
+// --------------------------------------------------------------------
+
+// --------------------------------------------------------------------
+// Event Handlers
+// --------------------------------------------------------------------
 
   /////////////////SEARCH FEATURE/////////////////////
-
 
   getSuggestions(value, students) {
     if (value) {
@@ -133,6 +139,8 @@ class NavBar extends React.Component {
 
   ///////////////////////////////////////
 
+
+// --------------------------------------------------------------------
 
   render () {
 

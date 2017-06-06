@@ -1,6 +1,8 @@
 import React from 'react';
-import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
+import {getKeysForClass} from './helpers/viewHelpers.js';
+
+// components
 import NavBar from './Nav/NavBar.jsx'
 import NavSide from './Nav/NavSide.jsx'
 import TeacherViewContainer from './TeacherViewContainer.jsx'
@@ -9,7 +11,7 @@ import Login from './Login.jsx';
 import css from '../css/main.css';
 import KeyViewList from './KeyViewList.jsx';
 import StatisticsView from './StatisticsView.jsx';
-import {getKeysForClass} from './helpers/viewHelpers.js';
+
 
 class ClassesView extends React.Component {
   constructor(props) {
@@ -27,6 +29,10 @@ class ClassesView extends React.Component {
     this.showAllTestsForClass = this.showAllTestsForClass.bind(this);
     this.selectKey = this.selectKey.bind(this);
   }
+
+// --------------------------------------------------------------------
+// Component Lifecycle Functions
+// --------------------------------------------------------------------
 
   componentWillMount() {
     if(this.props.currentCourse) {
@@ -53,6 +59,13 @@ class ClassesView extends React.Component {
       })
     }
   }
+
+// --------------------------------------------------------------------
+
+
+// --------------------------------------------------------------------
+// Event Handlers
+// --------------------------------------------------------------------
 
   selectClass(event) {
     var classId = event.target.value;
@@ -91,6 +104,8 @@ class ClassesView extends React.Component {
       currentKeyName: key.keyName
     });
   }
+  
+// --------------------------------------------------------------------
 
   render() { 
     if (this.state.currentClass === 'Choose a class' && this.state.keysForClass === null) {

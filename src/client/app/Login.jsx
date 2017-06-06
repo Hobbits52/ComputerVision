@@ -9,6 +9,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props)
 
+    // Username and password for demo
     this.state = {
       username: 'Professor X',
       password: 'password'
@@ -17,6 +18,10 @@ class Login extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+// --------------------------------------------------------------------
+// Event Handlers
+// --------------------------------------------------------------------
 
   handleInputChange(event) {
     this.setState({
@@ -47,6 +52,8 @@ class Login extends React.Component {
       console.log('Login Error: ', err); 
     });
   }
+
+// --------------------------------------------------------------------
 
   render() {
     return (

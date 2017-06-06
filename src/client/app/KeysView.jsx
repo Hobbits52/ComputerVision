@@ -1,10 +1,11 @@
 import React from 'react';
-import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
+import {getKeysForClass} from './helpers/viewHelpers.js';
 import css from '../css/nav.css';
+
+// components
 import KeyViewList from './KeyViewList.jsx';
 import KeyViewAnswers from './KeyViewAnswers.jsx'
-import {getKeysForClass} from './helpers/viewHelpers.js';
 
 class KeysView extends React.Component {
   constructor(props) {
@@ -24,6 +25,10 @@ class KeysView extends React.Component {
     this.showAllTestsForClass = this.showAllTestsForClass.bind(this);
 
   }
+
+// --------------------------------------------------------------------
+// Event Handlers
+// --------------------------------------------------------------------
 
   selectClass(event) {
     var classId = event.target.value;
@@ -60,6 +65,8 @@ class KeysView extends React.Component {
       selectClassId: null
     });
   }
+
+// --------------------------------------------------------------------
 
   render() { 
     if (this.state.selectClassId === null) {

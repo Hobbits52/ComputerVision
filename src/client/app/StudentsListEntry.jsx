@@ -1,5 +1,4 @@
 import React from 'react';
-import {render} from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 import css from '../css/nav.css';
 

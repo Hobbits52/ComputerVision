@@ -4,11 +4,6 @@ import {Link} from 'react-router';
 import css from '../../css/nav.css';
 
 class NavSide extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
 
   render() {
     return (

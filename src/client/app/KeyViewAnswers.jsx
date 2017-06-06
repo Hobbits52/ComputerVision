@@ -1,5 +1,4 @@
 import React from 'react';
-import {render} from 'react-dom';
 import {browserHistory} from 'react-router';
 import css from '../css/nav.css';
 import KeyViewAnswersItem from './KeyViewAnswersItem.jsx'
@@ -7,7 +6,6 @@ import KeyViewAnswersItem from './KeyViewAnswersItem.jsx'
 
 class KeyViewAnswers extends React.Component {
   constructor(props) {
-    
     super(props);
 
     this.state = {
@@ -17,11 +15,18 @@ class KeyViewAnswers extends React.Component {
     this.showImage = this.showImage.bind(this);
   }
 
+
+// --------------------------------------------------------------------
+// Event Handlers
+// --------------------------------------------------------------------
+
   showImage() {
     this.setState({
       clicked: !this.state.clicked
     })
   }
+
+// --------------------------------------------------------------------
 
   // TODO:once url is included in server-side, remove hardcode on line 20
   render() { 

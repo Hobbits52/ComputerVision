@@ -4,13 +4,7 @@ import {Link} from 'react-router';
 import {browserHistory} from 'react-router';
 
 class PostIt extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      course: this.props.class.ClassName
-    };
-  }
-
+  
   render() {
     return (
       <div className="postImage" onClick={() => {
