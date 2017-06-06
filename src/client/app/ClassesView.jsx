@@ -21,24 +21,19 @@ class ClassesView extends React.Component {
       selectClassId: null,
       currentKeyId: null,
       keysForClass: null
-
     };
 
     this.selectClass = this.selectClass.bind(this);
     this.showAllTestsForClass = this.showAllTestsForClass.bind(this);
     this.selectKey = this.selectKey.bind(this);
-
   }
 
   componentWillMount() {
     if(this.props.currentCourse) {
-      console.log('this is the props for current course id', this.props.currentCourseId)
       this.setState({
         currentClass: this.props.currentCourse,
         selectClassId: this.props.currentCourseId
       })
-
-      console.log ('yaya state', this.props.currentCourseId)
 
       getKeysForClass(this.props.currentCourseId)
       .then((res) => {
@@ -142,7 +137,10 @@ class ClassesView extends React.Component {
         <div>
           <h5 className = "backCrumb" onClick={this.showAllTestsForClass}>{"< Back to all tests"}</h5>
           <h3>{'Biology 101'}</h3>
-          <StatisticsView currentKeyName={this.state.currentKeyName} currentKey={this.state.currentKey} currentKeyId={this.state.currentKeyId} showAllTestsForClass={this.showAllTestsForClass}/>
+          <StatisticsView currentKeyName={this.state.currentKeyName} 
+                          currentKey={this.state.currentKey} 
+                          currentKeyId={this.state.currentKeyId} 
+                          showAllTestsForClass={this.showAllTestsForClass}/>
         </div>
       );
     } else if (this.state.selectClassId !== null && this.state.currentKey === null){

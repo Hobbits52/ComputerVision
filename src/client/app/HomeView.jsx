@@ -8,29 +8,7 @@ import {getAllTeachersClasses} from './helpers/viewHelpers.js';
 
 
 class HomeView extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      
-    };
-
-  }
-
-  handleSearchInputChange(event) {
-    event.preventDefault();
-    // What happens when the teacher changes the text in the search bar?
-  }
-
-  handleSearchSubmit(event) {
-    event.preventDefault();
-    // What happens when the teacher submits a search in the search bar?
-  }
-
-  handleSidebarClick(event) {
-    // What happens when the teacher clicks an individual student's exam from the list?
-  }
-
+  
   render() {
     return (
       <div className="col-sm-10 mainContent">

@@ -3,16 +3,7 @@ import {render} from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 import css from '../css/nav.css';
 
-///not getting here
-
 class StudentsListEntry extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      // State variables to go here
-    };
-  }
 
   render() {
     return (

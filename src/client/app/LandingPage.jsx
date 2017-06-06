@@ -5,12 +5,6 @@ import css from '../css/main.css';
 import NavBar from './Nav/NavBar.jsx';
 
 class LandingPage extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-
-    };
-  }
 
   render() {
     return (

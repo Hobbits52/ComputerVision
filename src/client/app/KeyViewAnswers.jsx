@@ -7,11 +7,13 @@ import KeyViewAnswersItem from './KeyViewAnswersItem.jsx'
 
 class KeyViewAnswers extends React.Component {
   constructor(props) {
+    
     super(props);
 
     this.state = {
       clicked: false
     };
+
     this.showImage = this.showImage.bind(this);
   }
 

@@ -90,7 +90,6 @@ class Dashboard extends React.Component {
   }
 
   handlePostItClick(course, courseId) {
-    console.log('this is the course what', course)
     this.setState({
       currentCourse: course,
       currentCourseId: courseId

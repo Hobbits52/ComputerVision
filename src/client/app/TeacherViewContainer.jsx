@@ -8,31 +8,6 @@ import StudentsView from './StudentsView.jsx';
 
 
 class TeacherViewContainer extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-
-    };
-
-    // this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
-    // this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
-    // this.handleSidebarClick = this.handleSidebarClick.bind(this);
-  }
-
-  handleSearchInputChange(event) {
-    event.preventDefault();
-    // What happens when the teacher changes the text in the search bar?
-  }
-
-  handleSearchSubmit(event) {
-    event.preventDefault();
-    // What happens when the teacher submits a search in the search bar?
-  }
-
-  handleSidebarClick(event) {
-    // What happens when the teacher clicks an individual student's exam from the list?
-  }
 
   render() {
     return (

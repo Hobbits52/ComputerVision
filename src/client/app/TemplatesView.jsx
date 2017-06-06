@@ -5,12 +5,6 @@ import {clickLinkToPDF} from './helpers/viewHelpers.js';
 import routes from './routes.jsx';
 
 class TemplatesView extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-    };
-  }
 
   render() {
     return (

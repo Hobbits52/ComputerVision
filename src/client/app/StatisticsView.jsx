@@ -14,8 +14,6 @@ class StatisticsView extends React.Component {
       classTestData: null,
       errorLoadingData: null
     };
-    console.log('in stat view!!!!!');
-    // this.handleSomeEvent = this.handleSomeEvent.bind(this);
   }
 
 // --------------------------------------------------------------------
@@ -34,16 +32,6 @@ class StatisticsView extends React.Component {
           errorLoadingData: error.message
         })
       });
-  }
-// --------------------------------------------------------------------
-
-
-// --------------------------------------------------------------------
-// Event Handlers
-// --------------------------------------------------------------------
-
-  handleSomeEvent(someParameter) {
-
   }
 // --------------------------------------------------------------------
 
