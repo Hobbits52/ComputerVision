@@ -86,7 +86,9 @@ class KeysView extends React.Component {
       return (
         <div>
           <h3 className="entryView">{"Keys"}</h3>
-          <Dropdown selectClass={this.selectClass} classes={this.props.classes}/>
+          <Dropdown selectClass={this.selectClass} 
+                    classes={this.props.classes}
+                    selectClassId={this.state.selectClassId}/>
           <KeyViewList 
             currentClass={this.state.selectClassId} 
             selectKey={this.selectKey} 

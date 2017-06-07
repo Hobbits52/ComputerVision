@@ -101,7 +101,7 @@ class Dashboard extends React.Component {
 // --------------------------------------------------------------------
 
   render() {
-    
+
     // loading spinner      
     if (this.state.classes === null || this.state.students === null) {
       return (

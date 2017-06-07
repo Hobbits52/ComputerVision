@@ -13,7 +13,7 @@ class Dropdown extends React.Component {
       <form className="dropdown">
       <label>
           Select a class: 
-          <select onChange={this.props.selectClass} >
+          <select onChange={this.props.selectClass} value={this.props.selectClassId}>
             <option value={'Choose a class'}>{"Choose a class"}</option>
             {this.props.classes.map((course, key) => {
               return <option value={course.ClassId} key={shortid.generate()}>{course.ClassName}</option>
