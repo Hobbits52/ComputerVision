@@ -123,6 +123,7 @@
   color: #434343;
   font-weight: bold;
   min-height: 200%;
+  max-height: 9999px;
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 3%;
@@ -185,6 +186,7 @@ a {
   height: 30px;
   float: right;
 }
+
 
 
 

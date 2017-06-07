@@ -49,10 +49,8 @@ class Signup extends React.Component {
           <div>
             <h1>Sign Up</h1>
             <form onSubmit={this.handleSubmit} method="post">
-
               <input id="username" name="username" type="text" value={this.state.username} onChange={this.handleInputChange} />
               <br/>
-
               <input id="password" name="password" type="password" value={this.state.password} onChange={this.handleInputChange} />
               <br/>
               <input type="submit" value="Sign Up" />

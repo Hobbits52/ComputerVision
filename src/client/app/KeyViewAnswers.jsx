@@ -2,6 +2,11 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import css from '../css/nav.css';
 
+// setting a key with the index is an anti-pattern
+// https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
+// used to generate a unique key for react mapped components
+import shortid from 'shortid';
+
 // components
 import KeyViewAnswersItem from './KeyViewAnswersItem.jsx'
 
@@ -58,7 +63,7 @@ class KeyViewAnswers extends React.Component {
               {Object.keys(this.props.currentKey).map((answer, key) => {
                 return <KeyViewAnswersItem
                   answer={this.props.currentKey[key + 1]}
-                  key={key}
+                  key={shortid.generate()}
                   answerNumber={key + 1} />
               })
               }

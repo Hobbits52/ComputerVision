@@ -4,6 +4,11 @@ import axios from 'axios';
 import css from '../css/main.css';
 import {getAllTeachersClasses} from './helpers/viewHelpers.js';
 
+// setting a key with the index is an anti-pattern
+// https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
+// used to generate a unique key for react mapped components
+import shortid from 'shortid';
+
 // components
 import PostIt from './PostIts.jsx';
 
@@ -15,7 +20,7 @@ class HomeView extends React.Component {
         <h3>My Classes</h3>
           <div className="postIts">
             {this.props.classes.map((course, key) => {
-              return <PostIt class={course} key={key} handlePostItClick={this.props.handlePostItClick}/>
+              return <PostIt class={course} key={shortid.generate()} handlePostItClick={this.props.handlePostItClick}/>
             })}
           </div>
         <h3>Most Recent Test Results</h3>

@@ -3,6 +3,11 @@ import {browserHistory} from 'react-router';
 import {getKeysForClass} from './helpers/viewHelpers.js';
 import css from '../css/nav.css';
 
+// setting a key with the index is an anti-pattern
+// https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
+// used to generate a unique key for react mapped components
+import shortid from 'shortid';
+
 // components
 import KeyViewList from './KeyViewList.jsx';
 import KeyViewAnswers from './KeyViewAnswers.jsx'
@@ -79,7 +84,7 @@ class KeysView extends React.Component {
             <select onChange={this.selectClass} >
               <option value={'Choose a class'}>{"Choose a class"}</option>
               {this.props.classes.map((course, key) => {
-                return <option value={course.ClassId} key={key}>{course.ClassName}</option>
+                return <option value={course.ClassId} key={shortid.generate()}>{course.ClassName}</option>
               })}
             </select>
           </label>
@@ -96,7 +101,7 @@ class KeysView extends React.Component {
               <select onChange={this.selectClass} >
                 <option value={'Choose a class'}>{"Choose a class"}</option>
                 {this.props.classes.map((course, key) => {
-                  return <option value={course.ClassId} key={key}>{course.ClassName}</option>
+                  return <option value={course.ClassId} key={shortid.generate()}>{course.ClassName}</option>
                 })}
               </select>
             </label>
@@ -113,7 +118,10 @@ class KeysView extends React.Component {
         <div>
           <h5 className = "backCrumb" onClick={this.showAllTestsForClass}>{"< Back to all keys"}</h5>
           <h3>{this.state.currentKeyName}</h3>
-          <KeyViewAnswers currentKeyName={this.state.currentKeyName} currentKey={this.state.currentKey} currentKeyId={this.state.currentKeyId} showAllTestsForClass={this.showAllTestsForClass}/>
+          <KeyViewAnswers currentKeyName={this.state.currentKeyName} 
+                          currentKey={this.state.currentKey} 
+                          currentKeyId={this.state.currentKeyId} 
+                          showAllTestsForClass={this.showAllTestsForClass}/>
         </div>
       );
     } else if (this.state.selectClassId !== null && this.state.currentKey === null){

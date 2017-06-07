@@ -3,6 +3,11 @@ import {browserHistory} from 'react-router';
 import {getKeysForClass} from './helpers/viewHelpers.js';
 import css from '../css/nav.css';
 
+// setting a key with the index is an anti-pattern
+// https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
+// used to generate a unique key for react mapped components
+import shortid from 'shortid';
+
 // components
 import KeyViewListItem from './KeyViewListItem.jsx';
 
@@ -20,7 +25,7 @@ class KeyViewList extends React.Component {
               {this.props.keysForClass.map((answerKey, index) => {
                 return <KeyViewListItem
                     answerKey={this.props.keysForClass[index]}
-                    key={index}             
+                    key={shortid.generate()}             
                     answerID={index + 1} 
                     selectKey={this.props.selectKey}  
                     keyName={answerKey.keyName} 

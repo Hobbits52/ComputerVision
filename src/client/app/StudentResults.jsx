@@ -4,6 +4,11 @@ import axios from 'axios';
 import css from '../css/auth.css';
 import { getKeysForClass } from './helpers/viewHelpers.js';
 
+// setting a key with the index is an anti-pattern
+// https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
+// used to generate a unique key for react mapped components
+import shortid from 'shortid';
+
 // components
 import StudentResultsItem from './StudentResultsItem.jsx';
 
@@ -68,7 +73,7 @@ class StudentResults extends React.Component {
                   testNum={key + 1} 
                   studentAnswer={this.state.test[key + 1]} 
                   keyAnswer={this.state.answers[key + 1]} 
-                  key={key} />
+                  key={shortid.generate()} />
               })}
             </tbody>
           </table>

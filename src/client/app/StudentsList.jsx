@@ -2,6 +2,9 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import css from '../css/nav.css';
 
+// used to generate a unique key for react mapped components
+import shortid from 'shortid';
+
 // components
 import StudentsListEntry from './StudentsListEntry.jsx';
 
@@ -22,6 +25,8 @@ class StudentsList extends React.Component {
       }
     });
 
+    // setting a key with the index is an anti-pattern
+    // https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
     return (
       <div>
         <table>
@@ -31,8 +36,8 @@ class StudentsList extends React.Component {
                     student={pupil}
                     currentStudent={this.props.currentStudent}
                     handleStudentsListEntryClick={this.props.handleStudentsListEntryClick}
-                    key={index}
-                                   
+                    key={shortid.generate()}
+                    index={index}           
                 />
               })
             }

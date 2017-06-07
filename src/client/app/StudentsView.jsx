@@ -38,7 +38,6 @@ class StudentsView extends React.Component {
     super(props);
 
     this.state = {
-      students: this.props.students,
       currentStudentName: null,
       currentId: null,
       currentCourse: null,
@@ -64,26 +63,15 @@ class StudentsView extends React.Component {
 // Component Lifecycle Functions
 // --------------------------------------------------------------------
 
-  componentWillMount() {
-    if(this.props.currentStudentName) {
-      this.setState({
-        currentStudentName: this.props.currentStudentName,
-        currentId: this.props.currentId,
-        currentCourse: this.props.currentCourse,
-        currentCourseId: this.props.currentCourseId
-      })
-    }
-  }
-
   componentDidMount() {
-    if (this.state.students) {
-      for (var i = 0; i < this.state.students.length; i++) {
-        for (var j = 0; j < this.state.students[i].students.length; j++) {
+    if (this.props.students) {
+      for (var i = 0; i < this.props.students.length; i++) {
+        for (var j = 0; j < this.props.students[i].students.length; j++) {
           this.state.decoratedStudents.push({
-            classId: this.state.students[i].class.ClassId,
-            className: this.state.students[i].class.ClassName,
-            studentId: this.state.students[i].students[j].StudentId,
-            studentName: this.state.students[i].students[j].StudentName
+            classId: this.props.students[i].class.ClassId,
+            className: this.props.students[i].class.ClassName,
+            studentId: this.props.students[i].students[j].StudentId,
+            studentName: this.props.students[i].students[j].StudentName
           })
         }
       }
@@ -169,7 +157,7 @@ class StudentsView extends React.Component {
           </div>
           <div className={StudentTestListClassName}>
             <StudentsList 
-              students={this.state.students}
+              students={this.props.students}
               currentStudentId={this.state.currentStudent}
               handleStudentsListEntryClick={this.handleStudentsListEntryClick} 
               handleGoBackStudents={this.handleGoBackStudents}

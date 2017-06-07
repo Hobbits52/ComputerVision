@@ -2,6 +2,11 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import {getAllTestsInClass} from './helpers/viewHelpers.js';
 
+// setting a key with the index is an anti-pattern
+// https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
+// used to generate a unique key for react mapped components
+import shortid from 'shortid';
+
 // components
 import StudentTestListItem from './StudentTestListItem.jsx';
 import StudentResults from './StudentResults.jsx';
@@ -11,8 +16,6 @@ class StudentTestList extends React.Component {
     super(props);
 
     this.state = {
-      currentStudentName: this.props.studentName,
-      currentCourseId: this.props.currentCourseId,
       classes: null,
       returnTests: null,
       currentTest: null
@@ -29,7 +32,7 @@ class StudentTestList extends React.Component {
   // ajax calls should happen in componentDidMount() 
   // https://daveceddia.com/ajax-requests-in-react/
   componentDidMount() {
-    getAllTestsInClass(this.state.currentCourseId)
+    getAllTestsInClass(this.props.currentCourseId)
     .then((res) => {
       this.setState({
         classes: res.data
@@ -82,7 +85,7 @@ class StudentTestList extends React.Component {
       return (
         <div>
           <h5 className="backCrumb" onClick={this.props.handleGoBackStudents}>{"< Back to Students"}</h5>
-          <h3>{this.state.currentStudentName + "'s Tests"}</h3>
+          <h3>{this.props.studentName + "'s Tests"}</h3>
           <table>
             <tbody>
               <tr>
@@ -93,11 +96,11 @@ class StudentTestList extends React.Component {
                 {this.state.returnTests.map((test, index) => {
                   return <StudentTestListItem 
                             test={test}
-                            studentName={this.props.currentStudentName}
+                            studentName={this.props.studentName}
                             studentId={this.props.currentId}
                             currentCourse={this.props.currentCourse}
                             currentCourseId={this.props.currentCourseId}
-                            key={index}
+                            key={shortid.generate()}
                             handleUserSelectTest={this.handleUserSelectTest}
                             classes={this.state.classes}
                                      
@@ -121,9 +124,9 @@ class StudentTestList extends React.Component {
         <div>
           <StudentResults 
             test={this.state.currentTest} 
-            studentName={this.state.currentStudentName}
+            studentName={this.props.studentName}
             handleGoBackTestList={this.handleGoBackTestList}
-            currentCourseId={this.state.currentCourseId}
+            currentCourseId={this.props.currentCourseId}
           />
         </div>
       );

@@ -2,6 +2,11 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import {getKeysForClass} from './helpers/viewHelpers.js';
 
+// setting a key with the index is an anti-pattern
+// https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318
+// used to generate a unique key for react mapped components
+import shortid from 'shortid';
+
 // components
 import NavBar from './Nav/NavBar.jsx'
 import NavSide from './Nav/NavSide.jsx'
@@ -118,7 +123,7 @@ class ClassesView extends React.Component {
             <select onChange={this.selectClass} >
               <option value={'Choose a class'}>{"Choose a class"}</option>
               {this.props.classes.map((course, key) => {
-                return <option value={course.ClassId} key={key}>{course.ClassName}</option>
+                return <option value={course.ClassId} key={shortid.generate()}>{course.ClassName}</option>
               })}
             </select>
           </label>
@@ -135,7 +140,7 @@ class ClassesView extends React.Component {
               <select onChange={this.selectClass} >
                 <option value={'Choose a class'}>{"Choose a class"}</option>
                 {this.props.classes.map((course, key) => {
-                  return <option value={course.ClassId} key={key}>{course.ClassName}</option>
+                  return <option value={course.ClassId} key={shortid.generate()}>{course.ClassName}</option>
                 })}
               </select>
             </label>
