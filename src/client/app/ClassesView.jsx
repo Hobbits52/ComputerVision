@@ -16,7 +16,8 @@ import Login from './Login.jsx';
 import css from '../css/main.css';
 import KeyViewList from './KeyViewList.jsx';
 import StatisticsView from './StatisticsView.jsx';
-
+import Dropdown from './Dropdown.jsx';
+import Spinner from './Spinner.jsx';
 
 class ClassesView extends React.Component {
   constructor(props) {
@@ -117,34 +118,14 @@ class ClassesView extends React.Component {
       return (
       <div>
         <h3 className="entryView">{"Classes"}</h3>
-        <form className="dropdown">
-        <label>
-            Select a class: 
-            <select onChange={this.selectClass} >
-              <option value={'Choose a class'}>{"Choose a class"}</option>
-              {this.props.classes.map((course, key) => {
-                return <option value={course.ClassId} key={shortid.generate()}>{course.ClassName}</option>
-              })}
-            </select>
-          </label>
-        </form>
+        <Dropdown selectClass={this.selectClass} classes={this.props.classes}/>
       </div>
     );
     } else if (this.state.currentKey === null && this.state.keysForClass) {
       return (
         <div>
           <h3 className="entryView">{"Classes"}</h3>
-          <form className="dropdown">
-          <label>
-              Select a class:
-              <select onChange={this.selectClass} >
-                <option value={'Choose a class'}>{"Choose a class"}</option>
-                {this.props.classes.map((course, key) => {
-                  return <option value={course.ClassId} key={shortid.generate()}>{course.ClassName}</option>
-                })}
-              </select>
-            </label>
-          </form>
+          <Dropdown selectClass={this.selectClass} classes={this.props.classes}/>
           <KeyViewList 
             currentClass={this.state.selectClassId} 
             selectKey={this.selectKey} 
@@ -165,8 +146,7 @@ class ClassesView extends React.Component {
       );
     } else if (this.state.selectClassId !== null && this.state.currentKey === null){
       return (
-        <div>
-        </div>
+        <Spinner />
       );
     }
   }

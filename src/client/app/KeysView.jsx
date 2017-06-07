@@ -10,7 +10,8 @@ import shortid from 'shortid';
 
 // components
 import KeyViewList from './KeyViewList.jsx';
-import KeyViewAnswers from './KeyViewAnswers.jsx'
+import KeyViewAnswers from './KeyViewAnswers.jsx';
+import Dropdown from './Dropdown.jsx';
 
 class KeysView extends React.Component {
   constructor(props) {
@@ -78,34 +79,14 @@ class KeysView extends React.Component {
       return (
       <div>
         <h3 className="entryView">{"Keys"}</h3>
-        <form className="dropdown">
-        <label>
-            Select a class: 
-            <select onChange={this.selectClass} >
-              <option value={'Choose a class'}>{"Choose a class"}</option>
-              {this.props.classes.map((course, key) => {
-                return <option value={course.ClassId} key={shortid.generate()}>{course.ClassName}</option>
-              })}
-            </select>
-          </label>
-        </form>
+        <Dropdown selectClass={this.selectClass} classes={this.props.classes}/>
       </div>
     );
     } else if (this.state.currentKey === null) {
       return (
         <div>
           <h3 className="entryView">{"Keys"}</h3>
-          <form className="dropdown">
-          <label>
-              Select a class:
-              <select onChange={this.selectClass} >
-                <option value={'Choose a class'}>{"Choose a class"}</option>
-                {this.props.classes.map((course, key) => {
-                  return <option value={course.ClassId} key={shortid.generate()}>{course.ClassName}</option>
-                })}
-              </select>
-            </label>
-          </form>
+          <Dropdown selectClass={this.selectClass} classes={this.props.classes}/>
           <KeyViewList 
             currentClass={this.state.selectClassId} 
             selectKey={this.selectKey} 

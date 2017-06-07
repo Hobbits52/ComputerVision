@@ -8,7 +8,7 @@ import NavSide from './Nav/NavSide.jsx';
 import Login from './Login.jsx';
 import css from '../css/nav.css';
 import NavBar from './Nav/NavBar.jsx';
-
+import Spinner from './Spinner.jsx';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -101,16 +101,11 @@ class Dashboard extends React.Component {
 // --------------------------------------------------------------------
 
   render() {
+    
     // loading spinner      
     if (this.state.classes === null || this.state.students === null) {
       return (
-        <div className="spinner">
-          <div className="rect1"></div>
-          <div className="rect2"></div>
-          <div className="rect3"></div>
-          <div className="rect4"></div>
-          <div className="rect5"></div>
-        </div>
+        <Spinner />
       )
     } else {
       return (
