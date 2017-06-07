@@ -61,6 +61,8 @@ class NavBar extends React.Component {
     this.onSuggestionsFetchRequested = onSuggestionsFetchRequested.bind(this);
     this.onSuggestionsClearRequested = onSuggestionsClearRequested.bind(this);
     this.clearSelection = clearSelection.bind(this);
+
+    console.log(this.props.students);
   };
 
 // --------------------------------------------------------------------
@@ -90,6 +92,7 @@ class NavBar extends React.Component {
 // --------------------------------------------------------------------
 
   renderSuggestion(suggestion) {
+    console.log('YOU CLICKED ME YAY');
     return (
       <div className="searchBarList" onClick={() => {
             this.props.handleSearchBarClick(

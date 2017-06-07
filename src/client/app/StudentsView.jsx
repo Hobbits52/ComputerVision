@@ -14,7 +14,7 @@ import {onSuggestionsClearRequested,
         onChange,
         getSuggestionValue,
         getSuggestions} from './helpers/searchHelpers.js';
-        
+
 
 // Autosuggest uses css modules
 const theme = {
@@ -117,6 +117,7 @@ class StudentsView extends React.Component {
   }
 
   renderSuggestion(suggestion) {
+    console.log('heck yes');
     return (
       <tr className = "suggestionResults" onClick={() => {
         this.handleStudentsListEntryClick(

@@ -15,17 +15,14 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      teacher: this.props.teacher, 
-      teacherId: this.props.teacherId,
       currentCourse: null,
-      renderOk: false,
-
       currentStudentName: null,
       currentId: null,
       currentCourseId: null,
-
       students: null,
       classes: null,
+
+      // placeholders for future features
       keys: 'An array of objects, each representing the data corresponding to a particular key.',
       mostRecentTest: 'An object representing the data of the most recent exam to fill the stats view'
 
@@ -55,11 +52,10 @@ class Dashboard extends React.Component {
         classes: res.data 
       });
 
-      getAllStudents(this.state.teacherId)
+      getAllStudents(this.props.teacherId)
         .then((res) => {
           this.setState({
-            students: res.data,
-            renderOk: true
+            students: res.data
           })
         })
         .catch((err) => {
@@ -105,12 +101,18 @@ class Dashboard extends React.Component {
 // --------------------------------------------------------------------
 
   render() {
-    if (this.state.classes === null && this.state.renderOk === false) {
+    // loading spinner
+    if (this.state.classes === null || this.state.students === null) {
       return (
-        <div>
+        <div className="spinner">
+          <div className="rect1"></div>
+          <div className="rect2"></div>
+          <div className="rect3"></div>
+          <div className="rect4"></div>
+          <div className="rect5"></div>
         </div>
       )
-    } else if (this.state.renderOk === true) {
+    } else {
       return (
         <div>
           <NavBar location={this.props.location} 
@@ -120,14 +122,14 @@ class Dashboard extends React.Component {
           <div className="container-fluid below-nav-top">
             <div className="row">
               <NavSide  className="navSide" 
-                        teacher={this.state.teacher} 
+                        teacher={this.props.teacher} 
                         handleSideBarClick={this.handleSideBarClick}
                         students={this.state.students}/>
                 <div className="col-sm-10 teacherViewContainer">
                   {React.cloneElement(this.props.children, {
                       isLoggedIn: this.props.isLoggedIn,
-                      teacher: this.state.teacher,
-                      teacherId: this.state.teacherId,
+                      teacher: this.props.teacher,
+                      teacherId: this.props.teacherId,
                       students: this.state.students,
                       classes: this.state.classes,
                       keys: this.state.keys,
@@ -144,12 +146,7 @@ class Dashboard extends React.Component {
           </div>
         </div>
       );
-    } else {
-      return (
-        <div>
-        </div>
-      )
-    }
+    } 
   }
 }
 
