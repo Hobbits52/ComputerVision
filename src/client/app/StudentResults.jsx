@@ -13,7 +13,6 @@ class StudentResults extends React.Component {
 
     this.state = {
       currentStudentName: this.props.studentName,
-      currentCourseId: this.props.currentCourseId,
       currentCourseName: null,
       answers: null,
       test: JSON.parse(this.props.test.studentAnswers),
@@ -28,7 +27,7 @@ class StudentResults extends React.Component {
   // ajax calls should happen in componentDidMount() 
   // https://daveceddia.com/ajax-requests-in-react/
   componentDidMount() {
-    getKeysForClass(this.state.currentCourseId)
+    getKeysForClass(this.props.currentCourseId)
     .then((res) => {
       var singleAnswerJSON = '';
       for (var i = 0; i < res.data.answerkey.length; i++) {

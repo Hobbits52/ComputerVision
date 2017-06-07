@@ -51,6 +51,9 @@ class StudentTestList extends React.Component {
         returnTests: allStudentTests
       });
 
+      // auto-scrolls to top of page after render
+      window.scrollTo(0, 0)
+
     })
   }
 
